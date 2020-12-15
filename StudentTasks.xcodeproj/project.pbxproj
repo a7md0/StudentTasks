@@ -58,6 +58,8 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				F0D914A02588D8050022DD06 /* View Controller */,
+				F0D9149F2588D7FB0022DD06 /* Model */,
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
 				F09EE9572577C65D00C60E50 /* SceneDelegate.swift */,
 				F09EE9592577C65D00C60E50 /* TaskViewController.swift */,
@@ -68,6 +70,20 @@
 				F09E888C258564DD0043A25A /* AddTaskViewController.swift */,
 			);
 			path = StudentTasks;
+			sourceTree = "<group>";
+		};
+		F0D9149F2588D7FB0022DD06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F0D914A02588D8050022DD06 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
