@@ -39,6 +39,14 @@ class Task: Codable, Equatable {
         self.init(name: name, description: description, type: type, priority: priority, dueDate: dueDate, course: nil, completed: nil, completedOn: nil, graded: nil, gradeContribution: nil, gradeType: nil, grade: nil)
     }
     
+    convenience init(name: String, description: String, type: TaskType, priority: TaskPriority, dueDate: Date, course: Course) {
+        self.init(name: name, description: description, type: type, priority: priority, dueDate: dueDate, course: course, completed: nil, completedOn: nil, graded: nil, gradeContribution: nil, gradeType: nil, grade: nil)
+    }
+    
+    convenience init(name: String, description: String, type: TaskType, priority: TaskPriority, dueDate: Date, course: Course, completed: Bool, completedOn: Date?) {
+        self.init(name: name, description: description, type: type, priority: priority, dueDate: dueDate, course: course, completed: completed, completedOn: completedOn, graded: nil, gradeContribution: nil, gradeType: nil, grade: nil)
+    }
+    
     init(name: String, description: String, type: TaskType, priority: TaskPriority, dueDate: Date, course: Course?, completed: Bool?, completedOn: Date?, graded: Bool?, gradeContribution: Float?, gradeType: TaskGradeType?, grade: Float?) {
         
         self.id = UUID() // Set universally unique identifier
