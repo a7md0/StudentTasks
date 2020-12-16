@@ -31,17 +31,17 @@ class Task: Codable {
 }
 
 enum TaskStatus: String, Codable {
-    case upcoming, completed, overdue
+    case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
 }
 
 enum TaskType: String, Codable {
-    case assignment, assessment, project, exam, homework
+    case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
 }
 
 enum TaskPriority: String, Codable {
-    case low, normal, high
+    case low = "Low", normal = "Normal", high = "High"
 }
 
 enum TaskGradeType: String, Codable {
-    case courseTotal, mainTask
+    case courseTotal = "Course Total", mainTask = "Main Task"
 }
