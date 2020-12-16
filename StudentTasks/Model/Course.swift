@@ -47,7 +47,7 @@ class Course: Codable, Equatable {
     
     init(name: String, code: String?, abberivation: String?, tags: [String]?, lecturerName: String?, overallGrade: Grade?, ongoingTasks: Int?, completedTasks: Int?, overdueTasks: Int?, tasks: [Task]?) {
         
-        self.id = UUID()
+        self.id = UUID() // Set universally unique identifier
         
         self.name = name
         self.code = code ?? nil
