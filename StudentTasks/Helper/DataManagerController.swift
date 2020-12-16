@@ -34,8 +34,20 @@ class DataManagerController {
      
     func loadSampleCourses() -> [Course] {
         return [
-            Course(name: "Mobile Programming", code: "IT8108", abberivation: "MP", tags: ["Online", "Lab"], lecturerName: "John", tasks: [
-                Task(name: "Task 1", description: "desc", course: pare, status: <#T##TaskStatus#>, type: <#T##TaskType#>, priority: <#T##TaskPriority#>, completed: <#T##Bool#>, graded: <#T##Bool#>)
+            Course(name: "Mobile Programming", code: "IT8108", abberivation: "MP", tags: ["Online", "Lab"]).addTasks(tasks: [
+                Task(name: "Task 1", description: "desc", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
+                Task(name: "Task 2", description: "desc", type: .assignment, priority: .low, dueDate: Date().addingTimeInterval(60*60*24*3)),
+                Task(name: "Task 3", description: "desc", type: .assignment, priority: .high, dueDate: Date().addingTimeInterval(60*60*24*4))
+            ]),
+            Course(name: "Object-Oriented design", code: "IT7006", abberivation: "OD", tags: ["Online", "Lab"]).addTasks(tasks: [
+                Task(name: "Task 10", description: "desc 2", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
+                Task(name: "Task 20", description: "desc 2", type: .assignment, priority: .low, dueDate: Date().addingTimeInterval(60*60*24*3)),
+                Task(name: "Task 30", description: "desc 2", type: .assignment, priority: .high, dueDate: Date().addingTimeInterval(60*60*24*4))
+            ]),
+            Course(name: "Web Development", code: "IT7405", abberivation: "WD", tags: ["Online", "Lab"]).addTasks(tasks: [
+                Task(name: "Task 11", description: "desc 3", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
+                Task(name: "Task 21", description: "desc 3", type: .assignment, priority: .low, dueDate: Date().addingTimeInterval(60*60*24*3)),
+                Task(name: "Task 31", description: "desc 3", type: .assignment, priority: .high, dueDate: Date().addingTimeInterval(60*60*24*4))
             ])
         ]
     }
