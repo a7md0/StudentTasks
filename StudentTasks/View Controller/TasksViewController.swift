@@ -10,6 +10,8 @@ import UIKit
 class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
     @IBOutlet weak var tabScrollView: ACTabScrollView!
     var contentViews: [UIView] = []
+    
+    let dataManager = DataManagerController.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +34,15 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         
         // create content views from storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        for _ in 0 ..< 3 {
-                let vc = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
+        for course in dataManager.getCourses() {
+            let vc = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
                 
-                /* set somethings for vc */
-                
-                addChild(vc) // don't forget, it's very important
-                contentViews.append(vc.view)
-            }
+            /* set somethings for vc */
+            vc.course = course
+            
+            addChild(vc) // don't forget, it's very important
+            contentViews.append(vc.view)
+        }
     }
     
     // MARK: ACTabScrollViewDelegate
@@ -52,13 +55,15 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         
     // MARK: ACTabScrollViewDataSource
     func numberOfPagesInTabScrollView(_ tabScrollView: ACTabScrollView) -> Int {
-        return 3
+        return dataManager.getCourses().count
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
+        let course = dataManager.getCourses()[index]
+        
         // create a label
         let label = UILabel()
-        label.text = "\(index) P"
+        label.text = course.name
         label.textAlignment = .center
         
         // if the size of your tab is not fixed, you can adjust the size by the following way.

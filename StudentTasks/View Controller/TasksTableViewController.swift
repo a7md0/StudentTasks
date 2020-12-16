@@ -9,6 +9,9 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
+    var course: Course?
+    var tasks: [Task]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +22,8 @@ class TasksTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.tableFooterView = UIView(frame: .zero)
+        
+        tasks = course?.tasks ?? []
     }
 
     // MARK: - Table view data source
@@ -28,14 +33,15 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return tasks?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        cell.taskLabel.text = "\(indexPath.row) cell"
+        let task = tasks![indexPath.row]
+        cell.taskLabel.text = task.name
         
         return cell
     }
