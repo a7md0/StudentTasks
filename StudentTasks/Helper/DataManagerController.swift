@@ -10,29 +10,38 @@ import Foundation
 class DataManagerController {
     static let sharedInstance = DataManagerController() // Static unimmutable variable which has instance of this class
     
-    let archiveURL: URL = {
-         let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-         
-         return DocumentsDirectory.appendingPathComponent("tasks").appendingPathExtension("plist")
-     }()
+    private let archiveURL: URL
+    private var courses: [Course]
     
-    private init() { } // Private constructor (this class cannot be initlized from the outside)
+    private init() { // Private constructor (this class cannot be initlized from the outside)
+        let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        self.archiveURL = DocumentsDirectory.appendingPathComponent("tasks").appendingPathExtension("plist")
+        self.courses = []
+        
+        // ^ Initlize all attrs above this line
+        
+        // Load data
+        let courses = loadCourses() ?? loadSampleCourses() // Load saved courses, if not then load sample courses
+        self.courses.append(contentsOf: courses) // Add courses to the line
+        // TODO: Trigger subject notify for courses change
+    }
     
     // TODO: Load and parse courses along with tasks
-    func loadCourses() -> [Course]? {
+    private func loadCourses() -> [Course]? {
         guard let codedCourses = try? Data(contentsOf: self.archiveURL) else { return nil }
          
         let propertyListDecoder = PropertyListDecoder()
         return try? propertyListDecoder.decode(Array<Course>.self, from: codedCourses)
     }
      
-    func saveCourses(_ todos: [Course]) {
+    private func saveCourses(_ todos: [Course]) {
         let propertyEnconder = PropertyListEncoder()
         let codedCourses = try? propertyEnconder.encode(todos)
         try? codedCourses?.write(to: self.archiveURL, options: .noFileProtection)
     }
      
-    func loadSampleCourses() -> [Course] {
+    private func loadSampleCourses() -> [Course] {
         return [
             Course(name: "Mobile Programming", code: "IT8108", abberivation: "MP", tags: ["Online", "Lab"]).addTasks(tasks: [
                 Task(name: "Task 1", description: "desc", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
@@ -52,8 +61,18 @@ class DataManagerController {
         ]
     }
     
-    
-    
     // TODO: Keep and save data through this class
+    func getCourses() -> [Course] {
+        return self.courses
+    }
+    
+    func getCoursesNames() -> [String] {
+        return self.getCourses().map { $0.name }
+    }
+    
+    func getAllTasks() -> [Task] {
+        return self.getCourses().map { $0.tasks }.reduce([], +)
+    }
+    
     // TODO: Implement observer pattern for other controllers to subscribe
 }
