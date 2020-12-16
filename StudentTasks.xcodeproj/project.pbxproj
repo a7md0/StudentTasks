@@ -12,7 +12,6 @@
 		F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E888C258564DD0043A25A /* AddTaskViewController.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
 		F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9572577C65D00C60E50 /* SceneDelegate.swift */; };
-		F09EE95A2577C65D00C60E50 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9592577C65D00C60E50 /* TaskViewController.swift */; };
 		F09EE95D2577C65D00C60E50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09EE95B2577C65D00C60E50 /* Main.storyboard */; };
 		F09EE95F2577C66000C60E50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F09EE95E2577C66000C60E50 /* Assets.xcassets */; };
 		F09EE9622577C66000C60E50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09EE9602577C66000C60E50 /* LaunchScreen.storyboard */; };
@@ -27,7 +26,6 @@
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09EE9552577C65D00C60E50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F09EE9572577C65D00C60E50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F09EE9592577C65D00C60E50 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		F09EE95C2577C65D00C60E50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F09EE95E2577C66000C60E50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F09EE9612577C66000C60E50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				F0D9149F2588D7FB0022DD06 /* Model */,
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
 				F09EE9572577C65D00C60E50 /* SceneDelegate.swift */,
-				F09EE9592577C65D00C60E50 /* TaskViewController.swift */,
 				F09EE95B2577C65D00C60E50 /* Main.storyboard */,
 				F09EE95E2577C66000C60E50 /* Assets.xcassets */,
 				F09EE9602577C66000C60E50 /* LaunchScreen.storyboard */,
@@ -177,7 +174,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
-				F09EE95A2577C65D00C60E50 /* TaskViewController.swift in Sources */,
 				93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */,
 				F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */,
 				F0D914A22588D8450022DD06 /* Task.swift in Sources */,
