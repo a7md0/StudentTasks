@@ -7,25 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */; };
+		93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D8258A00060084AF40 /* ACTabScrollView.swift */; };
+		93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92DD258A07920084AF40 /* TasksViewController.swift */; };
+		93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */; };
+		93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */; };
+		93BC92E8258A14AF0084AF40 /* DataManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E7258A14AF0084AF40 /* DataManagerController.swift */; };
 		F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E888C258564DD0043A25A /* AddTaskViewController.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
 		F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9572577C65D00C60E50 /* SceneDelegate.swift */; };
-		F09EE95A2577C65D00C60E50 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9592577C65D00C60E50 /* TaskViewController.swift */; };
 		F09EE95D2577C65D00C60E50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09EE95B2577C65D00C60E50 /* Main.storyboard */; };
 		F09EE95F2577C66000C60E50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F09EE95E2577C66000C60E50 /* Assets.xcassets */; };
 		F09EE9622577C66000C60E50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09EE9602577C66000C60E50 /* LaunchScreen.storyboard */; };
+		F0D914A22588D8450022DD06 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D914A12588D8450022DD06 /* Task.swift */; };
+		F0D914A52588D9DE0022DD06 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D914A42588D9DE0022DD06 /* Course.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
+		93BC92D8258A00060084AF40 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
+		93BC92DD258A07920084AF40 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
+		93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
+		93BC92E7258A14AF0084AF40 /* DataManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerController.swift; sourceTree = "<group>"; };
 		F09E888C258564DD0043A25A /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09EE9552577C65D00C60E50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F09EE9572577C65D00C60E50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F09EE9592577C65D00C60E50 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		F09EE95C2577C65D00C60E50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F09EE95E2577C66000C60E50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F09EE9612577C66000C60E50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F09EE9632577C66000C60E50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D914A12588D8450022DD06 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Task.swift; path = StudentTasks/Model/Task.swift; sourceTree = SOURCE_ROOT; };
+		F0D914A42588D9DE0022DD06 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Course.swift; path = StudentTasks/Model/Course.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +53,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93BC92D62589FFE70084AF40 /* ACTabs */ = {
+			isa = PBXGroup;
+			children = (
+				93BC92D8258A00060084AF40 /* ACTabScrollView.swift */,
+				93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */,
+			);
+			path = ACTabs;
+			sourceTree = "<group>";
+		};
+		93BC92E6258A14900084AF40 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				93BC92E7258A14AF0084AF40 /* DataManagerController.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		F09EE9492577C65D00C60E50 = {
 			isa = PBXGroup;
 			children = (
@@ -58,9 +89,12 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				93BC92E6258A14900084AF40 /* Helper */,
+				93BC92D62589FFE70084AF40 /* ACTabs */,
+				F0D914A02588D8050022DD06 /* View Controller */,
+				F0D9149F2588D7FB0022DD06 /* Model */,
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
 				F09EE9572577C65D00C60E50 /* SceneDelegate.swift */,
-				F09EE9592577C65D00C60E50 /* TaskViewController.swift */,
 				F09EE95B2577C65D00C60E50 /* Main.storyboard */,
 				F09EE95E2577C66000C60E50 /* Assets.xcassets */,
 				F09EE9602577C66000C60E50 /* LaunchScreen.storyboard */,
@@ -68,6 +102,25 @@
 				F09E888C258564DD0043A25A /* AddTaskViewController.swift */,
 			);
 			path = StudentTasks;
+			sourceTree = "<group>";
+		};
+		F0D9149F2588D7FB0022DD06 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F0D914A12588D8450022DD06 /* Task.swift */,
+				F0D914A42588D9DE0022DD06 /* Course.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F0D914A02588D8050022DD06 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				93BC92DD258A07920084AF40 /* TasksViewController.swift */,
+				93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */,
+				93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,8 +193,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F09EE95A2577C65D00C60E50 /* TaskViewController.swift in Sources */,
+				93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */,
+				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
+				93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */,
+				93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */,
 				F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */,
+				F0D914A22588D8450022DD06 /* Task.swift in Sources */,
+				93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */,
+				93BC92E8258A14AF0084AF40 /* DataManagerController.swift in Sources */,
+				93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
 				F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */,
 			);
