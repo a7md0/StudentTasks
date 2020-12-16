@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct Task: Codable {
-    var id: Int
+struct Task: Codable, Equatable {
+    static func == (lhs: Task, rhs: Task) -> Bool {
+        lhs.id.uuidString == rhs.id.uuidString
+    }
+    
+    var id: UUID = UUID()
     
     var name: String
     var description: String
