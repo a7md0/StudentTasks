@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */; };
+		93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D8258A00060084AF40 /* ACTabScrollView.swift */; };
 		F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E888C258564DD0043A25A /* AddTaskViewController.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
 		F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9572577C65D00C60E50 /* SceneDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
+		93BC92D8258A00060084AF40 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
 		F09E888C258564DD0043A25A /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09EE9552577C65D00C60E50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93BC92D62589FFE70084AF40 /* ACTabs */ = {
+			isa = PBXGroup;
+			children = (
+				93BC92D8258A00060084AF40 /* ACTabScrollView.swift */,
+				93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */,
+			);
+			path = ACTabs;
+			sourceTree = "<group>";
+		};
 		F09EE9492577C65D00C60E50 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +75,7 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				93BC92D62589FFE70084AF40 /* ACTabs */,
 				F0D914A02588D8050022DD06 /* View Controller */,
 				F0D9149F2588D7FB0022DD06 /* Model */,
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
@@ -164,8 +178,10 @@
 			files = (
 				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
 				F09EE95A2577C65D00C60E50 /* TaskViewController.swift in Sources */,
+				93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */,
 				F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */,
 				F0D914A22588D8450022DD06 /* Task.swift in Sources */,
+				93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
 				F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */,
 			);
