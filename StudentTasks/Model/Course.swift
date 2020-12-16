@@ -20,14 +20,18 @@ struct Course: Codable, Equatable {
     
     var tags: [String]
     
-    var lecturerName: String
-    var overallGrade: Grade
+    var lecturerName: String?
+    var overallGrade: Grade?
     
-    var ongoingTasks: Int
-    var completedTasks: Int
-    var overdueTasks: Int
+    var ongoingTasks: Int = 0
+    var completedTasks: Int = 0
+    var overdueTasks: Int = 0
     
-    var tasks: [Task]
+    var tasks: [Task] = []
+    
+    func addTask(task: Task) {
+        tasks.append(task)
+    }
 }
 
 struct Grade: Codable {
