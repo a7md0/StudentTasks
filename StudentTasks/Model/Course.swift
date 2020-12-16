@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Course: Codable, Equatable {
+class Course: Codable, Equatable {
     static func == (lhs: Course, rhs: Course) -> Bool {
         lhs.id.uuidString == rhs.id.uuidString
     }
