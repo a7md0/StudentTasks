@@ -60,6 +60,11 @@ class Task: Codable, Equatable {
         self.gradeType = gradeType ?? nil
         self.grade = grade ?? nil
     }
+    
+    func complete(completedOn: Date?) {
+        self.completed = true
+        self.completedOn = completedOn ?? Date()
+    }
 }
 
 enum TaskStatus: String, Codable {
