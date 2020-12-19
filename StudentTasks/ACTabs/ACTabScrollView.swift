@@ -106,8 +106,6 @@ open class ACTabScrollView: UIView, UIScrollViewDelegate {
         contentSectionScrollView.showsHorizontalScrollIndicator = false
         contentSectionScrollView.showsVerticalScrollIndicator = false
         contentSectionScrollView.delegate = self
-        
-        contentSectionScrollView.isScrollEnabled = false
     }
     
     override open func layoutSubviews() {
