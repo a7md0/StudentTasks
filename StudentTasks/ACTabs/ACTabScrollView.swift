@@ -31,6 +31,11 @@ open class ACTabScrollView: UIView, UIScrollViewDelegate {
         }
     }
     @IBInspectable open var cachedPageLimit: Int = 3
+    @IBInspectable open var contentSectionScrollEnabled: Bool = true {
+        didSet {
+            contentSectionScrollView.isScrollEnabled = contentSectionScrollEnabled
+        }
+    }
     
     open var delegate: ACTabScrollViewDelegate?
     open var dataSource: ACTabScrollViewDataSource?
