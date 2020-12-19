@@ -14,6 +14,8 @@ class Course: Codable, Equatable {
     
     var id: UUID
     
+    var imageData: Data?
+    
     var name: String
     var code: String?
     var abberivation: String?
