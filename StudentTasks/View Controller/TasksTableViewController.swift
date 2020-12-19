@@ -52,6 +52,7 @@ class TasksTableViewController: UITableViewController {
         return true
     }
 
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -60,6 +61,27 @@ class TasksTableViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
+    }
+    */
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(64.0)
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
+            print("Complete \(indexPath.row + 1)")
+        }
+        complete.image = UIImage(systemName: "checkmark")
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            print("Delete \(indexPath.row + 1)")
+        }
+        delete.image = UIImage(systemName: "trash")
+        
+        let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
+        
+        return swipe
     }
 
     /*
