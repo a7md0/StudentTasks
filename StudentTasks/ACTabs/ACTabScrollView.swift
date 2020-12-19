@@ -31,6 +31,11 @@ open class ACTabScrollView: UIView, UIScrollViewDelegate {
         }
     }
     @IBInspectable open var cachedPageLimit: Int = 3
+    @IBInspectable open var contentSectionScrollEnabled: Bool = true {
+        didSet {
+            contentSectionScrollView.isScrollEnabled = contentSectionScrollEnabled
+        }
+    }
     
     open var delegate: ACTabScrollViewDelegate?
     open var dataSource: ACTabScrollViewDataSource?
@@ -106,8 +111,6 @@ open class ACTabScrollView: UIView, UIScrollViewDelegate {
         contentSectionScrollView.showsHorizontalScrollIndicator = false
         contentSectionScrollView.showsVerticalScrollIndicator = false
         contentSectionScrollView.delegate = self
-        
-        contentSectionScrollView.isScrollEnabled = false
     }
     
     override open func layoutSubviews() {

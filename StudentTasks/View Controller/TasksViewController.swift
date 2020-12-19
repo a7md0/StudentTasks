@@ -28,6 +28,7 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         tabScrollView.cachedPageLimit = 3*/
         
         tabScrollView.arrowIndicator = false
+        tabScrollView.contentSectionScrollEnabled = false
         
         tabScrollView.delegate = self
         tabScrollView.dataSource = self
