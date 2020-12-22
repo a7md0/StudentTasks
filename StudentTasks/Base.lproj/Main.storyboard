@@ -142,7 +142,7 @@
         <!--Courses-->
         <scene sceneID="aQd-oS-wKo">
             <objects>
-                <tableViewController id="f1J-kc-TUq" sceneMemberID="viewController">
+                <tableViewController id="f1J-kc-TUq" customClass="CoursesTableViewController" customModule="StudentTasks" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GCS-En-pPX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

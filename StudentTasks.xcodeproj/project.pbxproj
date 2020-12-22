@@ -15,6 +15,7 @@
 		93BC92E8258A14AF0084AF40 /* DataManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E7258A14AF0084AF40 /* DataManagerController.swift */; };
 		93EE2FC1258E859E00D6D13B /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */; };
 		93EE2FC4258E908E00D6D13B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE2FC3258E908E00D6D13B /* Notification.swift */; };
+		F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BC259231160028F604 /* CoursesTableViewController.swift */; };
 		F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09E888C258564DD0043A25A /* AddTaskViewController.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
 		F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9572577C65D00C60E50 /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 		93BC92E7258A14AF0084AF40 /* DataManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerController.swift; sourceTree = "<group>"; };
 		93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		93EE2FC3258E908E00D6D13B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		F07E03BC259231160028F604 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoursesTableViewController.swift; path = "View Controller/CoursesTableViewController.swift"; sourceTree = "<group>"; };
 		F09E888C258564DD0043A25A /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09EE9552577C65D00C60E50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
 				F09EE9572577C65D00C60E50 /* SceneDelegate.swift */,
 				F09EE95B2577C65D00C60E50 /* Main.storyboard */,
+				F07E03BC259231160028F604 /* CoursesTableViewController.swift */,
 				F09EE95E2577C66000C60E50 /* Assets.xcassets */,
 				F09EE9602577C66000C60E50 /* LaunchScreen.storyboard */,
 				F09EE9632577C66000C60E50 /* Info.plist */,
@@ -211,6 +214,7 @@
 				93BC92E8258A14AF0084AF40 /* DataManagerController.swift in Sources */,
 				93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
+				F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */,
 				F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
