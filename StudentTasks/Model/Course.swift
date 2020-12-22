@@ -9,7 +9,7 @@ import Foundation
 
 class Course: Codable, Equatable {
     static func == (lhs: Course, rhs: Course) -> Bool {
-        lhs.id.uuidString == rhs.id.uuidString
+        lhs.id == rhs.id
     }
     
     var id: UUID
@@ -66,19 +66,73 @@ class Course: Codable, Equatable {
         
         self.tasks = tasks ?? []
     }
-    
-    func addTask(task: Task) -> Course {
-        task.course = self // Set task course ref
-        tasks.append(task)
-        
-        return self // return the course itself ref (chaining)
+}
+
+extension Course {
+    func attachTask(task: Task) -> Course {
+        return self.attachTasks(tasks: [task])
     }
     
-    func addTasks(tasks: [Task]) -> Course {
+    func attachTasks(tasks: [Task]) -> Course {
         tasks.forEach { $0.course = self } // Set each task course ref
         self.tasks.append(contentsOf: tasks)
         
-        return self // return the course itself ref (chaining)
+        return self
+    }
+    
+    func taskSaved(task: Task) {
+        save()
+    }
+    
+    func taskRemoved(task: Task) {
+        guard let index = self.tasks.firstIndex(where: { $0 == task }) else { return }
+        
+        tasks.remove(at: index)
+        save()
+    }
+}
+
+extension Course {
+    func create() {
+        Course.courses.append(self)
+        triggerSave()
+    }
+    
+    func save() {
+        triggerSave()
+    }
+    
+    func remove() {
+        if let index = Course.courses.firstIndex(where: { $0 == self }) {
+            Course.courses.remove(at: index)
+            triggerSave()
+        }
+    }
+    
+    private func triggerSave() {
+        print("triggerSave \(Course.courses.count)")
+        DataManagerController.sharedInstance.saveCourses(courses: Course.courses)
+    }
+}
+
+extension Course {
+    private static var courses: [Course] = []
+    
+    static func findOne(id: UUID) -> Course? {
+        if let index = courses.firstIndex(where: { $0.id == id }) {
+            return courses[index]
+        }
+        
+        return nil
+    }
+    
+    static func findAll() -> [Course] {
+       return courses
+    }
+    
+    static func injectCourses(courses: [Course]) {
+        print("injectCourses \(courses.count)")
+        self.courses.append(contentsOf: courses)
     }
 }
 

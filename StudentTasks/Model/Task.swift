@@ -9,7 +9,7 @@ import Foundation
 
 class Task: Codable, Equatable {
     static func == (lhs: Task, rhs: Task) -> Bool {
-        lhs.id.uuidString == rhs.id.uuidString
+        lhs.id == rhs.id
     }
     
     var id: UUID
@@ -68,10 +68,51 @@ class Task: Codable, Equatable {
         self.gradeType = gradeType ?? nil
         self.grade = grade ?? nil
     }
-    
+}
+
+extension Task {
     func complete(completedOn: Date?) {
         self.completed = true
         self.completedOn = completedOn ?? Date()
+        
+        save()
+    }
+    
+    func create() {
+        _ = course?.attachTask(task: self)
+        Task.tasks.append(self)
+    }
+    
+    func save() {
+        course?.taskSaved(task: self)
+    }
+    
+    func remove() {
+        course?.taskRemoved(task: self)
+        
+        if let index = Task.tasks.firstIndex(where: { $0 == self }) {
+            Task.tasks.remove(at: index)
+        }
+    }
+}
+
+extension Task {
+    private static var tasks: [Task] = []
+    
+    static func findOne(id: UUID) -> Task? {
+        if let index = tasks.firstIndex(where: { $0.id == id }) {
+            return tasks[index]
+        }
+        
+        return nil
+    }
+    
+    static func findAll() -> [Task] {
+       return tasks
+    }
+    
+    static func injectTasks(tasks: [Task]) {
+        self.tasks.append(contentsOf: tasks)
     }
 }
 
