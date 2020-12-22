@@ -505,7 +505,7 @@ public struct CacheQueue<Key: Hashable, Value> {
         }
         set {
             // key/value pair exists, delete it first
-            if let index = keys.index(of: key) {
+            if let index = keys.firstIndex(of: key) {
                 keys.remove(at: index)
             }
             // append key
@@ -518,7 +518,7 @@ public struct CacheQueue<Key: Hashable, Value> {
     }
     
     mutating func awake(_ key: Key) {
-        if let index = keys.index(of: key) {
+        if let index = keys.firstIndex(of: key) {
             keys.remove(at: index)
             keys.append(key)
         }
