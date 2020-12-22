@@ -8,7 +8,7 @@
 import UIKit
 
 class CoursesTableViewController: UITableViewController {
-
+    var courseslist : [Course] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,31 +17,34 @@ class CoursesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        DataManagerController.sharedInstance.getCourses()
+      courseslist =  DataManagerController.sharedInstance.getCourses()
+        
         
     }
+    
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return courseslist.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "courseCellIdentifier", for: indexPath)
 
         // Configure the cell...
-
+            
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
