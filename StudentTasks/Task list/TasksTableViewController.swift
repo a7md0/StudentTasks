@@ -10,7 +10,7 @@ import UIKit
 class TasksTableViewController: UITableViewController {
 
     var course: Course?
-    var tasks: [Task]?
+    var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +35,14 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks?.count ?? 0
+        return tasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        let task = tasks![indexPath.row]
+        let task = tasks[indexPath.row]
         cell.taskLabel.text = task.name
         
         return cell
@@ -73,17 +73,27 @@ class TasksTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
+            
+            completionHandler(true)
         }
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             print("Delete \(indexPath.row + 1)")
+
+            self.removeItem(indexPath: indexPath)
+                
+            completionHandler(true)
         }
         delete.image = UIImage(systemName: "trash")
         
         let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
         
         return swipe
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*
@@ -111,4 +121,13 @@ class TasksTableViewController: UITableViewController {
     }
     */
 
+    private func removeItem(indexPath: IndexPath) {
+        let task: Task = self.tasks[indexPath.row]
+        
+        tasks.remove(at: indexPath.row)
+        
+        tableView.deleteRows(at: [indexPath], with: .left)
+        
+        task.remove()
+    }
 }
