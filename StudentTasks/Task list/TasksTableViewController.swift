@@ -73,27 +73,19 @@ class TasksTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
-            
-            completionHandler(true)
         }
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             print("Delete \(indexPath.row + 1)")
-
-            self.removeItem(indexPath: indexPath)
-                
-            completionHandler(true)
+            
+            self.deleteItem(indexPath: indexPath)
         }
         delete.image = UIImage(systemName: "trash")
         
         let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
         
         return swipe
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*
@@ -121,13 +113,11 @@ class TasksTableViewController: UITableViewController {
     }
     */
 
-    private func removeItem(indexPath: IndexPath) {
-        let task: Task = self.tasks[indexPath.row]
+    func deleteItem(indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
         
         tasks.remove(at: indexPath.row)
-        
         tableView.deleteRows(at: [indexPath], with: .left)
-        
         task.remove()
     }
 }
