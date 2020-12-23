@@ -71,14 +71,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		934D4937259275A400D904FF /* Task List */ = {
+		934D4937259275A400D904FF /* Task list */ = {
 			isa = PBXGroup;
 			children = (
 				93BC92DD258A07920084AF40 /* TasksViewController.swift */,
 				93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */,
 				93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */,
 			);
-			path = "Task List";
+			path = "Task list";
 			sourceTree = "<group>";
 		};
 		93BC92D62589FFE70084AF40 /* ACTabs */ = {
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				931D638825936C080042B3D2 /* Data */,
-				934D4937259275A400D904FF /* Task List */,
+				934D4937259275A400D904FF /* Task list */,
 				93BC92E6258A14900084AF40 /* Helper */,
 				93BC92D62589FFE70084AF40 /* ACTabs */,
 				F0D914A02588D8050022DD06 /* View Controller */,
