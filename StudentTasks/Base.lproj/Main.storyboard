@@ -374,7 +374,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnL-Kp-Z4v">
                                 <rect key="frame" x="0.0" y="88" width="414" height="46"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search tasks" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
                                         <rect key="frame" x="0.0" y="-5" width="352" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
