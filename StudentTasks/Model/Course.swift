@@ -86,7 +86,7 @@ extension Course {
     private static var courses: [Course] = [] {
         didSet {
             print("courses didSet \(courses.count)")
-            Course.triggerSave()
+            Course.triggerUpdate()
         }
     }
     
@@ -120,14 +120,29 @@ extension Course {
         return taskIndex
     }
     
-    private static func triggerSave() {
-        print("triggerSave \(Course.courses.count)")
-        DataManagerController.sharedInstance.saveCourses(courses: Course.courses)
+    private static func triggerUpdate() {
+        print("triggerUpdate \(Course.courses.count)")
+        
+        subject.notify(value: Course.courses)
     }
     
     static func injectCourses(courses: [Course]) {
         print("injectCourses \(courses.count)")
         Course.courses.append(contentsOf: courses)
+    }
+    
+    static func saveData() {
+        DataManagerController.sharedInstance.saveCourses(courses: Course.courses)
+    }
+}
+
+extension Course {
+    private static let subject = Subject<[Course]>()
+    
+    static func observerInstance() -> Observer<[Course]> {
+        let observer = Observer<[Course]>(subject: self.subject)
+        
+        return observer
     }
 }
 
