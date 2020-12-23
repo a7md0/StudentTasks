@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
+class TasksViewController: UIViewController {
     @IBOutlet weak var tabScrollView: ACTabScrollView!
     
     @IBOutlet weak var searchView: UIView!
@@ -25,6 +25,24 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         courses = Course.findAll()
 
         // Do any additional setup after loading the view.
+        setupTabScrollView()
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSource {
+    func setupTabScrollView() {
         // all the following properties are optional
         /*tabScrollView.defaultPage = 3
         tabScrollView.arrowIndicator = true
@@ -35,7 +53,10 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         tabScrollView.pagingEnabled = true
         tabScrollView.cachedPageLimit = 3*/
         
-        tabScrollView.arrowIndicator = false
+        tabScrollView.tabSectionBackgroundColor = .systemGray6
+        tabScrollView.tabSectionHeight = 48
+        
+        tabScrollView.arrowIndicator = true
         tabScrollView.contentSectionScrollEnabled = false
         
         tabScrollView.delegate = self
@@ -104,14 +125,4 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         
         labels.append(label)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
