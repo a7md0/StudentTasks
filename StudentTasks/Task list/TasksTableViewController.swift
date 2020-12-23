@@ -24,6 +24,7 @@ class TasksTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.keyboardDismissMode = .interactive
     }
 
     // MARK: - Table view data source
@@ -65,13 +66,14 @@ class TasksTableViewController: UITableViewController {
     */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(64.0)
+        return CGFloat(72)
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
         }
+        complete.backgroundColor = .gray
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
