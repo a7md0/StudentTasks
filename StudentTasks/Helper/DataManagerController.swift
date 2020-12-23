@@ -24,14 +24,11 @@ class DataManagerController {
     }
     
     func loadInitalData() {
-        let courses = loadSampleCourses() // Load saved courses, if not then load sample courses
+        let courses = loadCourses() ?? loadSampleCourses() // Load saved courses, if not then load sample courses
         Course.injectCourses(courses: courses)
-        
-        let tasks = courses.map { $0.tasks }.reduce([], +)
-        Task.injectTasks(tasks: tasks)
 
         // TODO: Trigger subject notify for courses change
-        print(courses)
+        print(courses.count)
     }
     
     // TODO: Load and parse courses along with tasks
@@ -43,7 +40,7 @@ class DataManagerController {
     }
      
     func saveCourses(courses: [Course]) {
-        print("saveCourses \(courses.count)")
+        print("saveCourses > saving \(courses.count) courses to disk")
 
         let propertyEnconder = PropertyListEncoder()
         let codedCourses = try? propertyEnconder.encode(courses)
@@ -51,23 +48,17 @@ class DataManagerController {
     }
      
     private func loadSampleCourses() -> [Course] {
-        return [
-            Course(name: "Mobile Programming", code: "IT8108", abberivation: "MP", tags: ["Online", "Lab"]).attachTasks(tasks: [
-                Task(name: "Task 1", description: "desc", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
-                Task(name: "Task 2", description: "desc", type: .assignment, priority: .low, dueDate: Date().addingTimeInterval(60*60*24*3)),
-                Task(name: "Task 3", description: "desc", type: .assignment, priority: .high, dueDate: Date().addingTimeInterval(60*60*24*4))
-            ]),
-            Course(name: "Object-Oriented design", code: "IT7006", abberivation: "OD", tags: ["Online", "Lab"]).attachTasks(tasks: [
-                Task(name: "Task 10", description: "desc 2", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
-                Task(name: "Task 20", description: "desc 2", type: .assignment, priority: .low, dueDate: Date().addingTimeInterval(60*60*24*3)),
-                Task(name: "Task 30", description: "desc 2", type: .assignment, priority: .high, dueDate: Date().addingTimeInterval(60*60*24*4))
-            ]),
-            Course(name: "Web Development", code: "IT7405", abberivation: "WD", tags: ["Online", "Lab"]).attachTasks(tasks: [
-                Task(name: "Task 11", description: "desc 3", type: .assignment, priority: .normal, dueDate: Date().addingTimeInterval(60*60*24*2)),
-                Task(name: "Task 21", description: "desc 3", type: .assignment, priority: .low, dueDate: Date().addingTimeInterval(60*60*24*3)),
-                Task(name: "Task 31", description: "desc 3", type: .assignment, priority: .high, dueDate: Date().addingTimeInterval(60*60*24*4))
-            ])
-        ]
+        let decoder = JSONDecoder()
+        
+        print("loading sample courses...")
+        
+        guard let url = Bundle.main.url(forResource: "courses_samples", withExtension: "json"),
+              let coursesData = try? Data(contentsOf: url),
+              let courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return [] }
+        
+        print("loaded sample courses")
+        
+        return courses
     }
     
     // TODO: Implement observer pattern for other controllers to subscribe

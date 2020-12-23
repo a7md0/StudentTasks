@@ -1,0 +1,146 @@
+[
+    {
+        "tasks": [
+            {
+                "name": "Task 1",
+                "type": "Assignment",
+                "graded": false,
+                "id": "C25E4B70-0D0B-445C-A8E0-7B8E04A5B10A",
+                "description": "desc",
+                "priority": "Normal",
+                "dueDate": 630590631.56429398,
+                "completed": false,
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+            },
+            {
+                "name": "Task 2",
+                "type": "Assignment",
+                "graded": false,
+                "id": "5B66AD13-2103-4BFC-AD84-296D6ADA50A9",
+                "description": "desc",
+                "priority": "Low",
+                "dueDate": 630677031.56431997,
+                "completed": false,
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+            },
+            {
+                "name": "Task 3",
+                "type": "Assignment",
+                "graded": false,
+                "id": "4525447C-E0AC-4A12-9811-C9EF26F244A0",
+                "description": "desc",
+                "priority": "High",
+                "dueDate": 630763431.56431997,
+                "completed": false,
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+            }
+        ],
+        "overdueTasks": 0,
+        "id": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+        "code": "IT8108",
+        "abberivation": "MP",
+        "completedTasks": 0,
+        "ongoingTasks": 0,
+        "tags": [
+            "Online",
+            "Lab"
+        ],
+        "name": "Mobile Programming"
+    },
+    {
+        "tasks": [
+            {
+                "name": "Task 10",
+                "type": "Assignment",
+                "graded": false,
+                "id": "45CC8E46-A0D9-43C4-BC70-9731628AB830",
+                "description": "desc 2",
+                "priority": "Normal",
+                "dueDate": 630590631.56433296,
+                "completed": false,
+                "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615"
+            },
+            {
+                "name": "Task 20",
+                "type": "Assignment",
+                "graded": false,
+                "id": "6964A6DB-DFDA-44EC-BB80-A75DD0FEB878",
+                "description": "desc 2",
+                "priority": "Low",
+                "dueDate": 630677031.56433403,
+                "completed": false,
+                "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615"
+            },
+            {
+                "name": "Task 30",
+                "type": "Assignment",
+                "graded": false,
+                "id": "39F34C0A-4A2C-4745-B3A1-EC3176D999A7",
+                "description": "desc 2",
+                "priority": "High",
+                "dueDate": 630763431.56433403,
+                "completed": false,
+                "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615"
+            }
+        ],
+        "overdueTasks": 0,
+        "id": "31E154B5-121D-455C-B6ED-C1119DECF615",
+        "code": "IT7006",
+        "abberivation": "OD",
+        "completedTasks": 0,
+        "ongoingTasks": 0,
+        "tags": [
+            "Online",
+            "Lab"
+        ],
+        "name": "Object-Oriented design"
+    },
+    {
+        "tasks": [
+            {
+                "name": "Task 11",
+                "type": "Assignment",
+                "graded": false,
+                "id": "48494FA0-3956-42BB-A38D-EB624DDC693A",
+                "description": "desc 3",
+                "priority": "Normal",
+                "dueDate": 630590631.56433499,
+                "completed": false,
+                "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A"
+            },
+            {
+                "name": "Task 21",
+                "type": "Assignment",
+                "graded": false,
+                "id": "7E5177C9-6879-45EA-90A9-BFFECBF18ECE",
+                "description": "desc 3",
+                "priority": "Low",
+                "dueDate": 630677031.56433499,
+                "completed": false,
+                "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A"
+            },
+            {
+                "name": "Task 31",
+                "type": "Assignment",
+                "graded": false,
+                "id": "BC3BDD12-4D93-4600-A440-418F901A0636",
+                "description": "desc 3",
+                "priority": "High",
+                "dueDate": 630763431.56433499,
+                "completed": false,
+                "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A"
+            }
+        ],
+        "overdueTasks": 0,
+        "id": "697122BF-EC70-4174-9791-42F39FCBD63A",
+        "code": "IT7405",
+        "abberivation": "WD",
+        "completedTasks": 0,
+        "ongoingTasks": 0,
+        "tags": [
+            "Online",
+            "Lab"
+        ],
+        "name": "Web Development"
+    }
+]
