@@ -9,7 +9,10 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
+    var isFiltering: Bool = false
+    
     var tasks: [Task] = []
+    var filteredTasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +33,14 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return isFiltering == false ? tasks.count : filteredTasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        let task = tasks[indexPath.row]
+        let task = isFiltering == false ? tasks[indexPath.row] : filteredTasks[indexPath.row]
         cell.taskLabel.text = task.name
         
         return cell
@@ -114,5 +117,40 @@ class TasksTableViewController: UITableViewController {
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         task.remove()
+    }
+}
+
+extension TasksTableViewController {
+    func filterResults(filter: Filter) {
+        if let searchQuery = filter.searchQuery {
+            print("searchQuery: \(searchQuery)")
+            isFiltering = true
+        } else {
+            print(filter.filters.count)
+            if filter.filters.count > 0 {
+                isFiltering = true
+            } else {
+                isFiltering = false
+            }
+        }
+        
+        if isFiltering == true {
+            filteredTasks = tasks.filter({ (task: Task) -> Bool in
+                var result = false
+                
+                if let searchQuery = filter.searchQuery {
+                    let searchKeywords = searchQuery.lowercased().split(separator: " ")
+                    searchKeywords.forEach { (keyword) in
+                        if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
+                            result = true
+                        }
+                    }
+                }
+                
+                return result
+            })
+        }
+        
+        tableView.reloadData()
     }
 }

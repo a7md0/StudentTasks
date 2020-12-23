@@ -15,9 +15,12 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     
     var labels: [UILabel] = []
-    var contentViews: [UIView] = []
+    var contentViews: [TasksTableViewController] = []
+    var currentTabViewIdx: Int = 0
     
     var courses: [Course] = []
+    
+    let filter: Filter = Filter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +53,20 @@ extension TasksViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        if searchText.count == 0 {
+            filter.searchQuery = nil
+        }
+        
+        contentViews[currentTabViewIdx].filterResults(filter: filter)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text { // Unwrap the text
+            filter.searchQuery = searchText.count > 0 ? searchText : nil
+        }
+        
+        searchBar.endEditing(false)
+        contentViews[currentTabViewIdx].filterResults(filter: filter)
     }
 }
 
@@ -81,10 +97,13 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     
     // MARK: ACTabScrollViewDelegate
     func tabScrollView(_ tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
-        print(index)
+        currentTabViewIdx = index
+        contentViews[currentTabViewIdx].filterResults(filter: filter)
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
+        currentTabViewIdx = index
+        contentViews[currentTabViewIdx].filterResults(filter: filter)
     }
         
     // MARK: ACTabScrollViewDataSource
@@ -99,7 +118,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
-        return contentViews[index]
+        return contentViews[index].view
     }
     
     func prepareTabs() {
@@ -109,7 +128,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         allCoursesTabTableView.tasks = Task.findAll()
         
         self.addChild(allCoursesTabTableView)
-        contentViews.append(allCoursesTabTableView.view)
+        contentViews.append(allCoursesTabTableView)
         createTabLabel("All")
         
         for course in Course.findAll() {
@@ -118,7 +137,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
             tabTableView.tasks = course.tasks
             
             addChild(tabTableView) // don't forget, it's very important
-            contentViews.append(tabTableView.view)
+            contentViews.append(tabTableView)
             
             createTabLabel(course.name)
         }

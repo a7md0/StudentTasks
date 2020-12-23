@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
 		938F7BBE259377380062C79E /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BBD259377380062C79E /* Observer.swift */; };
+		938F7BC12593A4CB0062C79E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* Filter.swift */; };
 		93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */; };
 		93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D8258A00060084AF40 /* ACTabScrollView.swift */; };
 		93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92DD258A07920084AF40 /* TasksViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
 		938F7BBD259377380062C79E /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		938F7BC02593A4CB0062C79E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
 		93BC92D8258A00060084AF40 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
 		93BC92DD258A07920084AF40 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				F0D914A12588D8450022DD06 /* Task.swift */,
 				F0D914A42588D9DE0022DD06 /* Course.swift */,
 				93EE2FC3258E908E00D6D13B /* Notification.swift */,
+				938F7BC02593A4CB0062C79E /* Filter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				938F7BBE259377380062C79E /* Observer.swift in Sources */,
 				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
 				93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */,
+				938F7BC12593A4CB0062C79E /* Filter.swift in Sources */,
 				F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */,
 				93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */,
 				F09E888D258564DD0043A25A /* AddTaskViewController.swift in Sources */,
