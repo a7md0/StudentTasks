@@ -23,7 +23,9 @@ class TasksTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: .zero)
         
-        tasks = course?.tasks ?? []
+        if let course = course {
+            tasks = course.tasks
+        }
     }
 
     // MARK: - Table view data source

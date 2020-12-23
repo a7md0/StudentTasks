@@ -1,14 +1,17 @@
 //
-//  CoursesTableViewController.swift
+//  TasksTableViewController.swift
 //  StudentTasks
 //
-//  Created by mobileProg on 12/22/20.
+//  Created by Ahmed Naser on 12/16/20.
 //
 
 import UIKit
 
-class CoursesTableViewController: UITableViewController {
-    var courseslist : [Course] = []
+class TasksTableViewController: UITableViewController {
+
+    var course: Course?
+    var tasks: [Task] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,42 +20,39 @@ class CoursesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        courseslist =  Course.findAll()
         
+        tableView.tableFooterView = UIView(frame: .zero)
         
+        if let course = course {
+            tasks = course.tasks
+        }
     }
-    
-    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return courseslist.count
+        return tasks.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "courseCellIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-            
+        let task = tasks[indexPath.row]
+        cell.taskLabel.text = task.name
+        
         return cell
     }
-    
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
     /*
     // Override to support editing the table view.
@@ -65,6 +65,28 @@ class CoursesTableViewController: UITableViewController {
         }    
     }
     */
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(64.0)
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
+            print("Complete \(indexPath.row + 1)")
+        }
+        complete.image = UIImage(systemName: "checkmark")
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            print("Delete \(indexPath.row + 1)")
+            
+            self.deleteItem(indexPath: indexPath)
+        }
+        delete.image = UIImage(systemName: "trash")
+        
+        let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
+        
+        return swipe
+    }
 
     /*
     // Override to support rearranging the table view.
@@ -91,4 +113,11 @@ class CoursesTableViewController: UITableViewController {
     }
     */
 
+    func deleteItem(indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        
+        tasks.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        task.remove()
+    }
 }

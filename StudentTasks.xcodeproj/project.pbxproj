@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
 		93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */; };
 		93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D8258A00060084AF40 /* ACTabScrollView.swift */; };
 		93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92DD258A07920084AF40 /* TasksViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
 		93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
 		93BC92D8258A00060084AF40 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
 		93BC92DD258A07920084AF40 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		931D638825936C080042B3D2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				931D638925936C240042B3D2 /* courses_samples.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		934D4937259275A400D904FF /* Task List */ = {
+			isa = PBXGroup;
+			children = (
+				93BC92DD258A07920084AF40 /* TasksViewController.swift */,
+				93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */,
+				93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */,
+			);
+			path = "Task List";
+			sourceTree = "<group>";
+		};
 		93BC92D62589FFE70084AF40 /* ACTabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +118,8 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				931D638825936C080042B3D2 /* Data */,
+				934D4937259275A400D904FF /* Task List */,
 				93BC92E6258A14900084AF40 /* Helper */,
 				93BC92D62589FFE70084AF40 /* ACTabs */,
 				F0D914A02588D8050022DD06 /* View Controller */,
@@ -128,9 +150,6 @@
 		F0D914A02588D8050022DD06 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				93BC92DD258A07920084AF40 /* TasksViewController.swift */,
-				93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */,
-				93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -192,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931D638A25936C240042B3D2 /* courses_samples.json in Resources */,
 				F09EE9622577C66000C60E50 /* LaunchScreen.storyboard in Resources */,
 				F09EE95F2577C66000C60E50 /* Assets.xcassets in Resources */,
 				F09EE95D2577C65D00C60E50 /* Main.storyboard in Resources */,
