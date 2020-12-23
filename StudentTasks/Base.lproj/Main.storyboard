@@ -523,11 +523,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Filters" id="y9f-NU-Fni">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HAb-sM-qnR"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SSB-9k-aJn"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HAb-sM-qnR">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Vsz-v5-lwY" id="mbK-3p-0ZG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SSB-9k-aJn">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="Vsz-v5-lwY" id="KzT-fw-Cop"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="AiR-fI-ua0" kind="unwind" identifier="tasksViewUnwindSegue" unwindAction="unwindToTasksViewFor:towards:" id="rgG-FJ-IyT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKU-0W-IuL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="AiR-fI-ua0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5783.0769230769229" y="-374.64454976303318"/>
         </scene>

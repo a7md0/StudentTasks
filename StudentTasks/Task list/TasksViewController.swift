@@ -49,8 +49,8 @@ class TasksViewController: UIViewController {
         }
     }
     
-    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        if unwindSegue.identifier == "tasksFiltersUnwindSegue" {
+    @IBAction func unwindToTasksView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+        if unwindSegue.identifier == "tasksViewUnwindSegue" {
             
         }
     }
