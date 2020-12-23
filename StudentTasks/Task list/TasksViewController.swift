@@ -25,6 +25,7 @@ class TasksViewController: UIViewController {
         courses = Course.findAll()
 
         // Do any additional setup after loading the view.
+        setupSearchBar()
         setupTabScrollView()
     }
     
@@ -39,6 +40,18 @@ class TasksViewController: UIViewController {
     }
     */
 
+    
+}
+
+// MARK: - Search
+extension TasksViewController: UISearchBarDelegate {
+    func setupSearchBar() {
+        searchBar.delegate = self
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
 }
 
 // MARK: - Tab view
