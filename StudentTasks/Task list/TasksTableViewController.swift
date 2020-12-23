@@ -9,7 +9,6 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
-    var course: Course?
     var tasks: [Task] = []
     
     override func viewDidLoad() {
@@ -22,10 +21,6 @@ class TasksTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.tableFooterView = UIView(frame: .zero)
-        
-        if let course = course {
-            tasks = course.tasks
-        }
     }
 
     // MARK: - Table view data source

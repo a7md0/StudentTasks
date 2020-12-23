@@ -76,7 +76,6 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         for course in Course.findAll() {
             let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
             
-            tabTableView.course = course
             tabTableView.tasks = course.tasks
             
             addChild(tabTableView) // don't forget, it's very important
