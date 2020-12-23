@@ -34,7 +34,7 @@ struct Course: Codable, Equatable {
 }
 
 // MARK: - Enums
-enum CourseTag: String, Codable {
+enum CourseTag: String, Codable, CaseIterable {
     case online = "Online", lab = "Lab", lecture = "Lecture"
 }
 

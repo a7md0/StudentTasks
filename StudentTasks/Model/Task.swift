@@ -35,19 +35,19 @@ struct Task: Codable, Equatable {
 }
 
 // MARK: - Enums
-enum TaskStatus: String, Codable {
+enum TaskStatus: String, Codable, CaseIterable {
     case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
 }
 
-enum TaskType: String, Codable {
+enum TaskType: String, Codable, CaseIterable {
     case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
 }
 
-enum TaskPriority: String, Codable {
+enum TaskPriority: String, Codable, CaseIterable {
     case low = "Low", normal = "Normal", high = "High"
 }
 
-enum TaskGradeType: String, Codable {
+enum TaskGradeType: String, Codable, CaseIterable {
     case courseTotal = "Course Total", mainTask = "Main Task"
 }
 
