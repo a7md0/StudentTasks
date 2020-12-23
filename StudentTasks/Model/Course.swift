@@ -125,15 +125,6 @@ extension Course {
         
         subject.notify(value: Course.courses)
     }
-    
-    static func injectCourses(courses: [Course]) {
-        print("injectCourses \(courses.count)")
-        Course.courses.append(contentsOf: courses)
-    }
-    
-    static func saveData() {
-        DataManagerController.sharedInstance.saveCourses(courses: Course.courses)
-    }
 }
 
 extension Course {
@@ -143,6 +134,81 @@ extension Course {
         let observer = Observer<[Course]>(subject: self.subject)
         
         return observer
+    }
+}
+
+extension Course {
+    private static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    private static let archiveURL: URL = DocumentsDirectory.appendingPathComponent("courses").appendingPathExtension("plist")
+    
+    /// This function read and parse data from persistent storage into `array of Course`.
+    ///
+    /// ```
+    /// readFromPersistentStorage()
+    /// ```
+    ///
+    /// - Warning: It may not return result if there is none saved.
+    /// - Returns: List of courses `[Course]`.
+    private static func readFromPersistentStorage() -> [Course]? {
+        guard let codedCourses = try? Data(contentsOf: archiveURL) else { return nil }
+         
+        let propertyListDecoder = PropertyListDecoder()
+        return try? propertyListDecoder.decode(Array<Course>.self, from: codedCourses)
+    }
+     
+    /// This function write list of courses to presistent stroage
+    ///
+    /// ```
+    /// writeToPersistentStorage(coursesList)
+    /// ```
+    ///
+    /// - Warning: This would overwrite any previosuly saved list.
+    /// - Parameter courses: The courses list to write
+    private static func writeToPersistentStorage(courses: [Course]) {
+        print("saveCourses > saving \(courses.count) courses to disk")
+
+        let propertyEnconder = PropertyListEncoder()
+        let codedCourses = try? propertyEnconder.encode(courses)
+        try? codedCourses?.write(to: archiveURL, options: .noFileProtection)
+    }
+    
+    /// This function read and parse sample entries then return list of courses
+    ///
+    /// ```
+    /// readSampleData()
+    /// ```
+    ///
+    /// - Returns: List of sample courses `[Course]`.
+    private static func readSampleData() -> [Course] {
+        let decoder = JSONDecoder()
+        
+        print("loading sample courses...")
+        
+        guard let url = Bundle.main.url(forResource: "courses_samples", withExtension: "json"),
+              let coursesData = try? Data(contentsOf: url),
+              let courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return [] }
+        
+        print("loaded sample courses")
+        
+        return courses
+    }
+    
+    /// This function load the required data for this model
+    ///
+    /// ```
+    /// loadData()
+    /// ```
+    static func loadData() {
+        courses = readFromPersistentStorage() ?? readSampleData() // Load saved courses, if not then load sample courses
+    }
+    
+    /// This function save the data for this model
+    ///
+    /// ```
+    /// saveData()
+    /// ```
+    static func saveData() {
+        writeToPersistentStorage(courses: Course.courses)
     }
 }
 
