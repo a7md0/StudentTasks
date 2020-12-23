@@ -371,18 +371,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnL-Kp-Z4v">
+                                <rect key="frame" x="0.0" y="88" width="414" height="46"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
+                                        <rect key="frame" x="0.0" y="-5" width="352" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dny-OA-oOL">
+                                        <rect key="frame" x="362" y="8" width="42" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="Filter"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="ATB-Iu-UxQ"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="leading" secondItem="GnL-Kp-Z4v" secondAttribute="leading" id="OWC-Af-86i"/>
+                                    <constraint firstAttribute="trailing" secondItem="dny-OA-oOL" secondAttribute="trailing" constant="10" id="UKT-lj-5K5"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="VzD-Sp-QIh"/>
+                                    <constraint firstItem="dny-OA-oOL" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="topMargin" id="ffS-Y4-VRu"/>
+                                    <constraint firstItem="dny-OA-oOL" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="p0E-dK-Ach"/>
+                                    <constraint firstItem="dny-OA-oOL" firstAttribute="leading" secondItem="nrG-AD-FKb" secondAttribute="trailing" constant="10" id="veo-n1-ehK"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eQ-1l-vfM" customClass="ACTabScrollView" customModule="StudentTasks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="134" width="414" height="679"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QF4-WS-7Qa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="QF4-WS-7Qa" firstAttribute="trailing" secondItem="5eQ-1l-vfM" secondAttribute="trailing" id="IFw-FF-UUi"/>
-                            <constraint firstItem="5eQ-1l-vfM" firstAttribute="top" secondItem="QF4-WS-7Qa" secondAttribute="top" id="Ish-hq-Phn"/>
-                            <constraint firstItem="QF4-WS-7Qa" firstAttribute="bottom" secondItem="5eQ-1l-vfM" secondAttribute="bottom" id="O2B-24-5dN"/>
-                            <constraint firstItem="5eQ-1l-vfM" firstAttribute="leading" secondItem="QF4-WS-7Qa" secondAttribute="leading" id="sCu-0S-fD3"/>
+                            <constraint firstItem="GnL-Kp-Z4v" firstAttribute="trailing" secondItem="QF4-WS-7Qa" secondAttribute="trailing" id="2dq-Sx-1AU"/>
+                            <constraint firstItem="5eQ-1l-vfM" firstAttribute="leading" secondItem="QF4-WS-7Qa" secondAttribute="leading" id="4RX-j6-ekY"/>
+                            <constraint firstItem="5eQ-1l-vfM" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="bottom" id="6AE-yc-eAJ"/>
+                            <constraint firstItem="GnL-Kp-Z4v" firstAttribute="leading" secondItem="QF4-WS-7Qa" secondAttribute="leading" id="A3l-dR-I21"/>
+                            <constraint firstItem="GnL-Kp-Z4v" firstAttribute="top" secondItem="QF4-WS-7Qa" secondAttribute="top" id="ErR-Qb-MYt"/>
+                            <constraint firstItem="5eQ-1l-vfM" firstAttribute="bottom" secondItem="QF4-WS-7Qa" secondAttribute="bottom" id="W7P-jD-54z"/>
+                            <constraint firstItem="5eQ-1l-vfM" firstAttribute="trailing" secondItem="QF4-WS-7Qa" secondAttribute="trailing" id="ocX-ML-vge"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="dUH-ri-n49">
@@ -393,12 +424,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterButton" destination="dny-OA-oOL" id="xvy-R7-dH8"/>
+                        <outlet property="searchBar" destination="nrG-AD-FKb" id="g0N-ub-B0T"/>
+                        <outlet property="searchView" destination="GnL-Kp-Z4v" id="akp-ht-IAV"/>
                         <outlet property="tabScrollView" destination="5eQ-1l-vfM" id="YDh-P9-HKp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="902-I1-Ck7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="128"/>
+            <point key="canvasLocation" x="2124.6376811594205" y="127.90178571428571"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="6Gj-II-kZ7">
@@ -465,6 +499,9 @@
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -10,6 +10,10 @@ import UIKit
 class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
     @IBOutlet weak var tabScrollView: ACTabScrollView!
     
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var filterButton: UIButton!
+    
     var labels: [UILabel] = []
     var contentViews: [UIView] = []
     
