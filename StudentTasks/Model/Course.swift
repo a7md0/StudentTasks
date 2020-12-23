@@ -21,7 +21,7 @@ struct Course: Codable, Equatable {
     var code: String?
     var abberivation: String?
     
-    var tags: [String] = []
+    var tags: [CourseTag] = []
     
     var lecturerName: String?
     var overallGrade: Grade?
@@ -31,6 +31,10 @@ struct Course: Codable, Equatable {
     var overdueTasks: Int = 0
     
     var tasks: [Task] = []
+}
+
+enum CourseTag: String, Codable {
+    case online = "Online", lab = "Lab", lecture = "Lecture"
 }
 
 // MARK: - Tasks mutation
