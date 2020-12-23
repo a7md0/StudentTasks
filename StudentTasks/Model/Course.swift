@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Course model
 struct Course: Codable, Equatable {
     static func == (lhs: Course, rhs: Course) -> Bool {
         lhs.id == rhs.id
@@ -32,6 +33,7 @@ struct Course: Codable, Equatable {
     var tasks: [Task] = []
 }
 
+// MARK: - Tasks mutation
 extension Course {
     static func createTask(task: Task) {
         guard let course = task.course else { return }
@@ -64,6 +66,7 @@ extension Course {
     }
 }
 
+// MARK: - CRUD operations
 extension Course {
     func create() {
         Course.courses.append(self)
@@ -82,6 +85,7 @@ extension Course {
     }
 }
 
+// MARK: - Data
 extension Course {
     private static var courses: [Course] = [] {
         didSet {
@@ -127,6 +131,7 @@ extension Course {
     }
 }
 
+// MARK: - Observer pattern
 extension Course {
     private static let subject = Subject<[Course]>()
     
@@ -137,6 +142,7 @@ extension Course {
     }
 }
 
+// MARK: - Persistent storage & Sample data
 extension Course {
     private static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     private static let archiveURL: URL = DocumentsDirectory.appendingPathComponent("courses").appendingPathExtension("plist")
