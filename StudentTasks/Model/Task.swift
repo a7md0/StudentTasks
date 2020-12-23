@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Task model
 struct Task: Codable, Equatable {
     static func == (lhs: Task, rhs: Task) -> Bool {
         lhs.id == rhs.id
@@ -33,6 +34,24 @@ struct Task: Codable, Equatable {
     var grade: Float?
 }
 
+// MARK: - Enums
+enum TaskStatus: String, Codable {
+    case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
+}
+
+enum TaskType: String, Codable {
+    case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
+}
+
+enum TaskPriority: String, Codable {
+    case low = "Low", normal = "Normal", high = "High"
+}
+
+enum TaskGradeType: String, Codable {
+    case courseTotal = "Course Total", mainTask = "Main Task"
+}
+
+// MARK: - Computed properties
 extension Task {
     var status: TaskStatus {
         return .ongoing // TOOD: Implement the logic
@@ -49,6 +68,7 @@ extension Task {
     }
 }
 
+// MARK: - Mutating
 extension Task {
     mutating func complete(completedOn: Date?) {
         self.completed = true
@@ -62,20 +82,43 @@ extension Task {
     }
 }
 
+// MARK: - CRUD operations
 extension Task {
+    /// This function create the current task.
+    ///
+    /// ```
+    /// task.create()
+    /// ```
+    ///
+    /// - Warning: This should be only called one for newely created task.
     func create() {
         Course.createTask(task: self)
     }
     
+    /// This function save the current task.
+    ///
+    /// ```
+    /// task.save()
+    /// ```
+    ///
+    /// - Warning: This should be only called after updating exisiting model, not a new one.
     func save() {
         Course.saveTask(task: self)
     }
     
+    /// This function remove the current task.
+    ///
+    /// ```
+    /// task.remove()
+    /// ```
+    ///
+    /// - Warning: This will not remove the instance itself, any local instance should be removed manually.
     func remove() {
         Course.removeTask(task: self)
     }
 }
 
+// MARK: - Data
 extension Task {
     private static var tasks: [Task] {
         return Course.findAll().map { $0.tasks }.reduce([], +)
@@ -92,20 +135,4 @@ extension Task {
     static func findAll() -> [Task] {
        return tasks
     }
-}
-
-enum TaskStatus: String, Codable {
-    case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
-}
-
-enum TaskType: String, Codable {
-    case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
-}
-
-enum TaskPriority: String, Codable {
-    case low = "Low", normal = "Normal", high = "High"
-}
-
-enum TaskGradeType: String, Codable {
-    case courseTotal = "Course Total", mainTask = "Main Task"
 }
