@@ -9,10 +9,10 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
-    var isFiltering: Bool = false
+    var isSearching: Bool = false
     
     var tasks: [Task] = []
-    var filteredTasks: [Task] = []
+    var searchTasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +34,14 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering == false ? tasks.count : filteredTasks.count
+        return isSearching == false ? tasks.count : searchTasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        let task = isFiltering == false ? tasks[indexPath.row] : filteredTasks[indexPath.row]
+        let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
         
         return cell
@@ -123,34 +123,26 @@ class TasksTableViewController: UITableViewController {
 }
 
 extension TasksTableViewController {
-    func filterResults(filter: Filter) {
-        if let searchQuery = filter.searchQuery {
+    func filterResults(searchQuery: String?) {
+        if let searchQuery = searchQuery {
             print("searchQuery: \(searchQuery)")
-            isFiltering = true
-        } else {
-            print(filter.filters.count)
-            if filter.filters.count > 0 {
-                isFiltering = true
-            } else {
-                isFiltering = false
-            }
-        }
-        
-        if isFiltering == true {
-            filteredTasks = tasks.filter({ (task: Task) -> Bool in
+            isSearching = true
+            
+            searchTasks = tasks.filter({ (task: Task) -> Bool in
                 var result = false
                 
-                if let searchQuery = filter.searchQuery {
-                    let searchKeywords = searchQuery.lowercased().split(separator: " ")
-                    searchKeywords.forEach { (keyword) in
-                        if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
-                            result = true
-                        }
+                let searchKeywords = searchQuery.lowercased().split(separator: " ")
+                searchKeywords.forEach { (keyword) in
+                    if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
+                        result = true
+                        return // break loop
                     }
                 }
                 
                 return result
             })
+        } else {
+            isSearching = false
         }
         
         tableView.reloadData()

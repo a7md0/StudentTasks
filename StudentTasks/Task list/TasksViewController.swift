@@ -20,7 +20,10 @@ class TasksViewController: UIViewController {
     
     var courses: [Course] = []
     
-    let filter: Filter = Filter()
+    var sort: TasksSort = TasksSort()
+    var filters: TasksFilter = TasksFilter()
+    
+    var searchQuery: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +36,24 @@ class TasksViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "tasksFilterSegue",
+           let tasksFiltersController = segue.destination as? TasksFiltersTableViewController {
+            tasksFiltersController.sort = sort
+            tasksFiltersController.filters = filters
+        }
     }
-    */
-
     
+    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+        if unwindSegue.identifier == "tasksFiltersUnwindSegue" {
+            
+        }
+    }
 }
 
 // MARK: - Search
@@ -53,20 +63,14 @@ extension TasksViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count == 0 {
-            filter.searchQuery = nil
+        Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "") {
+            self.searchQuery = $0.count > 0 ? searchText : nil
+            self.contentViews[self.currentTabViewIdx].filterResults(searchQuery: self.searchQuery)
         }
-        
-        contentViews[currentTabViewIdx].filterResults(filter: filter)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = searchBar.text { // Unwrap the text
-            filter.searchQuery = searchText.count > 0 ? searchText : nil
-        }
-        
         searchBar.endEditing(false)
-        contentViews[currentTabViewIdx].filterResults(filter: filter)
     }
 }
 
@@ -98,12 +102,12 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     // MARK: ACTabScrollViewDelegate
     func tabScrollView(_ tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
         currentTabViewIdx = index
-        contentViews[currentTabViewIdx].filterResults(filter: filter)
+        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
         currentTabViewIdx = index
-        contentViews[currentTabViewIdx].filterResults(filter: filter)
+        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
     }
         
     // MARK: ACTabScrollViewDataSource
