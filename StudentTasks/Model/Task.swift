@@ -58,7 +58,6 @@ extension Task {
     }
     
     mutating func assignTo(course: Course) {
-        print("\(id) assignTo \(course.id)")
         self.courseId = course.id
     }
 }
@@ -73,7 +72,6 @@ extension Task {
     }
     
     func remove() {
-        print("Task remove called")
         Course.removeTask(task: self)
     }
 }

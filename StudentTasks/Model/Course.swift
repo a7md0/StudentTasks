@@ -46,7 +46,6 @@ extension Course {
     static func createTasks(course: Course, tasks: [Task]) {
         guard let courseIndex = findCourseIndex(course: course) else { return }
         
-        print("createTasks \(courseIndex) \(tasks.count)")
         courses[courseIndex].tasks.append(contentsOf: tasks)
     }
     
@@ -62,7 +61,6 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks.remove(at: taskIndex)
-        print("Course removeTask complete")
     }
 }
 
@@ -105,9 +103,7 @@ extension Course {
     }
     
     private static func findCourseIndex(task: Task) -> Array<Course>.Index? {
-        print("findCourseIndex \(task.courseId)")
         let courseIndex = courses.firstIndex(where: { $0.id == task.courseId })
-        print("findCourseIndex \(courseIndex)")
         
         return courseIndex
     }
