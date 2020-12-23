@@ -33,8 +33,14 @@ struct Course: Codable, Equatable {
     var tasks: [Task] = []
 }
 
+// MARK: - Enums
 enum CourseTag: String, Codable {
     case online = "Online", lab = "Lab", lecture = "Lecture"
+}
+
+// MARK: - Sub
+struct Grade: Codable {
+    
 }
 
 // MARK: - Tasks mutation
@@ -146,7 +152,7 @@ extension Course {
     }
 }
 
-// MARK: - Persistent storage & Sample data
+// MARK: - Persistent storage
 extension Course {
     private static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     private static let archiveURL: URL = DocumentsDirectory.appendingPathComponent("courses").appendingPathExtension("plist")
@@ -220,8 +226,4 @@ extension Course {
     static func saveData() {
         writeToPersistentStorage(courses: Course.courses)
     }
-}
-
-struct Grade: Codable {
-    
 }
