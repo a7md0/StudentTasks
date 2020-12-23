@@ -23,12 +23,16 @@ class DataManagerController {
         //loadInitalData()
     }
     
-    func loadInitalData() {
+    func loadData() {
         let courses = loadCourses() ?? loadSampleCourses() // Load saved courses, if not then load sample courses
         Course.injectCourses(courses: courses)
 
         // TODO: Trigger subject notify for courses change
         print(courses.count)
+    }
+    
+    func saveData() {
+        Course.saveData()
     }
     
     // TODO: Load and parse courses along with tasks
