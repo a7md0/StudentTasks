@@ -9,8 +9,10 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
-    var course: Course?
+    var isSearching: Bool = false
+    
     var tasks: [Task] = []
+    var searchTasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +24,7 @@ class TasksTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.tableFooterView = UIView(frame: .zero)
-        
-        if let course = course {
-            tasks = course.tasks
-        }
+        tableView.keyboardDismissMode = .interactive
     }
 
     // MARK: - Table view data source
@@ -35,15 +34,19 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return isSearching == false ? tasks.count : searchTasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        let task = tasks[indexPath.row]
+        let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
+        if let imageData = task.course?.imageData {
+            print("image data")
+            cell.courseImage.image = UIImage(data: imageData)
+        }
         
         return cell
     }
@@ -67,13 +70,14 @@ class TasksTableViewController: UITableViewController {
     */
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(64.0)
+        return CGFloat(72)
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
         }
+        complete.backgroundColor = .gray
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
@@ -119,5 +123,32 @@ class TasksTableViewController: UITableViewController {
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         task.remove()
+    }
+}
+
+extension TasksTableViewController {
+    func filterResults(searchQuery: String?) {
+        if let searchQuery = searchQuery {
+            print("searchQuery: \(searchQuery)")
+            isSearching = true
+            
+            searchTasks = tasks.filter({ (task: Task) -> Bool in
+                var result = false
+                
+                let searchKeywords = searchQuery.lowercased().split(separator: " ")
+                searchKeywords.forEach { (keyword) in
+                    if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
+                        result = true
+                        return // break loop
+                    }
+                }
+                
+                return result
+            })
+        } else {
+            isSearching = false
+        }
+        
+        tableView.reloadData()
     }
 }

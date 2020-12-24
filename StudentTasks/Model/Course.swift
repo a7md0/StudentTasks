@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Course model
 struct Course: Codable, Equatable {
     static func == (lhs: Course, rhs: Course) -> Bool {
         lhs.id == rhs.id
@@ -20,7 +21,7 @@ struct Course: Codable, Equatable {
     var code: String?
     var abberivation: String?
     
-    var tags: [String] = []
+    var tags: [CourseTag] = []
     
     var lecturerName: String?
     var overallGrade: Grade?
@@ -32,6 +33,17 @@ struct Course: Codable, Equatable {
     var tasks: [Task] = []
 }
 
+// MARK: - Enums
+enum CourseTag: String, Codable, CaseIterable {
+    case online = "Online", lab = "Lab", lecture = "Lecture"
+}
+
+// MARK: - Sub
+struct Grade: Codable {
+    
+}
+
+// MARK: - Tasks mutation
 extension Course {
     static func createTask(task: Task) {
         guard let course = task.course else { return }
@@ -64,6 +76,7 @@ extension Course {
     }
 }
 
+// MARK: - CRUD operations
 extension Course {
     func create() {
         Course.courses.append(self)
@@ -82,12 +95,17 @@ extension Course {
     }
 }
 
+// MARK: - Data
 extension Course {
     private static var courses: [Course] = [] {
         didSet {
             print("courses didSet \(courses.count)")
-            Course.triggerSave()
+            Course.triggerUpdate()
         }
+    }
+    
+    static func findOne(id: String) -> Course? {
+        return findOne(id: UUID(uuidString: id)!)
     }
     
     static func findOne(id: UUID) -> Course? {
@@ -120,17 +138,97 @@ extension Course {
         return taskIndex
     }
     
-    private static func triggerSave() {
-        print("triggerSave \(Course.courses.count)")
-        DataManagerController.sharedInstance.saveCourses(courses: Course.courses)
-    }
-    
-    static func injectCourses(courses: [Course]) {
-        print("injectCourses \(courses.count)")
-        Course.courses.append(contentsOf: courses)
+    private static func triggerUpdate() {
+        print("triggerUpdate \(Course.courses.count)")
+        
+        subject.notify(value: Course.courses)
     }
 }
 
-struct Grade: Codable {
+// MARK: - Observer pattern
+extension Course {
+    private static let subject = Subject<[Course]>()
     
+    static func observerInstance() -> Observer<[Course]> {
+        let observer = Observer<[Course]>(subject: self.subject)
+        
+        return observer
+    }
+}
+
+// MARK: - Persistent storage
+extension Course {
+    private static let DocumentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    private static let archiveURL: URL = DocumentsDirectory.appendingPathComponent("courses").appendingPathExtension("plist")
+    
+    /// This function read and parse data from persistent storage into `array of Course`.
+    ///
+    /// ```
+    /// readFromPersistentStorage()
+    /// ```
+    ///
+    /// - Warning: It may not return result if there is none saved.
+    /// - Returns: List of courses `[Course]`.
+    private static func readFromPersistentStorage() -> [Course]? {
+        guard let codedCourses = try? Data(contentsOf: archiveURL) else { return nil }
+         
+        let propertyListDecoder = PropertyListDecoder()
+        return try? propertyListDecoder.decode(Array<Course>.self, from: codedCourses)
+    }
+     
+    /// This function write list of courses to presistent stroage
+    ///
+    /// ```
+    /// writeToPersistentStorage(coursesList)
+    /// ```
+    ///
+    /// - Warning: This would overwrite any previosuly saved list.
+    /// - Parameter courses: The courses list to write
+    private static func writeToPersistentStorage(courses: [Course]) {
+        print("saveCourses > saving \(courses.count) courses to disk")
+
+        let propertyEnconder = PropertyListEncoder()
+        let codedCourses = try? propertyEnconder.encode(courses)
+        try? codedCourses?.write(to: archiveURL, options: .noFileProtection)
+    }
+    
+    /// This function read and parse sample entries then return list of courses
+    ///
+    /// ```
+    /// readSampleData()
+    /// ```
+    ///
+    /// - Returns: List of sample courses `[Course]`.
+    private static func readSampleData() -> [Course] {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601 // Use ISO-8601 -> 2018-12-25T17:30:00Z
+        
+        print("loading sample courses...")
+        
+        guard let url = Bundle.main.url(forResource: "courses_samples", withExtension: "json"),
+              let coursesData = try? Data(contentsOf: url),
+              let courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return [] }
+        
+        print("loaded sample courses")
+        
+        return courses
+    }
+    
+    /// This function load the required data for this model
+    ///
+    /// ```
+    /// loadData()
+    /// ```
+    static func loadData() {
+        courses = readFromPersistentStorage() ?? readSampleData() // Load saved courses, if not then load sample courses
+    }
+    
+    /// This function save the data for this model
+    ///
+    /// ```
+    /// saveData()
+    /// ```
+    static func saveData() {
+        writeToPersistentStorage(courses: Course.courses)
+    }
 }

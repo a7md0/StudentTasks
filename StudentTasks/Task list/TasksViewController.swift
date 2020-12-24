@@ -7,13 +7,23 @@
 
 import UIKit
 
-class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
+class TasksViewController: UIViewController {
     @IBOutlet weak var tabScrollView: ACTabScrollView!
     
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var filterButton: UIButton!
+    
     var labels: [UILabel] = []
-    var contentViews: [UIView] = []
+    var contentViews: [TasksTableViewController] = []
+    var currentTabViewIdx: Int = 0
     
     var courses: [Course] = []
+    
+    var sort: TasksSort = TasksSort()
+    var filters: TasksFilter = TasksFilter()
+    
+    var searchQuery: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +31,54 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         courses = Course.findAll()
 
         // Do any additional setup after loading the view.
+        setupSearchBar()
+        setupTabScrollView()
+    }
+    
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+
+        if segue.identifier == "tasksFiltersSegue",
+           let destinationNavigationController = segue.destination as? UINavigationController,
+           let tasksFiltersController = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
+            tasksFiltersController.sort = sort
+            tasksFiltersController.filters = filters
+        }
+    }
+    
+    @IBAction func unwindToTasksView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+        if unwindSegue.identifier == "tasksViewUnwindSegue" {
+            
+        }
+    }
+}
+
+// MARK: - Search
+extension TasksViewController: UISearchBarDelegate {
+    func setupSearchBar() {
+        searchBar.delegate = self
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "") {
+            self.searchQuery = $0.count > 0 ? searchText : nil
+            self.contentViews[self.currentTabViewIdx].filterResults(searchQuery: self.searchQuery)
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(false)
+    }
+}
+
+// MARK: - Tab view
+extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSource {
+    func setupTabScrollView() {
         // all the following properties are optional
         /*tabScrollView.defaultPage = 3
         tabScrollView.arrowIndicator = true
@@ -31,7 +89,10 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         tabScrollView.pagingEnabled = true
         tabScrollView.cachedPageLimit = 3*/
         
-        tabScrollView.arrowIndicator = false
+        tabScrollView.tabSectionBackgroundColor = .systemGray6
+        tabScrollView.tabSectionHeight = 48
+        
+        tabScrollView.arrowIndicator = true
         tabScrollView.contentSectionScrollEnabled = false
         
         tabScrollView.delegate = self
@@ -42,10 +103,13 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
     
     // MARK: ACTabScrollViewDelegate
     func tabScrollView(_ tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
-        print(index)
+        currentTabViewIdx = index
+        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
+        currentTabViewIdx = index
+        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
     }
         
     // MARK: ACTabScrollViewDataSource
@@ -60,7 +124,7 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
-        return contentViews[index]
+        return contentViews[index].view
     }
     
     func prepareTabs() {
@@ -70,17 +134,16 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         allCoursesTabTableView.tasks = Task.findAll()
         
         self.addChild(allCoursesTabTableView)
-        contentViews.append(allCoursesTabTableView.view)
+        contentViews.append(allCoursesTabTableView)
         createTabLabel("All")
         
         for course in Course.findAll() {
             let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
             
-            tabTableView.course = course
             tabTableView.tasks = course.tasks
             
             addChild(tabTableView) // don't forget, it's very important
-            contentViews.append(tabTableView.view)
+            contentViews.append(tabTableView)
             
             createTabLabel(course.name)
         }
@@ -101,14 +164,4 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         
         labels.append(label)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
