@@ -23,8 +23,8 @@ class TasksTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.keyboardDismissMode = .interactive
+        tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
+        tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
     }
     
     func setTasks(tasks: [Task]) {
