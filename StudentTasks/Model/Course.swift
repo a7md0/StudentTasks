@@ -201,6 +201,7 @@ extension Course {
     /// - Returns: List of sample courses `[Course]`.
     private static func readSampleData() -> [Course] {
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601 // Use ISO-8601 -> 2018-12-25T17:30:00Z
         
         print("loading sample courses...")
         
