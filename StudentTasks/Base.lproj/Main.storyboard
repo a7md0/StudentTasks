@@ -615,7 +615,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <state key="normal" title="Filter"/>
                                         <connections>
-                                            <segue destination="UbE-l8-zag" kind="presentation" identifier="tasksFilterSegue" id="Pmp-e5-sbz"/>
+                                            <segue destination="UbE-l8-zag" kind="presentation" identifier="tasksFiltersSegue" id="Pmp-e5-sbz"/>
                                         </connections>
                                     </button>
                                 </subviews>

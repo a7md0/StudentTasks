@@ -42,8 +42,10 @@ class TasksViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "tasksFilterSegue",
-           let tasksFiltersController = segue.destination as? TasksFiltersTableViewController {
+
+        if segue.identifier == "tasksFiltersSegue",
+           let destinationNavigationController = segue.destination as? UINavigationController,
+           let tasksFiltersController = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
             tasksFiltersController.sort = sort
             tasksFiltersController.filters = filters
         }
