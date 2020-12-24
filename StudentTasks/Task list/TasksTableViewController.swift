@@ -29,6 +29,9 @@ class TasksTableViewController: UITableViewController {
     
     func setTasks(tasks: [Task]) {
         self.tasks = tasks
+        // Sortable by date withou time? Then importance level?
+        // Sortable by importance level then date time?
+        // Sortable by either date or importance?
             /*.sorted(by: {
             if $0.dueDate != $1.dueDate {
                 
