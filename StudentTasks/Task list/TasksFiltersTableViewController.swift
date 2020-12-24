@@ -89,6 +89,43 @@ class TasksFiltersTableViewController: UITableViewController {
         updateView()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 0,
+            let identifier = tableView.cellForRow(at: indexPath)?.reuseIdentifier {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+            alert.popoverPresentationController?.sourceView = self.view // ipad support
+            
+            switch identifier {
+            case "dueDateCell":
+                alert.title = "Due date sorting"
+                
+                for orderByCase in TasksSort.OrderBy.allCases {
+                    alert.addAction(UIAlertAction(title: orderByCase.rawValue, style: .default , handler: { (UIAlertAction) in
+                        self.sort?.dueDate = orderByCase
+                        self.updateView()
+                    }))
+                }
+            case "importanceCell":
+                alert.title = "Importance sorting"
+                
+                for priortyCase in TasksSort.Priorty.allCases {
+                    alert.addAction(UIAlertAction(title: priortyCase.rawValue, style: .default , handler: { (UIAlertAction) in
+                        self.sort?.importance = priortyCase
+                        self.updateView()
+                    }))
+                }
+            default:
+                return
+            }
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true) {}
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
