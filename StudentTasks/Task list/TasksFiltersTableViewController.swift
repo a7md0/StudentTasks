@@ -14,6 +14,13 @@ class TasksFiltersTableViewController: UITableViewController {
     
     static var pcikerUnwindSegueIdentifier: String = "tasksFiltersUnwindSegue"
     
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var importancelabel: UILabel!
+    
+    @IBOutlet weak var taskTypeLabel: UILabel!
+    @IBOutlet weak var courseLabel: UILabel!
+    @IBOutlet weak var taskStatusLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +44,13 @@ class TasksFiltersTableViewController: UITableViewController {
     }
     
     func updateView() {
+        dueDateLabel.text = sort?.dueDate.rawValue
+        importancelabel.text = sort?.importance.rawValue
         
+        
+        taskTypeLabel.text = filters?.taskTypes.count == filters?.defaultTaskTypes.count ? "All" : "Custom"
+        courseLabel.text = filters?.courses.count == filters?.defaultCourses.count ? "All" : "Custom"
+        taskStatusLabel.text = filters?.completeness.count == filters?.defaultCompleteness.count ? "All" : "Custom"
     }
     
     func handlePickerSelectionUpdate(identifier: String?, items: [PickerItem]) {
@@ -102,7 +115,7 @@ class TasksFiltersTableViewController: UITableViewController {
                 }
             } else if segue.identifier == "courseSegue"  {
                 tasksFiltersController.title = "Course"
-                tasksFiltersController.multiSelect = false
+                tasksFiltersController.multiSelect = true
                 
                 for course in filters.defaultCourses {
                     var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)

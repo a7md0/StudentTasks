@@ -535,6 +535,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="courseLabel" destination="5Wk-hi-mmv" id="NIQ-LE-Pnf"/>
+                        <outlet property="dueDateLabel" destination="ytb-Bx-sQ5" id="rZI-nA-69s"/>
+                        <outlet property="importancelabel" destination="KJA-w5-KbF" id="HOv-Bo-A4p"/>
+                        <outlet property="taskStatusLabel" destination="gbI-xf-dhp" id="W2P-kg-DAm"/>
+                        <outlet property="taskTypeLabel" destination="nId-Yn-kha" id="lLQ-Xx-rNY"/>
                         <segue destination="AiR-fI-ua0" kind="unwind" identifier="tasksViewUnwindSegue" unwindAction="unwindToTasksViewFor:towards:" id="rgG-FJ-IyT"/>
                     </connections>
                 </tableViewController>
