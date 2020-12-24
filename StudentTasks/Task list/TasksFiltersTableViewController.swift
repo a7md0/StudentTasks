@@ -103,7 +103,7 @@ class TasksFiltersTableViewController: UITableViewController {
                 alert.title = "Due date sorting"
                 
                 for orderByCase in TasksSort.OrderBy.allCases {
-                    alert.addAction(UIAlertAction(title: orderByCase.rawValue, style: .default , handler: { (UIAlertAction) in
+                    alert.addAction(UIAlertAction(title: orderByCase.rawValue, style: .default, handler: { (UIAlertAction) in
                         self.sort?.dueDate = orderByCase
                         self.updateView()
                     }))
@@ -112,7 +112,7 @@ class TasksFiltersTableViewController: UITableViewController {
                 alert.title = "Importance sorting"
                 
                 for priortyCase in TasksSort.Priorty.allCases {
-                    alert.addAction(UIAlertAction(title: priortyCase.rawValue, style: .default , handler: { (UIAlertAction) in
+                    alert.addAction(UIAlertAction(title: priortyCase.rawValue, style: .default, handler: { (UIAlertAction) in
                         self.sort?.importance = priortyCase
                         self.updateView()
                     }))
