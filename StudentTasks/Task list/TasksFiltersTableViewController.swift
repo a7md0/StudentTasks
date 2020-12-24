@@ -35,33 +35,46 @@ class TasksFiltersTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if let tasksFiltersController = segue.destination as? PickerTableViewController {
+        if let tasksFiltersController = segue.destination as? PickerTableViewController,
+           let filters = filters {
             tasksFiltersController.unwindSegueIdentifier = "tasksFiltersUnwindSegue"
             
             if segue.identifier == "taskTypeSegue" {
                 tasksFiltersController.title = "Task type"
-                tasksFiltersController.items = [
-                    PickerItem(identifier: "1", label: "test", checked: true),
-                    PickerItem(identifier: "2", label: "test", checked: true),
-                    PickerItem(identifier: "3", label: "test", checked: true),
-                ]
                 tasksFiltersController.multiSelect = true
+                
+                for taskType in filters.defaultTaskTypes {
+                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    if filters.taskTypes.contains(taskType) {
+                        pickerItem.checked = true
+                    }
+                    
+                    tasksFiltersController.items.append(pickerItem)
+                }
             } else if segue.identifier == "courseSegue"  {
                 tasksFiltersController.title = "Course"
-                tasksFiltersController.items = [
-                    PickerItem(identifier: "1", label: "test", checked: true),
-                    PickerItem(identifier: "2", label: "test", checked: false),
-                    PickerItem(identifier: "3", label: "test", checked: false),
-                ]
                 tasksFiltersController.multiSelect = false
+                
+                for course in filters.defaultCourses {
+                    var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
+                    if filters.courses.contains(course) {
+                        pickerItem.checked = true
+                    }
+                    
+                    tasksFiltersController.items.append(pickerItem)
+                }
             } else if segue.identifier == "completenessSegue"  {
                 tasksFiltersController.title = "Completeness"
-                tasksFiltersController.items = [
-                    PickerItem(identifier: "1", label: "test", checked: true),
-                    PickerItem(identifier: "2", label: "test", checked: true),
-                    PickerItem(identifier: "3", label: "test", checked: true),
-                ]
                 tasksFiltersController.multiSelect = true
+                
+                for completenessStatus in filters.defaultCompleteness {
+                    var pickerItem = PickerItem(identifier: completenessStatus.rawValue, label: completenessStatus.rawValue, checked: false)
+                    if filters.completeness.contains(completenessStatus) {
+                        pickerItem.checked = true
+                    }
+                    
+                    tasksFiltersController.items.append(pickerItem)
+                }
             }
         }
     }
