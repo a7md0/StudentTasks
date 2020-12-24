@@ -523,12 +523,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Filters" id="y9f-NU-Fni">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HAb-sM-qnR">
+                        <barButtonItem key="leftBarButtonItem" title="Reset" style="plain" id="HAb-sM-qnR">
                             <connections>
-                                <action selector="cancelButtonPressed:" destination="Vsz-v5-lwY" id="mbK-3p-0ZG"/>
+                                <action selector="resetButtonPressed:" destination="Vsz-v5-lwY" id="6DK-CG-uU5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SSB-9k-aJn">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="SSB-9k-aJn">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="Vsz-v5-lwY" id="KzT-fw-Cop"/>
                             </connections>
@@ -576,7 +576,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="wnA-Tx-ZhY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="95t-h7-uHH">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="95t-h7-uHH">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="5FD-Ih-vDH" id="ePd-vE-o7g"/>
                             </connections>

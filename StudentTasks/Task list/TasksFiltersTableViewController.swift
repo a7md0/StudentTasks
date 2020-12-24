@@ -12,6 +12,8 @@ class TasksFiltersTableViewController: UITableViewController {
     var sort: TasksSort?
     var filters: TasksFilter?
     
+    static var pcikerUnwindSegueIdentifier: String = "tasksFiltersUnwindSegue"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,14 +22,58 @@ class TasksFiltersTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        updateView()
     }
     
-    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "tasksViewUnwindSegue", sender: self)
+    @IBAction func resetButtonPressed(_ sender: UIBarButtonItem) {
+        filters?.restoreDefault()
+        sort?.restoreDefault()
+        
+        updateView()
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "tasksViewUnwindSegue", sender: self)
+    }
+    
+    func updateView() {
+        
+    }
+    
+    func handlePickerSelectionUpdate(identifier: String?, items: [PickerItem]) {
+        guard let identifier = identifier,
+              let filters = filters else { return }
+        
+        switch identifier {
+        case "taskTypeSegue":
+            filters.taskTypes = []
+            
+            items.filter { $0.checked }.forEach { (item) in
+                if let taskType = TaskType(rawValue: item.identifier) {
+                    filters.taskTypes.append(taskType)
+                }
+            }
+        case "courseSegue":
+            filters.courses = []
+            
+            items.filter { $0.checked }.forEach { (item) in
+                if let course = Course.findOne(id: item.identifier) {
+                    filters.courses.append(course)
+                }
+            }
+        case "completenessSegue":
+            filters.completeness = []
+            
+            items.filter { $0.checked }.forEach { (item) in
+                if let taskStatus = TaskStatus(rawValue: item.identifier) {
+                    filters.completeness.append(taskStatus)
+                }
+            }
+        default:
+            return
+        }
+        
+        updateView()
     }
     
     // MARK: - Navigation
@@ -37,10 +83,13 @@ class TasksFiltersTableViewController: UITableViewController {
 
         if let tasksFiltersController = segue.destination as? PickerTableViewController,
            let filters = filters {
-            tasksFiltersController.unwindSegueIdentifier = "tasksFiltersUnwindSegue"
+            
+            tasksFiltersController.identifier = segue.identifier
+            tasksFiltersController.unwindSegueIdentifier = TasksFiltersTableViewController.pcikerUnwindSegueIdentifier
             
             if segue.identifier == "taskTypeSegue" {
                 tasksFiltersController.title = "Task type"
+                tasksFiltersController.identifier = segue.identifier
                 tasksFiltersController.multiSelect = true
                 
                 for taskType in filters.defaultTaskTypes {
@@ -80,8 +129,9 @@ class TasksFiltersTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToTasksFiltersView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        if unwindSegue.identifier == "tasksFiltersUnwindSegue" {
-            
+        if unwindSegue.identifier == TasksFiltersTableViewController.pcikerUnwindSegueIdentifier,
+           let pickerTableView = unwindSegue.source as? PickerTableViewController {
+            handlePickerSelectionUpdate(identifier: pickerTableView.identifier, items: pickerTableView.items)
         }
     }
 }
