@@ -43,6 +43,10 @@ class TasksTableViewController: UITableViewController {
         // Configure the cell...
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
+        if let imageData = task.course?.imageData {
+            print("image data")
+            cell.courseImage.image = UIImage(data: imageData)
+        }
         
         return cell
     }
