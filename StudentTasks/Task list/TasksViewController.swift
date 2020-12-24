@@ -134,7 +134,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         let allCoursesTabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
-        allCoursesTabTableView.tasks = Task.findAll()
+        allCoursesTabTableView.setTasks(tasks: Task.findAll())
         
         self.addChild(allCoursesTabTableView)
         contentViews.append(allCoursesTabTableView)
@@ -143,7 +143,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         for course in Course.findAll() {
             let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
             
-            tabTableView.tasks = course.tasks
+            tabTableView.setTasks(tasks: course.tasks)
             
             addChild(tabTableView) // don't forget, it's very important
             contentViews.append(tabTableView)

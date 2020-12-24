@@ -9,10 +9,10 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
-    var isSearching: Bool = false
+    private var isSearching: Bool = false
     
-    var tasks: [Task] = []
-    var searchTasks: [Task] = []
+    private var tasks: [Task] = []
+    private var searchTasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,17 @@ class TasksTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.keyboardDismissMode = .interactive
+    }
+    
+    func setTasks(tasks: [Task]) {
+        self.tasks = tasks
+            /*.sorted(by: {
+            if $0.dueDate != $1.dueDate {
+                
+            } else {
+                
+            }
+        })*/
     }
 
     // MARK: - Table view data source
@@ -54,7 +65,7 @@ class TasksTableViewController: UITableViewController {
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
 
     /*
