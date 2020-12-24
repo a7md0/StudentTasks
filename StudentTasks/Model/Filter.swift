@@ -25,11 +25,11 @@ class TasksSort {
         importance = defaultImportance
     }
     
-    enum OrderBy: String {
+    enum OrderBy: String, CaseIterable {
         case ascending = "Ascending", descending = "Descending"
     }
     
-    enum Priorty: String {
+    enum Priorty: String, CaseIterable {
         case highest = "Highest", lowest = "lowest"
     }
 }
