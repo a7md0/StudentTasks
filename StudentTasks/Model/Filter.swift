@@ -11,25 +11,26 @@ class TasksSort {
     var dueDate: OrderBy = .descending
     var importance: Priorty = .highest
     
+    var defaultDueDate: OrderBy {
+        return .descending
+    }
+    
+    var defaultImportance: Priorty {
+        return .highest
+        
+    }
+    
+    func restoreDefault() {
+        dueDate = defaultDueDate
+        importance = defaultImportance
+    }
+    
     enum OrderBy: String {
         case ascending = "Ascending", descending = "Descending"
     }
     
     enum Priorty: String {
         case highest = "Highest", lowest = "lowest"
-    }
-    
-    func restoreDefault() {
-        dueDate = .descending
-        importance = .highest
-    }
-    
-    func isDefault() -> Bool {
-        if dueDate == .descending && importance == .highest {
-            return true
-        }
-        
-        return false
     }
 }
 
@@ -38,17 +39,21 @@ class TasksFilter {
     var courses: [Course] = Course.findAll()
     var completeness: [TaskStatus] = TaskStatus.allCases
     
-    func restoreDefault() {
-        taskTypes = TaskType.allCases
-        courses = Course.findAll()
-        completeness = TaskStatus.allCases
+    var defaultTaskTypes: [TaskType] {
+        return TaskType.allCases
     }
     
-    func isDefault() -> Bool {
-        if taskTypes == TaskType.allCases && completeness == TaskStatus.allCases {
-            return true
-        }
-        
-        return false
+    var defaultCourses: [Course] {
+        return Course.findAll()
+    }
+    
+    var defaultCompleteness: [TaskStatus] {
+        return TaskStatus.allCases
+    }
+    
+    func restoreDefault() {
+        taskTypes = defaultTaskTypes
+        courses = defaultCourses
+        completeness = defaultCompleteness
     }
 }
