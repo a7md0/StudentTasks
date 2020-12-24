@@ -607,8 +607,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnL-Kp-Z4v">
                                 <rect key="frame" x="0.0" y="88" width="390" height="46"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search tasks" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
-                                        <rect key="frame" x="0.0" y="-5" width="328" height="56"/>
+                                    <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" placeholder="Search tasks" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
+                                        <rect key="frame" x="0.0" y="-5" width="336" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -630,6 +630,7 @@
                                     <constraint firstItem="nrG-AD-FKb" firstAttribute="leading" secondItem="GnL-Kp-Z4v" secondAttribute="leading" id="OWC-Af-86i"/>
                                     <constraint firstAttribute="trailing" secondItem="dny-OA-oOL" secondAttribute="trailing" constant="10" id="UKT-lj-5K5"/>
                                     <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="VzD-Sp-QIh"/>
+                                    <constraint firstItem="dny-OA-oOL" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="a6t-Rx-4gf"/>
                                     <constraint firstItem="dny-OA-oOL" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="topMargin" id="ffS-Y4-VRu"/>
                                     <constraint firstItem="dny-OA-oOL" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="p0E-dK-Ach"/>
                                     <constraint firstItem="dny-OA-oOL" firstAttribute="leading" secondItem="nrG-AD-FKb" secondAttribute="trailing" constant="10" id="veo-n1-ehK"/>
