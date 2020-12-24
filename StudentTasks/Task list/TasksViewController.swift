@@ -20,8 +20,8 @@ class TasksViewController: UIViewController {
     
     var courses: [Course] = []
     
-    var sort: TasksSort = TasksSort()
-    var filters: TasksFilter = TasksFilter()
+    var sort: TasksSort?
+    var filters: TasksFilter?
     
     var searchQuery: String?
 
@@ -33,6 +33,9 @@ class TasksViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupSearchBar()
         setupTabScrollView()
+        
+        sort = TasksSort()
+        filters = TasksFilter()
     }
     
 
