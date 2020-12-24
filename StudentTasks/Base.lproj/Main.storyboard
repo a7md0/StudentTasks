@@ -368,7 +368,7 @@
             </objects>
             <point key="canvasLocation" x="3328.985507246377" y="-242.41071428571428"/>
         </scene>
-        <!--Filters-->
+        <!--Tasks Filters-->
         <scene sceneID="A2q-Qh-qhT">
             <objects>
                 <tableViewController id="Vsz-v5-lwY" customClass="TasksFiltersTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
@@ -520,7 +520,7 @@
                             <outlet property="delegate" destination="Vsz-v5-lwY" id="f0T-c1-z04"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Filters" id="y9f-NU-Fni">
+                    <navigationItem key="navigationItem" title="Tasks Filters" id="y9f-NU-Fni">
                         <barButtonItem key="leftBarButtonItem" title="Reset" style="plain" id="HAb-sM-qnR">
                             <connections>
                                 <action selector="resetButtonPressed:" destination="Vsz-v5-lwY" id="6DK-CG-uU5"/>
