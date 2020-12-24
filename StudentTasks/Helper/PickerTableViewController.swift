@@ -15,6 +15,7 @@ struct PickerItem {
 
 class PickerTableViewController: UITableViewController {
     
+    var identifier: String?
     var items: [PickerItem] = []
     var multiSelect: Bool = false
     
