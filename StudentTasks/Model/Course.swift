@@ -7,12 +7,12 @@
 
 import Foundation
 
-class Course: Codable, Equatable {
+struct Course: Codable, Equatable {
     static func == (lhs: Course, rhs: Course) -> Bool {
-        lhs.id.uuidString == rhs.id.uuidString
+        lhs.id == rhs.id
     }
     
-    var id: UUID
+    var id: UUID = UUID() // Set universally unique identifier
     
     var imageData: Data?
     
@@ -20,65 +20,114 @@ class Course: Codable, Equatable {
     var code: String?
     var abberivation: String?
     
-    var tags: [String]
+    var tags: [String] = []
     
     var lecturerName: String?
     var overallGrade: Grade?
     
-    var ongoingTasks: Int
-    var completedTasks: Int
-    var overdueTasks: Int
+    var ongoingTasks: Int = 0
+    var completedTasks: Int = 0
+    var overdueTasks: Int = 0
     
-    var tasks: [Task]
-    
-    convenience init(name: String) {
-        self.init(name: name, code: nil, abberivation: nil, tags: nil, lecturerName: nil, overallGrade: nil, ongoingTasks: nil, completedTasks: nil, overdueTasks: nil, tasks: nil)
+    var tasks: [Task] = []
+}
+
+extension Course {
+    static func createTask(task: Task) {
+        guard let course = task.course else { return }
+        
+        createTasks(course: course, tasks: [task])
     }
     
-    convenience init(name: String, code: String) {
-        self.init(name: name, code: code, abberivation: nil, tags: nil, lecturerName: nil, overallGrade: nil, ongoingTasks: nil, completedTasks: nil, overdueTasks: nil, tasks: nil)
+    static func createTask(course: Course, task: Task) {
+        createTasks(course: course, tasks: [task])
     }
     
-    convenience init(name: String, code: String, abberivation: String) {
-        self.init(name: name, code: code, abberivation: abberivation, tags: nil, lecturerName: nil, overallGrade: nil, ongoingTasks: nil, completedTasks: nil, overdueTasks: nil, tasks: nil)
+    static func createTasks(course: Course, tasks: [Task]) {
+        guard let courseIndex = findCourseIndex(course: course) else { return }
+        
+        courses[courseIndex].tasks.append(contentsOf: tasks)
     }
     
-    convenience init(name: String, code: String, abberivation: String, tags: [String]) {
-        self.init(name: name, code: code, abberivation: abberivation, tags: tags, lecturerName: nil, overallGrade: nil, ongoingTasks: nil, completedTasks: nil, overdueTasks: nil, tasks: nil)
+    static func saveTask(task: Task) {
+        guard let courseIndex = findCourseIndex(task: task),
+              let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
+        
+        courses[courseIndex].tasks[taskIndex] = task
     }
     
-    init(name: String, code: String?, abberivation: String?, tags: [String]?, lecturerName: String?, overallGrade: Grade?, ongoingTasks: Int?, completedTasks: Int?, overdueTasks: Int?, tasks: [Task]?) {
+    static func removeTask(task: Task) {
+        guard let courseIndex = findCourseIndex(task: task),
+              let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
-        self.id = UUID() // Set universally unique identifier
-        
-        self.name = name
-        self.code = code ?? nil
-        self.abberivation = abberivation ?? nil
-        
-        self.tags = tags ?? []
-        
-        self.lecturerName = lecturerName ?? nil
-        self.overallGrade = overallGrade ?? nil
-    
-        self.ongoingTasks = ongoingTasks ?? 0
-        self.completedTasks = completedTasks ?? 0
-        self.overdueTasks = overdueTasks ?? 0
-        
-        self.tasks = tasks ?? []
+        courses[courseIndex].tasks.remove(at: taskIndex)
+    }
+}
+
+extension Course {
+    func create() {
+        Course.courses.append(self)
     }
     
-    func addTask(task: Task) -> Course {
-        task.course = self // Set task course ref
-        tasks.append(task)
+    func save() {
+        guard let courseIndex = Course.findCourseIndex(course: self) else { return }
         
-        return self // return the course itself ref (chaining)
+        Course.courses[courseIndex] = self
     }
     
-    func addTasks(tasks: [Task]) -> Course {
-        tasks.forEach { $0.course = self } // Set each task course ref
-        self.tasks.append(contentsOf: tasks)
+    func remove() {
+        guard let courseIndex = Course.findCourseIndex(course: self) else { return }
         
-        return self // return the course itself ref (chaining)
+        Course.courses.remove(at: courseIndex)
+    }
+}
+
+extension Course {
+    private static var courses: [Course] = [] {
+        didSet {
+            print("courses didSet \(courses.count)")
+            Course.triggerSave()
+        }
+    }
+    
+    static func findOne(id: UUID) -> Course? {
+        if let index = courses.firstIndex(where: { $0.id == id }) {
+            return courses[index]
+        }
+        
+        return nil
+    }
+    
+    static func findAll() -> [Course] {
+       return courses
+    }
+    
+    private static func findCourseIndex(task: Task) -> Array<Course>.Index? {
+        let courseIndex = courses.firstIndex(where: { $0.id == task.courseId })
+        
+        return courseIndex
+    }
+    
+    private static func findCourseIndex(course: Course) -> Array<Course>.Index? {
+        let courseIndex = courses.firstIndex(where: { $0 == course })
+        
+        return courseIndex
+    }
+    
+    private static func findTaskIndex(course: Course, task: Task) -> Array<Task>.Index? {
+        let taskIndex = course.tasks.firstIndex(where: { $0 == task })
+        
+        return taskIndex
+    }
+    
+    private static func triggerSave() {
+        print("triggerSave \(Course.courses.count)")
+        DataManagerController.sharedInstance.saveCourses(courses: Course.courses)
+    }
+    
+    static func injectCourses(courses: [Course]) {
+        print("injectCourses \(courses.count)")
+        Course.courses.append(contentsOf: courses)
     }
 }
 

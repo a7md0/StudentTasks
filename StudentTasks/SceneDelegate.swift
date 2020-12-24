@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         LocalNotificationManager.sharedInstance.requestPermission() // Request notification premission
+        DataManagerController.sharedInstance.loadInitalData()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

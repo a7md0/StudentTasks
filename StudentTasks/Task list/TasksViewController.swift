@@ -9,12 +9,16 @@ import UIKit
 
 class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrollViewDataSource {
     @IBOutlet weak var tabScrollView: ACTabScrollView!
+    
+    var labels: [UILabel] = []
     var contentViews: [UIView] = []
     
-    let dataManager = DataManagerController.sharedInstance
+    var courses: [Course] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        courses = Course.findAll()
 
         // Do any additional setup after loading the view.
         // all the following properties are optional
@@ -33,17 +37,7 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         tabScrollView.delegate = self
         tabScrollView.dataSource = self
         
-        // create content views from storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        for course in dataManager.getCourses() {
-            let vc = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
-                
-            /* set somethings for vc */
-            vc.course = course
-            
-            addChild(vc) // don't forget, it's very important
-            contentViews.append(vc.view)
-        }
+        prepareTabs()
     }
     
     // MARK: ACTabScrollViewDelegate
@@ -56,23 +50,12 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         
     // MARK: ACTabScrollViewDataSource
     func numberOfPagesInTabScrollView(_ tabScrollView: ACTabScrollView) -> Int {
-        return dataManager.getCourses().count
+        return contentViews.count
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
-        let course = dataManager.getCourses()[index]
-        
-        // create a label
-        let label = UILabel()
-        label.text = course.name
-        label.textAlignment = .center
-        
-        // if the size of your tab is not fixed, you can adjust the size by the following way.
-        label.sizeToFit() // resize the label to the size of content
-        label.frame.size = CGSize(
-            width: label.frame.size.width + 28,
-            height: label.frame.size.height + 36) // add some paddings
-        
+        let label = labels[index]
+
         return label
     }
         
@@ -80,6 +63,44 @@ class TasksViewController: UIViewController, ACTabScrollViewDelegate, ACTabScrol
         return contentViews[index]
     }
     
+    func prepareTabs() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let allCoursesTabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
+        allCoursesTabTableView.tasks = Task.findAll()
+        
+        self.addChild(allCoursesTabTableView)
+        contentViews.append(allCoursesTabTableView.view)
+        createTabLabel("All")
+        
+        for course in Course.findAll() {
+            let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
+            
+            tabTableView.course = course
+            tabTableView.tasks = course.tasks
+            
+            addChild(tabTableView) // don't forget, it's very important
+            contentViews.append(tabTableView.view)
+            
+            createTabLabel(course.name)
+        }
+    }
+    
+    private func createTabLabel(_ text: String) {
+        // create a label
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .center
+        
+        // if the size of your tab is not fixed, you can adjust the size by the following way.
+        label.sizeToFit() // resize the label to the size of content
+        label.frame.size = CGSize(
+            width: label.frame.size.width + 28,
+            height: label.frame.size.height + 36
+        ) // add some paddings
+        
+        labels.append(label)
+    }
     /*
     // MARK: - Navigation
 

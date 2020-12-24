@@ -10,7 +10,7 @@ import UIKit
 class TasksTableViewController: UITableViewController {
 
     var course: Course?
-    var tasks: [Task]?
+    var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,9 @@ class TasksTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: .zero)
         
-        tasks = course?.tasks ?? []
+        if let course = course {
+            tasks = course.tasks
+        }
     }
 
     // MARK: - Table view data source
@@ -33,14 +35,14 @@ class TasksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks?.count ?? 0
+        return tasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
         // Configure the cell...
-        let task = tasks![indexPath.row]
+        let task = tasks[indexPath.row]
         cell.taskLabel.text = task.name
         
         return cell
@@ -76,6 +78,8 @@ class TasksTableViewController: UITableViewController {
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
             print("Delete \(indexPath.row + 1)")
+            
+            self.deleteItem(indexPath: indexPath)
         }
         delete.image = UIImage(systemName: "trash")
         
@@ -109,4 +113,11 @@ class TasksTableViewController: UITableViewController {
     }
     */
 
+    func deleteItem(indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        
+        tasks.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        task.remove()
+    }
 }
