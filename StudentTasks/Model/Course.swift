@@ -104,6 +104,10 @@ extension Course {
         }
     }
     
+    static func findOne(id: String) -> Course? {
+        return findOne(id: UUID(uuidString: id)!)
+    }
+    
     static func findOne(id: UUID) -> Course? {
         if let index = courses.firstIndex(where: { $0.id == id }) {
             return courses[index]
