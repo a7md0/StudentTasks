@@ -445,7 +445,7 @@
             <objects>
                 <tableViewController id="5FD-Ih-vDH" customClass="PickerTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3i9-5A-yu4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -563,10 +563,10 @@
             </objects>
             <point key="canvasLocation" x="2124.6376811594205" y="127.90178571428571"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Add Task-->
         <scene sceneID="NI2-Xw-Qzh">
             <objects>
-                <tableViewController id="Qmu-Pd-FEA" sceneMemberID="viewController">
+                <tableViewController title="Add Task" id="Qmu-Pd-FEA" customClass="AddTaskTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iP0-vB-MAt">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -611,6 +611,10 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnA-c3-Tik">
                                                     <rect key="frame" x="279" y="7" width="96" height="30"/>
                                                     <state key="normal" title="Select Course"/>
+                                                    <connections>
+                                                        <action selector="coursebtnpressed:" destination="Qmu-Pd-FEA" eventType="touchUpInside" id="WKW-iB-gJl"/>
+                                                        <segue destination="5FD-Ih-vDH" kind="show" identifier="AddTaskCourseSegue" id="T5j-Gs-rav"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -697,7 +701,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Dpb-UI-7BP">
-                                                    <rect key="frame" x="7" y="0.0" width="383" height="43.666666666666664"/>
+                                                    <rect key="frame" x="7" y="0.0" width="383" height="44"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -907,7 +911,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d1u-jI-kbu"/>
+        <segue reference="T5j-Gs-rav"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
