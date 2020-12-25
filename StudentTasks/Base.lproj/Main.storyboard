@@ -443,9 +443,11 @@
         <!--Picker Table View Controller-->
         <scene sceneID="A1e-In-Jwe">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-Z3-D2T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="ydU-ow-KQU" userLabel="Exit" sceneMemberID="exit"/>
                 <tableViewController id="5FD-Ih-vDH" customClass="PickerTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3i9-5A-yu4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -483,8 +485,6 @@
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="tasksFiltersUnwindSegue" unwindAction="unwindToTasksFiltersViewFor:towards:" id="y5V-vn-4cJ"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-Z3-D2T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="ydU-ow-KQU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6754" y="-375"/>
         </scene>
@@ -911,7 +911,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T5j-Gs-rav"/>
+        <segue reference="d1u-jI-kbu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
