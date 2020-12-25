@@ -32,6 +32,9 @@ struct Task: Codable, Equatable {
     var gradeContribution: Float?
     var gradeType: TaskGradeType?
     var grade: Float?
+    
+    var createdAt: Date?
+    var updatedAt: Date?
 }
 
 // MARK: - Enums
@@ -107,7 +110,10 @@ extension Task {
     /// ```
     ///
     /// - Warning: This should be only called one for newely created task.
-    func create() {
+    mutating func create() {
+        self.createdAt = Date()
+        self.updatedAt = Date()
+        
         Course.createTask(task: self)
     }
     
@@ -118,7 +124,9 @@ extension Task {
     /// ```
     ///
     /// - Warning: This should be only called after updating exisiting model, not a new one.
-    func save() {
+    mutating func save() {
+        self.updatedAt = Date()
+        
         Course.saveTask(task: self)
     }
     

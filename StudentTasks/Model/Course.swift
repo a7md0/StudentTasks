@@ -32,6 +32,9 @@ struct Course: Codable, Equatable {
     var overdueTasks: Int = 0
     
     var tasks: [Task] = []
+    
+    var createdAt: Date?
+    var updatedAt: Date?
 }
 
 // MARK: - Enums
@@ -79,12 +82,16 @@ extension Course {
 
 // MARK: - CRUD operations
 extension Course {
-    func create() {
+    mutating func create() {
+        self.createdAt = Date()
+        self.updatedAt = Date()
+        
         Course.courses.append(self)
     }
     
-    func save() {
+    mutating func save() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
+        self.updatedAt = Date()
         
         Course.courses[courseIndex] = self
     }
