@@ -112,8 +112,10 @@ extension Course {
         }
     }
     
-    static func findOne(id: String) -> Course? {
-        return findOne(id: UUID(uuidString: id)!)
+    static func findOne(id: String?) -> Course? {
+        guard let uuid = UUID(uuidString: id ?? "") else { return nil }
+        
+        return findOne(id: uuid)
     }
     
     static func findOne(id: UUID) -> Course? {
