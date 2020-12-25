@@ -14,6 +14,8 @@ class TasksTableViewController: UITableViewController {
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
+    var sort: TasksSort?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,15 +48,27 @@ class TasksTableViewController: UITableViewController {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
-                return compareDate == .orderedDescending
+                if sort?.dueDate == .descending {
+                    return compareDate == .orderedDescending
+                } else {
+                    return compareDate == .orderedAscending
+                }
             }
             
             // if the date compare result is the same
             if $0.priority != $1.priority { // if the priorty isn't the same
-                return $0.priority < $1.priority // return whether the 1st priority is less than 2nd
+                if sort?.importance == .highest {
+                    return $0.priority < $1.priority // return whether the 1st priority is less than 2nd
+                } else {
+                    return $0.priority > $1.priority
+                }
             }
                 
-            return $0.dueDate < $1.dueDate //return whether the 1st full date is less than the 2nd
+            if sort?.dueDate == .descending {
+                return $0.dueDate < $1.dueDate //return whether the 1st full date is less than the 2nd
+            } else {
+                return $0.dueDate > $1.dueDate
+            }
         })
     }
 
