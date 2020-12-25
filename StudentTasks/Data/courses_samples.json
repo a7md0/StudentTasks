@@ -24,24 +24,57 @@
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
             },
             {
-                "id": "5B66AD13-2103-4BFC-AD84-296D6ADA50A9",
+                "id": "5B66AD13-2103-4BFC-AD54-296D6ADA50A9",
                 "name": "Task 2",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
-                "priority": "Low",
-                "dueDate": "2020-12-24T20:10:00Z",
+                "priority": "Normal",
+                "dueDate": "2020-12-25T20:10:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
             },
             {
-                "id": "4525447C-E0AC-4A12-9811-C9EF26F244A0",
+                "id": "4525447C-E0AC-4A14-9811-C9EF26F244A0",
                 "name": "Task 3",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
                 "priority": "High",
-                "dueDate": "2020-12-24T20:20:00Z",
+                "dueDate": "2020-12-25T20:20:00Z",
+                "completed": false,
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+            },
+            {
+                "id": "4525447C-E0AC-4A13-9811-C3EF26F243A1",
+                "name": "Task 4",
+                "type": "Assignment",
+                "graded": false,
+                "description": "desc",
+                "priority": "High",
+                "dueDate": "2020-12-25T12:18:00Z",
+                "completed": false,
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+            },
+            {
+                "id": "3525347C-E0AC-3A12-9813-C9EF26F243A1",
+                "name": "Task 5",
+                "type": "Assignment",
+                "graded": false,
+                "description": "desc",
+                "priority": "High",
+                "dueDate": "2020-12-25T20:30:00Z",
+                "completed": false,
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+            },
+            {
+                "id": "4525447C-E0AC-4A11-9811-C9EF26F244A1",
+                "name": "Task 6",
+                "type": "Assignment",
+                "graded": false,
+                "description": "desc",
+                "priority": "High",
+                "dueDate": "2020-12-26T20:20:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
             }
