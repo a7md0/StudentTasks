@@ -103,6 +103,9 @@ class TasksTableViewController: UITableViewController {
             print("image data")
             cell.courseImage.image = UIImage(data: imageData)
         }
+        if let color = task.course?.color {
+            cell.courseImage.backgroundColor = color.color
+        }
 
         return cell
     }
