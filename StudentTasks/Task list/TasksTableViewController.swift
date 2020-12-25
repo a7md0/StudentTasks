@@ -28,25 +28,34 @@ class TasksTableViewController: UITableViewController {
     }
     
     func setTasks(tasks: [Task]) {
+        // Sortable by date withou time? Then importance level? maybe with little imporvment
+        // Sortable by importance level then date time? The groupping is bad to show nearby due dates
+        // Sortable by either date or importance? Not good enough
+        
+        /*
+         Compare if the two tasks based on the same day (without time):
+            if so: return whether "The left operand is greater than the right operand."
+         else: compare based on priority
+        
+         Compare if the two takss priority isn't the same:
+            if so: return whether the left task priority is less than the right one
+         else: compare on full date (including time)
+        */
+        
         self.tasks = tasks.sorted(by: {
-            let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day)
+            let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
-            if compareDate != .orderedSame {
-                print("[Tasks sorting] {lhs: \($0.name), rhs: \($1.name)} Not same date | asc: \(compareDate == .orderedDescending)")
+            if compareDate != .orderedSame { // if the same-day comparision result isn't the same
                 return compareDate == .orderedDescending
-            } else {
-                print("[Tasks sorting] {lhs: \($0.name), rhs: \($1.name)} Same date | Diff priority: \($0.priority < $1.priority)")
-                if $0.priority != $1.priority {
-                    return $0.priority < $1.priority
-                } else {
-                    print("[Tasks sorting] Comparing exact date*")
-                    return $0.dueDate < $1.dueDate
-                }
             }
+            
+            // if the date compare result is the same
+            if $0.priority != $1.priority { // if the priorty isn't the same
+                return $0.priority < $1.priority // return whether the 1st priority is less than 2nd
+            }
+                
+            return $0.dueDate < $1.dueDate //return whether the 1st full date is less than the 2nd
         })
-        // Sortable by date withou time? Then importance level?
-        // Sortable by importance level then date time?
-        // Sortable by either date or importance?
     }
 
     // MARK: - Table view data source
