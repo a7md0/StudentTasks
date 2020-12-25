@@ -30,7 +30,7 @@ class TasksSort {
     }
     
     enum Priorty: String, CaseIterable {
-        case highest = "Highest", lowest = "lowest"
+        case highest = "Highest", lowest = "Lowest"
     }
 }
 
