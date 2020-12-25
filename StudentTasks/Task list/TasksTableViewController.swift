@@ -58,16 +58,16 @@ class TasksTableViewController: UITableViewController {
             // if the date compare result is the same
             if $0.priority != $1.priority { // if the priorty isn't the same
                 if sort?.importance == .highest {
-                    return $0.priority < $1.priority // return whether the 1st priority is less than 2nd
+                    return $0.priority > $1.priority // return whether the 1st priority is less than 2nd
                 } else {
-                    return $0.priority > $1.priority
+                    return !($0.priority > $1.priority)
                 }
             }
                 
             if sort?.dueDate == .descending {
                 return $0.dueDate < $1.dueDate //return whether the 1st full date is less than the 2nd
             } else {
-                return $0.dueDate > $1.dueDate
+                return !($0.dueDate < $1.dueDate)
             }
         })
     }

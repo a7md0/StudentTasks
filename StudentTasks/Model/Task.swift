@@ -47,13 +47,11 @@ enum TaskType: String, Codable, CaseIterable {
 }
 
 enum TaskPriority: String, Codable, CaseIterable {
-    case low = "Low"
-    case normal = "Normal"
-    case high = "High"
+    case low = "Low", normal = "Normal", high = "High"
 }
 
 extension TaskPriority: Equatable, Comparable {
-    static let priorityMapping: [String:Int] = ["Low": 4, "Normal": 3, "High": 2]
+    static let priorityMapping: [String:Int] = ["Very Low": 1, "Low": 2, "Normal": 3, "High": 4, "Very High": 5]
     
     static func == (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
         return lhs.rawValue == rhs.rawValue
