@@ -78,8 +78,29 @@ class TasksTableViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    // MARK: - Table view data source
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    func deleteItem(indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        
+        tasks.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        task.remove()
+    }
+}
+
+// MARK: - Table view data source
+extension TasksTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -125,7 +146,7 @@ class TasksTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
     
@@ -166,24 +187,6 @@ class TasksTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    func deleteItem(indexPath: IndexPath) {
-        let task = tasks[indexPath.row]
-        
-        tasks.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .left)
-        task.remove()
-    }
 }
 
 extension TasksTableViewController {
