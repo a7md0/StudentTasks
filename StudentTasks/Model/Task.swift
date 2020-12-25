@@ -146,6 +146,12 @@ extension Task {
         return Course.findAll().map { $0.tasks }.reduce([], +) // Map all courses tasks then flatten the arrays into one
     }
     
+    static func findOne(id: String?) -> Task? {
+        guard let uuid = UUID(uuidString: id ?? "") else { return nil }
+        
+        return findOne(id: uuid)
+    }
+    
     static func findOne(id: UUID) -> Task? {
         if let index = tasks.firstIndex(where: { $0.id == id }) {
             return tasks[index]
