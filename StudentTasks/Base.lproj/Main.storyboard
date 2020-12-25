@@ -354,6 +354,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="courseImage" destination="U8h-XB-63f" id="B0a-EL-oiR"/>
+                                    <outlet property="subtitle" destination="CQw-3l-BwS" id="u11-Ui-Gm5"/>
                                     <outlet property="taskLabel" destination="PKz-ai-eGc" id="vhO-WC-IrY"/>
                                 </connections>
                             </tableViewCell>

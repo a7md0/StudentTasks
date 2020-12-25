@@ -11,6 +11,7 @@ class TasksTableViewCell: UITableViewCell {
 
     @IBOutlet weak var courseImage: UIImageView!
     @IBOutlet weak var taskLabel: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
