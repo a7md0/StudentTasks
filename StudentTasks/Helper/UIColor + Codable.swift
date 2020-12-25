@@ -1,0 +1,119 @@
+// Source: https://gist.github.com/BenLeggiero/120fe68857703107881e7f33a88111f2
+// License: https://gist.github.com/BenLeggiero/120fe68857703107881e7f33a88111f2#file-license-txt
+/*
+ BLUE HUSKY LICENSE 0 - PUBLIC DOMAIN - OPUS 7
+
+0: LAYMAN'S TERMS
+This section is meant to explain the purpose of this License in Layman's
+terms, and should thusly never be seen as legally binding. This disclaimer does
+not apply to further sections of this License.
+
+1. This is no one's product and is in the public domain
+2. You're not responsible for any bad things that might happen because someone
+used this product
+3. If you use someone else's stuff, it's still theirs
+
+
+1: DECLARATION OF CREATION
+This product was made by Ben Leggiero in 2019
+
+Ben Leggiero may be reached at BenLeggiero@Gmail.com
+
+
+2: DEFINITIONS
+- "License": this text.
+- "Product": the product with which this License was distributed, and any
+assets necessary for its use.
+- "Licensor": any entity or entities involved in distribution of the Product
+and of this License.
+
+
+3: NOTICE OF PERMISSIONS
+1. Permission is hereby granted to any entity obtaining a copy of the Product,
+to use, copy, modify, redistribute, sublicense, sell copies of, and/or
+otherwise handle the Product, and to permit entities to whom the Product is
+furnished to also do so, given the following conditions are obeyed:
+a. The above copyright notice and this permission notice shall be included
+in all copies and/or substantial portions of the Product.
+b. This License shall be blatantly provided, unmodified, along with the
+Product.
+2. The Licensor reserves the right to edit this License at any time under the
+terms of BH-1-PS, given the following conditions are obeyed:
+a. The Licensor agrees to increment the Opus number of this License to
+correspond with version changes.
+b. The Licensor agrees to never publish two or more versions of this License
+under the same Opus number.
+c. The Licensor agrees to notify the License's original author of any
+changes made to the License. If such author is not reasonably accessible,
+the Licensor agrees to notify any known authors which have previously
+contributed to the License.
+
+
+4: REFUSAL OF OWNERSHIP
+The Licensor hereby refuses ownership, both fully and partially, of the
+Product, and agrees to continue to refuse ownership so long as this License is
+provided with the Product.
+
+If any part of the Product is covered under copyright, trademark,
+intellectual property, or any other form of ownership, to the Licensors or any
+other entity, this License shall not invalidate that ownership in any way.
+
+
+5: ACCORDANCE WITH THE LAW
+The terms that make up the whole and parts of this License shall not apply
+where local, state, provincial, federal, national, or any other law prohibits
+such terms.
+
+
+6: DISCLAIMER
+THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL THE CREATOR OR LICENSORS BE LIABLE FOR ANY CLAIM,
+DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE PRODUCT OR THE USE
+OR OTHER DEALINGS IN OR WITH THE PRODUCT.
+*/
+
+import UIKit
+
+/// Allows you to use Swift encoders and decoders to process UIColor
+public struct CodableColor {
+    /// The color to be (en/de)coded
+    let color: UIColor
+}
+
+extension CodableColor: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        let nsCoder = NSKeyedArchiver(requiringSecureCoding: true)
+        color.encode(with: nsCoder)
+        var container = encoder.unkeyedContainer()
+        try container.encode(nsCoder.encodedData)
+    }
+}
+
+extension CodableColor: Decodable {
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        let decodedData = try container.decode(Data.self)
+        let nsCoder = try NSKeyedUnarchiver(forReadingFrom: decodedData)
+        self.color = UIColor(coder: nsCoder).unsafelyUnwrapped
+        // `unwrappedOrThrow()` is from OptionalTools: https://github.com/RougeWare/Swift-Optional-Tools
+        
+        // You can use this if you don't want to use OptionalTools:
+        /*
+        guard let color = UIColor(coder: nsCoder) else {
+            
+            struct UnexpectedlyFoundNilError: Error {}
+            
+            throw UnexpectedlyFoundNilError()
+        }
+        
+        self.color = color
+        */
+    }
+}
+
+public extension UIColor {
+    func codable() -> CodableColor {
+        return CodableColor(color: self)
+    }
+}
