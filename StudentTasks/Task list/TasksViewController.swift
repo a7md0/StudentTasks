@@ -55,8 +55,9 @@ class TasksViewController: UIViewController {
     }
     
     @IBAction func unwindToTasksView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        if unwindSegue.identifier == "tasksViewUnwindSegue" {
-            
+        if unwindSegue.identifier == "tasksViewUnwindSegue",
+           let filtersView = unwindSegue.source as? TasksFiltersTableViewController {
+            updatesTabTablesTasks()
         }
     }
 }
@@ -168,5 +169,11 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         ) // add some paddings
         
         labels.append(label)
+    }
+    
+    private func updatesTabTablesTasks() {
+        for vc in contentViews {
+            vc.filtersChanged()
+        }
     }
 }
