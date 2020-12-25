@@ -31,11 +31,11 @@ class TasksViewController: UIViewController {
         courses = Course.findAll()
 
         // Do any additional setup after loading the view.
-        setupSearchBar()
-        setupTabScrollView()
-        
         sort = TasksSort()
         filters = TasksFilter()
+        
+        setupSearchBar()
+        setupTabScrollView()
     }
     
 
