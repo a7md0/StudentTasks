@@ -48,26 +48,27 @@ class TasksTableViewController: UITableViewController {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
-                if sort?.dueDate == .descending {
+                if sort?.dueDate == .descending { // based on the filters sorting (user changeable)
                     return compareDate == .orderedDescending
                 } else {
                     return compareDate == .orderedAscending
                 }
             }
             
-            // if the date compare result is the same
+            // if the date compare result is the same (compareDate == .orderedSame)
             if $0.priority != $1.priority { // if the priorty isn't the same
-                if sort?.importance == .highest {
-                    return $0.priority > $1.priority // return whether the 1st priority is less than 2nd
+                if sort?.importance == .highest { // based on the filters sorting (user changeable)
+                    return $0.priority > $1.priority // > descending
                 } else {
-                    return !($0.priority > $1.priority)
+                    return $0.priority < $1.priority // < ascending
                 }
             }
-                
-            if sort?.dueDate == .descending {
-                return $0.dueDate < $1.dueDate //return whether the 1st full date is less than the 2nd
+            
+            // if the priroity match too ($0.priority == $1.priority)
+            if sort?.dueDate == .descending {  // based on the filters sorting (user changeable)
+                return $0.dueDate > $1.dueDate // > descending
             } else {
-                return !($0.dueDate < $1.dueDate)
+                return $0.dueDate < $1.dueDate // < ascending
             }
         })
     }
