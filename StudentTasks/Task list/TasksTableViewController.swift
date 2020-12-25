@@ -28,17 +28,25 @@ class TasksTableViewController: UITableViewController {
     }
     
     func setTasks(tasks: [Task]) {
-        self.tasks = tasks
+        self.tasks = tasks.sorted(by: {
+            let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day)
+            
+            if compareDate != .orderedSame {
+                print("[Tasks sorting] {lhs: \($0.name), rhs: \($1.name)} Not same date | asc: \(compareDate == .orderedDescending)")
+                return compareDate == .orderedDescending
+            } else {
+                print("[Tasks sorting] {lhs: \($0.name), rhs: \($1.name)} Same date | Diff priority: \($0.priority < $1.priority)")
+                if $0.priority != $1.priority {
+                    return $0.priority < $1.priority
+                } else {
+                    print("[Tasks sorting] Comparing exact date*")
+                    return $0.dueDate < $1.dueDate
+                }
+            }
+        })
         // Sortable by date withou time? Then importance level?
         // Sortable by importance level then date time?
         // Sortable by either date or importance?
-            /*.sorted(by: {
-            if $0.dueDate != $1.dueDate {
-                
-            } else {
-                
-            }
-        })*/
     }
 
     // MARK: - Table view data source
