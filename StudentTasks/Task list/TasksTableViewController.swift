@@ -62,14 +62,20 @@ class TasksTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        dateFormatter.timeZone = .current
+
         // Configure the cell...
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
+        cell.subtitle.text = dateFormatter.string(from: task.dueDate)
         if let imageData = task.course?.imageData {
             print("image data")
             cell.courseImage.image = UIImage(data: imageData)
         }
-        
+
         return cell
     }
 
