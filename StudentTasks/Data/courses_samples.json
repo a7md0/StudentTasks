@@ -4,6 +4,9 @@
         "name": "Mobile Programming",
         "code": "IT8108",
         "abberivation": "MP",
+        "color": {
+            "rgb": 4294913365
+        },
         "completedTasks": 0,
         "ongoingTasks": 0,
         "overdueTasks": 0,
@@ -85,6 +88,9 @@
         "name": "Object-Oriented design",
         "code": "IT7006",
         "abberivation": "OD",
+        "color": {
+            "rgb": 4281236786
+        },
         "completedTasks": 0,
         "ongoingTasks": 0,
         "overdueTasks": 0,
@@ -134,6 +140,9 @@
         "name": "Web Development",
         "code": "IT7405",
         "abberivation": "WD",
+        "color": {
+            "rgb": 4279592384
+        },
         "completedTasks": 0,
         "ongoingTasks": 0,
         "overdueTasks": 0,
