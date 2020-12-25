@@ -71,7 +71,7 @@ extension TasksViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "") {
             self.searchQuery = $0.count > 0 ? searchText : nil
-            self.contentViews[self.currentTabViewIdx].filterResults(searchQuery: self.searchQuery)
+            self.contentViews[self.currentTabViewIdx].filterSearchResult(searchQuery: self.searchQuery)
         }
     }
     
@@ -108,12 +108,12 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     // MARK: ACTabScrollViewDelegate
     func tabScrollView(_ tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
         currentTabViewIdx = index
-        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
+        contentViews[currentTabViewIdx].filterSearchResult(searchQuery: searchQuery)
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
         currentTabViewIdx = index
-        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
+        contentViews[currentTabViewIdx].filterSearchResult(searchQuery: searchQuery)
     }
         
     // MARK: ACTabScrollViewDataSource

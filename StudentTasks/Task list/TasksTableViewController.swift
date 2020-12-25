@@ -190,7 +190,7 @@ extension TasksTableViewController {
 }
 
 extension TasksTableViewController {
-    func filterResults(searchQuery: String?) {
+    func filterSearchResult(searchQuery: String?) {
         if let searchQuery = searchQuery {
             print("searchQuery: \(searchQuery)")
             isSearching = true
