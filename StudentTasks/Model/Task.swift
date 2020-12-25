@@ -73,7 +73,9 @@ extension Task {
     
     var course: Course? {
         get {
-            return Course.findOne(id: id)
+            guard let courseId = self.courseId else { return nil }
+            
+            return Course.findOne(id: courseId)
         }
         
         set {
