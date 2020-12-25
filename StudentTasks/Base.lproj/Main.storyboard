@@ -354,6 +354,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="courseImage" destination="U8h-XB-63f" id="B0a-EL-oiR"/>
+                                    <outlet property="subtitle" destination="CQw-3l-BwS" id="u11-Ui-Gm5"/>
                                     <outlet property="taskLabel" destination="PKz-ai-eGc" id="vhO-WC-IrY"/>
                                 </connections>
                             </tableViewCell>
@@ -368,7 +369,7 @@
             </objects>
             <point key="canvasLocation" x="3328.985507246377" y="-242.41071428571428"/>
         </scene>
-        <!--Filters-->
+        <!--Tasks Filters-->
         <scene sceneID="A2q-Qh-qhT">
             <objects>
                 <tableViewController id="Vsz-v5-lwY" customClass="TasksFiltersTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
@@ -379,7 +380,7 @@
                         <sections>
                             <tableViewSection headerTitle="Sorting" id="SXB-t3-4JI">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gZ9-Dv-K6p" detailTextLabel="ytb-Bx-sQ5" style="IBUITableViewCellStyleValue1" id="8CK-vX-Is0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="dueDateCell" textLabel="gZ9-Dv-K6p" detailTextLabel="ytb-Bx-sQ5" style="IBUITableViewCellStyleValue1" id="8CK-vX-Is0">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8CK-vX-Is0" id="81u-Ng-qdt">
@@ -403,7 +404,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="REc-QC-fc1" detailTextLabel="KJA-w5-KbF" style="IBUITableViewCellStyleValue1" id="gW4-f6-3HZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="importanceCell" textLabel="REc-QC-fc1" detailTextLabel="KJA-w5-KbF" style="IBUITableViewCellStyleValue1" id="gW4-f6-3HZ">
                                         <rect key="frame" x="0.0" y="99" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gW4-f6-3HZ" id="Eld-EC-NO4">
@@ -520,7 +521,7 @@
                             <outlet property="delegate" destination="Vsz-v5-lwY" id="f0T-c1-z04"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Filters" id="y9f-NU-Fni">
+                    <navigationItem key="navigationItem" title="Tasks Filters" id="y9f-NU-Fni">
                         <barButtonItem key="leftBarButtonItem" title="Reset" style="plain" id="HAb-sM-qnR">
                             <connections>
                                 <action selector="resetButtonPressed:" destination="Vsz-v5-lwY" id="6DK-CG-uU5"/>

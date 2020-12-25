@@ -16,6 +16,7 @@ struct Course: Codable, Equatable {
     var id: UUID = UUID() // Set universally unique identifier
     
     var imageData: Data?
+    var color: CodableColor?
     
     var name: String
     var code: String?

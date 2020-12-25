@@ -44,7 +44,21 @@ enum TaskType: String, Codable, CaseIterable {
 }
 
 enum TaskPriority: String, Codable, CaseIterable {
-    case low = "Low", normal = "Normal", high = "High"
+    case low = "Low"
+    case normal = "Normal"
+    case high = "High"
+}
+
+extension TaskPriority: Equatable, Comparable {
+    static let priorityMapping: [String:Int] = ["Low": 4, "Normal": 3, "High": 2]
+    
+    static func == (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    
+    static func < (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
+        return priorityMapping[lhs.rawValue]! < priorityMapping[rhs.rawValue]!
+    }
 }
 
 enum TaskGradeType: String, Codable, CaseIterable {
@@ -59,7 +73,9 @@ extension Task {
     
     var course: Course? {
         get {
-            return Course.findOne(id: id)
+            guard let courseId = self.courseId else { return nil }
+            
+            return Course.findOne(id: courseId)
         }
         
         set {

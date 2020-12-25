@@ -20,8 +20,8 @@ class TasksViewController: UIViewController {
     
     var courses: [Course] = []
     
-    var sort: TasksSort = TasksSort()
-    var filters: TasksFilter = TasksFilter()
+    var sort: TasksSort?
+    var filters: TasksFilter?
     
     var searchQuery: String?
 
@@ -31,6 +31,9 @@ class TasksViewController: UIViewController {
         courses = Course.findAll()
 
         // Do any additional setup after loading the view.
+        sort = TasksSort()
+        filters = TasksFilter()
+        
         setupSearchBar()
         setupTabScrollView()
     }
@@ -52,8 +55,9 @@ class TasksViewController: UIViewController {
     }
     
     @IBAction func unwindToTasksView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        if unwindSegue.identifier == "tasksViewUnwindSegue" {
-            
+        if unwindSegue.identifier == "tasksViewUnwindSegue",
+           let filtersView = unwindSegue.source as? TasksFiltersTableViewController {
+            updatesTabTablesTasks()
         }
     }
 }
@@ -131,7 +135,8 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         let allCoursesTabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
-        allCoursesTabTableView.tasks = Task.findAll()
+        allCoursesTabTableView.sort = self.sort
+        allCoursesTabTableView.setTasks(tasks: Task.findAll())
         
         self.addChild(allCoursesTabTableView)
         contentViews.append(allCoursesTabTableView)
@@ -140,7 +145,8 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         for course in Course.findAll() {
             let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
             
-            tabTableView.tasks = course.tasks
+            tabTableView.sort = self.sort
+            tabTableView.setTasks(tasks: course.tasks)
             
             addChild(tabTableView) // don't forget, it's very important
             contentViews.append(tabTableView)
@@ -163,5 +169,11 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         ) // add some paddings
         
         labels.append(label)
+    }
+    
+    private func updatesTabTablesTasks() {
+        for vc in contentViews {
+            vc.filtersChanged()
+        }
     }
 }
