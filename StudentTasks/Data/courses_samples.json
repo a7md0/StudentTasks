@@ -17,7 +17,7 @@
         "tasks": [
             {
                 "id": "C25E4B70-0D0B-445C-A8E0-7B8E04A5B10A",
-                "name": "Task 1",
+                "name": "Task 1 (N)",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
@@ -28,7 +28,7 @@
             },
             {
                 "id": "5B66AD13-2103-4BFC-AD54-296D6ADA50A9",
-                "name": "Task 2",
+                "name": "Task 2 (N)",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
@@ -39,7 +39,7 @@
             },
             {
                 "id": "4525447C-E0AC-4A14-9811-C9EF26F244A0",
-                "name": "Task 3",
+                "name": "Task 3 (H)",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
@@ -50,7 +50,7 @@
             },
             {
                 "id": "4525447C-E0AC-4A13-9811-C3EF26F243A1",
-                "name": "Task 4",
+                "name": "Task 4 (H)",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
@@ -61,7 +61,7 @@
             },
             {
                 "id": "3525347C-E0AC-3A12-9813-C9EF26F243A1",
-                "name": "Task 5",
+                "name": "Task 5 (H)",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
@@ -72,7 +72,7 @@
             },
             {
                 "id": "4525447C-E0AC-4A11-9811-C9EF26F244A1",
-                "name": "Task 6",
+                "name": "Task 6 (H)",
                 "type": "Assignment",
                 "graded": false,
                 "description": "desc",
