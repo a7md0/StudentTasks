@@ -71,6 +71,11 @@ class TasksTableViewController: UITableViewController {
             }
         })
     }
+    
+    func filtersChanged() {
+        self.setTasks(tasks: self.tasks)
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
