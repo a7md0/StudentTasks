@@ -209,7 +209,7 @@ extension Course {
     /// ```
     ///
     /// - Returns: List of sample courses `[Course]`.
-    private static func readSampleData() -> [Course] {
+    private static func readSampleData() {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601 // Use ISO-8601 -> 2018-12-25T17:30:00Z
         
@@ -217,11 +217,38 @@ extension Course {
         
         guard let url = Bundle.main.url(forResource: "courses_samples", withExtension: "json"),
               let coursesData = try? Data(contentsOf: url),
-              let courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return [] }
+              var courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return }
+
+        let todayDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date()) // current date components
         
-        print("loaded sample courses")
+        for courseIndex in courses.indices {
+            var tasks: [Task] = courses[courseIndex].tasks // Copy the course tasks temporarily
+
+            for taskIndex in tasks.indices { // For each loop over the temporarily saved tasks
+                let dueDate = tasks[taskIndex].dueDate // keep copy of due date
+                let compareDate = Calendar.current.compare(Constants.placeHolderDate, to: dueDate, toGranularity: .year) // compare the due date to the saved place holder by only year (1999)
+                
+                if compareDate == .orderedSame { // If the date compare match
+                    var dueDateComponents = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: dueDate) // Extract components from due date
+                    let multipler = (dueDateComponents.month! == 6) ? -1 : (dueDateComponents.month! == 7) ? 1 : 0 // Multipler for day by month number
+                    
+                    dueDateComponents.year = todayDateComponents.year! // Set to current year
+                    dueDateComponents.month = todayDateComponents.month! // Set to current month
+                    dueDateComponents.day = todayDateComponents.day! + (dueDateComponents.day! * multipler) // Set to current date +- the due date place holder date multipled by either 0 or -1
+                    
+                    tasks[taskIndex].dueDate = Calendar.current.date(from: dueDateComponents)! // Set the new due date
+                }
+            }
+            
+            courses[courseIndex].tasks = [] // Deatch tasks from the course
+            courses[courseIndex].create() // Create the course
+            
+            for taskIndex in tasks.indices { // For each loop over the temporarily saved tasks
+                tasks[taskIndex].create() // Create the task
+            }
+        }
         
-        return courses
+        print("created sample courses")
     }
     
     /// This function load the required data for this model
@@ -230,7 +257,11 @@ extension Course {
     /// loadData()
     /// ```
     static func loadData() {
-        courses = readFromPersistentStorage() ?? readSampleData() // Load saved courses, if not then load sample courses
+        if let savedCourses = readFromPersistentStorage() {
+            courses.append(contentsOf: savedCourses)
+        } else {
+            readSampleData()
+        }
     }
     
     /// This function save the data for this model
