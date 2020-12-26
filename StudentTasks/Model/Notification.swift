@@ -8,25 +8,17 @@
 import Foundation
 import UserNotifications
 
-struct Notification: Equatable {
-    static func == (lhs: Notification, rhs: Notification) -> Bool {
-        lhs.id == rhs.id
-    }
-    
+struct Notification {
     var id: UUID = UUID()
     
-    var title: String
-    var subtitle: String?
-    var body: String?
-    
-    var sound: UNNotificationSound = UNNotificationSound.default
-    var badge: Int = 1
-    
+    var content = UNMutableNotificationContent()
     var triggerDate: Date
     
-    var userInfo: [AnyHashable : Any]?
+    var dateMatching: DateComponents {
+        return Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: self.triggerDate)
+    }
     
-    func sechudle() -> Void {
+    func sechudle() {
         LocalNotificationManager.sharedInstance.scheduleNotification(notification: self)
     }
 }

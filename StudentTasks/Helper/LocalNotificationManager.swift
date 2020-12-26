@@ -12,7 +12,7 @@ class LocalNotificationManager {
     
     static let sharedInstance = LocalNotificationManager() // Static unimmutable variable which has instance of this class
     
-    let notificationCenter = UNUserNotificationCenter.current()
+    private let notificationCenter = UNUserNotificationCenter.current()
     
     private init() { } // Private constructor (this class cannot be initlized from the outside)
     
@@ -25,36 +25,22 @@ class LocalNotificationManager {
     }
     
     func scheduleNotification(notification: Notification) {
-        let content = constructContent(notification)
-        let triggerDate: DateComponents = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: notification.triggerDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notification.dateMatching, repeats: false)
+        let request = UNNotificationRequest(identifier: notification.id.uuidString, content: notification.content, trigger: trigger)
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        let request = UNNotificationRequest(identifier: notification.id.uuidString, content: content, trigger: trigger)
-        
-        UNUserNotificationCenter.current().add(request) { error in
+        notificationCenter.add(request) { error in
             guard error == nil else { return }
             print("Scheduling notification with id: \(notification.id)")
         }
     }
     
-    private func constructContent(_ notification: Notification) -> UNMutableNotificationContent {
-        let content = UNMutableNotificationContent()
+    func descheduleNotification(identifier: UUID) {
+        self.descheduleNotifications(identifiers: [identifier])
+    }
+    
+    func descheduleNotifications(identifiers: [UUID]) {
+        let stringIdentifiers = identifiers.map { $0.uuidString }
         
-        content.title = notification.title
-        if let body = notification.body {
-            content.body = body
-        }
-        if let subtitle = notification.subtitle {
-            content.subtitle = subtitle
-        }
-        
-        content.sound = notification.sound
-        content.badge = NSNumber(value: notification.badge)
-        
-        if let userInfo = notification.userInfo {
-            content.userInfo = userInfo
-        }
-        
-        return content
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: stringIdentifiers)
     }
 }
