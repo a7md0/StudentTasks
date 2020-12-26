@@ -643,7 +643,7 @@
                                                     <rect key="frame" x="259" y="7" width="116" height="30"/>
                                                     <state key="normal" title="Select Task Type"/>
                                                     <connections>
-                                                        <segue destination="5FD-Ih-vDH" kind="show" identifier="SelectTaskTypeAddTaslSegue" id="Xln-qX-sob"/>
+                                                        <segue destination="5FD-Ih-vDH" kind="show" identifier="SelectTaskTypeAddTaskSegue" id="Xln-qX-sob"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

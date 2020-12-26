@@ -26,8 +26,37 @@ class AddTaskTableViewController: UITableViewController {
 
     @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue){ }
     //viewController.unwindSegueIdentifier = "unwindAddTask"
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let tasksFiltersController = segue.destination as? PickerTableViewController{
+            if segue.identifier == "SelectCourseAddTaskSegue" {
+                        tasksFiltersController.title = "Course"
+                        tasksFiltersController.multiSelect = false
+                        
+                        for course in Course.findAll() {
+                            var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
+                            /*if currentCourse == course {
+                                pickerItem.checked = true
+                            }*/
+                            
+                            tasksFiltersController.items.append(pickerItem)
+                        }
+} else             if segue.identifier == "SelectTaskTypeAddTaskSegue" {
+    tasksFiltersController.title = "Task Type"
+    tasksFiltersController.multiSelect = false
+    
+    for taskType in TaskType.allCases {
+        var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+        /*if currentCourse == course {
+            pickerItem.checked = true
+        }*/
+        
+        tasksFiltersController.items.append(pickerItem)
+    }
+    
+    
 }
+            
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,3 +113,6 @@ class AddTaskTableViewController: UITableViewController {
     */
 
 
+
+}
+}
