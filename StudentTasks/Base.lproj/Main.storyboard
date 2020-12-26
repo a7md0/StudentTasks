@@ -447,7 +447,7 @@
                 <exit id="ydU-ow-KQU" userLabel="Exit" sceneMemberID="exit"/>
                 <tableViewController id="5FD-Ih-vDH" customClass="PickerTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3i9-5A-yu4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -483,6 +483,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="tasksFiltersUnwindSegue" unwindAction="unwindToTasksFiltersViewFor:towards:" id="y5V-vn-4cJ"/>
+                        <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindAddTask" unwindAction="unwindtoAddtask:" id="z1a-KD-TbW"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -613,7 +614,7 @@
                                                     <state key="normal" title="Select Course"/>
                                                     <connections>
                                                         <action selector="coursebtnpressed:" destination="Qmu-Pd-FEA" eventType="touchUpInside" id="WKW-iB-gJl"/>
-                                                        <segue destination="5FD-Ih-vDH" kind="show" identifier="AddTaskCourseSegue" id="T5j-Gs-rav"/>
+                                                        <segue destination="5FD-Ih-vDH" kind="show" identifier="SelectCourseAddTaskSegue" id="XqK-BW-lMV"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -641,6 +642,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Kj-0J-Ft5">
                                                     <rect key="frame" x="259" y="7" width="116" height="30"/>
                                                     <state key="normal" title="Select Task Type"/>
+                                                    <connections>
+                                                        <segue destination="5FD-Ih-vDH" kind="show" identifier="SelectTaskTypeAddTaslSegue" id="Xln-qX-sob"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -911,7 +915,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="d1u-jI-kbu"/>
+        <segue reference="Xln-qX-sob"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
