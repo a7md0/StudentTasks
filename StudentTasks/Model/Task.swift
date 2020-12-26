@@ -33,6 +33,8 @@ struct Task: Codable, Equatable {
     var gradeType: TaskGradeType?
     var grade: Float?
     
+    var notificationsIdentifiers: [UUID] = []
+    
     var createdAt: Date?
     var updatedAt: Date?
 }

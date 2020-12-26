@@ -61,7 +61,7 @@ extension LocalNotificationManager {
     }
     
     func removeFor(task: Task) {
-        deschedule(identifiers: task.notifcationsIdentifiers)
+        deschedule(identifiers: task.notificationsIdentifiers)
     }
 }
 
