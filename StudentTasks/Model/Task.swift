@@ -32,6 +32,11 @@ struct Task: Codable, Equatable {
     var gradeContribution: Float?
     var gradeType: TaskGradeType?
     var grade: Float?
+    
+    var notificationsIdentifiers: [UUID] = []
+    
+    var createdAt: Date?
+    var updatedAt: Date?
 }
 
 // MARK: - Enums
@@ -44,13 +49,11 @@ enum TaskType: String, Codable, CaseIterable {
 }
 
 enum TaskPriority: String, Codable, CaseIterable {
-    case low = "Low"
-    case normal = "Normal"
-    case high = "High"
+    case low = "Low", normal = "Normal", high = "High"
 }
 
 extension TaskPriority: Equatable, Comparable {
-    static let priorityMapping: [String:Int] = ["Low": 4, "Normal": 3, "High": 2]
+    static let priorityMapping: [String:Int] = ["Very Low": 1, "Low": 2, "Normal": 3, "High": 4, "Very High": 5]
     
     static func == (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
         return lhs.rawValue == rhs.rawValue
@@ -107,7 +110,12 @@ extension Task {
     /// ```
     ///
     /// - Warning: This should be only called one for newely created task.
-    func create() {
+    mutating func create() {
+        self.createdAt = Date()
+        self.updatedAt = Date()
+        
+        self.notificationsIdentifiers = LocalNotificationManager.sharedInstance.prepareFor(task: self)
+        
         Course.createTask(task: self)
     }
     
@@ -118,7 +126,12 @@ extension Task {
     /// ```
     ///
     /// - Warning: This should be only called after updating exisiting model, not a new one.
-    func save() {
+    mutating func save() {
+        self.updatedAt = Date()
+        
+        LocalNotificationManager.sharedInstance.removeFor(task: self)
+        self.notificationsIdentifiers = LocalNotificationManager.sharedInstance.prepareFor(task: self)
+        
         Course.saveTask(task: self)
     }
     
@@ -129,7 +142,10 @@ extension Task {
     /// ```
     ///
     /// - Warning: This will not remove the instance itself, any local instance should be removed manually.
-    func remove() {
+    mutating func remove() {
+        LocalNotificationManager.sharedInstance.removeFor(task: self)
+        self.notificationsIdentifiers = []
+        
         Course.removeTask(task: self)
     }
 }
@@ -137,7 +153,13 @@ extension Task {
 // MARK: - Data
 extension Task {
     private static var tasks: [Task] {
-        return Course.findAll().map { $0.tasks }.reduce([], +)
+        return Course.findAll().map { $0.tasks }.reduce([], +) // Map all courses tasks then flatten the arrays into one
+    }
+    
+    static func findOne(id: String?) -> Task? {
+        guard let uuid = UUID(uuidString: id ?? "") else { return nil }
+        
+        return findOne(id: uuid)
     }
     
     static func findOne(id: UUID) -> Task? {
