@@ -15,7 +15,9 @@ struct Course: Codable, Equatable {
     
     var id: UUID = UUID() // Set universally unique identifier
     
+    @available(*, deprecated, message: "use color: instead")
     var imageData: Data?
+    
     var color: CodableColor?
     
     var name: String
@@ -63,6 +65,7 @@ extension Course {
         guard let courseIndex = findCourseIndex(course: course) else { return }
         
         courses[courseIndex].tasks.append(contentsOf: tasks)
+        Course.notifyUpdated(course: courses[courseIndex])
     }
     
     static func saveTask(task: Task) {
@@ -70,6 +73,7 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks[taskIndex] = task
+        Course.notifyUpdated(course: courses[courseIndex])
     }
     
     static func removeTask(task: Task) {
@@ -77,6 +81,7 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks.remove(at: taskIndex)
+        Course.notifyUpdated(course: courses[courseIndex])
     }
 }
 
@@ -87,6 +92,7 @@ extension Course {
         self.updatedAt = Date()
         
         Course.courses.append(self)
+        Course.notifyCreated(course: self)
     }
     
     mutating func save() {
@@ -94,23 +100,41 @@ extension Course {
         self.updatedAt = Date()
         
         Course.courses[courseIndex] = self
+        Course.notifyUpdated(course: self)
     }
     
     func remove() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
         
         Course.courses.remove(at: courseIndex)
+        Course.notifyRemoved(course: self)
+    }
+}
+
+// MARK: - Notification Center
+extension Course {
+    private static func notifyCreated(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["created"]!, object: course)
+        }
+    }
+    
+    private static func notifyUpdated(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["updated"]!, object: course)
+        }
+    }
+    
+    private static func notifyRemoved(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["removed"]!, object: course)
+        }
     }
 }
 
 // MARK: - Data
 extension Course {
-    private static var courses: [Course] = [] {
-        didSet {
-            print("courses didSet \(courses.count)")
-            Course.triggerUpdate()
-        }
-    }
+    private static var courses: [Course] = []
     
     static func findOne(id: String?) -> Course? {
         guard let uuid = UUID(uuidString: id ?? "") else { return nil }
@@ -146,23 +170,6 @@ extension Course {
         let taskIndex = course.tasks.firstIndex(where: { $0 == task })
         
         return taskIndex
-    }
-    
-    private static func triggerUpdate() {
-        print("triggerUpdate \(Course.courses.count)")
-        
-        subject.notify(value: Course.courses)
-    }
-}
-
-// MARK: - Observer pattern
-extension Course {
-    private static let subject = Subject<[Course]>()
-    
-    static func observerInstance() -> Observer<[Course]> {
-        let observer = Observer<[Course]>(subject: self.subject)
-        
-        return observer
     }
 }
 
