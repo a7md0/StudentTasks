@@ -135,6 +135,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         let allCoursesTabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
+        allCoursesTabTableView.filters = self.filters
         allCoursesTabTableView.sort = self.sort
         allCoursesTabTableView.setTasks(tasks: Task.findAll())
         
@@ -145,6 +146,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         for course in Course.findAll() {
             let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
             
+            tabTableView.filters = self.filters
             tabTableView.sort = self.sort
             tabTableView.setTasks(tasks: course.tasks)
             

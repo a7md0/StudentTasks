@@ -14,6 +14,7 @@ class TasksTableViewController: UITableViewController {
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
+    var filters: TasksFilter?
     var sort: TasksSort?
     
     override func viewDidLoad() {
@@ -30,6 +31,21 @@ class TasksTableViewController: UITableViewController {
     }
     
     func setTasks(tasks: [Task]) {
+        guard let filters = filters, let sort = sort else {
+            self.tasks = tasks
+            return;
+        }
+        
+        self.tasks = tasks.filter({ (task) -> Bool in
+            var keep = false
+            
+            if filters.taskTypes.contains(task.type) && filters.taskStatus.contains(task.status) {
+                keep = true
+            }
+            
+            return keep
+        })
+        
         // Sortable by date withou time? Then importance level? maybe with little imporvment
         // Sortable by importance level then date time? The groupping is bad to show nearby due dates
         // Sortable by either date or importance? Not good enough
@@ -44,11 +60,11 @@ class TasksTableViewController: UITableViewController {
          else: compare on full date (including time)
         */
         
-        self.tasks = tasks.sorted(by: {
+        self.tasks.sort(by: {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
-                if sort?.dueDate == .descending { // based on the filters sorting (user changeable)
+                if sort.dueDate == .descending { // based on the filters sorting (user changeable)
                     return compareDate == .orderedDescending
                 } else {
                     return compareDate == .orderedAscending
@@ -57,7 +73,7 @@ class TasksTableViewController: UITableViewController {
             
             // if the date compare result is the same (compareDate == .orderedSame)
             if $0.priority != $1.priority { // if the priorty isn't the same
-                if sort?.importance == .highest { // based on the filters sorting (user changeable)
+                if sort.importance == .highest { // based on the filters sorting (user changeable)
                     return $0.priority > $1.priority // > descending
                 } else {
                     return $0.priority < $1.priority // < ascending
@@ -65,7 +81,7 @@ class TasksTableViewController: UITableViewController {
             }
             
             // if the priroity match too ($0.priority == $1.priority)
-            if sort?.dueDate == .descending {  // based on the filters sorting (user changeable)
+            if sort.dueDate == .descending {  // based on the filters sorting (user changeable)
                 return $0.dueDate > $1.dueDate // > descending
             } else {
                 return $0.dueDate < $1.dueDate // < ascending
