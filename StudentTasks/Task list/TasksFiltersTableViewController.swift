@@ -64,7 +64,7 @@ class TasksFiltersTableViewController: UITableViewController {
                     filters.taskTypes.append(taskType)
                 }
             }
-        case "completenessSegue":
+        case "taskStatusSegue":
             filters.taskStatus = []
             
             items.filter { $0.checked }.forEach { (item) in
@@ -99,7 +99,7 @@ class TasksFiltersTableViewController: UITableViewController {
                     }))
                 }
             case "priorityCell":
-                alert.title = "Importance sorting"
+                alert.title = "Priority sorting"
                 
                 for priortyCase in TasksSort.Priorty.allCases {
                     alert.addAction(UIAlertAction(title: priortyCase.rawValue, style: .default, handler: { (UIAlertAction) in
@@ -140,7 +140,7 @@ class TasksFiltersTableViewController: UITableViewController {
                     
                     tasksFiltersController.items.append(pickerItem)
                 }
-            } else if segue.identifier == "completenessSegue"  {
+            } else if segue.identifier == "taskStatusSegue"  {
                 tasksFiltersController.title = "Completeness"
                 tasksFiltersController.multiSelect = true
                 

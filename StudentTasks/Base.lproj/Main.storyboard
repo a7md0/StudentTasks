@@ -377,7 +377,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5FD-Ih-vDH" kind="show" identifier="completenessSegue" id="d1u-jI-kbu"/>
+                                            <segue destination="5FD-Ih-vDH" kind="show" identifier="taskStatusSegue" id="d1u-jI-kbu"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
