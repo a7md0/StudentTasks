@@ -38,10 +38,15 @@ class CoursesTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "courseCellIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "courseCellIdentifier", for: indexPath) as! CoursesTableViewCell
 
         // Configure the cell...
+        let course = courseslist[indexPath.row]
+        cell.courseName.text = course.name
+        
+        if let imageData = course.imageData { cell.courseImg.image = UIImage(data: imageData)
             
+        }
         return cell
     }
     
