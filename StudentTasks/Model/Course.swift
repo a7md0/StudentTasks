@@ -131,12 +131,7 @@ extension Course {
 
 // MARK: - Data
 extension Course {
-    private static var courses: [Course] = [] {
-        didSet {
-            print("courses didSet \(courses.count)")
-            Course.triggerUpdate()
-        }
-    }
+    private static var courses: [Course] = []
     
     static func findOne(id: String?) -> Course? {
         guard let uuid = UUID(uuidString: id ?? "") else { return nil }
@@ -172,23 +167,6 @@ extension Course {
         let taskIndex = course.tasks.firstIndex(where: { $0 == task })
         
         return taskIndex
-    }
-    
-    private static func triggerUpdate() {
-        print("triggerUpdate \(Course.courses.count)")
-        
-        subject.notify(value: Course.courses)
-    }
-}
-
-// MARK: - Observer pattern
-extension Course {
-    private static let subject = Subject<[Course]>()
-    
-    static func observerInstance() -> Observer<[Course]> {
-        let observer = Observer<[Course]>(subject: self.subject)
-        
-        return observer
     }
 }
 

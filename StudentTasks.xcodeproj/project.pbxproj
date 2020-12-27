@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93059CBD2597CBCF00B0B181 /* Constants.swift */; };
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
-		938F7BBE259377380062C79E /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BBD259377380062C79E /* Observer.swift */; };
 		938F7BC12593A4CB0062C79E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* Filter.swift */; };
 		938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC42593DF2A0062C79E /* Debounce.swift */; };
 		938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		93059CBD2597CBCF00B0B181 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
-		938F7BBD259377380062C79E /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		938F7BC02593A4CB0062C79E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		938F7BC42593DF2A0062C79E /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
 		938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksFiltersTableViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 			children = (
 				93BC92E7258A14AF0084AF40 /* DataManagerController.swift */,
 				93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */,
-				938F7BBD259377380062C79E /* Observer.swift */,
 				938F7BC42593DF2A0062C79E /* Debounce.swift */,
 				938F7BD12593F5A20062C79E /* PickerTableViewController.swift */,
 				9399DACD2596690100F0891C /* UIColor + Codable.swift */,
@@ -245,7 +242,6 @@
 			files = (
 				93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */,
 				93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */,
-				938F7BBE259377380062C79E /* Observer.swift in Sources */,
 				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
 				938F7BD22593F5A20062C79E /* PickerTableViewController.swift in Sources */,
 				C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */,
