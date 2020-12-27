@@ -141,7 +141,7 @@ class TasksFiltersTableViewController: UITableViewController {
                     tasksFiltersController.items.append(pickerItem)
                 }
             } else if segue.identifier == "taskStatusSegue"  {
-                tasksFiltersController.title = "Completeness"
+                tasksFiltersController.title = "Task status"
                 tasksFiltersController.multiSelect = true
                 
                 for completenessStatus in filters.defaultTaskStatus {
