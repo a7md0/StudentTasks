@@ -91,7 +91,7 @@ class TasksTableViewController: UITableViewController {
     */
 
     func deleteItem(indexPath: IndexPath) {
-        let task = tasks[indexPath.row]
+        var task = tasks[indexPath.row]
         
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)

@@ -114,6 +114,8 @@ extension Task {
         self.createdAt = Date()
         self.updatedAt = Date()
         
+        self.notificationsIdentifiers = LocalNotificationManager.sharedInstance.prepareFor(task: self)
+        
         Course.createTask(task: self)
     }
     
@@ -127,6 +129,9 @@ extension Task {
     mutating func save() {
         self.updatedAt = Date()
         
+        LocalNotificationManager.sharedInstance.removeFor(task: self)
+        self.notificationsIdentifiers = LocalNotificationManager.sharedInstance.prepareFor(task: self)
+        
         Course.saveTask(task: self)
     }
     
@@ -137,7 +142,10 @@ extension Task {
     /// ```
     ///
     /// - Warning: This will not remove the instance itself, any local instance should be removed manually.
-    func remove() {
+    mutating func remove() {
+        LocalNotificationManager.sharedInstance.removeFor(task: self)
+        self.notificationsIdentifiers = []
+        
         Course.removeTask(task: self)
     }
 }
