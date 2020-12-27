@@ -51,10 +51,11 @@ class LocalNotificationManager {
     }
 }
 
+// MARK: Task notifications
 extension LocalNotificationManager {
     func prepareFor(task: Task) -> [UUID] {
-        let notifications: [Notification] = []
-
+        let notifications: [Notification] = self.notificationsFor(task: task)
+        
         LocalNotificationManager.sharedInstance.schedule(notifications: notifications)
         
         return notifications.map { $0.id }
@@ -62,6 +63,24 @@ extension LocalNotificationManager {
     
     func removeFor(task: Task) {
         deschedule(identifiers: task.notificationsIdentifiers)
+    }
+    
+    private func notificationsFor(task: Task) -> [Notification] {
+        var notifications: [Notification] = []
+        
+        var date1 = Date()
+        date1.addTimeInterval(60)
+        
+        let noti1 = Notification(triggerDate: date1)
+        noti1.content.title = "Test Notification"
+        noti1.content.subtitle = "Aaa"
+        noti1.content.body = "..............."
+        noti1.content.badge = 1
+        noti1.content.sound = (task.priority == .high) ? .defaultCritical : .default
+        
+        notifications.append(noti1)
+        
+        return notifications
     }
 }
 
