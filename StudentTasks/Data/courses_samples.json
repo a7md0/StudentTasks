@@ -24,7 +24,8 @@
                 "priority": "Normal",
                 "dueDate": "1999-06-01T20:00:00Z",
                 "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+                "notificationsIdentifiers": []
             },
             {
                 "id": "5B66AD13-2103-4BFC-AD54-296D6ADA50A9",
@@ -35,7 +36,8 @@
                 "priority": "Normal",
                 "dueDate": "1999-08-01T20:10:00Z",
                 "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+                "notificationsIdentifiers": []
             },
             {
                 "id": "4525447C-E0AC-4A14-9811-C9EF26F244A0",
@@ -46,7 +48,8 @@
                 "priority": "High",
                 "dueDate": "1999-08-01T20:20:00Z",
                 "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+                "notificationsIdentifiers": []
             },
             {
                 "id": "4525447C-E0AC-4A13-9811-C3EF26F243A1",
@@ -57,7 +60,8 @@
                 "priority": "High",
                 "dueDate": "1999-08-01T12:18:00Z",
                 "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+                "notificationsIdentifiers": []
             },
             {
                 "id": "3525347C-E0AC-3A12-9813-C9EF26F243A1",
@@ -68,7 +72,8 @@
                 "priority": "High",
                 "dueDate": "1999-08-01T20:30:00Z",
                 "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+                "notificationsIdentifiers": []
             },
             {
                 "id": "4525447C-E0AC-4A11-9811-C9EF26F244A1",
@@ -79,7 +84,8 @@
                 "priority": "High",
                 "dueDate": "1999-07-01T20:20:00Z",
                 "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D"
+                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
+                "notificationsIdentifiers": []
             }
         ]
     },
@@ -108,7 +114,8 @@
                 "description": "desc 2",
                 "priority": "Normal",
                 "dueDate": "2020-12-24T20:01:00Z",
-                "completed": false
+                "completed": false,
+                "notificationsIdentifiers": []
             },
             {
                 "id": "6964A6DB-DFDA-44EC-BB80-A75DD0FEB878",
@@ -119,7 +126,8 @@
                 "description": "desc 2",
                 "priority": "Low",
                 "dueDate": "2020-12-24T20:11:00Z",
-                "completed": false
+                "completed": false,
+                "notificationsIdentifiers": []
             },
             {
                 "id": "39F34C0A-4A2C-4745-B3A1-EC3176D999A7",
@@ -130,10 +138,10 @@
                 "description": "desc 2",
                 "priority": "High",
                 "dueDate": "2020-12-24T20:21:00Z",
-                "completed": false
+                "completed": false,
+                "notificationsIdentifiers": []
             }
         ]
-        
     },
     {
         "id": "697122BF-EC70-4174-9791-42F39FCBD63A",
@@ -160,7 +168,8 @@
                 "description": "desc 3",
                 "priority": "Normal",
                 "dueDate": "2020-12-24T20:02:00Z",
-                "completed": false
+                "completed": false,
+                "notificationsIdentifiers": []
             },
             {
                 "id": "7E5177C9-6879-45EA-90A9-BFFECBF18ECE",
@@ -171,7 +180,8 @@
                 "description": "desc 3",
                 "priority": "Low",
                 "dueDate": "2020-12-24T20:12:00Z",
-                "completed": false
+                "completed": false,
+                "notificationsIdentifiers": []
             },
             {
                 "id": "BC3BDD12-4D93-4600-A440-418F901A0636",
@@ -182,7 +192,8 @@
                 "description": "desc 3",
                 "priority": "High",
                 "dueDate": "2020-12-24T20:22:00Z",
-                "completed": false
+                "completed": false,
+                "notificationsIdentifiers": []
             }
         ]
     }
