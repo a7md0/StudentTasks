@@ -18,7 +18,6 @@ class TasksFiltersTableViewController: UITableViewController {
     @IBOutlet weak var importancelabel: UILabel!
     
     @IBOutlet weak var taskTypeLabel: UILabel!
-    @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var taskStatusLabel: UILabel!
     
     override func viewDidLoad() {
@@ -49,8 +48,7 @@ class TasksFiltersTableViewController: UITableViewController {
         
         
         taskTypeLabel.text = filters?.taskTypes.count == filters?.defaultTaskTypes.count ? "All" : "Custom"
-        courseLabel.text = filters?.courses.count == filters?.defaultCourses.count ? "All" : "Custom"
-        taskStatusLabel.text = filters?.completeness.count == filters?.defaultCompleteness.count ? "All" : "Custom"
+        taskStatusLabel.text = filters?.taskStatus.count == filters?.defaultTaskStatus.count ? "All" : "Custom"
     }
     
     func handlePickerSelectionUpdate(identifier: String?, items: [PickerItem]) {
@@ -66,20 +64,12 @@ class TasksFiltersTableViewController: UITableViewController {
                     filters.taskTypes.append(taskType)
                 }
             }
-        case "courseSegue":
-            filters.courses = []
-            
-            items.filter { $0.checked }.forEach { (item) in
-                if let course = Course.findOne(id: item.identifier) {
-                    filters.courses.append(course)
-                }
-            }
         case "completenessSegue":
-            filters.completeness = []
+            filters.taskStatus = []
             
             items.filter { $0.checked }.forEach { (item) in
                 if let taskStatus = TaskStatus(rawValue: item.identifier) {
-                    filters.completeness.append(taskStatus)
+                    filters.taskStatus.append(taskStatus)
                 }
             }
         default:
@@ -108,7 +98,7 @@ class TasksFiltersTableViewController: UITableViewController {
                         self.updateView()
                     }))
                 }
-            case "importanceCell":
+            case "priorityCell":
                 alert.title = "Importance sorting"
                 
                 for priortyCase in TasksSort.Priorty.allCases {
@@ -150,25 +140,13 @@ class TasksFiltersTableViewController: UITableViewController {
                     
                     tasksFiltersController.items.append(pickerItem)
                 }
-            } else if segue.identifier == "courseSegue"  {
-                tasksFiltersController.title = "Course"
-                tasksFiltersController.multiSelect = true
-                
-                for course in filters.defaultCourses {
-                    var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
-                    if filters.courses.contains(course) {
-                        pickerItem.checked = true
-                    }
-                    
-                    tasksFiltersController.items.append(pickerItem)
-                }
             } else if segue.identifier == "completenessSegue"  {
                 tasksFiltersController.title = "Completeness"
                 tasksFiltersController.multiSelect = true
                 
-                for completenessStatus in filters.defaultCompleteness {
+                for completenessStatus in filters.defaultTaskStatus {
                     var pickerItem = PickerItem(identifier: completenessStatus.rawValue, label: completenessStatus.rawValue, checked: false)
-                    if filters.completeness.contains(completenessStatus) {
+                    if filters.taskStatus.contains(completenessStatus) {
                         pickerItem.checked = true
                     }
                     
