@@ -15,7 +15,9 @@ struct Course: Codable, Equatable {
     
     var id: UUID = UUID() // Set universally unique identifier
     
+    @available(*, deprecated, message: "use color: instead")
     var imageData: Data?
+    
     var color: CodableColor?
     
     var name: String
@@ -109,6 +111,7 @@ extension Course {
     }
 }
 
+// MARK: - Notification Center
 extension Course {
     private static func notifyCreated(course: Course) {
         DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
