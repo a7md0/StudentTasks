@@ -30,7 +30,7 @@
             {
                 "id": "5B66AD13-2103-4BFC-AD54-296D6ADA50A9",
                 "name": "Task 2 (N)",
-                "type": "Assignment",
+                "type": "Assessment",
                 "graded": false,
                 "description": "desc",
                 "priority": "Normal",
@@ -42,7 +42,7 @@
             {
                 "id": "4525447C-E0AC-4A14-9811-C9EF26F244A0",
                 "name": "Task 3 (H)",
-                "type": "Assignment",
+                "type": "Exam",
                 "graded": false,
                 "description": "desc",
                 "priority": "High",
