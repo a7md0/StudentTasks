@@ -11,6 +11,7 @@ class TasksTableViewController: UITableViewController {
 
     private var isSearching: Bool = false
     
+    var course: Course?
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     

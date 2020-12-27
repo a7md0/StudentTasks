@@ -63,6 +63,7 @@ extension Course {
         guard let courseIndex = findCourseIndex(course: course) else { return }
         
         courses[courseIndex].tasks.append(contentsOf: tasks)
+        Course.notifyUpdated(course: courses[courseIndex])
     }
     
     static func saveTask(task: Task) {
@@ -70,6 +71,7 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks[taskIndex] = task
+        Course.notifyUpdated(course: courses[courseIndex])
     }
     
     static func removeTask(task: Task) {
@@ -77,6 +79,7 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks.remove(at: taskIndex)
+        Course.notifyUpdated(course: courses[courseIndex])
     }
 }
 
@@ -87,6 +90,7 @@ extension Course {
         self.updatedAt = Date()
         
         Course.courses.append(self)
+        Course.notifyCreated(course: self)
     }
     
     mutating func save() {
@@ -94,12 +98,34 @@ extension Course {
         self.updatedAt = Date()
         
         Course.courses[courseIndex] = self
+        Course.notifyUpdated(course: self)
     }
     
     func remove() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
         
         Course.courses.remove(at: courseIndex)
+        Course.notifyRemoved(course: self)
+    }
+}
+
+extension Course {
+    private static func notifyCreated(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["created"]!, object: course)
+        }
+    }
+    
+    private static func notifyUpdated(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["updated"]!, object: course)
+        }
+    }
+    
+    private static func notifyRemoved(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["removed"]!, object: course)
+        }
     }
 }
 
