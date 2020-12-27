@@ -16,11 +16,13 @@ class LocalNotificationManager {
     
     private init() { } // Private constructor (this class cannot be initlized from the outside)
     
-    func requestPermission() {
+    func requestPermission(callback: ((Bool, Error?) -> Void)?) {
         notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted == true && error == nil {
                 print("granted notification")
             }
+            
+            callback?(granted, error)
         }
     }
     
