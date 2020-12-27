@@ -11,6 +11,7 @@ class TasksTableViewCell: UITableViewCell {
 
     @IBOutlet weak var courseImage: UIImageView!
     @IBOutlet weak var taskLabel: UILabel!
+    @IBOutlet weak var subtitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +22,7 @@ class TasksTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        courseImage.backgroundColor = .systemPink // tmp
+        //courseImage.backgroundColor = .systemPink // tmp
     }
 
 }
