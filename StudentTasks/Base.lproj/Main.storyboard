@@ -1019,7 +1019,6 @@
                                                     <rect key="frame" x="279" y="7" width="96" height="30"/>
                                                     <state key="normal" title="Select Course"/>
                                                     <connections>
-                                                        <action selector="coursebtnpressed:" destination="Qmu-Pd-FEA" eventType="touchUpInside" id="WKW-iB-gJl"/>
                                                         <segue destination="5FD-Ih-vDH" kind="show" identifier="SelectCourseAddTaskSegue" id="XqK-BW-lMV"/>
                                                     </connections>
                                                 </button>
@@ -1237,8 +1236,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="aTF-e5-4T0">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="g3M-0r-FXI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="g3M-0r-FXI">
+                            <connections>
+                                <action selector="saveBtnClicked:" destination="Qmu-Pd-FEA" id="xzL-hv-Am8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="TaskNameField" destination="cBz-4z-Rhq" id="Kci-5h-sPP"/>
+                        <outlet property="contributionTextField" destination="mck-9Q-ueL" id="aUk-qe-YBx"/>
+                        <outlet property="courseChooseBtn" destination="PnA-c3-Tik" id="wPN-BD-Aot"/>
+                        <outlet property="dateChoose" destination="Dpb-UI-7BP" id="bcV-gI-0MU"/>
+                        <outlet property="desciptionTextField" destination="OpT-3s-nJH" id="0tv-Rp-fuo"/>
+                        <outlet property="gradedAsSegment" destination="YE1-5a-Jcr" id="2EZ-NO-qZ8"/>
+                        <outlet property="gradingSystemBtn" destination="mnJ-bU-Sqh" id="Lqc-8s-Qcc"/>
+                        <outlet property="prtiotySegment" destination="dlE-gi-am9" id="IaN-K3-cLv"/>
+                        <outlet property="taskTypeBtn" destination="1Kj-0J-Ft5" id="Hzd-bA-ndb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbz-2K-T1e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
