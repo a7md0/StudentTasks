@@ -51,8 +51,8 @@
 		93BC92E7258A14AF0084AF40 /* DataManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerController.swift; sourceTree = "<group>"; };
 		93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewController.swift; sourceTree = "<group>"; };
-		F07E03BC259231160028F604 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoursesTableViewController.swift; path = "View Controller/CoursesTableViewController.swift"; sourceTree = "<group>"; };
-		F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoursesTableViewCell.swift; path = "View Controller/CoursesTableViewCell.swift"; sourceTree = "<group>"; };
+		F07E03BC259231160028F604 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
+		F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09EE9552577C65D00C60E50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F09EE9572577C65D00C60E50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +124,15 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		F07E04212599F63D0028F604 /* Course list */ = {
+			isa = PBXGroup;
+			children = (
+				F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */,
+				F07E03BC259231160028F604 /* CoursesTableViewController.swift */,
+			);
+			path = "Course list";
+			sourceTree = "<group>";
+		};
 		F09EE9492577C65D00C60E50 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +152,7 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				F07E04212599F63D0028F604 /* Course list */,
 				9329FB7B25990E43005578ED /* Settings */,
 				931D638825936C080042B3D2 /* Data */,
 				934D4937259275A400D904FF /* Task list */,
@@ -153,8 +163,6 @@
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
 				F09EE9572577C65D00C60E50 /* SceneDelegate.swift */,
 				F09EE95B2577C65D00C60E50 /* Main.storyboard */,
-				F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */,
-				F07E03BC259231160028F604 /* CoursesTableViewController.swift */,
 				F09EE95E2577C66000C60E50 /* Assets.xcassets */,
 				F09EE9602577C66000C60E50 /* LaunchScreen.storyboard */,
 				F09EE9632577C66000C60E50 /* Info.plist */,
