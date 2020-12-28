@@ -44,8 +44,8 @@ class CoursesTableViewController: UITableViewController {
         let course = courseslist[indexPath.row]
         cell.courseName.text = course.name
         
-        if let imageData = course.imageData { cell.courseImg.image = UIImage(data: imageData)
-            
+        if let color = course.color{
+            cell.courseImg.backgroundColor = color.color
         }
         return cell
     }
