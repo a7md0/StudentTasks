@@ -8,7 +8,7 @@
 import UIKit
 
 class AddTaskTableViewController: UITableViewController {
-    var filters: TasksFilter?
+    
     @IBAction func coursebtnpressed(_ sender: Any) {
 
     }
@@ -24,13 +24,40 @@ class AddTaskTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue){ }
+    @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue){
+        if sender.identifier == "unwindAddTask",
+           let pickerTableView = sender.source as? PickerTableViewController{
+            print (pickerTableView.items)
+            var courseid: String
+            for courselist in pickerTableView.items{
+                if courselist.checked == true{
+                    courseid = courselist.identifier
+                    print(courseid)
+                    
+                    let chosincourse = Course.findOne(id: courseid)!
+                    print(chosincourse)
+                    
+                    
+                }
+            }
+            
+            
+        }
+    
+        
+    }
+    
+    
+    
     //viewController.unwindSegueIdentifier = "unwindAddTask"
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let tasksFiltersController = segue.destination as? PickerTableViewController{
+            tasksFiltersController.unwindSegueIdentifier = "unwindAddTask"
             if segue.identifier == "SelectCourseAddTaskSegue" {
                         tasksFiltersController.title = "Course"
-                        tasksFiltersController.multiSelect = false
+                tasksFiltersController.identifier = "CourseChoose"
+                tasksFiltersController.multiSelect = false
+                
                         
                         for course in Course.findAll() {
                             var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
@@ -40,11 +67,12 @@ class AddTaskTableViewController: UITableViewController {
                             
                             tasksFiltersController.items.append(pickerItem)
                         }
-} else             if segue.identifier == "SelectTaskTypeAddTaskSegue" {
-    tasksFiltersController.title = "Task Type"
-    tasksFiltersController.multiSelect = false
+                        } else if segue.identifier == "SelectTaskTypeAddTaskSegue" {
+                        tasksFiltersController.title = "Task Type"
+                        tasksFiltersController.identifier = "TaskType"
+                        tasksFiltersController.multiSelect = false
     
-    for taskType in TaskType.allCases {
+                        for taskType in TaskType.allCases {
         var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
         /*if currentCourse == course {
             pickerItem.checked = true
