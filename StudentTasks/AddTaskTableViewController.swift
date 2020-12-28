@@ -8,9 +8,31 @@
 import UIKit
 
 class AddTaskTableViewController: UITableViewController {
-    
-    @IBAction func coursebtnpressed(_ sender: Any) {
+    var chosinCourse: Course?
+    var taskType: TaskType?
 
+    //IBOut
+    
+    @IBOutlet weak var taskNameField: UITextField!
+    
+    @IBOutlet weak var taskTypeBtn: UIButton!
+    @IBOutlet weak var courseChooseBtn: UIButton!
+    
+    @IBOutlet weak var prtiotySegment: UISegmentedControl!
+    @IBOutlet weak var dateChoose: UIDatePicker!
+    
+    @IBOutlet weak var gradedAsSegment: UISegmentedControl!
+    @IBOutlet weak var contributionTextField: UITextField!
+    @IBOutlet weak var gradingSystemBtn: UISwitch!
+    @IBOutlet weak var desciptionTextField: UITextView!
+    
+    @IBAction func saveBtnClicked(_ sender: Any) {
+        var task = Task.init(name: taskNameField.text!, description: desciptionTextField.text, type: taskType!, priority: TaskPriority.normal, dueDate: dateChoose.date)
+        task.course = chosinCourse!
+        task.create()
+        //print(chosinCourse)
+        print(task.name)
+        print(task)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,20 +49,32 @@ class AddTaskTableViewController: UITableViewController {
     @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue){
         if sender.identifier == "unwindAddTask",
            let pickerTableView = sender.source as? PickerTableViewController{
-            print (pickerTableView.items)
+          //  print (pickerTableView.items)
+           
+            if pickerTableView.identifier == "CourseChoose"{
             var courseid: String
             for courselist in pickerTableView.items{
                 if courselist.checked == true{
                     courseid = courselist.identifier
-                    print(courseid)
-                    
-                    let chosincourse = Course.findOne(id: courseid)!
-                    print(chosincourse)
+                 //   print(courseid)
+                    chosinCourse = Course.findOne(id: courseid)
+                //    print(chosinCourse)
+                    courseChooseBtn.setTitle(chosinCourse?.name, for: .normal)
                     
                     
                 }
             }
-            
+            }else if pickerTableView.identifier == "TaskType"{
+                for typeList in pickerTableView.items{
+                    if typeList.checked == true{
+                        taskType = TaskType.init(rawValue: typeList.identifier)
+                        print(taskType)
+                        taskTypeBtn.setTitle(taskType?.rawValue, for: .normal)
+                    }
+                    
+                }
+                
+            }
             
         }
     
