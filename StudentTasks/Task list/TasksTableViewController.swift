@@ -94,6 +94,15 @@ class TasksTableViewController: UITableViewController {
         self.setTasks(tasks: self.tasks)
         tableView.reloadData()
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowTaskDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? TaskDetailsTableViewController{
+            destination.tasks = tasks[(tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
 
     
 
