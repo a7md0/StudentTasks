@@ -11,9 +11,11 @@ class TasksTableViewController: UITableViewController {
 
     private var isSearching: Bool = false
     
+    var course: Course?
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
+    var filters: TasksFilter?
     var sort: TasksSort?
     
     override func viewDidLoad() {
@@ -30,6 +32,21 @@ class TasksTableViewController: UITableViewController {
     }
     
     func setTasks(tasks: [Task]) {
+        guard let filters = filters, let sort = sort else {
+            self.tasks = tasks
+            return;
+        }
+        
+        self.tasks = tasks.filter({ (task) -> Bool in
+            var keep = false
+            
+            if filters.taskTypes.contains(task.type) && filters.taskStatus.contains(task.status) {
+                keep = true
+            }
+            
+            return keep
+        })
+        
         // Sortable by date withou time? Then importance level? maybe with little imporvment
         // Sortable by importance level then date time? The groupping is bad to show nearby due dates
         // Sortable by either date or importance? Not good enough
@@ -44,30 +61,31 @@ class TasksTableViewController: UITableViewController {
          else: compare on full date (including time)
         */
         
-        self.tasks = tasks.sorted(by: {
+        self.tasks.sort(by: {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
-                if sort?.dueDate == .descending {
+                if sort.dueDate == .descending { // based on the filters sorting (user changeable)
                     return compareDate == .orderedDescending
                 } else {
                     return compareDate == .orderedAscending
                 }
             }
             
-            // if the date compare result is the same
+            // if the date compare result is the same (compareDate == .orderedSame)
             if $0.priority != $1.priority { // if the priorty isn't the same
-                if sort?.importance == .highest {
-                    return $0.priority < $1.priority // return whether the 1st priority is less than 2nd
+                if sort.importance == .highest { // based on the filters sorting (user changeable)
+                    return $0.priority > $1.priority // > descending
                 } else {
-                    return $0.priority > $1.priority
+                    return $0.priority < $1.priority // < ascending
                 }
             }
-                
-            if sort?.dueDate == .descending {
-                return $0.dueDate < $1.dueDate //return whether the 1st full date is less than the 2nd
+            
+            // if the priroity match too ($0.priority == $1.priority)
+            if sort.dueDate == .descending {  // based on the filters sorting (user changeable)
+                return $0.dueDate > $1.dueDate // > descending
             } else {
-                return $0.dueDate > $1.dueDate
+                return $0.dueDate < $1.dueDate // < ascending
             }
         })
     }
@@ -77,8 +95,29 @@ class TasksTableViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    // MARK: - Table view data source
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+    func deleteItem(indexPath: IndexPath) {
+        var task = tasks[indexPath.row]
+        
+        tasks.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        task.remove()
+    }
+}
+
+// MARK: - Table view data source
+extension TasksTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -124,7 +163,7 @@ class TasksTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
     
@@ -165,28 +204,10 @@ class TasksTableViewController: UITableViewController {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    func deleteItem(indexPath: IndexPath) {
-        let task = tasks[indexPath.row]
-        
-        tasks.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .left)
-        task.remove()
-    }
 }
 
 extension TasksTableViewController {
-    func filterResults(searchQuery: String?) {
+    func filterSearchResult(searchQuery: String?) {
         if let searchQuery = searchQuery {
             print("searchQuery: \(searchQuery)")
             isSearching = true

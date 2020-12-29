@@ -13,9 +13,10 @@ class CoursesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        courseImg.backgroundColor = .systemPink
     }
 
+    @IBOutlet weak var courseImg: UIImageView!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

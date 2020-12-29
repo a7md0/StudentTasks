@@ -15,7 +15,9 @@ struct Course: Codable, Equatable {
     
     var id: UUID = UUID() // Set universally unique identifier
     
+    @available(*, deprecated, message: "use color: instead")
     var imageData: Data?
+    
     var color: CodableColor?
     
     var name: String
@@ -32,6 +34,9 @@ struct Course: Codable, Equatable {
     var overdueTasks: Int = 0
     
     var tasks: [Task] = []
+    
+    var createdAt: Date?
+    var updatedAt: Date?
 }
 
 // MARK: - Enums
@@ -60,6 +65,7 @@ extension Course {
         guard let courseIndex = findCourseIndex(course: course) else { return }
         
         courses[courseIndex].tasks.append(contentsOf: tasks)
+        Course.notifyUpdated(course: courses[courseIndex])
     }
     
     static func saveTask(task: Task) {
@@ -67,6 +73,7 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks[taskIndex] = task
+        Course.notifyUpdated(course: courses[courseIndex])
     }
     
     static func removeTask(task: Task) {
@@ -74,39 +81,65 @@ extension Course {
               let taskIndex = findTaskIndex(course: courses[courseIndex], task: task) else { return }
         
         courses[courseIndex].tasks.remove(at: taskIndex)
+        Course.notifyUpdated(course: courses[courseIndex])
     }
 }
 
 // MARK: - CRUD operations
 extension Course {
-    func create() {
+    mutating func create() {
+        self.createdAt = Date()
+        self.updatedAt = Date()
+        
         Course.courses.append(self)
+        Course.notifyCreated(course: self)
     }
     
-    func save() {
+    mutating func save() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
+        self.updatedAt = Date()
         
         Course.courses[courseIndex] = self
+        Course.notifyUpdated(course: self)
     }
     
     func remove() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
         
         Course.courses.remove(at: courseIndex)
+        Course.notifyRemoved(course: self)
+    }
+}
+
+// MARK: - Notification Center
+extension Course {
+    private static func notifyCreated(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["created"]!, object: course)
+        }
+    }
+    
+    private static func notifyUpdated(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["updated"]!, object: course)
+        }
+    }
+    
+    private static func notifyRemoved(course: Course) {
+        DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+            NotificationCenter.default.post(name: Constants.coursesNotifcations["removed"]!, object: course)
+        }
     }
 }
 
 // MARK: - Data
 extension Course {
-    private static var courses: [Course] = [] {
-        didSet {
-            print("courses didSet \(courses.count)")
-            Course.triggerUpdate()
-        }
-    }
+    private static var courses: [Course] = []
     
-    static func findOne(id: String) -> Course? {
-        return findOne(id: UUID(uuidString: id)!)
+    static func findOne(id: String?) -> Course? {
+        guard let uuid = UUID(uuidString: id ?? "") else { return nil }
+        
+        return findOne(id: uuid)
     }
     
     static func findOne(id: UUID) -> Course? {
@@ -137,23 +170,6 @@ extension Course {
         let taskIndex = course.tasks.firstIndex(where: { $0 == task })
         
         return taskIndex
-    }
-    
-    private static func triggerUpdate() {
-        print("triggerUpdate \(Course.courses.count)")
-        
-        subject.notify(value: Course.courses)
-    }
-}
-
-// MARK: - Observer pattern
-extension Course {
-    private static let subject = Subject<[Course]>()
-    
-    static func observerInstance() -> Observer<[Course]> {
-        let observer = Observer<[Course]>(subject: self.subject)
-        
-        return observer
     }
 }
 
@@ -200,7 +216,7 @@ extension Course {
     /// ```
     ///
     /// - Returns: List of sample courses `[Course]`.
-    private static func readSampleData() -> [Course] {
+    private static func readSampleData() {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601 // Use ISO-8601 -> 2018-12-25T17:30:00Z
         
@@ -208,11 +224,38 @@ extension Course {
         
         guard let url = Bundle.main.url(forResource: "courses_samples", withExtension: "json"),
               let coursesData = try? Data(contentsOf: url),
-              let courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return [] }
+              var courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return }
+
+        let todayDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date()) // current date components
         
-        print("loaded sample courses")
+        for courseIndex in courses.indices {
+            var tasks: [Task] = courses[courseIndex].tasks // Copy the course tasks temporarily
+
+            for taskIndex in tasks.indices { // For each loop over the temporarily saved tasks
+                let dueDate = tasks[taskIndex].dueDate // keep copy of due date
+                let compareDate = Calendar.current.compare(Constants.placeHolderDate, to: dueDate, toGranularity: .year) // compare the due date to the saved place holder by only year (1999)
+                
+                if compareDate == .orderedSame { // If the date compare match
+                    var dueDateComponents = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: dueDate) // Extract components from due date
+                    let multipler = (dueDateComponents.month! == 6) ? -1 : (dueDateComponents.month! == 7) ? 1 : 0 // Multipler for day by month number
+                    
+                    dueDateComponents.year = todayDateComponents.year! // Set to current year
+                    dueDateComponents.month = todayDateComponents.month! // Set to current month
+                    dueDateComponents.day = todayDateComponents.day! + (dueDateComponents.day! * multipler) // Set to current date +- the due date place holder date multipled by either 0 or -1
+                    
+                    tasks[taskIndex].dueDate = Calendar.current.date(from: dueDateComponents)! // Set the new due date
+                }
+            }
+            
+            courses[courseIndex].tasks = [] // Deatch tasks from the course
+            courses[courseIndex].create() // Create the course
+            
+            for taskIndex in tasks.indices { // For each loop over the temporarily saved tasks
+                tasks[taskIndex].create() // Create the task
+            }
+        }
         
-        return courses
+        print("created sample courses")
     }
     
     /// This function load the required data for this model
@@ -221,7 +264,11 @@ extension Course {
     /// loadData()
     /// ```
     static func loadData() {
-        courses = readFromPersistentStorage() ?? readSampleData() // Load saved courses, if not then load sample courses
+        if let savedCourses = readFromPersistentStorage() {
+            courses.append(contentsOf: savedCourses)
+        } else {
+            readSampleData()
+        }
     }
     
     /// This function save the data for this model

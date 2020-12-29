@@ -24,6 +24,8 @@ class TasksViewController: UIViewController {
     var filters: TasksFilter?
     
     var searchQuery: String?
+    
+    let storyboardRef = UIStoryboard(name: "Main", bundle: Bundle.main)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,11 @@ class TasksViewController: UIViewController {
         setupTabScrollView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
+    }
 
     // MARK: - Navigation
 
@@ -62,6 +69,46 @@ class TasksViewController: UIViewController {
     }
 }
 
+extension TasksViewController {
+    @objc private func courseCreated(notification: NSNotification) {
+        guard let course = notification.object as? Course else { return }
+        
+        //courses.append(course)
+        prepareTab(course: course, tasks: course.tasks)
+        tabScrollView.reloadData()
+        print("Detect course created")
+    }
+    
+    @objc private func courseUpdated(notification: NSNotification) {
+        guard let course = notification.object as? Course,
+              let vcIdx = contentViews.firstIndex(where: { $0.course == course }) else { return }
+        
+        contentViews[0].setTasks(tasks: Task.findAll())
+        
+        //courses[courseIndex] = course
+        contentViews[vcIdx].course = course
+        contentViews[vcIdx].setTasks(tasks: course.tasks)
+        
+        labels[vcIdx].text = course.name
+        
+        tabScrollView.reloadData()
+        print("Detect course updated. Updated course tab at idnex \(vcIdx)")
+    }
+    
+    @objc private func courseRemoved(notification: NSNotification) {
+        guard let course = notification.object as? Course,
+              let vcIdx = contentViews.firstIndex(where: { $0.course == course }) else { return }
+        
+        //courses.remove(at: courseIndex)
+        contentViews[vcIdx].dismiss(animated: true, completion: nil)
+        contentViews.remove(at: vcIdx)
+        labels.remove(at: vcIdx)
+        
+        tabScrollView.reloadData()
+        print("Detect course removed. Removing course at index \(vcIdx)")
+    }
+}
+
 // MARK: - Search
 extension TasksViewController: UISearchBarDelegate {
     func setupSearchBar() {
@@ -71,7 +118,7 @@ extension TasksViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "") {
             self.searchQuery = $0.count > 0 ? searchText : nil
-            self.contentViews[self.currentTabViewIdx].filterResults(searchQuery: self.searchQuery)
+            self.contentViews[self.currentTabViewIdx].filterSearchResult(searchQuery: self.searchQuery)
         }
     }
     
@@ -108,12 +155,12 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     // MARK: ACTabScrollViewDelegate
     func tabScrollView(_ tabScrollView: ACTabScrollView, didChangePageTo index: Int) {
         currentTabViewIdx = index
-        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
+        contentViews[currentTabViewIdx].filterSearchResult(searchQuery: searchQuery)
     }
         
     func tabScrollView(_ tabScrollView: ACTabScrollView, didScrollPageTo index: Int) {
         currentTabViewIdx = index
-        contentViews[currentTabViewIdx].filterResults(searchQuery: searchQuery)
+        contentViews[currentTabViewIdx].filterSearchResult(searchQuery: searchQuery)
     }
         
     // MARK: ACTabScrollViewDataSource
@@ -132,27 +179,26 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     }
     
     func prepareTabs() {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        self.prepareTab(course: nil, tasks: Task.findAll()) // Prepare "All" tab
         
-        let allCoursesTabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
-        allCoursesTabTableView.sort = self.sort
-        allCoursesTabTableView.setTasks(tasks: Task.findAll())
-        
-        self.addChild(allCoursesTabTableView)
-        contentViews.append(allCoursesTabTableView)
-        createTabLabel("All")
-        
-        for course in Course.findAll() {
-            let tabTableView = storyboard.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
-            
-            tabTableView.sort = self.sort
-            tabTableView.setTasks(tasks: course.tasks)
-            
-            addChild(tabTableView) // don't forget, it's very important
-            contentViews.append(tabTableView)
-            
-            createTabLabel(course.name)
+        for course in Course.findAll() { // Prepare tab for each course
+            self.prepareTab(course: course, tasks: course.tasks)
         }
+    }
+    
+    private func prepareTab(course: Course?, tasks: [Task]) {
+        let tabTableView = storyboardRef.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
+        
+        tabTableView.filters = self.filters
+        tabTableView.sort = self.sort
+        
+        tabTableView.course = course
+        tabTableView.setTasks(tasks: tasks)
+        
+        addChild(tabTableView) // don't forget, it's very important
+        contentViews.append(tabTableView)
+        
+        createTabLabel(course?.name ?? "All")
     }
     
     private func createTabLabel(_ text: String) {
