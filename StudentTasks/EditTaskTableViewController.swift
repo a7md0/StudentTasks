@@ -1,55 +1,76 @@
 //
-//  TaskDetailsTableViewController.swift
+//  EditTaskTableViewController.swift
 //  StudentTasks
 //
-//  Created by Sayed Ali on 12/29/20.
+//  Created by Sayed Ali on 12/30/20.
 //
 
 import UIKit
 
-class TaskDetailsTableViewController: UITableViewController {
+class EditTaskTableViewController: UITableViewController {
+    
     var tasks: Task?
-    @IBOutlet weak var taskName: UILabel!
-    @IBOutlet weak var taskCourse: UILabel!
-    @IBOutlet weak var taskTypee: UILabel!
-    @IBOutlet weak var priority: UILabel!
-    @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
-    let dateformatted = DateFormatter();
     
     override func viewDidLoad() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(EditbtnClicked))
         super.viewDidLoad()
-        dateformatted.dateFormat = "YYYY/MM/dd"
-        var datee:String = dateformatted.string(from: tasks!.dueDate)
-        self.navigationItem.title = tasks?.name
-        taskName.text = tasks?.name
-        taskCourse.text = tasks?.course?.name
-        taskTypee.text = tasks?.type.rawValue
-        priority.text = tasks?.priority.rawValue
-        date.text = datee
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(editsavebtnClicked))
+        navigationItem.title = "Edit"
         
-        if tasks?.description != ""{
-            descriptionTextView.text = tasks?.description
-        }
+        print(tasks)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    @objc func EditbtnClicked(){
-        self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
+    @objc func editsavebtnClicked(){
+        
     }
+    
+    
 
     // MARK: - Table view data source
+    @IBAction func unwindtoEditTask(_ sender: UIStoryboardSegue){ }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? EditTaskTableViewController{
-            destination.tasks = tasks!
-        }
+        if let tasksFiltersController = segue.destination as? PickerTableViewController{
+            tasksFiltersController.unwindSegueIdentifier = "unwindEditTask"
+            if segue.identifier == "SelectCourseEditTaskSegue" {
+                        tasksFiltersController.title = "Course"
+                tasksFiltersController.identifier = "CourseChooseEdit"
+                tasksFiltersController.multiSelect = false
+                
+                        
+                        for course in Course.findAll() {
+                            var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
+
+                            
+                            tasksFiltersController.items.append(pickerItem)
+                        }
+                        } else if segue.identifier == "SelectTaskTypeEditSegue" {
+                        tasksFiltersController.title = "Task Type"
+                        tasksFiltersController.identifier = "TaskTypeEdit"
+                        tasksFiltersController.multiSelect = false
+    
+                        for taskType in TaskType.allCases {
+                            var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+
+        
+        tasksFiltersController.items.append(pickerItem)
     }
     
+    
+}
+            
+    }
+    }
+    
+    
+
+    
+
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
