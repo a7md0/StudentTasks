@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93059CBD2597CBCF00B0B181 /* Constants.swift */; };
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
+		93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */; };
 		9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329FB8125990E82005578ED /* SettingsTableViewController.swift */; };
 		938F7BC12593A4CB0062C79E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* Filter.swift */; };
 		938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC42593DF2A0062C79E /* Debounce.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		93059CBD2597CBCF00B0B181 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
+		93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPreferencesTableViewController.swift; sourceTree = "<group>"; };
 		9329FB8125990E82005578ED /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		938F7BC02593A4CB0062C79E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		938F7BC42593DF2A0062C79E /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9329FB8125990E82005578ED /* SettingsTableViewController.swift */,
+				93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */,
 				C2905349259BD98A00B046E2 /* EditTaskTableViewController.swift in Sources */,
 				9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */,
+				93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
