@@ -62,14 +62,12 @@ extension NotificationsPreferencesTableViewController {
         if let cell = tableView.cellForRow(at: indexPath),
            ["fromTimeCell", "toTimeCell"].contains(cell.reuseIdentifier) {
             
-            isFromDatePickerHidden = true
-            isToDatePickerHidden = true
-            
             if cell.reuseIdentifier == "fromTimeCell" {
+                isToDatePickerHidden = true
                 isFromDatePickerHidden = !isFromDatePickerHidden
             } else if cell.reuseIdentifier == "toTimeCell" {
+                isFromDatePickerHidden = true
                 isToDatePickerHidden = !isToDatePickerHidden
-                
             }
             
             tableView.beginUpdates()
