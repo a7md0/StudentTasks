@@ -36,6 +36,8 @@ extension NotificationSettings {
         if !granted {
             notificationsEnabled = false
         }
+        
+        self.save()
     }
     
     static func load() -> NotificationSettings {
