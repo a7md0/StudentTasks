@@ -10,7 +10,8 @@ import Foundation
 struct NotificationSettings: Codable {
     private static let saveKey: String = "notificationSettings"
     
-    var notificationsEnabled: Bool = false
+    var notificationsGranted: Bool = false
+    var notificationsEnabled: Bool = true
     
     var preferredTypes: [TaskType] = TaskType.allCases
     var preferredPriorities: [TaskPriority] = TaskPriority.allCases
@@ -29,6 +30,14 @@ extension NotificationSettings {
         }
     }
     
+    mutating func switchGrant(granted: Bool) {
+        self.notificationsGranted = granted
+        
+        if !granted {
+            notificationsEnabled = false
+        }
+    }
+    
     static func load() -> NotificationSettings {
         if let data = UserDefaults.standard.data(forKey: NotificationSettings.saveKey),
            let notificationSettings = try? JSONDecoder().decode(NotificationSettings.self, from: data) {
@@ -41,6 +50,8 @@ extension NotificationSettings {
     static func reset() -> NotificationSettings {
         let notificationSettings = NotificationSettings()
         notificationSettings.save()
+        
+        LocalNotificationManager.sharedInstance.detectPermission(callback: nil)
         
         return notificationSettings
     }
