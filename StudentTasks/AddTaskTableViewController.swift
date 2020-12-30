@@ -14,29 +14,32 @@ class AddTaskTableViewController: UITableViewController {
     //IBOut
     
     @IBOutlet weak var taskNameField: UITextField!
-    
     @IBOutlet weak var taskTypeBtn: UIButton!
     @IBOutlet weak var courseChooseBtn: UIButton!
-    
     @IBOutlet weak var prtiotySegment: UISegmentedControl!
     @IBOutlet weak var dateChoose: UIDatePicker!
-    
     @IBOutlet weak var gradedAsSegment: UISegmentedControl!
     @IBOutlet weak var contributionTextField: UITextField!
     @IBOutlet weak var gradingSystemBtn: UISwitch!
-    @IBOutlet weak var desciptionTextField: UITextView!
+
+
     
+    @IBOutlet weak var descriptionTextField: UITextField!
+    
+    @IBOutlet weak var savebtn: UIBarButtonItem!
     @IBAction func saveBtnClicked(_ sender: Any) {
-        var task = Task.init(name: taskNameField.text!, description: desciptionTextField.text, type: taskType!, priority: TaskPriority.normal, dueDate: dateChoose.date)
+        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: TaskPriority.normal, dueDate: dateChoose.date)
         task.course = chosinCourse!
         task.create()
         //print(chosinCourse)
         print(task.name)
         print(task)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateSaveButtonState()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -60,6 +63,7 @@ class AddTaskTableViewController: UITableViewController {
                     chosinCourse = Course.findOne(id: courseid)
                 //    print(chosinCourse)
                     courseChooseBtn.setTitle(chosinCourse?.name, for: .normal)
+                    updateSaveButtonState()
                     
                     
                 }
@@ -70,6 +74,7 @@ class AddTaskTableViewController: UITableViewController {
                         taskType = TaskType.init(rawValue: typeList.identifier)
                         print(taskType)
                         taskTypeBtn.setTitle(taskType?.rawValue, for: .normal)
+                        updateSaveButtonState()
                     }
                     
                 }
@@ -95,9 +100,7 @@ class AddTaskTableViewController: UITableViewController {
                         
                         for course in Course.findAll() {
                             var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
-                            /*if currentCourse == course {
-                                pickerItem.checked = true
-                            }*/
+
                             
                             tasksFiltersController.items.append(pickerItem)
                         }
@@ -107,10 +110,8 @@ class AddTaskTableViewController: UITableViewController {
                         tasksFiltersController.multiSelect = false
     
                         for taskType in TaskType.allCases {
-        var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
-        /*if currentCourse == course {
-            pickerItem.checked = true
-        }*/
+                            var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+
         
         tasksFiltersController.items.append(pickerItem)
     }
@@ -119,7 +120,21 @@ class AddTaskTableViewController: UITableViewController {
 }
             
     }
-
+    }
+    
+    func updateSaveButtonState() {
+        let taskName = taskNameField.text ?? ""
+        let descText = descriptionTextField.text ?? ""
+             let taskTpecheck = taskTypeBtn.currentTitle
+             let courseCheck = courseChooseBtn.currentTitle
+        
+        savebtn.isEnabled = taskName.count > 2 && descText.count > 0 && taskTpecheck != "Select Task Type" && courseCheck != "Select Course"
+        
+    }
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateSaveButtonState()
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -177,4 +192,4 @@ class AddTaskTableViewController: UITableViewController {
 
 
 }
-}
+

@@ -71,7 +71,15 @@ enum TaskGradeType: String, Codable, CaseIterable {
 // MARK: - Computed properties
 extension Task {
     var status: TaskStatus {
-        return .ongoing // TOOD: Implement the logic
+        if completed {
+            return .completed
+        }
+        
+        if Date() > dueDate {
+            return .overdue
+        }
+        
+        return .ongoing
     }
     
     var course: Course? {
