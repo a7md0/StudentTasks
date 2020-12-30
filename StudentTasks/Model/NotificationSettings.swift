@@ -20,14 +20,22 @@ struct NotificationSettings: Codable {
 }
 
 extension NotificationSettings {
-    func save() {
-        if let data = try? JSONEncoder().encode(self) {
-            UserDefaults.standard.setValue(data, forKey: NotificationSettings.saveKey)
-            
+    func update() {
+        if self.save() {
             DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
                 NotificationCenter.default.post(name: Constants.notifcationSettings["updated"]!, object: self)
             }
         }
+    }
+    
+    func save() -> Bool {
+        if let data = try? JSONEncoder().encode(self) {
+            UserDefaults.standard.setValue(data, forKey: NotificationSettings.saveKey)
+            
+            return true
+        }
+        
+        return false
     }
     
     mutating func switchGrant(granted: Bool) {
@@ -37,7 +45,9 @@ extension NotificationSettings {
             notificationsEnabled = false
         }
         
-        self.save()
+        if self.save() {
+            NotificationCenter.default.post(name: Constants.notifcationSettings["enabledChanged"]!, object: self)
+        }
     }
     
     static func load() -> NotificationSettings {
@@ -51,7 +61,7 @@ extension NotificationSettings {
     
     static func reset() -> NotificationSettings {
         let notificationSettings = NotificationSettings()
-        notificationSettings.save()
+        notificationSettings.update()
         
         LocalNotificationManager.sharedInstance.detectPermission(callback: nil)
         

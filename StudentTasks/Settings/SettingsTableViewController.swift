@@ -44,6 +44,12 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadNotificationsSettings()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
 
     func handleGpaModelPicker(items: [PickerItem]) {
         guard let choosedItem = items.first(where: { $0.checked }),
@@ -104,11 +110,16 @@ extension SettingsTableViewController {
 
 extension SettingsTableViewController {
     private func loadNotificationsSettings() {
-        notificationSwitch.isOn = defaults.bool(forKey: "notificationEnabled")
-        /*if let data = UserDefaults.standard.data(forKey: "notificationTaskTypes"),
-           let types = try? JSONDecoder().decode(Array<TaskType>.self, from: data) {
-            self.notificationTaskTypes = types
-        }*/
+        let notificationSettings: NotificationSettings = NotificationSettings.load()
+        notificationSwitch.isOn = notificationSettings.notificationsEnabled
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
+    }
+    
+    @objc private func notifcationChanged(notification: NSNotification) {
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        notificationSwitch.isOn = notificationSettings.notificationsEnabled
     }
     
     @IBAction func notificationSwitchChanged(_ sender: UISwitch) {
