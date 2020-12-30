@@ -48,7 +48,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
         
         notificationSettings.preferredTimeRange.start = fromDatePicker.date
         notificationSettings.preferredTimeRange.end = toDatePicker.date
-        notificationSettings.save()
+        notificationSettings.update()
     }
     
     func updateView() {
@@ -88,7 +88,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
             return item.checked ? TaskType(rawValue: item.identifier) : nil
         })
         
-        notificationSettings.save()
+        notificationSettings.update()
         updateTasksFilters()
     }
     
@@ -97,7 +97,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
             return item.checked ? TaskPriority(rawValue: item.identifier) : nil
         })
         
-        notificationSettings.save()
+        notificationSettings.update()
         updateTasksFilters()
     }
 }

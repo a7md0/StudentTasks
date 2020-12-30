@@ -26,6 +26,7 @@ class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
     
     // Notification section
+    var notificationSettings: NotificationSettings = NotificationSettings.load()
     @IBOutlet var notificationSwitch: UISwitch!
     //
     
@@ -43,6 +44,12 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadNotificationsSettings()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
 
     func handleGpaModelPicker(items: [PickerItem]) {
@@ -104,14 +111,45 @@ extension SettingsTableViewController {
 
 extension SettingsTableViewController {
     private func loadNotificationsSettings() {
-        notificationSwitch.isOn = defaults.bool(forKey: "notificationEnabled")
-        /*if let data = UserDefaults.standard.data(forKey: "notificationTaskTypes"),
-           let types = try? JSONDecoder().decode(Array<TaskType>.self, from: data) {
-            self.notificationTaskTypes = types
-        }*/
+        self.notificationSwitch.isOn = notificationSettings.notificationsEnabled
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
+    }
+    
+    @objc private func notifcationChanged(notification: NSNotification) {
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        self.notificationSwitch.isOn = notificationSettings.notificationsEnabled
+        self.notificationSettings = notificationSettings
+    }
+    
+    func openAppSettings() {
+        if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+            if UIApplication.shared.canOpenURL(appSettings) {
+                UIApplication.shared.open(appSettings)
+            }
+        }
+    }
+    
+    func notificationsSettingsPrompt() {
+        let confirmAlert = UIAlertController(title: "Notifications disabled", message: "Notifications are disabled for this app, would you like to enable them?", preferredStyle: .alert)
+
+        confirmAlert.addAction(UIAlertAction(title: "Open settings", style: .default, handler: { (action: UIAlertAction!) in
+            self.openAppSettings()
+        }))
+
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(confirmAlert, animated: true, completion: nil)
     }
     
     @IBAction func notificationSwitchChanged(_ sender: UISwitch) {
-        defaults.setValue(sender.isOn, forKey: "notificationEnabled")
+        if sender.isOn == true && notificationSettings.notificationsGranted == false {
+            sender.isOn = false
+            notificationsSettingsPrompt()
+        } else {
+            notificationSettings.notificationsEnabled = sender.isOn
+            notificationSettings.update()
+        }
     }
 }

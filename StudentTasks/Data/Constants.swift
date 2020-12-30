@@ -9,8 +9,23 @@ import Foundation
 
 struct Constants {
     static let placeHolderDate = Date(timeIntervalSinceReferenceDate: -39139200) // Oct 6, 1999, 00:00 AM
-    static let notifcationFromTime: Date = Date().addingTimeInterval(60 * 60 * 8)
-    static let notifcationToTime: Date = Date().addingTimeInterval(60 * 60 * 22)
+    
+    static var timeFormatter: DateFormatter {
+        get {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a"
+            
+            return formatter
+        }
+    }
+    
+    static var notifcationFromTime: Date {
+        return Constants.timeFormatter.date(from: "8:00 AM")!
+    }
+    static var notifcationToTime: Date  {
+        return Constants.timeFormatter.date(from: "10:00 PM")!
+    }
+    
     static let coursesNotifcations: [String : NSNotification.Name] = [
         "created": NSNotification.Name(rawValue: "CourseCreated"),
         "updated": NSNotification.Name(rawValue: "CourseUpdated"),
@@ -18,5 +33,6 @@ struct Constants {
     ]
     static let notifcationSettings: [String : NSNotification.Name] = [
         "updated": NSNotification.Name(rawValue: "NotifcationSettingsUpdated"),
+        "enabledChanged": NSNotification.Name(rawValue: "NotifcationSettingsEnabledChanged"),
     ]
 }

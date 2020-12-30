@@ -10,7 +10,8 @@ import Foundation
 struct NotificationSettings: Codable {
     private static let saveKey: String = "notificationSettings"
     
-    var notificationsEnabled: Bool = false
+    var notificationsGranted: Bool = false
+    var notificationsEnabled: Bool = true
     
     var preferredTypes: [TaskType] = TaskType.allCases
     var preferredPriorities: [TaskPriority] = TaskPriority.allCases
@@ -19,12 +20,35 @@ struct NotificationSettings: Codable {
 }
 
 extension NotificationSettings {
-    func save() {
+    func update() {
+        if self.save() {
+            DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+                NotificationCenter.default.post(name: Constants.notifcationSettings["updated"]!, object: self)
+            }
+        }
+    }
+    
+    func save() -> Bool {
         if let data = try? JSONEncoder().encode(self) {
             UserDefaults.standard.setValue(data, forKey: NotificationSettings.saveKey)
             
+            return true
+        }
+        
+        return false
+    }
+    
+    mutating func switchGrant(granted: Bool) {
+        self.notificationsGranted = granted
+        
+        if !granted {
+            notificationsEnabled = false
+        }
+        
+        if self.save() {
+            let settings = self
             DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
-                NotificationCenter.default.post(name: Constants.notifcationSettings["updated"]!, object: self)
+                NotificationCenter.default.post(name: Constants.notifcationSettings["enabledChanged"]!, object: settings)
             }
         }
     }
@@ -40,7 +64,9 @@ extension NotificationSettings {
     
     static func reset() -> NotificationSettings {
         let notificationSettings = NotificationSettings()
-        notificationSettings.save()
+        notificationSettings.update()
+        
+        LocalNotificationManager.sharedInstance.detectPermission(callback: nil)
         
         return notificationSettings
     }
