@@ -46,7 +46,10 @@ extension NotificationSettings {
         }
         
         if self.save() {
-            NotificationCenter.default.post(name: Constants.notifcationSettings["enabledChanged"]!, object: self)
+            let settings = self
+            DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
+                NotificationCenter.default.post(name: Constants.notifcationSettings["enabledChanged"]!, object: settings)
+            }
         }
     }
     
