@@ -17,7 +17,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     @IBOutlet weak var toDatePicker: UIDatePicker!
     var isToDatePickerHidden = true
     
-    let dateFormatter = DateFormatter()
+    let timeFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,8 @@ class NotificationsPreferencesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
         
         updateDateLabels()
     }
@@ -38,8 +38,8 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     }
     
     func updateDateLabels() {
-        fromDateLabel.text = dateFormatter.string(from: fromDatePicker.date)
-        toDateLabel.text = dateFormatter.string(from: toDatePicker.date)
+        fromDateLabel.text = timeFormatter.string(from: fromDatePicker.date)
+        toDateLabel.text = timeFormatter.string(from: toDatePicker.date)
     }
     
 
