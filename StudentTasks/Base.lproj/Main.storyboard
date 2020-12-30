@@ -421,6 +421,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="5FD-Ih-vDH" kind="show" identifier="gpaModelSegue" id="ma2-Ky-h6t"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -508,6 +511,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="yJs-yU-aJ7"/>
                     <connections>
+                        <outlet property="gpaModelLabel" destination="GvH-AW-p12" id="Zjm-VU-1Ov"/>
                         <outlet property="notificationSwitch" destination="gOJ-g8-V5D" id="1GL-Bh-L8t"/>
                     </connections>
                 </tableViewController>
@@ -1595,7 +1599,7 @@
             <objects>
                 <tableViewController id="5FD-Ih-vDH" customClass="PickerTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3i9-5A-yu4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -1632,7 +1636,7 @@
                     <connections>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="tasksFiltersUnwindSegue" unwindAction="unwindToTasksFiltersViewFor:towards:" id="y5V-vn-4cJ"/>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindAddTask" unwindAction="unwindtoAddtask:" id="z1a-KD-TbW"/>
-                        <segue destination="ydU-ow-KQU" kind="unwind" identifier="settingsUnwindSegue" unwindAction="unwindToSettingsTab:" id="SbO-o0-b2b"/>
+                        <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindSettings" unwindAction="unwindToSettingsTab:" id="SbO-o0-b2b"/>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindEditTask" unwindAction="unwindtoEditTask:" id="N2g-1J-Bha"/>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindNotificationsPreferences" unwindAction="unwindToNotificationsPreferences:" id="AFb-R3-YTD"/>
                     </connections>
@@ -2267,7 +2271,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xQT-aE-kab"/>
+        <segue reference="ma2-Ky-h6t"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
