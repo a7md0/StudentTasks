@@ -123,14 +123,33 @@ extension SettingsTableViewController {
         self.notificationSettings = notificationSettings
     }
     
+    func openAppSettings() {
+        if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+            if UIApplication.shared.canOpenURL(appSettings) {
+                UIApplication.shared.open(appSettings)
+            }
+        }
+    }
+    
+    func notificationsSettingsPrompt() {
+        let confirmAlert = UIAlertController(title: "Notifications disabled", message: "Notifications are disabled for this app, would you like to enable them?", preferredStyle: .alert)
+
+        confirmAlert.addAction(UIAlertAction(title: "Open settings", style: .default, handler: { (action: UIAlertAction!) in
+            self.openAppSettings()
+        }))
+
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(confirmAlert, animated: true, completion: nil)
+    }
+    
     @IBAction func notificationSwitchChanged(_ sender: UISwitch) {
         if sender.isOn == true && notificationSettings.notificationsGranted == false {
             sender.isOn = false
-            // TODO: Show message to  open settings
-            return
+            notificationsSettingsPrompt()
+        } else {
+            notificationSettings.notificationsEnabled = sender.isOn
+            notificationSettings.update()
         }
-            
-        notificationSettings.notificationsEnabled = sender.isOn
-        notificationSettings.update()
     }
 }
