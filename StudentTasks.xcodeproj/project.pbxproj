@@ -10,6 +10,7 @@
 		93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93059CBD2597CBCF00B0B181 /* Constants.swift */; };
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
 		93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */; };
+		93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214116259C4E8E0029FEFD /* NotificationSettings.swift */; };
 		9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329FB8125990E82005578ED /* SettingsTableViewController.swift */; };
 		938F7BC12593A4CB0062C79E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* Filter.swift */; };
 		938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC42593DF2A0062C79E /* Debounce.swift */; };
@@ -41,6 +42,7 @@
 		93059CBD2597CBCF00B0B181 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
 		93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPreferencesTableViewController.swift; sourceTree = "<group>"; };
+		93214116259C4E8E0029FEFD /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		9329FB8125990E82005578ED /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		938F7BC02593A4CB0062C79E /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		938F7BC42593DF2A0062C79E /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				F0D914A12588D8450022DD06 /* Task.swift */,
 				F0D914A42588D9DE0022DD06 /* Course.swift */,
 				938F7BC02593A4CB0062C79E /* Filter.swift */,
+				93214116259C4E8E0029FEFD /* NotificationSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				C2905349259BD98A00B046E2 /* EditTaskTableViewController.swift in Sources */,
 				9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */,
 				93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */,
+				93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
