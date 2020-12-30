@@ -175,6 +175,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Button" image="rectangle.and.pencil.and.ellipsis" catalog="system"/>
+                                <connections>
+                                    <segue destination="Vv1-VI-60r" kind="show" id="6m7-1c-Zib"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d37-Ad-RRO">
                                 <rect key="frame" x="149" y="204" width="114" height="35"/>
@@ -280,10 +283,11 @@
                         <viewLayoutGuide key="safeArea" id="S7J-0C-bZX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6u0-q8-WVN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOj-Yf-bLq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2124.6153846153848" y="-1274.6445497630332"/>
+            <point key="canvasLocation" x="2966" y="-1325"/>
         </scene>
         <!--Courses-->
         <scene sceneID="aQd-oS-wKo">
@@ -293,9 +297,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search Courses" id="6XV-Dg-4O7">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCellIdentifier" id="ygt-jC-kAR" customClass="CoursesTableViewCell" customModule="StudentTasks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="390" height="64"/>
+                                <rect key="frame" x="0.0" y="72" width="390" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygt-jC-kAR" id="J7P-zY-kp8">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="64"/>
@@ -338,6 +347,7 @@
                                 <connections>
                                     <outlet property="courseImg" destination="beK-cE-0vq" id="23o-NC-zVf"/>
                                     <outlet property="courseName" destination="bAj-Hf-iHV" id="l2U-ld-gGa"/>
+                                    <segue destination="AEX-45-Jiu" kind="show" id="NDy-uf-0YX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -346,7 +356,9 @@
                             <outlet property="delegate" destination="f1J-kc-TUq" id="aMQ-IG-8Z7"/>
                         </connections>
                     </tableView>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="ORw-96-TMF"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Courses" id="cMT-wi-v8K">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mtv-bl-lqR">
                             <connections>
@@ -508,7 +520,9 @@
                             <outlet property="delegate" destination="wrB-2I-HpT" id="gh3-zt-qIn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Course" id="yGj-sG-VsR"/>
+                    <navigationItem key="navigationItem" title="Add Course" id="yGj-sG-VsR">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="K3P-PK-ArZ"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMD-T6-RuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HeD-qd-NUf">
@@ -1511,7 +1525,7 @@
             </objects>
             <point key="canvasLocation" x="4853.8461538461534" y="-374.64454976303318"/>
         </scene>
-        <!--Add Course-->
+        <!--Edit Course-->
         <scene sceneID="GCc-ky-ySY">
             <objects>
                 <tableViewController id="Vv1-VI-60r" sceneMemberID="viewController">
@@ -1659,7 +1673,7 @@
                             <outlet property="delegate" destination="Vv1-VI-60r" id="1xL-Wl-LZl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Course" id="eQq-dH-Y6C"/>
+                    <navigationItem key="navigationItem" title="Edit Course" id="eQq-dH-Y6C"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhi-Yl-ln3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GRf-L0-1eE">
