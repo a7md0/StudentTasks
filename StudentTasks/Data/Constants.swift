@@ -9,8 +9,8 @@ import Foundation
 
 struct Constants {
     static let placeHolderDate = Date(timeIntervalSinceReferenceDate: -39139200) // Oct 6, 1999, 00:00 AM
-    static let notifcationFromTime: Date = Date().addingTimeInterval(60 * 60 * 8)
-    static let notifcationToTime: Date = Date().addingTimeInterval(60 * 60 * 22)
+    static let notifcationFromTime: Date = Date(timeIntervalSinceReferenceDate: 60 * 60 * 8)
+    static let notifcationToTime: Date = Date(timeIntervalSinceReferenceDate: 60 * 60 * 22)
     static let coursesNotifcations: [String : NSNotification.Name] = [
         "created": NSNotification.Name(rawValue: "CourseCreated"),
         "updated": NSNotification.Name(rawValue: "CourseUpdated"),
