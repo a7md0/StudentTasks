@@ -688,8 +688,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Notifications" id="wYA-hJ-iGO">
-                        <barButtonItem key="leftBarButtonItem" title="Reset" id="TBo-MJ-tK3"/>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Zsu-Hx-B6e"/>
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="TBo-MJ-tK3">
+                            <connections>
+                                <action selector="resetButtonPressed:" destination="mvx-O1-aud" id="5i4-Mv-eJs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Zsu-Hx-B6e">
+                            <connections>
+                                <segue destination="wRs-Ah-2on" kind="unwind" unwindAction="unwindToSettingsTab:" id="Z5T-Sw-Kq0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="fromDateLabel" destination="FU2-aB-uo9" id="yRA-eJ-EsZ"/>
@@ -701,6 +709,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeZ-sP-xeY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="wRs-Ah-2on" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3053.8461538461538" y="2183.8862559241707"/>
         </scene>
