@@ -40,6 +40,12 @@ class SettingsTableViewController: UITableViewController {
 }
 
 extension SettingsTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension SettingsTableViewController {
     private func loadNotificationsSettings() {
         notificationSwitch.isOn = defaults.bool(forKey: "notificationEnabled")
         /*if let data = UserDefaults.standard.data(forKey: "notificationTaskTypes"),
