@@ -1662,10 +1662,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnL-Kp-Z4v">
-                                <rect key="frame" x="0.0" y="88" width="390" height="46"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="48"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" placeholder="Search tasks" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
-                                        <rect key="frame" x="0.0" y="-5" width="336" height="56"/>
+                                    <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search tasks" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
+                                        <rect key="frame" x="0.0" y="-4" width="326" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
@@ -1673,9 +1673,9 @@
                                         </scopeButtonTitles>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dny-OA-oOL">
-                                        <rect key="frame" x="338" y="8" width="42" height="30"/>
+                                        <rect key="frame" x="328" y="5.6666666666666714" width="52" height="36.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="Filter"/>
+                                        <state key="normal" title="Filters"/>
                                         <connections>
                                             <segue destination="UbE-l8-zag" kind="presentation" identifier="tasksFiltersSegue" id="Pmp-e5-sbz"/>
                                         </connections>
@@ -1683,18 +1683,18 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="ATB-Iu-UxQ"/>
-                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="leading" secondItem="GnL-Kp-Z4v" secondAttribute="leading" id="OWC-Af-86i"/>
-                                    <constraint firstAttribute="trailing" secondItem="dny-OA-oOL" secondAttribute="trailing" constant="10" id="UKT-lj-5K5"/>
-                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="VzD-Sp-QIh"/>
-                                    <constraint firstItem="dny-OA-oOL" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="a6t-Rx-4gf"/>
-                                    <constraint firstItem="dny-OA-oOL" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="topMargin" id="ffS-Y4-VRu"/>
-                                    <constraint firstItem="dny-OA-oOL" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="p0E-dK-Ach"/>
-                                    <constraint firstItem="dny-OA-oOL" firstAttribute="leading" secondItem="nrG-AD-FKb" secondAttribute="trailing" constant="10" id="veo-n1-ehK"/>
+                                    <constraint firstAttribute="trailing" secondItem="nrG-AD-FKb" secondAttribute="trailing" constant="64" id="4UI-cU-Ivi"/>
+                                    <constraint firstAttribute="height" constant="48" id="ATB-Iu-UxQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dny-OA-oOL" secondAttribute="trailing" constant="10" id="Tfz-Xf-spN"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="dny-OA-oOL" secondAttribute="centerY" id="ZPG-Ch-UaL"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="fP9-Hf-yLr"/>
+                                    <constraint firstItem="dny-OA-oOL" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="top" constant="5.6666666666666714" id="fb4-gf-djS"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="leading" secondItem="GnL-Kp-Z4v" secondAttribute="leading" id="ify-2J-Qx9"/>
+                                    <constraint firstItem="dny-OA-oOL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GnL-Kp-Z4v" secondAttribute="leading" constant="20" symbolic="YES" id="sje-zo-SR2"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eQ-1l-vfM" customClass="ACTabScrollView" customModule="StudentTasks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="134" width="390" height="627"/>
+                                <rect key="frame" x="0.0" y="136" width="390" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -1726,7 +1726,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="902-I1-Ck7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2124.6376811594205" y="127.90178571428571"/>
+            <point key="canvasLocation" x="2124.6153846153848" y="127.25118483412322"/>
         </scene>
         <!--Add Task-->
         <scene sceneID="NI2-Xw-Qzh">
