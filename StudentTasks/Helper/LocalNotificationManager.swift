@@ -13,6 +13,7 @@ class LocalNotificationManager {
     static let sharedInstance = LocalNotificationManager() // Static unimmutable variable which has instance of this class
     
     private let notificationCenter = UNUserNotificationCenter.current()
+    private var notificationSettings: NotificationSettings = NotificationSettings.load()
     
     private init() { } // Private constructor (this class cannot be initlized from the outside)
     
@@ -22,7 +23,32 @@ class LocalNotificationManager {
                 print("granted notification")
             }
             
+            self.notificationSettings.switchGrant(granted: granted)
+            
             callback?(granted, error)
+        }
+    }
+    
+    func detectPermission(callback: ((Bool, Error?) -> Void)?) {
+        notificationCenter.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                // Notification permission has not been asked yet, go for it!
+                self.requestPermission(callback: callback)
+            } else if settings.authorizationStatus == .denied {
+                // Notification permission was previously denied, go to settings & privacy to re-enable
+                if self.notificationSettings.notificationsGranted {
+                    self.notificationSettings.switchGrant(granted: false)
+                }
+                
+                callback?(false, nil)
+            } else if settings.authorizationStatus == .authorized {
+                // Notification permission was already granted
+                if !self.notificationSettings.notificationsGranted {
+                    self.notificationSettings.switchGrant(granted: true)
+                }
+                
+                callback?(true, nil)
+            }
         }
     }
     

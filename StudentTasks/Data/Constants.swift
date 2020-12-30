@@ -33,5 +33,6 @@ struct Constants {
     ]
     static let notifcationSettings: [String : NSNotification.Name] = [
         "updated": NSNotification.Name(rawValue: "NotifcationSettingsUpdated"),
+        "enabledChanged": NSNotification.Name(rawValue: "NotifcationSettingsEnabledChanged"),
     ]
 }
