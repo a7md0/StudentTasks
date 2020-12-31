@@ -22,7 +22,7 @@
 		93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92DD258A07920084AF40 /* TasksViewController.swift */; };
 		93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */; };
 		93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */; };
-		93BC92E8258A14AF0084AF40 /* DataManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E7258A14AF0084AF40 /* DataManagerController.swift */; };
+		93BC92E8258A14AF0084AF40 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E7258A14AF0084AF40 /* DataManager.swift */; };
 		93EE2FC1258E859E00D6D13B /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */; };
 		C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */; };
 		C2905345259BA71500B046E2 /* TaskDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */; };
@@ -54,7 +54,7 @@
 		93BC92DD258A07920084AF40 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
-		93BC92E7258A14AF0084AF40 /* DataManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerController.swift; sourceTree = "<group>"; };
+		93BC92E7258A14AF0084AF40 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewController.swift; sourceTree = "<group>"; };
 		C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsTableViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		93BC92E6258A14900084AF40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				93BC92E7258A14AF0084AF40 /* DataManagerController.swift */,
+				93BC92E7258A14AF0084AF40 /* DataManager.swift */,
 				93EE2FC0258E859E00D6D13B /* LocalNotificationManager.swift */,
 				938F7BC42593DF2A0062C79E /* Debounce.swift */,
 				938F7BD12593F5A20062C79E /* PickerTableViewController.swift */,
@@ -286,7 +286,7 @@
 				938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */,
 				938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */,
 				93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */,
-				93BC92E8258A14AF0084AF40 /* DataManagerController.swift in Sources */,
+				93BC92E8258A14AF0084AF40 /* DataManager.swift in Sources */,
 				93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
 				F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */,
