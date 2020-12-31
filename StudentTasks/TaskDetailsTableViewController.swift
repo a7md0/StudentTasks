@@ -15,7 +15,9 @@ class TaskDetailsTableViewController: UITableViewController {
     @IBOutlet weak var priority: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var Contrivutionpersentage: UILabel!
     let dateformatted = DateFormatter();
+    @IBOutlet weak var gradedType: UILabel!
     
     override func viewDidLoad() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(EditbtnClicked))
@@ -47,6 +49,17 @@ class TaskDetailsTableViewController: UITableViewController {
         if tasks?.description != ""{
             descriptionTextView.text = tasks?.description
     }
+        if (tasks?.graded == true)
+        {
+            var contr = tasks?.gradeContribution
+            Contrivutionpersentage.text = "\(contr)"
+            gradedType.text = tasks?.gradeType?.rawValue
+        }
+        else if (tasks?.graded == false)
+        {
+            Contrivutionpersentage.text = ""
+            gradedType.text = ""
+        }
     }
 
     // MARK: - Table view data source

@@ -10,6 +10,7 @@ import UIKit
 class AddTaskTableViewController: UITableViewController {
     var chosinCourse: Course?
     var taskType: TaskType?
+    var taskpriority:TaskPriority?
 
     //IBOut
     
@@ -22,13 +23,15 @@ class AddTaskTableViewController: UITableViewController {
     @IBOutlet weak var contributionTextField: UITextField!
     @IBOutlet weak var gradingSystemBtn: UISwitch!
 
-
-    
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextView!
     
     @IBOutlet weak var savebtn: UIBarButtonItem!
     @IBAction func saveBtnClicked(_ sender: Any) {
-        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: TaskPriority.normal, dueDate: dateChoose.date)
+        if(prtiotySegment.selectedSegmentIndex == 0){taskpriority = .low}
+        else if(prtiotySegment.selectedSegmentIndex == 1){taskpriority = .normal}
+        else if(prtiotySegment.selectedSegmentIndex == 2){taskpriority = .high}
+        
+        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: taskpriority!, dueDate: dateChoose.date)
         task.course = chosinCourse!
         task.create()
         //print(chosinCourse)

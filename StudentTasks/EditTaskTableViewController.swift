@@ -14,7 +14,8 @@ class EditTaskTableViewController: UITableViewController {
     var taskType: TaskType?
     @IBOutlet weak var taskNameTextField: UITextField!
     @IBOutlet weak var taskTypeBtn: UIButton!
-    @IBOutlet weak var courseBrn: UIButton!
+
+    @IBOutlet weak var Courselbl: UILabel!
     @IBOutlet weak var gradingTypeSegment: UISegmentedControl!
     @IBOutlet weak var gradingContribution: UITextField!
     @IBOutlet weak var gradingSystemSwitch: UISwitch!
@@ -37,7 +38,7 @@ class EditTaskTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(editsavebtnClicked))
         navigationItem.title = "Edit"
         taskNameTextField.text = tasks?.name
-               courseBrn.setTitle(tasks?.course?.name, for: .normal)
+        Courselbl.text = tasks?.course?.name
                taskTypeBtn.setTitle(tasks?.type.rawValue, for: .normal)
                if (tasks?.priority.rawValue == "Low"){prioritySegment.selectedSegmentIndex = 0}
                else if (tasks?.priority.rawValue == "Normal"){prioritySegment.selectedSegmentIndex = 1}
@@ -112,21 +113,8 @@ class EditTaskTableViewController: UITableViewController {
          if sender.identifier == "unwindEditTask",
             let pickerTableView = sender.source as? PickerTableViewController
          {
-             if pickerTableView.identifier == "CourseChooseEdit"
-             {
-                 var courseid: String
-                 for courselist in pickerTableView.items
-                 {
-                     if courselist.checked == true
-                     {
-                         courseid = courselist.identifier
-                         chosinCourse = Course.findOne(id: courseid)
-                         courseBrn.setTitle(chosinCourse?.name, for: .normal)
-                        
-                     }
-                 }
-             }
-             else if pickerTableView.identifier == "TaskTypeEdit"
+
+             if pickerTableView.identifier == "TaskTypeEdit"
              {
                  for typeList in pickerTableView.items
                  {
