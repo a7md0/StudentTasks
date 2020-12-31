@@ -562,7 +562,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5FD-Ih-vDH" kind="show" id="M7p-UK-Wx4"/>
+                                            <segue destination="5FD-Ih-vDH" kind="show" identifier="themeSegue" id="M7p-UK-Wx4"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="78r-xH-GWo" detailTextLabel="Adx-7j-JbU" style="IBUITableViewCellStyleValue1" id="ICW-qi-yB8">
@@ -589,7 +589,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5FD-Ih-vDH" kind="show" id="9VC-CD-HOb"/>
+                                            <segue destination="5FD-Ih-vDH" kind="show" identifier="languageSegue" id="9VC-CD-HOb"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -2487,7 +2487,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ma2-Ky-h6t"/>
+        <segue reference="9VC-CD-HOb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
