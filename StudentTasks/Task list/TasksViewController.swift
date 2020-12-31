@@ -85,10 +85,12 @@ extension TasksViewController {
               let vcIdx = contentViews.firstIndex(where: { $0.course == course }) else { return }
         
         contentViews[0].setTasks(tasks: Task.findAll())
+        contentViews[0].reloadData()
         
         //courses[courseIndex] = course
         contentViews[vcIdx].course = course
         contentViews[vcIdx].setTasks(tasks: course.tasks)
+        contentViews[vcIdx].reloadData()
         
         labels[vcIdx].text = course.name
         

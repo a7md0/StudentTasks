@@ -94,6 +94,11 @@ class TasksTableViewController: UITableViewController {
         self.setTasks(tasks: self.tasks)
         tableView.reloadData()
     }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowTaskDetails", sender: self)
     }
