@@ -22,6 +22,9 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var gpaModelLabel: UILabel!
     //
     
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
