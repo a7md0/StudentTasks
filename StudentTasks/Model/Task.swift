@@ -157,7 +157,6 @@ extension Task {
     /// - Warning: This should be only called after updating exisiting model, not a new one.
     mutating func save() {
         self.updatedAt = Date()
-        
         LocalNotificationManager.sharedInstance.removeFor(task: self)
         self.notificationsIdentifiers = LocalNotificationManager.sharedInstance.prepareFor(task: self)
         

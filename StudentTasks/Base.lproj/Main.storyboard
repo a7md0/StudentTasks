@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1297,6 +1297,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="MqK-tV-BYf" eventType="editingChanged" id="Gpj-kR-xnJ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1479,6 +1482,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JTN-0c-GEp">
                                                     <rect key="frame" x="331" y="6.6666666666666679" width="51" height="31.000000000000004"/>
+                                                    <connections>
+                                                        <action selector="GradingChanged:" destination="MqK-tV-BYf" eventType="valueChanged" id="Jt4-cc-Lpa"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -1500,6 +1506,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="MqK-tV-BYf" eventType="editingChanged" id="mkL-hP-7R7"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1548,8 +1557,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="je9-fJ-stt"/>
+                    <connections>
+                        <outlet property="courseBrn" destination="GxV-EI-R31" id="Qtx-op-zPb"/>
+                        <outlet property="datePicker" destination="jte-ee-5Tx" id="4l5-bd-7aB"/>
+                        <outlet property="descriptionTextView" destination="F0O-IW-eJV" id="5Ul-q7-TdU"/>
+                        <outlet property="gradingContribution" destination="std-an-4nJ" id="7zC-Zt-txE"/>
+                        <outlet property="gradingSystemSwitch" destination="JTN-0c-GEp" id="kRQ-hD-qST"/>
+                        <outlet property="gradingTypeSegment" destination="8Jp-xb-O2r" id="zmB-JY-SlI"/>
+                        <outlet property="prioritySegment" destination="H4m-yC-UDf" id="gYA-Pd-FSA"/>
+                        <outlet property="taskNameTextField" destination="dtC-04-Gwe" id="suj-bE-r0j"/>
+                        <outlet property="taskTypeBtn" destination="Awa-Iw-hlA" id="DGP-Z6-pC6"/>
+                        <segue destination="siZ-Yh-Ppp" kind="unwind" identifier="unwindToTaskDetailsedit" unwindAction="unwindToTaskDetails:" id="app-l3-Y76"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Btm-Yd-qci" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="siZ-Yh-Ppp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5420" y="346.91943127962082"/>
         </scene>
@@ -2117,9 +2139,11 @@
                         <outlet property="prtiotySegment" destination="dlE-gi-am9" id="IaN-K3-cLv"/>
                         <outlet property="savebtn" destination="g3M-0r-FXI" id="abm-m1-WHe"/>
                         <outlet property="taskTypeBtn" destination="1Kj-0J-Ft5" id="Hzd-bA-ndb"/>
+                        <segue destination="0PS-Y8-SK3" kind="unwind" identifier="unwindtoTaskfromAdd" unwindAction="unwindToTasksViewFor:towards:" id="aWE-YS-ttK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbz-2K-T1e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="0PS-Y8-SK3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2966" y="860"/>
         </scene>
@@ -2380,7 +2404,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xQT-aE-kab"/>
+        <segue reference="cmM-Me-aha"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

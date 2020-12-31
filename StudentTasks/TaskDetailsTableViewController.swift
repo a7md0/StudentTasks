@@ -20,6 +20,21 @@ class TaskDetailsTableViewController: UITableViewController {
     override func viewDidLoad() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(EditbtnClicked))
         super.viewDidLoad()
+        print(tasks?.course?.name)
+        reloadData()
+
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    @objc func EditbtnClicked(){
+        self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
+    }
+    func reloadData(){
         dateformatted.dateFormat = "YYYY/MM/dd"
         var datee:String = dateformatted.string(from: tasks!.dueDate)
         self.navigationItem.title = tasks?.name
@@ -31,22 +46,22 @@ class TaskDetailsTableViewController: UITableViewController {
         
         if tasks?.description != ""{
             descriptionTextView.text = tasks?.description
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    @objc func EditbtnClicked(){
-        self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
     }
 
     // MARK: - Table view data source
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EditTaskTableViewController{
             destination.tasks = tasks!
+        }
+    }
+    @IBAction func unwindToTaskDetails(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        if unwindSegue.identifier == "unwindToTaskDetailsedit",
+           let editController = sourceViewController as? EditTaskTableViewController
+        {
+            tasks = editController.tasks
+            reloadData()
         }
     }
     
