@@ -10,6 +10,7 @@ import UIKit
 class AddTaskTableViewController: UITableViewController {
     var chosinCourse: Course?
     var taskType: TaskType?
+    var taskpriority:TaskPriority?
 
     //IBOut
     
@@ -22,18 +23,21 @@ class AddTaskTableViewController: UITableViewController {
     @IBOutlet weak var contributionTextField: UITextField!
     @IBOutlet weak var gradingSystemBtn: UISwitch!
 
-
-    
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextField: UITextView!
     
     @IBOutlet weak var savebtn: UIBarButtonItem!
     @IBAction func saveBtnClicked(_ sender: Any) {
-        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: TaskPriority.normal, dueDate: dateChoose.date)
+        if(prtiotySegment.selectedSegmentIndex == 0){taskpriority = .low}
+        else if(prtiotySegment.selectedSegmentIndex == 1){taskpriority = .normal}
+        else if(prtiotySegment.selectedSegmentIndex == 2){taskpriority = .high}
+        
+        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: taskpriority!, dueDate: dateChoose.date)
         task.course = chosinCourse!
         task.create()
         //print(chosinCourse)
         print(task.name)
         print(task)
+        performSegue(withIdentifier: "unwindtoTaskfromAdd", sender: self)
         
     }
     override func viewDidLoad() {
@@ -71,7 +75,8 @@ class AddTaskTableViewController: UITableViewController {
             }else if pickerTableView.identifier == "TaskType"{
                 for typeList in pickerTableView.items{
                     if typeList.checked == true{
-                        taskType = TaskType.init(rawValue: typeList.identifier)
+                        taskType = 
+                            TaskType.init(rawValue: typeList.identifier)
                         print(taskType)
                         taskTypeBtn.setTitle(taskType?.rawValue, for: .normal)
                         updateSaveButtonState()
@@ -124,11 +129,10 @@ class AddTaskTableViewController: UITableViewController {
     
     func updateSaveButtonState() {
         let taskName = taskNameField.text ?? ""
-        let descText = descriptionTextField.text ?? ""
              let taskTpecheck = taskTypeBtn.currentTitle
              let courseCheck = courseChooseBtn.currentTitle
         
-        savebtn.isEnabled = taskName.count > 2 && descText.count > 0 && taskTpecheck != "Select Task Type" && courseCheck != "Select Course"
+        savebtn.isEnabled = taskName.count > 2 && taskTpecheck != "Select Task Type" && courseCheck != "Select Course"
         
     }
     @IBAction func textEditingChanged(_ sender: UITextField) {

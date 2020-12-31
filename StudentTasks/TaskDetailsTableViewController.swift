@@ -15,11 +15,28 @@ class TaskDetailsTableViewController: UITableViewController {
     @IBOutlet weak var priority: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var Contrivutionpersentage: UILabel!
     let dateformatted = DateFormatter();
+    @IBOutlet weak var gradedType: UILabel!
     
     override func viewDidLoad() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(EditbtnClicked))
         super.viewDidLoad()
+        print(tasks?.course?.name)
+        reloadData()
+
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    @objc func EditbtnClicked(){
+        self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
+    }
+    func reloadData(){
         dateformatted.dateFormat = "YYYY/MM/dd"
         var datee:String = dateformatted.string(from: tasks!.dueDate)
         self.navigationItem.title = tasks?.name
@@ -31,22 +48,33 @@ class TaskDetailsTableViewController: UITableViewController {
         
         if tasks?.description != ""{
             descriptionTextView.text = tasks?.description
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
-    @objc func EditbtnClicked(){
-        self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
+        if (tasks?.graded == true)
+        {
+            var contr = tasks?.gradeContribution
+            Contrivutionpersentage.text = "\(contr)"
+            gradedType.text = tasks?.gradeType?.rawValue
+        }
+        else if (tasks?.graded == false)
+        {
+            Contrivutionpersentage.text = ""
+            gradedType.text = ""
+        }
     }
 
     // MARK: - Table view data source
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EditTaskTableViewController{
             destination.tasks = tasks!
+        }
+    }
+    @IBAction func unwindToTaskDetails(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        if unwindSegue.identifier == "unwindToTaskDetailsedit",
+           let editController = sourceViewController as? EditTaskTableViewController
+        {
+            tasks = editController.tasks
+            reloadData()
         }
     }
     
