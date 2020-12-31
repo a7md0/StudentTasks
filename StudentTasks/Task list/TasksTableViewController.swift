@@ -18,6 +18,8 @@ class TasksTableViewController: UITableViewController {
     var filters: TasksFilter?
     var sort: TasksSort?
     
+    var ignoreNextUpdate: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +33,12 @@ class TasksTableViewController: UITableViewController {
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
     }
     
-    func setTasks(tasks: [Task]) {
+    func setTasks(tasks: [Task], reloadData: Bool = true) {
+        guard ignoreNextUpdate == false else {
+            ignoreNextUpdate = true
+            return
+        }
+        
         guard let filters = filters, let sort = sort else {
             self.tasks = tasks
             return;
@@ -88,14 +95,14 @@ class TasksTableViewController: UITableViewController {
                 return $0.dueDate < $1.dueDate // < ascending
             }
         })
+        
+        if reloadData {
+            tableView.reloadData()
+        }
     }
     
     func filtersChanged() {
         self.setTasks(tasks: self.tasks)
-        tableView.reloadData()
-    }
-    
-    func reloadData() {
         tableView.reloadData()
     }
     
@@ -126,7 +133,9 @@ class TasksTableViewController: UITableViewController {
         
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
+        
         task.remove()
+        ignoreNextUpdate = true
     }
 }
 
