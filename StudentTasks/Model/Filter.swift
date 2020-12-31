@@ -30,6 +30,7 @@ struct TasksFilter: Codable {
 extension TasksQuery {
     func save() {
         TasksQuery.instance = self
+        TasksQuery.writeToPersistentStorage(query: self)
         
         DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
             NotificationCenter.default.post(name: Constants.tasksQueryNotifcations["updated"]!, object: self)
