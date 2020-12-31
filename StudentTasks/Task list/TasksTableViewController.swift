@@ -165,10 +165,7 @@ extension TasksTableViewController {
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
         cell.subtitle.text = dateFormatter.string(from: task.dueDate)
-        if let imageData = task.course?.imageData {
-            print("image data")
-            cell.courseImage.image = UIImage(data: imageData)
-        }
+
         if let codableColor = task.course?.color {
             cell.courseImage.backgroundColor = codableColor.color
         }
