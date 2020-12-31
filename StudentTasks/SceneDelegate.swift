@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         
         UIApplication.shared.applicationIconBadgeNumber = 0 // Reset app icon badge on load
-        LocalNotificationManager.sharedInstance.detectPermission(callback: nil)
+        LocalNotificationManager.sharedInstance.detectPermission(ignoreNotDetermined: true, callback: nil)
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
