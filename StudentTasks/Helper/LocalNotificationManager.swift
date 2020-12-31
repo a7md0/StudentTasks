@@ -29,11 +29,13 @@ class LocalNotificationManager {
         }
     }
     
-    func detectPermission(callback: ((Bool, Error?) -> Void)?) {
+    func detectPermission(ignoreNotDetermined: Bool = false, callback: ((Bool, Error?) -> Void)?) {
         notificationCenter.getNotificationSettings { (settings) in
             if settings.authorizationStatus == .notDetermined {
                 // Notification permission has not been asked yet, go for it!
-                self.requestPermission(callback: callback)
+                if !ignoreNotDetermined {
+                    self.requestPermission(callback: callback)
+                }
             } else if settings.authorizationStatus == .denied {
                 // Notification permission was previously denied, go to settings & privacy to re-enable
                 if self.notificationSettings.notificationsGranted {

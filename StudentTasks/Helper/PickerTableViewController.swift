@@ -77,6 +77,7 @@ class PickerTableViewController: UITableViewController {
                 items[indexPath.row].checked = true
                 
                 tableView.reloadData()
+                done()
             }
         }
     }

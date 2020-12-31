@@ -20,9 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Request notification premission
         LocalNotificationManager.sharedInstance.detectPermission() { granted, error in
-            DataManagerController.sharedInstance.loadData()
+            DataManager.sharedInstance.loadData()
         }
-        //DataManagerController.sharedInstance.loadData()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -37,14 +36,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         
         UIApplication.shared.applicationIconBadgeNumber = 0 // Reset app icon badge on load
-        LocalNotificationManager.sharedInstance.detectPermission(callback: nil)
+        LocalNotificationManager.sharedInstance.detectPermission(ignoreNotDetermined: true, callback: nil)
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
         
-        DataManagerController.sharedInstance.saveData()
+        DataManager.sharedInstance.saveData()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

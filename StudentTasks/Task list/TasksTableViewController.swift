@@ -16,8 +16,7 @@ class TasksTableViewController: UITableViewController {
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
-    var filters: TasksFilter?
-    var sort: TasksSort?
+    var query: TasksQuery = TasksQuery.instance
     
     var ignoreNextUpdate: Bool = false
     
@@ -32,6 +31,21 @@ class TasksTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.queryUpdated), name: Constants.tasksQueryNotifcations["updated"]!, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func queryUpdated(notification: NSNotification) {
+        guard let query = notification.object as? TasksQuery else { return }
+        
+        self.query = query
+        
+        filterSortTasks()
+        tableView.reloadData()
     }
     
     func setTasks(tasks: [Task], reloadData: Bool = true) {
@@ -50,12 +64,10 @@ class TasksTableViewController: UITableViewController {
     }
     
     func filterSortTasks() {
-        guard let filters = filters, let sort = sort else { return; }
-        
         self.tasks = allTasks.filter({ (task) -> Bool in
             var keep = false
             
-            if filters.taskTypes.contains(task.type) && filters.taskStatus.contains(task.status) {
+            if query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status) {
                 keep = true
             }
             
@@ -80,7 +92,7 @@ class TasksTableViewController: UITableViewController {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
-                if sort.dueDate == .descending { // based on the filters sorting (user changeable)
+                if query.sortBy.dueDate == .descending { // based on the filters sorting (user changeable)
                     return compareDate == .orderedDescending
                 } else {
                     return compareDate == .orderedAscending
@@ -89,7 +101,7 @@ class TasksTableViewController: UITableViewController {
             
             // if the date compare result is the same (compareDate == .orderedSame)
             if $0.priority != $1.priority { // if the priorty isn't the same
-                if sort.importance == .highest { // based on the filters sorting (user changeable)
+                if query.sortBy.importance == .highest { // based on the filters sorting (user changeable)
                     return $0.priority > $1.priority // > descending
                 } else {
                     return $0.priority < $1.priority // < ascending
@@ -97,7 +109,7 @@ class TasksTableViewController: UITableViewController {
             }
             
             // if the priroity match too ($0.priority == $1.priority)
-            if sort.dueDate == .descending {  // based on the filters sorting (user changeable)
+            if query.sortBy.dueDate == .descending {  // based on the filters sorting (user changeable)
                 return $0.dueDate > $1.dueDate // > descending
             } else {
                 return $0.dueDate < $1.dueDate // < ascending
