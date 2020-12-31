@@ -12,6 +12,7 @@ class TasksTableViewController: UITableViewController {
     private var isSearching: Bool = false
     
     var course: Course?
+    private var allTasks: [Task] = []
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
@@ -34,17 +35,24 @@ class TasksTableViewController: UITableViewController {
     }
     
     func setTasks(tasks: [Task], reloadData: Bool = true) {
+        self.allTasks = tasks
+        
         guard ignoreNextUpdate == false else {
             ignoreNextUpdate = true
             return
         }
-        
-        guard let filters = filters, let sort = sort else {
-            self.tasks = tasks
-            return;
+
+        filterSortTasks()
+
+        if reloadData {
+            tableView.reloadData()
         }
+    }
+    
+    func filterSortTasks() {
+        guard let filters = filters, let sort = sort else { return; }
         
-        self.tasks = tasks.filter({ (task) -> Bool in
+        self.tasks = allTasks.filter({ (task) -> Bool in
             var keep = false
             
             if filters.taskTypes.contains(task.type) && filters.taskStatus.contains(task.status) {
@@ -95,14 +103,10 @@ class TasksTableViewController: UITableViewController {
                 return $0.dueDate < $1.dueDate // < ascending
             }
         })
-        
-        if reloadData {
-            tableView.reloadData()
-        }
     }
     
     func filtersChanged() {
-        self.setTasks(tasks: self.tasks)
+        filterSortTasks()
         tableView.reloadData()
     }
     
@@ -134,8 +138,8 @@ class TasksTableViewController: UITableViewController {
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         
-        task.remove()
         ignoreNextUpdate = true
+        task.remove()
     }
 }
 
