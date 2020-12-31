@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93027D0E259E7D4D00B53C06 /* GradingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93027D0D259E7D4D00B53C06 /* GradingSettings.swift */; };
 		93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93059CBD2597CBCF00B0B181 /* Constants.swift */; };
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
 		93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93027D0D259E7D4D00B53C06 /* GradingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingSettings.swift; sourceTree = "<group>"; };
 		93059CBD2597CBCF00B0B181 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
 		93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPreferencesTableViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				F0D914A42588D9DE0022DD06 /* Course.swift */,
 				938F7BC02593A4CB0062C79E /* TasksQuery.swift */,
 				93214116259C4E8E0029FEFD /* NotificationSettings.swift */,
+				93027D0D259E7D4D00B53C06 /* GradingSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */,
 				93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */,
 				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
+				93027D0E259E7D4D00B53C06 /* GradingSettings.swift in Sources */,
 				938F7BD22593F5A20062C79E /* PickerTableViewController.swift in Sources */,
 				C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */,
 				93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */,

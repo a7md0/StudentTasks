@@ -7,20 +7,7 @@
 
 import UIKit
 
-enum GpaModel: String, CustomStringConvertible, Codable, CaseIterable {
-    var description: String {
-        switch self {
-        case .fourPlus:
-            return "4.0 Scale (+)"
-        case .fourPlusMinus:
-            return "4.0 Scale (+/-)"
-        case .hundredPercentage:
-            return "Percentage scale (%)"
-        }
-    }
-    
-    case fourPlus = "4+", fourPlusMinus = "4+-", hundredPercentage = "100%"
-}
+
 
 class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
@@ -31,9 +18,12 @@ class SettingsTableViewController: UITableViewController {
     //
     
     // Grading section
-    var gpaModel: GpaModel = .fourPlusMinus
+    var gradingSettings: GradingSettings = GradingSettings.load()
     @IBOutlet weak var gpaModelLabel: UILabel!
     //
+    
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,21 +34,13 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadNotificationsSettings()
+        updateGradingSection()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
-    }
-
-    func handleGpaModelPicker(items: [PickerItem]) {
-        guard let choosedItem = items.first(where: { $0.checked }),
-              let model = GpaModel(rawValue: choosedItem.identifier) else { return }
-        
-        gpaModel = model
-        gpaModelLabel.text = gpaModel.description
-        // TODO: Save choosed gpa model
     }
 }
 
@@ -80,9 +62,9 @@ extension SettingsTableViewController {
                 
                 for model in GpaModel.allCases {
                     var pickerItem = PickerItem(identifier: model.rawValue, label: model.description, checked: false)
-                    /*if notificationSettings.preferredTypes.contains(model) {
+                    if gradingSettings.gpaModel == model {
                         pickerItem.checked = true
-                    }*/
+                    }
                     
                     pickerTableView.items.append(pickerItem)
                 }
@@ -151,5 +133,21 @@ extension SettingsTableViewController {
             notificationSettings.notificationsEnabled = sender.isOn
             notificationSettings.update()
         }
+    }
+}
+
+extension SettingsTableViewController {
+    func updateGradingSection() {
+        gpaModelLabel.text = gradingSettings.gpaModel.description
+    }
+
+    func handleGpaModelPicker(items: [PickerItem]) {
+        guard let choosedItem = items.first(where: { $0.checked }),
+              let model = GpaModel(rawValue: choosedItem.identifier) else { return }
+        
+        gradingSettings.gpaModel = model
+        gradingSettings.update()
+        
+        updateGradingSection()
     }
 }
