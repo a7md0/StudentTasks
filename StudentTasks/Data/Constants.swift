@@ -34,6 +34,9 @@ struct Constants {
         "updated": NSNotification.Name(rawValue: "NotifcationSettingsUpdated"),
         "enabledChanged": NSNotification.Name(rawValue: "NotifcationSettingsEnabledChanged"),
     ]
+    static let gradingSettingsNotifcations: [String : NSNotification.Name] = [
+        "updated": NSNotification.Name(rawValue: "GradingSettingsUpdated"),
+    ]
     static let tasksQueryNotifcations: [String : NSNotification.Name] = [
         "updated": NSNotification.Name(rawValue: "TasksFiltersNotifcationsUpdated"),
     ]
