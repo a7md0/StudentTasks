@@ -131,6 +131,12 @@ class TasksTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func completeItem(indexPath: IndexPath) {
+        var task = tasks[indexPath.row]
+        
+        task.complete(completedOn: nil)
+    }
 
     func deleteItem(indexPath: IndexPath) {
         var task = tasks[indexPath.row]
@@ -199,20 +205,46 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
+            
+            self.completeItem(indexPath: indexPath)
         }
         complete.backgroundColor = .gray
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            print("Delete \(indexPath.row + 1)")
+            let task = self.tasks[indexPath.row]
             
-            self.deleteItem(indexPath: indexPath)
+            self.showConfirmDelete(task.name) { (delete) in
+                completionHandler(true)
+                
+                if delete {
+                    print("Delete \(indexPath.row + 1)")
+                
+                    self.deleteItem(indexPath: indexPath)
+                }
+            }
         }
         delete.image = UIImage(systemName: "trash")
         
         let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
         
         return swipe
+    }
+    
+    func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
+        let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this task will delete all related data.", preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            handler?(true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            handler?(false)
+        }
+        
+        confirmAlert.addAction(okAction)
+        confirmAlert.addAction(cancelAction)
+
+        present(confirmAlert, animated: true, completion: nil)
     }
 
     /*
