@@ -11,6 +11,8 @@ class NotificationsPreferencesTableViewController: UITableViewController {
 
     var notificationSettings: NotificationSettings = NotificationSettings.load()
     
+    @IBOutlet weak var beforeDeadlineLabel: UILabel!
+    
     @IBOutlet weak var taskTypesLabel: UILabel!
     @IBOutlet weak var taskPrioritiesLabel: UILabel!
     
@@ -54,6 +56,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     func updateView() {
         loadSettings()
         updateDateLabels()
+        updateTriggers()
         updateTasksFilters()
     }
     
@@ -65,6 +68,12 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     func updateDateLabels() {
         fromDateLabel.text = timeFormatter.string(from: fromDatePicker.date)
         toDateLabel.text = timeFormatter.string(from: toDatePicker.date)
+    }
+    
+    func updateTriggers() {
+        if let item  = Constants.daysMapping.first(where: { $0.key == notificationSettings.triggerBefore }) {
+            beforeDeadlineLabel.text = item.value
+        }
     }
     
     func updateTasksFilters() {
@@ -81,6 +90,16 @@ class NotificationsPreferencesTableViewController: UITableViewController {
         default:
             return "Custom"
         }
+    }
+    
+    func handleTriggerBeforeDeadlinePicker(items: [PickerItem]) {
+        if let chosenItem = items.first(where: {$0.checked}),
+           let value = Int(chosenItem.identifier) {
+            notificationSettings.triggerBefore = value
+        }
+        
+        notificationSettings.update()
+        updateTriggers()
     }
     
     func handleTaskTypesPicker(items: [PickerItem]) {
@@ -152,7 +171,19 @@ extension NotificationsPreferencesTableViewController {
             pickerTableView.identifier = segue.identifier
             pickerTableView.unwindSegueIdentifier = "unwindNotificationsPreferences"
             
-            if segue.identifier == "notificationTaskTypesSegue" {
+            if segue.identifier == "notificationTaskTriggerB4Segue" {
+                pickerTableView.title = "Before deadline"
+                pickerTableView.multiSelect = false
+                
+                for day in Constants.daysMapping {
+                    var pickerItem = PickerItem(identifier: String(day.key), label: day.value, checked: false)
+                    if notificationSettings.triggerBefore == day.key {
+                        pickerItem.checked = true
+                    }
+                    
+                    pickerTableView.items.append(pickerItem)
+                }
+            } else if segue.identifier == "notificationTaskTypesSegue" {
                 pickerTableView.title = "Task types"
                 pickerTableView.multiSelect = true
                 
@@ -186,7 +217,9 @@ extension NotificationsPreferencesTableViewController {
         
         if unwindSegue.identifier == "unwindNotificationsPreferences",
            let pickerView = sourceViewController as? PickerTableViewController {
-            if pickerView.identifier == "notificationTaskTypesSegue" {
+            if pickerView.identifier == "notificationTaskTriggerB4Segue" {
+                handleTriggerBeforeDeadlinePicker(items: pickerView.items)
+            } else if pickerView.identifier == "notificationTaskTypesSegue" {
                 handleTaskTypesPicker(items: pickerView.items)
             } else if pickerView.identifier == "notificationTaskPrioritiesSegue" {
                 handleTaskPrioritiesPicker(items: pickerView.items)

@@ -844,6 +844,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="beforeDeadlineLabel" destination="KWb-Ta-gnW" id="b4F-FQ-QHt"/>
                         <outlet property="fromDateLabel" destination="FU2-aB-uo9" id="yRA-eJ-EsZ"/>
                         <outlet property="fromDatePicker" destination="qjc-Ez-lts" id="gJ6-DO-vQb"/>
                         <outlet property="taskPrioritiesLabel" destination="9ht-Nb-oBy" id="XqK-7l-7Kh"/>
