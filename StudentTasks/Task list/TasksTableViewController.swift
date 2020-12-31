@@ -12,11 +12,14 @@ class TasksTableViewController: UITableViewController {
     private var isSearching: Bool = false
     
     var course: Course?
+    private var allTasks: [Task] = []
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
     var filters: TasksFilter?
     var sort: TasksSort?
+    
+    var ignoreNextUpdate: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +34,25 @@ class TasksTableViewController: UITableViewController {
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
     }
     
-    func setTasks(tasks: [Task]) {
-        guard let filters = filters, let sort = sort else {
-            self.tasks = tasks
-            return;
-        }
+    func setTasks(tasks: [Task], reloadData: Bool = true) {
+        self.allTasks = tasks
         
-        self.tasks = tasks.filter({ (task) -> Bool in
+        guard ignoreNextUpdate == false else {
+            ignoreNextUpdate = true
+            return
+        }
+
+        filterSortTasks()
+
+        if reloadData {
+            tableView.reloadData()
+        }
+    }
+    
+    func filterSortTasks() {
+        guard let filters = filters, let sort = sort else { return; }
+        
+        self.tasks = allTasks.filter({ (task) -> Bool in
             var keep = false
             
             if filters.taskTypes.contains(task.type) && filters.taskStatus.contains(task.status) {
@@ -91,9 +106,10 @@ class TasksTableViewController: UITableViewController {
     }
     
     func filtersChanged() {
-        self.setTasks(tasks: self.tasks)
+        filterSortTasks()
         tableView.reloadData()
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowTaskDetails", sender: self)
     }
@@ -115,12 +131,20 @@ class TasksTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func completeItem(indexPath: IndexPath) {
+        var task = tasks[indexPath.row]
+        
+        task.complete(completedOn: nil)
+    }
 
     func deleteItem(indexPath: IndexPath) {
         var task = tasks[indexPath.row]
         
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
+        
+        ignoreNextUpdate = true
         task.remove()
     }
 }
@@ -138,19 +162,11 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        dateFormatter.timeZone = .current
-
         // Configure the cell...
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
-        cell.subtitle.text = dateFormatter.string(from: task.dueDate)
-        if let imageData = task.course?.imageData {
-            print("image data")
-            cell.courseImage.image = UIImage(data: imageData)
-        }
+        cell.subtitle.text = task.brief
+
         if let codableColor = task.course?.color {
             cell.courseImage.backgroundColor = codableColor.color
         }
@@ -184,20 +200,46 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
+            
+            self.completeItem(indexPath: indexPath)
         }
         complete.backgroundColor = .gray
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            print("Delete \(indexPath.row + 1)")
+            let task = self.tasks[indexPath.row]
             
-            self.deleteItem(indexPath: indexPath)
+            self.showConfirmDelete(task.name) { (delete) in
+                completionHandler(true)
+                
+                if delete {
+                    print("Delete \(indexPath.row + 1)")
+                
+                    self.deleteItem(indexPath: indexPath)
+                }
+            }
         }
         delete.image = UIImage(systemName: "trash")
         
         let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
         
         return swipe
+    }
+    
+    func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
+        let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this task will delete all related data.", preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            handler?(true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            handler?(false)
+        }
+        
+        confirmAlert.addAction(okAction)
+        confirmAlert.addAction(cancelAction)
+
+        present(confirmAlert, animated: true, completion: nil)
     }
 
     /*

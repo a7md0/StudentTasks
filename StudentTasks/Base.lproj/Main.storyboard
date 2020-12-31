@@ -635,7 +635,7 @@
             </objects>
             <point key="canvasLocation" x="2125" y="1505"/>
         </scene>
-        <!--Notifications-->
+        <!--Preferences-->
         <scene sceneID="kPw-O7-94m">
             <objects>
                 <tableViewController id="mvx-O1-aud" customClass="NotificationsPreferencesTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
@@ -800,7 +800,7 @@
                             <outlet property="delegate" destination="mvx-O1-aud" id="Ds3-s0-aic"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notifications" id="wYA-hJ-iGO">
+                    <navigationItem key="navigationItem" title="Preferences" id="wYA-hJ-iGO">
                         <barButtonItem key="leftBarButtonItem" title="Reset" id="TBo-MJ-tK3">
                             <connections>
                                 <action selector="resetButtonPressed:" destination="mvx-O1-aud" id="5i4-Mv-eJs"/>
@@ -1708,7 +1708,7 @@
             <objects>
                 <tableViewController id="5FD-Ih-vDH" customClass="PickerTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3i9-5A-yu4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -2380,7 +2380,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ma2-Ky-h6t"/>
+        <segue reference="xQT-aE-kab"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

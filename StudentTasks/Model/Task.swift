@@ -82,6 +82,20 @@ extension Task {
         return .ongoing
     }
     
+    var brief: String {
+        switch self.status {
+        case .overdue:
+            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.dueDate, relativeTo: Date())
+            return "Overdue by \(relativeString)"
+        case .ongoing:
+            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.dueDate, relativeTo: Date())
+            return "Due \(relativeString)"
+        case .completed:
+            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: Date())
+            return "Completed \(relativeString.replacingOccurrences(of: "in", with: "from"))"
+        }
+    }
+    
     var course: Course? {
         get {
             guard let courseId = self.courseId else { return nil }
@@ -93,6 +107,13 @@ extension Task {
             courseId = newValue?.id
         }
     }
+    
+    private static let relativeDateTimeFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        
+        return formatter
+    }()
 }
 
 // MARK: - Mutating
