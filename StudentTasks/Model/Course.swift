@@ -27,11 +27,6 @@ struct Course: Codable, Equatable {
     var tags: [CourseTag] = []
     
     var lecturerName: String?
-    var overallGrade: Grade?
-    
-    var ongoingTasks: Int = 0
-    var completedTasks: Int = 0
-    var overdueTasks: Int = 0
     
     var tasks: [Task] = []
     
@@ -44,9 +39,23 @@ enum CourseTag: String, Codable, CaseIterable {
     case online = "Online", lab = "Lab", lecture = "Lecture"
 }
 
-// MARK: - Sub
-struct Grade: Codable {
+// MARK: - Computed properties
+extension Course {
+    var overallGrade: String {
+        return "A+" // TODO: implement logic instead of placeholder
+    }
     
+    var ongoingTasks: Int {
+        return self.tasks.filter { $0.status == .ongoing }.count
+    }
+    
+    var completedTasks: Int {
+        return self.tasks.filter { $0.status == .completed }.count
+    }
+    
+    var overdueTasks: Int {
+        return self.tasks.filter { $0.status == .overdue }.count
+    }
 }
 
 // MARK: - Tasks mutation
