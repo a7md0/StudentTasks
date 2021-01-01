@@ -64,8 +64,9 @@ extension TasksViewController {
         
         //courses.append(course)
         prepareTab(course: course, tasks: course.tasks)
-        tabScrollView.reloadData()
-        print("Detect course created")
+        Debounce<String>.input("courseCreated", comparedAgainst: "courseCreated") { _ in
+            self.tabScrollView.reloadData()
+        }
     }
     
     @objc private func courseUpdated(notification: NSNotification) {
@@ -80,8 +81,9 @@ extension TasksViewController {
         
         labels[vcIdx].text = course.name
         
-        tabScrollView.reloadData()
-        print("Detect course updated. Updated course tab at idnex \(vcIdx)")
+        Debounce<String>.input("courseUpdated", comparedAgainst: "courseUpdated") { _ in
+            self.tabScrollView.reloadData()
+        }
     }
     
     @objc private func courseRemoved(notification: NSNotification) {
@@ -94,7 +96,6 @@ extension TasksViewController {
         labels.remove(at: vcIdx)
         
         tabScrollView.reloadData()
-        print("Detect course removed. Removing course at index \(vcIdx)")
     }
 }
 
