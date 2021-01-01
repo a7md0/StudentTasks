@@ -44,7 +44,7 @@ struct Constants {
         "updated": NSNotification.Name(rawValue: "TasksFiltersNotifcationsUpdated"),
     ]
     
-    static let daysMapping: [(key: Int, value: String)] = [
+    static let daysMapping: [(key: Double, value: String)] = [
         (1, "1 Day"),
         (2, "2 Days"),
         (3, "3 Days"),

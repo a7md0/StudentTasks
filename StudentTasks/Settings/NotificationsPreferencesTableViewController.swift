@@ -98,7 +98,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     
     func handleTriggerBeforeDeadlinePicker(items: [PickerItem]) {
         if let chosenItem = items.first(where: {$0.checked}),
-           let value = Int(chosenItem.identifier) {
+           let value = Double(chosenItem.identifier) {
             notificationSettings.triggerBefore = value
         }
         
