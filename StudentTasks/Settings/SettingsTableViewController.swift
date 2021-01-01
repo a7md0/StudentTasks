@@ -22,6 +22,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var gpaModelLabel: UILabel!
     //
     
+    var appearanceSettings: AppearanceSettings  = AppearanceSettings.load()
     @IBOutlet weak var themeLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     
@@ -35,6 +36,7 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadNotificationsSettings()
         updateGradingSection()
+        updateAppearanceSection()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -68,6 +70,18 @@ extension SettingsTableViewController {
                     
                     pickerTableView.items.append(pickerItem)
                 }
+            } else if segue.identifier ==  "themeSegue" {
+                pickerTableView.title = "Theme"
+                pickerTableView.multiSelect = false
+                
+                for theme in AppearanceTheme.allCases {
+                    var pickerItem = PickerItem(identifier: theme.rawValue, label: theme.description, checked: false)
+                    if appearanceSettings.theme == theme {
+                        pickerItem.checked = true
+                    }
+                    
+                    pickerTableView.items.append(pickerItem)
+                }
             }
         }
     }
@@ -80,6 +94,8 @@ extension SettingsTableViewController {
            let pickerView = sourceViewController as? PickerTableViewController {
             if pickerView.identifier == "gpaModelSegue" {
                 handleGpaModelPicker(items: pickerView.items)
+            } else if pickerView.identifier == "themeSegue" {
+                handleThemePicker(items: pickerView.items)
             }
         }
     }
@@ -88,6 +104,11 @@ extension SettingsTableViewController {
 extension SettingsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let cell = tableView.cellForRow(at: indexPath),
+           cell.reuseIdentifier == "languageCell" {
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
     }
 }
 
@@ -149,5 +170,21 @@ extension SettingsTableViewController {
         gradingSettings.update()
         
         updateGradingSection()
+    }
+}
+
+extension SettingsTableViewController {
+    func updateAppearanceSection() {
+        themeLabel.text = appearanceSettings.theme.description
+    }
+
+    func handleThemePicker(items: [PickerItem]) {
+        guard let choosedItem = items.first(where: { $0.checked }),
+              let model = AppearanceTheme(rawValue: choosedItem.identifier) else { return }
+        
+        appearanceSettings.theme = model
+        appearanceSettings.update()
+        
+        updateAppearanceSection()
     }
 }
