@@ -103,6 +103,9 @@ extension TasksViewController {
 extension TasksViewController: UISearchBarDelegate {
     func setupSearchBar() {
         searchBar.delegate = self
+        
+        searchBar.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
+        searchBar.showsBookmarkButton = true
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -114,6 +117,24 @@ extension TasksViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(false)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        performSegue(withIdentifier: "tasksFiltersSegue", sender: self)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.showsBookmarkButton = false
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.showsBookmarkButton = true
     }
 }
 
@@ -131,7 +152,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         tabScrollView.cachedPageLimit = 3*/
         
         tabScrollView.tabSectionBackgroundColor = .systemGray6
-        tabScrollView.tabSectionHeight = 48
+        tabScrollView.tabSectionHeight = 42
         
         tabScrollView.arrowIndicator = true
         tabScrollView.contentSectionScrollEnabled = false
