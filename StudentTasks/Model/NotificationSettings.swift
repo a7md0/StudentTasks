@@ -13,6 +13,8 @@ struct NotificationSettings: Codable {
     var notificationsGranted: Bool = false
     var notificationsEnabled: Bool = true
     
+    var triggerBefore: Int = 3
+    
     var preferredTypes: [TaskType] = TaskType.allCases
     var preferredPriorities: [TaskPriority] = TaskPriority.allCases
     

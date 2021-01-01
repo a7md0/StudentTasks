@@ -22,6 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         LocalNotificationManager.sharedInstance.detectPermission() { granted, error in
             DataManager.sharedInstance.loadData()
         }
+        
+        let appearanceSettings: AppearanceSettings = AppearanceSettings.load()
+        changeUserInterfaceStyle(theme: appearanceSettings.theme)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.appearanceSettingsUpdated), name: Constants.appearanceSettingsNotifcations["updated"]!, object: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -55,5 +60,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    func changeUserInterfaceStyle(theme: AppearanceTheme) {
+        guard let window = window else { return }
+        let style = AppearanceTheme.interfaceStyleOf(theme)
+        
+        if window.overrideUserInterfaceStyle != style {
+            window.overrideUserInterfaceStyle = style
+        }
+    }
+    
+    @objc private func appearanceSettingsUpdated(notification: NSNotification) {
+        guard let appearanceSettings = notification.object as? AppearanceSettings else { return }
+        
+        self.changeUserInterfaceStyle(theme: appearanceSettings.theme)
     }
 }

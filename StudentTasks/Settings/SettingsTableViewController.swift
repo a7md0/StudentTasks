@@ -7,20 +7,7 @@
 
 import UIKit
 
-enum GpaModel: String, CustomStringConvertible, Codable, CaseIterable {
-    var description: String {
-        switch self {
-        case .fourPlus:
-            return "4.0 Scale (+)"
-        case .fourPlusMinus:
-            return "4.0 Scale (+/-)"
-        case .hundredPercentage:
-            return "Percentage scale (%)"
-        }
-    }
-    
-    case fourPlus = "4+", fourPlusMinus = "4+-", hundredPercentage = "100%"
-}
+
 
 class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
@@ -31,9 +18,13 @@ class SettingsTableViewController: UITableViewController {
     //
     
     // Grading section
-    var gpaModel: GpaModel = .fourPlusMinus
+    var gradingSettings: GradingSettings = GradingSettings.load()
     @IBOutlet weak var gpaModelLabel: UILabel!
     //
+    
+    var appearanceSettings: AppearanceSettings  = AppearanceSettings.load()
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,21 +35,14 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadNotificationsSettings()
+        updateGradingSection()
+        updateAppearanceSection()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
-    }
-
-    func handleGpaModelPicker(items: [PickerItem]) {
-        guard let choosedItem = items.first(where: { $0.checked }),
-              let model = GpaModel(rawValue: choosedItem.identifier) else { return }
-        
-        gpaModel = model
-        gpaModelLabel.text = gpaModel.description
-        // TODO: Save choosed gpa model
     }
 }
 
@@ -80,9 +64,21 @@ extension SettingsTableViewController {
                 
                 for model in GpaModel.allCases {
                     var pickerItem = PickerItem(identifier: model.rawValue, label: model.description, checked: false)
-                    /*if notificationSettings.preferredTypes.contains(model) {
+                    if gradingSettings.gpaModel == model {
                         pickerItem.checked = true
-                    }*/
+                    }
+                    
+                    pickerTableView.items.append(pickerItem)
+                }
+            } else if segue.identifier ==  "themeSegue" {
+                pickerTableView.title = "Theme"
+                pickerTableView.multiSelect = false
+                
+                for theme in AppearanceTheme.allCases {
+                    var pickerItem = PickerItem(identifier: theme.rawValue, label: theme.description, checked: false)
+                    if appearanceSettings.theme == theme {
+                        pickerItem.checked = true
+                    }
                     
                     pickerTableView.items.append(pickerItem)
                 }
@@ -98,6 +94,8 @@ extension SettingsTableViewController {
            let pickerView = sourceViewController as? PickerTableViewController {
             if pickerView.identifier == "gpaModelSegue" {
                 handleGpaModelPicker(items: pickerView.items)
+            } else if pickerView.identifier == "themeSegue" {
+                handleThemePicker(items: pickerView.items)
             }
         }
     }
@@ -106,6 +104,11 @@ extension SettingsTableViewController {
 extension SettingsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let cell = tableView.cellForRow(at: indexPath),
+           cell.reuseIdentifier == "languageCell" {
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
     }
 }
 
@@ -151,5 +154,37 @@ extension SettingsTableViewController {
             notificationSettings.notificationsEnabled = sender.isOn
             notificationSettings.update()
         }
+    }
+}
+
+extension SettingsTableViewController {
+    func updateGradingSection() {
+        gpaModelLabel.text = gradingSettings.gpaModel.description
+    }
+
+    func handleGpaModelPicker(items: [PickerItem]) {
+        guard let choosedItem = items.first(where: { $0.checked }),
+              let model = GpaModel(rawValue: choosedItem.identifier) else { return }
+        
+        gradingSettings.gpaModel = model
+        gradingSettings.update()
+        
+        updateGradingSection()
+    }
+}
+
+extension SettingsTableViewController {
+    func updateAppearanceSection() {
+        themeLabel.text = appearanceSettings.theme.description
+    }
+
+    func handleThemePicker(items: [PickerItem]) {
+        guard let choosedItem = items.first(where: { $0.checked }),
+              let model = AppearanceTheme(rawValue: choosedItem.identifier) else { return }
+        
+        appearanceSettings.theme = model
+        appearanceSettings.update()
+        
+        updateAppearanceSection()
     }
 }

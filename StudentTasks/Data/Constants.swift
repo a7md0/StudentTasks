@@ -34,7 +34,26 @@ struct Constants {
         "updated": NSNotification.Name(rawValue: "NotifcationSettingsUpdated"),
         "enabledChanged": NSNotification.Name(rawValue: "NotifcationSettingsEnabledChanged"),
     ]
+    static let gradingSettingsNotifcations: [String : NSNotification.Name] = [
+        "updated": NSNotification.Name(rawValue: "GradingSettingsUpdated"),
+    ]
+    static let appearanceSettingsNotifcations: [String : NSNotification.Name] = [
+        "updated": NSNotification.Name(rawValue: "AppearanceSettingsUpdated"),
+    ]
     static let tasksQueryNotifcations: [String : NSNotification.Name] = [
         "updated": NSNotification.Name(rawValue: "TasksFiltersNotifcationsUpdated"),
+    ]
+    
+    static let daysMapping: [(key: Int, value: String)] = [
+        (1, "1 Day"),
+        (2, "2 Days"),
+        (3, "3 Days"),
+        (4, "4 Days"),
+        (5, "5 Days"),
+        (6, "6 Days"),
+        (7, "1 Week"),
+        (14, "2 Weeks"),
+        (21, "3 Weeks"),
+        (28, "4 Weeks"),
     ]
 }
