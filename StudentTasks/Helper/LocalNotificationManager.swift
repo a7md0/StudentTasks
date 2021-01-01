@@ -97,18 +97,27 @@ extension LocalNotificationManager {
     
     private func notificationsFor(task: Task) -> [Notification] {
         var notifications: [Notification] = []
+        let notificationsSettings = NotificationSettings.load()
         
-        var date1 = Date()
-        date1.addTimeInterval(60)
+        guard let course = task.course, // unwrap course
+              task.status == .ongoing, // only for ongoing tasks
+              notificationsSettings.notificationsEnabled, // if notification enabled by the user
+              notificationsSettings.notificationsGranted, // if notification access granted by the user
+              notificationsSettings.preferredTypes.contains(task.type), // if the preferred types include the task type
+              notificationsSettings.preferredPriorities.contains(task.priority) // if the preferred priorties include the task priority
+        else { return notifications }
         
-        let noti1 = Notification(triggerDate: date1)
-        noti1.content.title = "Test Notification"
-        noti1.content.subtitle = "Aaa"
-        noti1.content.body = "..............."
-        noti1.content.badge = 1
-        noti1.content.sound = (task.priority == .high) ? .defaultCritical : .default
+        let triggerDate = DateUtilities.determineTriggerDate(target: task.dueDate, beforeDays: notificationsSettings.triggerBefore, timeConstraint: notificationsSettings.preferredTimeRange)
         
-        notifications.append(noti1)
+        let notification = Notification(triggerDate: triggerDate)
+        notification.content.title = "\(task.name) \(task.type.rawValue)"
+        notification.content.body = "\(course.name) task is due \(DateUtilities.relativeDateTimeFormatter.localizedString(for: task.dueDate, relativeTo: triggerDate))"
+        notification.content.badge = 1
+        notification.content.sound = (task.priority == .high) ? .defaultCritical : .default
+        notification.content.categoryIdentifier = "Task"
+        notification.content.userInfo["taskId"] = task.id.uuidString
+        
+        notifications.append(notification)
         
         return notifications
     }

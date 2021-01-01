@@ -59,7 +59,10 @@ class TasksTableViewController: UITableViewController {
         filterSortTasks()
 
         if reloadData {
-            tableView.reloadData()
+            let reloadId = "\(course?.id.uuidString ?? "all")TabSetTasksReload"
+            Debounce<String>.input(reloadId, comparedAgainst: reloadId) { _ in
+                self.tableView.reloadData()
+            }
         }
     }
     

@@ -1859,39 +1859,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnL-Kp-Z4v">
-                                <rect key="frame" x="0.0" y="88" width="390" height="48"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="56"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search tasks" translatesAutoresizingMaskIntoConstraints="NO" id="nrG-AD-FKb">
-                                        <rect key="frame" x="0.0" y="-4" width="326" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
                                             <string>Title</string>
                                         </scopeButtonTitles>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dny-OA-oOL">
-                                        <rect key="frame" x="328" y="5.6666666666666714" width="52" height="36.666666666666664"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="Filters"/>
-                                        <connections>
-                                            <segue destination="UbE-l8-zag" kind="presentation" identifier="tasksFiltersSegue" id="Pmp-e5-sbz"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="nrG-AD-FKb" secondAttribute="trailing" constant="64" id="4UI-cU-Ivi"/>
-                                    <constraint firstAttribute="height" constant="48" id="ATB-Iu-UxQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="dny-OA-oOL" secondAttribute="trailing" constant="10" id="Tfz-Xf-spN"/>
-                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="dny-OA-oOL" secondAttribute="centerY" id="ZPG-Ch-UaL"/>
-                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="fP9-Hf-yLr"/>
-                                    <constraint firstItem="dny-OA-oOL" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="top" constant="5.6666666666666714" id="fb4-gf-djS"/>
-                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="leading" secondItem="GnL-Kp-Z4v" secondAttribute="leading" id="ify-2J-Qx9"/>
-                                    <constraint firstItem="dny-OA-oOL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GnL-Kp-Z4v" secondAttribute="leading" constant="20" symbolic="YES" id="sje-zo-SR2"/>
+                                    <constraint firstAttribute="height" constant="56" id="ATB-Iu-UxQ"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerX" secondItem="GnL-Kp-Z4v" secondAttribute="centerX" id="R5L-ic-PXn"/>
+                                    <constraint firstAttribute="trailing" secondItem="nrG-AD-FKb" secondAttribute="trailing" id="REM-Ej-AvO"/>
+                                    <constraint firstAttribute="bottom" secondItem="nrG-AD-FKb" secondAttribute="bottom" id="TXB-oz-dc1"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="top" secondItem="GnL-Kp-Z4v" secondAttribute="top" id="Vx1-Ug-4dC"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="centerY" secondItem="GnL-Kp-Z4v" secondAttribute="centerY" id="tgZ-cx-wxL"/>
+                                    <constraint firstItem="nrG-AD-FKb" firstAttribute="leading" secondItem="GnL-Kp-Z4v" secondAttribute="leading" id="yLs-Oo-fPD"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eQ-1l-vfM" customClass="ACTabScrollView" customModule="StudentTasks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="390" height="625"/>
+                                <rect key="frame" x="0.0" y="144" width="390" height="617"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -1915,10 +1906,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="filterButton" destination="dny-OA-oOL" id="xvy-R7-dH8"/>
                         <outlet property="searchBar" destination="nrG-AD-FKb" id="g0N-ub-B0T"/>
                         <outlet property="searchView" destination="GnL-Kp-Z4v" id="akp-ht-IAV"/>
                         <outlet property="tabScrollView" destination="5eQ-1l-vfM" id="YDh-P9-HKp"/>
+                        <segue destination="UbE-l8-zag" kind="presentation" identifier="tasksFiltersSegue" id="HBs-ub-Pin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="902-I1-Ck7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
