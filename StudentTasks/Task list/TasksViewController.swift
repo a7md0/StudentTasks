@@ -20,9 +20,6 @@ class TasksViewController: UIViewController {
     
     var courses: [Course] = []
     
-    var sort: TasksSort?
-    var filters: TasksFilter?
-    
     var searchQuery: String?
     
     let storyboardRef = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -33,9 +30,6 @@ class TasksViewController: UIViewController {
         courses = Course.findAll()
 
         // Do any additional setup after loading the view.
-        sort = TasksSort()
-        filters = TasksFilter()
-        
         setupSearchBar()
         setupTabScrollView()
     }
@@ -44,6 +38,7 @@ class TasksViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
+        updatesTabTablesTasks()
     }
 
     // MARK: - Navigation
@@ -56,8 +51,6 @@ class TasksViewController: UIViewController {
         if segue.identifier == "tasksFiltersSegue",
            let destinationNavigationController = segue.destination as? UINavigationController,
            let tasksFiltersController = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
-            tasksFiltersController.sort = sort
-            tasksFiltersController.filters = filters
         }
     }
     
@@ -188,9 +181,6 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
     
     private func prepareTab(course: Course?, tasks: [Task]) {
         let tabTableView = storyboardRef.instantiateViewController(withIdentifier: "TasksTableViewController") as! TasksTableViewController
-        
-        tabTableView.filters = self.filters
-        tabTableView.sort = self.sort
         
         tabTableView.course = course
         tabTableView.setTasks(tasks: tasks)

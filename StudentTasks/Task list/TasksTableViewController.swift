@@ -12,11 +12,13 @@ class TasksTableViewController: UITableViewController {
     private var isSearching: Bool = false
     
     var course: Course?
+    private var allTasks: [Task] = []
     private var tasks: [Task] = []
     private var searchTasks: [Task] = []
     
-    var filters: TasksFilter?
-    var sort: TasksSort?
+    var query: TasksQuery = TasksQuery.instance
+    
+    var ignoreNextUpdate: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +31,43 @@ class TasksTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.queryUpdated), name: Constants.tasksQueryNotifcations["updated"]!, object: nil)
     }
     
-    func setTasks(tasks: [Task]) {
-        guard let filters = filters, let sort = sort else {
-            self.tasks = tasks
-            return;
-        }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func queryUpdated(notification: NSNotification) {
+        guard let query = notification.object as? TasksQuery else { return }
         
-        self.tasks = tasks.filter({ (task) -> Bool in
+        self.query = query
+        
+        filterSortTasks()
+        tableView.reloadData()
+    }
+    
+    func setTasks(tasks: [Task], reloadData: Bool = true) {
+        self.allTasks = tasks
+        
+        guard ignoreNextUpdate == false else {
+            ignoreNextUpdate = true
+            return
+        }
+
+        filterSortTasks()
+
+        if reloadData {
+            tableView.reloadData()
+        }
+    }
+    
+    func filterSortTasks() {
+        self.tasks = allTasks.filter({ (task) -> Bool in
             var keep = false
             
-            if filters.taskTypes.contains(task.type) && filters.taskStatus.contains(task.status) {
+            if query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status) {
                 keep = true
             }
             
@@ -65,7 +92,7 @@ class TasksTableViewController: UITableViewController {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
-                if sort.dueDate == .descending { // based on the filters sorting (user changeable)
+                if query.sortBy.dueDate == .descending { // based on the filters sorting (user changeable)
                     return compareDate == .orderedDescending
                 } else {
                     return compareDate == .orderedAscending
@@ -74,7 +101,7 @@ class TasksTableViewController: UITableViewController {
             
             // if the date compare result is the same (compareDate == .orderedSame)
             if $0.priority != $1.priority { // if the priorty isn't the same
-                if sort.importance == .highest { // based on the filters sorting (user changeable)
+                if query.sortBy.importance == .highest { // based on the filters sorting (user changeable)
                     return $0.priority > $1.priority // > descending
                 } else {
                     return $0.priority < $1.priority // < ascending
@@ -82,7 +109,7 @@ class TasksTableViewController: UITableViewController {
             }
             
             // if the priroity match too ($0.priority == $1.priority)
-            if sort.dueDate == .descending {  // based on the filters sorting (user changeable)
+            if query.sortBy.dueDate == .descending {  // based on the filters sorting (user changeable)
                 return $0.dueDate > $1.dueDate // > descending
             } else {
                 return $0.dueDate < $1.dueDate // < ascending
@@ -91,8 +118,18 @@ class TasksTableViewController: UITableViewController {
     }
     
     func filtersChanged() {
-        self.setTasks(tasks: self.tasks)
+        filterSortTasks()
         tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowTaskDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? TaskDetailsTableViewController{
+            destination.tasks = tasks[(tableView.indexPathForSelectedRow?.row)!]
+        }
     }
 
     
@@ -106,12 +143,20 @@ class TasksTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func completeItem(indexPath: IndexPath) {
+        var task = tasks[indexPath.row]
+        
+        task.complete(completedOn: nil)
+    }
 
     func deleteItem(indexPath: IndexPath) {
         var task = tasks[indexPath.row]
         
         tasks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
+        
+        ignoreNextUpdate = true
         task.remove()
     }
 }
@@ -129,19 +174,11 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        dateFormatter.timeZone = .current
-
         // Configure the cell...
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
-        cell.subtitle.text = dateFormatter.string(from: task.dueDate)
-        if let imageData = task.course?.imageData {
-            print("image data")
-            cell.courseImage.image = UIImage(data: imageData)
-        }
+        cell.subtitle.text = task.brief
+
         if let codableColor = task.course?.color {
             cell.courseImage.backgroundColor = codableColor.color
         }
@@ -154,6 +191,7 @@ extension TasksTableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    @IBAction func TaskTableView(_ sender: UIStoryboardSegue){ }
 
     /*
     // Override to support editing the table view.
@@ -174,20 +212,46 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
+            
+            self.completeItem(indexPath: indexPath)
         }
         complete.backgroundColor = .gray
         complete.image = UIImage(systemName: "checkmark")
         
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            print("Delete \(indexPath.row + 1)")
+            let task = self.tasks[indexPath.row]
             
-            self.deleteItem(indexPath: indexPath)
+            self.showConfirmDelete(task.name) { (delete) in
+                completionHandler(true)
+                
+                if delete {
+                    print("Delete \(indexPath.row + 1)")
+                
+                    self.deleteItem(indexPath: indexPath)
+                }
+            }
         }
         delete.image = UIImage(systemName: "trash")
         
         let swipe = UISwipeActionsConfiguration(actions: [complete, delete])
         
         return swipe
+    }
+    
+    func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
+        let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this task will delete all related data.", preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            handler?(true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            handler?(false)
+        }
+        
+        confirmAlert.addAction(okAction)
+        confirmAlert.addAction(cancelAction)
+
+        present(confirmAlert, animated: true, completion: nil)
     }
 
     /*

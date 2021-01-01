@@ -9,8 +9,7 @@ import UIKit
 
 class TasksFiltersTableViewController: UITableViewController {
 
-    var sort: TasksSort?
-    var filters: TasksFilter?
+    var query: TasksQuery = TasksQuery.instance
     
     static var pcikerUnwindSegueIdentifier: String = "tasksFiltersUnwindSegue"
     
@@ -32,44 +31,44 @@ class TasksFiltersTableViewController: UITableViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: UIBarButtonItem) {
-        filters?.restoreDefault()
-        sort?.restoreDefault()
+        query.sortBy.restoreDefault()
+        query.filterBy.restoreDefault()
         
         updateView()
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        self.query.save()
+        
         performSegue(withIdentifier: "tasksViewUnwindSegue", sender: self)
     }
     
     func updateView() {
-        dueDateLabel.text = sort?.dueDate.rawValue
-        importancelabel.text = sort?.importance.rawValue
+        dueDateLabel.text = query.sortBy.dueDate.rawValue
+        importancelabel.text = query.sortBy.importance.rawValue
         
-        
-        taskTypeLabel.text = filters?.taskTypes.count == filters?.defaultTaskTypes.count ? "All" : "Custom"
-        taskStatusLabel.text = filters?.taskStatus.count == filters?.defaultTaskStatus.count ? "All" : "Custom"
+        taskTypeLabel.text = query.filterBy.taskTypes.count == query.filterBy.defaultTaskTypes.count ? "All" : "Custom"
+        taskStatusLabel.text = query.filterBy.taskStatus.count == query.filterBy.defaultTaskStatus.count ? "All" : "Custom"
     }
     
     func handlePickerSelectionUpdate(identifier: String?, items: [PickerItem]) {
-        guard let identifier = identifier,
-              let filters = filters else { return }
+        guard let identifier = identifier else { return }
         
         switch identifier {
         case "taskTypeSegue":
-            filters.taskTypes = []
+            query.filterBy.taskTypes = []
             
             items.filter { $0.checked }.forEach { (item) in
                 if let taskType = TaskType(rawValue: item.identifier) {
-                    filters.taskTypes.append(taskType)
+                    query.filterBy.taskTypes.append(taskType)
                 }
             }
         case "taskStatusSegue":
-            filters.taskStatus = []
+            query.filterBy.taskStatus = []
             
             items.filter { $0.checked }.forEach { (item) in
                 if let taskStatus = TaskStatus(rawValue: item.identifier) {
-                    filters.taskStatus.append(taskStatus)
+                    query.filterBy.taskStatus.append(taskStatus)
                 }
             }
         default:
@@ -92,18 +91,18 @@ class TasksFiltersTableViewController: UITableViewController {
             case "dueDateCell":
                 alert.title = "Due date sorting"
                 
-                for orderByCase in TasksSort.OrderBy.allCases {
+                for orderByCase in OrderBy.allCases {
                     alert.addAction(UIAlertAction(title: orderByCase.rawValue, style: .default, handler: { (UIAlertAction) in
-                        self.sort?.dueDate = orderByCase
+                        self.query.sortBy.dueDate = orderByCase
                         self.updateView()
                     }))
                 }
             case "priorityCell":
                 alert.title = "Priority sorting"
                 
-                for priortyCase in TasksSort.Priorty.allCases {
+                for priortyCase in Priorty.allCases {
                     alert.addAction(UIAlertAction(title: priortyCase.rawValue, style: .default, handler: { (UIAlertAction) in
-                        self.sort?.importance = priortyCase
+                        self.query.sortBy.importance = priortyCase
                         self.updateView()
                     }))
                 }
@@ -121,8 +120,7 @@ class TasksFiltersTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if let tasksFiltersController = segue.destination as? PickerTableViewController,
-           let filters = filters {
+        if let tasksFiltersController = segue.destination as? PickerTableViewController {
             
             tasksFiltersController.identifier = segue.identifier
             tasksFiltersController.unwindSegueIdentifier = TasksFiltersTableViewController.pcikerUnwindSegueIdentifier
@@ -132,9 +130,9 @@ class TasksFiltersTableViewController: UITableViewController {
                 tasksFiltersController.identifier = segue.identifier
                 tasksFiltersController.multiSelect = true
                 
-                for taskType in filters.defaultTaskTypes {
+                for taskType in query.filterBy.defaultTaskTypes {
                     var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
-                    if filters.taskTypes.contains(taskType) {
+                    if query.filterBy.taskTypes.contains(taskType) {
                         pickerItem.checked = true
                     }
                     
@@ -144,9 +142,9 @@ class TasksFiltersTableViewController: UITableViewController {
                 tasksFiltersController.title = "Task status"
                 tasksFiltersController.multiSelect = true
                 
-                for completenessStatus in filters.defaultTaskStatus {
+                for completenessStatus in query.filterBy.defaultTaskStatus {
                     var pickerItem = PickerItem(identifier: completenessStatus.rawValue, label: completenessStatus.rawValue, checked: false)
-                    if filters.taskStatus.contains(completenessStatus) {
+                    if query.filterBy.taskStatus.contains(completenessStatus) {
                         pickerItem.checked = true
                     }
                     

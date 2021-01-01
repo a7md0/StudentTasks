@@ -7,15 +7,24 @@
 
 import UIKit
 
+
+
 class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
     
     // Notification section
+    var notificationSettings: NotificationSettings = NotificationSettings.load()
     @IBOutlet var notificationSwitch: UISwitch!
-    @IBOutlet weak var notificationTasksLabel: UILabel!
-    
-    var notificationTaskTypes: [TaskType] = TaskType.allCases
     //
+    
+    // Grading section
+    var gradingSettings: GradingSettings = GradingSettings.load()
+    @IBOutlet weak var gpaModelLabel: UILabel!
+    //
+    
+    var appearanceSettings: AppearanceSettings  = AppearanceSettings.load()
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,30 +35,52 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         loadNotificationsSettings()
+        updateGradingSection()
+        updateAppearanceSection()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+}
 
-    // MARK: - Navigation
-
+// MARK: - Navigation
+extension SettingsTableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         
-        if let tasksFiltersController = segue.destination as? PickerTableViewController {
-            tasksFiltersController.unwindSegueIdentifier = "settingsUnwindSegue"
+        
+        if let pickerTableView = segue.destination as? PickerTableViewController {
+            pickerTableView.identifier = segue.identifier
+            pickerTableView.unwindSegueIdentifier = "unwindSettings"
             
-            if segue.identifier == "notificationTaskTypesSegue" {
-                tasksFiltersController.title = "Task types"
-                tasksFiltersController.identifier = "notificationTaskTypes"
-                tasksFiltersController.multiSelect = true
+            if segue.identifier == "gpaModelSegue" {
+                pickerTableView.title = "GPA Model"
+                pickerTableView.multiSelect = false
                 
-                for taskType in TaskType.allCases {
-                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
-                    if notificationTaskTypes.contains(taskType) {
+                for model in GpaModel.allCases {
+                    var pickerItem = PickerItem(identifier: model.rawValue, label: model.description, checked: false)
+                    if gradingSettings.gpaModel == model {
                         pickerItem.checked = true
                     }
                     
-                    tasksFiltersController.items.append(pickerItem)
+                    pickerTableView.items.append(pickerItem)
+                }
+            } else if segue.identifier ==  "themeSegue" {
+                pickerTableView.title = "Theme"
+                pickerTableView.multiSelect = false
+                
+                for theme in AppearanceTheme.allCases {
+                    var pickerItem = PickerItem(identifier: theme.rawValue, label: theme.description, checked: false)
+                    if appearanceSettings.theme == theme {
+                        pickerItem.checked = true
+                    }
+                    
+                    pickerTableView.items.append(pickerItem)
                 }
             }
         }
@@ -59,37 +90,101 @@ class SettingsTableViewController: UITableViewController {
         let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
         
-        if unwindSegue.identifier == "settingsUnwindSegue",
+        if unwindSegue.identifier == "unwindSettings",
            let pickerView = sourceViewController as? PickerTableViewController {
-            handleTaskTypePicker(items: pickerView.items)
+            if pickerView.identifier == "gpaModelSegue" {
+                handleGpaModelPicker(items: pickerView.items)
+            } else if pickerView.identifier == "themeSegue" {
+                handleThemePicker(items: pickerView.items)
+            }
+        }
+    }
+}
+
+extension SettingsTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let cell = tableView.cellForRow(at: indexPath),
+           cell.reuseIdentifier == "languageCell" {
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }
     }
 }
 
 extension SettingsTableViewController {
     private func loadNotificationsSettings() {
-        notificationSwitch.isOn = defaults.bool(forKey: "notificationEnabled")
-        if let data = UserDefaults.standard.data(forKey: "notificationTaskTypes"),
-           let types = try? JSONDecoder().decode(Array<TaskType>.self, from: data) {
-            self.notificationTaskTypes = types
+        self.notificationSwitch.isOn = notificationSettings.notificationsEnabled
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
+    }
+    
+    @objc private func notifcationChanged(notification: NSNotification) {
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        self.notificationSwitch.isOn = notificationSettings.notificationsEnabled
+        self.notificationSettings = notificationSettings
+    }
+    
+    func openAppSettings() {
+        if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+            if UIApplication.shared.canOpenURL(appSettings) {
+                UIApplication.shared.open(appSettings)
+            }
         }
+    }
+    
+    func notificationsSettingsPrompt() {
+        let confirmAlert = UIAlertController(title: "Notifications disabled", message: "Notifications are disabled for this app, would you like to enable them?", preferredStyle: .alert)
+
+        confirmAlert.addAction(UIAlertAction(title: "Open settings", style: .default, handler: { (action: UIAlertAction!) in
+            self.openAppSettings()
+        }))
+
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(confirmAlert, animated: true, completion: nil)
     }
     
     @IBAction func notificationSwitchChanged(_ sender: UISwitch) {
-        defaults.setValue(sender.isOn, forKey: "notificationEnabled")
+        if sender.isOn == true && notificationSettings.notificationsGranted == false {
+            sender.isOn = false
+            notificationsSettingsPrompt()
+        } else {
+            notificationSettings.notificationsEnabled = sender.isOn
+            notificationSettings.update()
+        }
     }
-    
-    private func handleTaskTypePicker(items: [PickerItem]) {
-        self.notificationTaskTypes = []
+}
+
+extension SettingsTableViewController {
+    func updateGradingSection() {
+        gpaModelLabel.text = gradingSettings.gpaModel.description
+    }
+
+    func handleGpaModelPicker(items: [PickerItem]) {
+        guard let choosedItem = items.first(where: { $0.checked }),
+              let model = GpaModel(rawValue: choosedItem.identifier) else { return }
         
-        items.filter { $0.checked }.forEach { (item) in
-            if let taskType = TaskType(rawValue: item.identifier) {
-                notificationTaskTypes.append(taskType)
-            }
-        }
+        gradingSettings.gpaModel = model
+        gradingSettings.update()
         
-        if let data = try? JSONEncoder().encode(notificationTaskTypes) {
-            defaults.setValue(data, forKey: "notificationTaskTypes")
-        }
+        updateGradingSection()
+    }
+}
+
+extension SettingsTableViewController {
+    func updateAppearanceSection() {
+        themeLabel.text = appearanceSettings.theme.description
+    }
+
+    func handleThemePicker(items: [PickerItem]) {
+        guard let choosedItem = items.first(where: { $0.checked }),
+              let model = AppearanceTheme(rawValue: choosedItem.identifier) else { return }
+        
+        appearanceSettings.theme = model
+        appearanceSettings.update()
+        
+        updateAppearanceSection()
     }
 }
