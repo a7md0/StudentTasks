@@ -38,7 +38,6 @@ class TasksViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
-        updatesTabTablesTasks()
     }
 
     // MARK: - Navigation
@@ -55,10 +54,7 @@ class TasksViewController: UIViewController {
     }
     
     @IBAction func unwindToTasksView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        if unwindSegue.identifier == "tasksViewUnwindSegue",
-           let filtersView = unwindSegue.source as? TasksFiltersTableViewController {
-            updatesTabTablesTasks()
-        }
+
     }
 }
 
