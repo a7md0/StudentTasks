@@ -2247,13 +2247,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="TaskNameField" destination="cBz-4z-Rhq" id="Kci-5h-sPP"/>
+                        <outlet property="awardedGrade" destination="UQn-7O-LJh" id="FKu-hl-7kS"/>
                         <outlet property="contributionTextField" destination="mck-9Q-ueL" id="aUk-qe-YBx"/>
                         <outlet property="courseLabel" destination="T6g-dX-5DX" id="F5k-96-s8B"/>
-                        <outlet property="dateChoose" destination="2AT-ev-9Bk" id="qtG-Dj-Vrj"/>
                         <outlet property="descriptionTextField" destination="MeN-3s-SVR" id="Lrz-K7-XLT"/>
                         <outlet property="dueDateLabel" destination="8xG-ev-kr3" id="LLS-uY-ahl"/>
-                        <outlet property="gradedAsSegment" destination="YE1-5a-Jcr" id="2EZ-NO-qZ8"/>
-                        <outlet property="gradingSystemBtn" destination="mnJ-bU-Sqh" id="Lqc-8s-Qcc"/>
+                        <outlet property="dueDatePicker" destination="2AT-ev-9Bk" id="qtG-Dj-Vrj"/>
+                        <outlet property="gradeTypeSegment" destination="YE1-5a-Jcr" id="2EZ-NO-qZ8"/>
+                        <outlet property="gradedTaskSwitch" destination="mnJ-bU-Sqh" id="Lqc-8s-Qcc"/>
                         <outlet property="prtiotySegment" destination="dlE-gi-am9" id="IaN-K3-cLv"/>
                         <outlet property="savebtn" destination="g3M-0r-FXI" id="abm-m1-WHe"/>
                         <outlet property="taskNameField" destination="cBz-4z-Rhq" id="PkU-C6-3gV"/>

@@ -15,16 +15,21 @@ class AddTaskTableViewController: UITableViewController {
     //IBOut
     
     @IBOutlet weak var taskNameField: UITextField!
+    
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var taskTypeLabel: UILabel!
-    @IBOutlet weak var prtiotySegment: UISegmentedControl!
-    @IBOutlet weak var dateChoose: UIDatePicker!
-    @IBOutlet weak var gradedAsSegment: UISegmentedControl!
-    @IBOutlet weak var contributionTextField: UITextField!
-    @IBOutlet weak var gradingSystemBtn: UISwitch!
 
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var dueDatePicker: UIDatePicker!
+    
+    @IBOutlet weak var prtiotySegment: UISegmentedControl!
+    
     @IBOutlet weak var descriptionTextField: UITextView!
+    
+    @IBOutlet weak var gradedTaskSwitch: UISwitch!
+    @IBOutlet weak var contributionTextField: UITextField!
+    @IBOutlet weak var gradeTypeSegment: UISegmentedControl!
+    @IBOutlet weak var awardedGrade: UITextField!
     
     @IBOutlet weak var savebtn: UIBarButtonItem!
     
@@ -44,7 +49,7 @@ class AddTaskTableViewController: UITableViewController {
         else if(prtiotySegment.selectedSegmentIndex == 1){taskpriority = .normal}
         else if(prtiotySegment.selectedSegmentIndex == 2){taskpriority = .high}
         
-        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: taskpriority!, dueDate: dateChoose.date)
+        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: taskpriority!, dueDate: dueDatePicker.date)
         task.course = course!
         task.create()
         //print(chosinCourse)
@@ -66,7 +71,7 @@ class AddTaskTableViewController: UITableViewController {
         
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
-        dateChoose.date.addTimeInterval(3600 * 24 * 7)
+        dueDatePicker.date.addTimeInterval(3600 * 24 * 7)
         updateDatePickerLabel()
     }
     
@@ -105,7 +110,7 @@ class AddTaskTableViewController: UITableViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         
-        dueDateLabel.text = formatter.string(from: dateChoose.date)
+        dueDateLabel.text = formatter.string(from: dueDatePicker.date)
     }
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
