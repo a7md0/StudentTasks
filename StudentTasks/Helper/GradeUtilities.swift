@@ -8,6 +8,29 @@
 import Foundation
 
 struct GradeUtilities {
+    static func calculateOverallGradeFor(tasks: [Task]) -> Decimal? {
+        var overall: Decimal?
+        
+        
+        let grades: [TaskGrade] = tasks.map({ $0.grade })
+        let contributions: Decimal = grades.reduce(0) { (contributions, taskGrade) -> Decimal in
+            guard let contribution = taskGrade.contribution else { return contributions }
+            
+            return contributions + contribution
+        }
+        
+        if contributions == 1.00 {
+            overall = grades.reduce(0, { (overall, taskGrade) -> Decimal in
+                guard let contribution = taskGrade.contribution,
+                      let grade = taskGrade.grade else { return overall }
+                
+                return overall + (grade * contribution)
+            })
+        }
+        
+        return overall
+    }
+    
     static var percentageFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
