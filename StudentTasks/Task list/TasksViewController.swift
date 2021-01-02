@@ -24,11 +24,21 @@ class TasksViewController: UIViewController {
     var searchQuery: String?
     
     let storyboardRef = UIStoryboard(name: "Main", bundle: Bundle.main)
+    
+    var reloadTabScrollViewData: (() -> Void)?
+    var updateSearchQuery: Debounce<String>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         courses = Course.findAll()
+        reloadTabScrollViewData = debounce(interval: 250, queue: DispatchQueue.main, action: {
+            self.tabScrollView.reloadData()
+        })
+        updateSearchQuery = debounce(interval: 500, queue: DispatchQueue.main, action: { (searchText: String) in
+            self.searchQuery = searchText.count > 0 ? searchText : nil
+            self.contentViews[self.currentTabViewIdx].filterSearchResult(searchQuery: self.searchQuery)
+        })
 
         // Do any additional setup after loading the view.
         setupSearchBar()
@@ -65,9 +75,7 @@ extension TasksViewController {
         
         //courses.append(course)
         prepareTab(course: course, tasks: course.tasks)
-        Debounce<String>.input("courseCreated", comparedAgainst: "courseCreated") { _ in
-            self.tabScrollView.reloadData()
-        }
+        reloadTabScrollViewData?()
     }
     
     @objc private func courseUpdated(notification: NSNotification) {
@@ -82,9 +90,7 @@ extension TasksViewController {
         
         labels[vcIdx].text = course.name
         
-        Debounce<String>.input("courseUpdated", comparedAgainst: "courseUpdated") { _ in
-            self.tabScrollView.reloadData()
-        }
+        reloadTabScrollViewData?()
     }
     
     @objc private func courseRemoved(notification: NSNotification) {
@@ -110,17 +116,17 @@ extension TasksViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "") {
-            self.searchQuery = $0.count > 0 ? searchText : nil
-            self.contentViews[self.currentTabViewIdx].filterSearchResult(searchQuery: self.searchQuery)
-        }
+        updateSearchQuery?(searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(false)
+        searchBar.endEditing(true)
     }
-    
+        
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        updateSearchQuery?("")
+        
         searchBar.endEditing(true)
     }
     
@@ -224,11 +230,5 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         ) // add some paddings
         
         labels.append(label)
-    }
-    
-    private func updatesTabTablesTasks() {
-        for vc in contentViews {
-            vc.filtersChanged()
-        }
     }
 }

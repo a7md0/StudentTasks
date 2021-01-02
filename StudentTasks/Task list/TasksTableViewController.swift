@@ -20,6 +20,8 @@ class TasksTableViewController: UITableViewController {
     
     var ignoreNextUpdate: Bool = false
     
+    var reloadTableViewData: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,10 @@ class TasksTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
+        reloadTableViewData = debounce(interval: 50, queue: DispatchQueue.main, action: {
+            self.tableView.reloadData()
+        })
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.queryUpdated), name: Constants.tasksQueryNotifcations["updated"]!, object: nil)
     }
     
@@ -40,28 +46,34 @@ class TasksTableViewController: UITableViewController {
     }
     
     @objc private func queryUpdated(notification: NSNotification) {
-        guard let query = notification.object as? TasksQuery else { return }
-        
-        self.query = query
-        
-        filterSortTasks()
-        tableView.reloadData()
+        DispatchQueue.global(qos: .background).async {
+            guard let query = notification.object as? TasksQuery else { return }
+            
+            self.query = query
+            
+            self.filterSortTasks()
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func setTasks(tasks: [Task], reloadData: Bool = true) {
-        self.allTasks = tasks
+        DispatchQueue.global(qos: .background).async {
+            self.allTasks = tasks
         
-        guard ignoreNextUpdate == false else {
-            ignoreNextUpdate = true
-            return
-        }
+            guard self.ignoreNextUpdate == false else {
+                self.ignoreNextUpdate = true
+                return
+            }
 
-        filterSortTasks()
+            self.filterSortTasks()
 
-        if reloadData {
-            let reloadId = "\(course?.id.uuidString ?? "all")TabSetTasksReload"
-            Debounce<String>.input(reloadId, comparedAgainst: reloadId) { _ in
-                self.tableView.reloadData()
+            if reloadData {
+                DispatchQueue.main.async {
+                    self.reloadTableViewData?()
+                }
             }
         }
     }
@@ -118,11 +130,6 @@ class TasksTableViewController: UITableViewController {
                 return $0.dueDate < $1.dueDate // < ascending
             }
         })
-    }
-    
-    func filtersChanged() {
-        filterSortTasks()
-        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -275,27 +282,31 @@ extension TasksTableViewController {
 
 extension TasksTableViewController {
     func filterSearchResult(searchQuery: String?) {
-        if let searchQuery = searchQuery {
-            print("searchQuery: \(searchQuery)")
-            isSearching = true
-            
-            searchTasks = tasks.filter({ (task: Task) -> Bool in
-                var result = false
+        DispatchQueue.global(qos: .background).async {
+            if let searchQuery = searchQuery {
+                print("searchQuery: \(searchQuery)")
+                self.isSearching = true
                 
-                let searchKeywords = searchQuery.lowercased().split(separator: " ")
-                searchKeywords.forEach { (keyword) in
-                    if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
-                        result = true
-                        return // break loop
+                self.searchTasks = self.tasks.filter({ (task: Task) -> Bool in
+                    var result = false
+                    
+                    let searchKeywords = searchQuery.lowercased().split(separator: " ")
+                    searchKeywords.forEach { (keyword) in
+                        if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
+                            result = true
+                            return // break loop
+                        }
                     }
-                }
-                
-                return result
-            })
-        } else {
-            isSearching = false
+                    
+                    return result
+                })
+            } else {
+                self.isSearching = false
+            }
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        
-        tableView.reloadData()
     }
 }
