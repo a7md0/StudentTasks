@@ -41,8 +41,27 @@ enum CourseTag: String, Codable, CaseIterable {
 
 // MARK: - Computed properties
 extension Course {
-    var overallGrade: String {
-        return "A+" // TODO: implement logic instead of placeholder
+    var overallGrade: Decimal? {
+        return GradeUtilities.calculateOverallGradeFor(tasks: self.tasks)
+    }
+    
+    var overallFormattedGrade: String {
+        var formatted: String?
+        
+        if let overall = overallGrade {
+            let gradingSettings = GradingSettings.load()
+            
+            switch gradingSettings.gpaModel {
+            case .fourPlus:
+                formatted = GradeUtilities.forPlusMapper(grade: overall)
+            case .fourPlusMinus:
+                formatted = GradeUtilities.forPlusMinusMapper(grade: overall)
+            case .hundredPercentage:
+                formatted = GradeUtilities.percentageFormatter.string(for: overall)
+            }
+        }
+        
+        return formatted ?? "-"
     }
     
     var ongoingTasks: Int {
