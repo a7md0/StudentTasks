@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -30,6 +30,45 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QIw-Rx-4fB">
                                 <rect key="frame" x="0.0" y="436" width="390" height="325"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CalendarTaskCell" rowHeight="72" id="Ubp-Gg-eRZ" customClass="DateTaskTableViewCell" customModule="StudentTasks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ubp-Gg-eRZ" id="pWv-Vx-A74">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="94K-h7-q0V">
+                                                    <rect key="frame" x="12" y="12" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="94K-h7-q0V" secondAttribute="height" multiplier="1:1" id="at8-56-rNt"/>
+                                                        <constraint firstAttribute="width" constant="48" id="xmM-gE-hG3"/>
+                                                        <constraint firstAttribute="height" constant="48" id="zfG-U5-i4i"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wF-tz-k7X">
+                                                    <rect key="frame" x="80" y="25.666666666666664" width="84" height="20.666666666666664"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="94K-h7-q0V" secondAttribute="bottom" constant="12" id="IUX-Dg-hMi"/>
+                                                <constraint firstItem="94K-h7-q0V" firstAttribute="top" secondItem="pWv-Vx-A74" secondAttribute="top" constant="12" id="KwM-Mc-oOb"/>
+                                                <constraint firstItem="94K-h7-q0V" firstAttribute="centerY" secondItem="pWv-Vx-A74" secondAttribute="centerY" id="beK-65-8kF"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="0wF-tz-k7X" secondAttribute="trailing" constant="206" id="bjs-1e-huw"/>
+                                                <constraint firstItem="0wF-tz-k7X" firstAttribute="centerY" secondItem="pWv-Vx-A74" secondAttribute="centerY" id="dXh-aH-Y6M"/>
+                                                <constraint firstItem="94K-h7-q0V" firstAttribute="leading" secondItem="pWv-Vx-A74" secondAttribute="leading" constant="12" id="fyg-pY-UhZ"/>
+                                                <constraint firstItem="0wF-tz-k7X" firstAttribute="leading" secondItem="94K-h7-q0V" secondAttribute="trailing" constant="20" id="hb7-uj-S83"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseImage" destination="94K-h7-q0V" id="9TQ-nU-3M9"/>
+                                            <outlet property="taskName" destination="0wF-tz-k7X" id="kyJ-Qc-XO2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bjx-9U-DRQ"/>
@@ -48,6 +87,8 @@
                     <navigationItem key="navigationItem" title="Calendar" id="wGS-xD-yj6"/>
                     <connections>
                         <outlet property="calendarView" destination="wmT-7F-MrP" id="b1B-La-8gy"/>
+                        <outlet property="taskTableView" destination="QIw-Rx-4fB" id="XlL-FX-hyP"/>
+                        <segue destination="Qzb-aR-4iB" kind="show" identifier="DateTaskSegue" id="Id2-8q-g84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ice-ZY-tWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1823,7 +1864,7 @@
             <objects>
                 <tableViewController id="5FD-Ih-vDH" customClass="PickerTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="3i9-5A-yu4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -2265,7 +2306,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbz-2K-T1e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="0PS-Y8-SK3" userLabel="Exit" sceneMemberID="exit"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="dlE-gi-am9">
-                    <rect key="frame" x="0.0" y="0.0" width="191" height="32"/>
+                    <rect key="frame" x="0.0" y="-1" width="191" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Low"/>
@@ -2281,7 +2322,7 @@
                     </connections>
                 </switch>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="YE1-5a-Jcr">
-                    <rect key="frame" x="0.0" y="0.0" width="195" height="33"/>
+                    <rect key="frame" x="0.0" y="-1" width="195" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Percentage"/>
@@ -2567,7 +2608,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UEA-el-Jux"/>
+        <segue reference="J2p-vt-0wy"/>
+        <segue reference="weW-1J-oOj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

@@ -33,6 +33,7 @@
 		C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */; };
 		C2905345259BA71500B046E2 /* TaskDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */; };
 		C2905349259BD98A00B046E2 /* EditTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2905348259BD98A00B046E2 /* EditTaskTableViewController.swift */; };
+		C2FDA2B625A0F5F9007173DC /* DateTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDA2B525A0F5F9007173DC /* DateTaskTableViewCell.swift */; };
 		F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BC259231160028F604 /* CoursesTableViewController.swift */; };
 		F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewController.swift; sourceTree = "<group>"; };
 		C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsTableViewController.swift; sourceTree = "<group>"; };
 		C2905348259BD98A00B046E2 /* EditTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskTableViewController.swift; sourceTree = "<group>"; };
+		C2FDA2B525A0F5F9007173DC /* DateTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTaskTableViewCell.swift; sourceTree = "<group>"; };
 		F07E03BC259231160028F604 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
 		F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				9329832025A00378001832AE /* CalendarViewController.swift */,
+				C2FDA2B525A0F5F9007173DC /* DateTaskTableViewCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */,
 				9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */,
 				F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */,
+				C2FDA2B625A0F5F9007173DC /* DateTaskTableViewCell.swift in Sources */,
 				9329832625A01B07001832AE /* TaskGrade.swift in Sources */,
 				F0D914A22588D8450022DD06 /* Task.swift in Sources */,
 				93EE2FC1258E859E00D6D13B /* LocalNotificationManager.swift in Sources */,
