@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,14 +13,18 @@
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
 		93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */; };
 		93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214116259C4E8E0029FEFD /* NotificationSettings.swift */; };
+		93298318259FFEAC001832AE /* ACTabScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 93298317259FFEAC001832AE /* ACTabScrollView */; };
+		9329831D25A002DB001832AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9329831C25A002DB001832AE /* FSCalendar */; };
+		9329832125A00378001832AE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832025A00378001832AE /* CalendarViewController.swift */; };
+		9329832625A01B07001832AE /* TaskGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832525A01B07001832AE /* TaskGrade.swift */; };
+		9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832925A0279D001832AE /* GradeUtilities.swift */; };
 		9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329FB8125990E82005578ED /* SettingsTableViewController.swift */; };
+		9332513F259EF83A0028F6CF /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9332513E259EF83A0028F6CF /* DateUtilities.swift */; };
 		938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* TasksQuery.swift */; };
 		938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC42593DF2A0062C79E /* Debounce.swift */; };
 		938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */; };
 		938F7BD22593F5A20062C79E /* PickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BD12593F5A20062C79E /* PickerTableViewController.swift */; };
 		9399DACE2596690100F0891C /* UIColor + Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399DACD2596690100F0891C /* UIColor + Codable.swift */; };
-		93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */; };
-		93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92D8258A00060084AF40 /* ACTabScrollView.swift */; };
 		93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92DD258A07920084AF40 /* TasksViewController.swift */; };
 		93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */; };
 		93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */; };
@@ -29,6 +33,7 @@
 		C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */; };
 		C2905345259BA71500B046E2 /* TaskDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */; };
 		C2905349259BD98A00B046E2 /* EditTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2905348259BD98A00B046E2 /* EditTaskTableViewController.swift */; };
+		C2FDA2B625A0F5F9007173DC /* DateTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDA2B525A0F5F9007173DC /* DateTaskTableViewCell.swift */; };
 		F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BC259231160028F604 /* CoursesTableViewController.swift */; };
 		F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
@@ -47,14 +52,16 @@
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
 		93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPreferencesTableViewController.swift; sourceTree = "<group>"; };
 		93214116259C4E8E0029FEFD /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		9329832025A00378001832AE /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		9329832525A01B07001832AE /* TaskGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGrade.swift; sourceTree = "<group>"; };
+		9329832925A0279D001832AE /* GradeUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeUtilities.swift; sourceTree = "<group>"; };
 		9329FB8125990E82005578ED /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		9332513E259EF83A0028F6CF /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
 		938F7BC02593A4CB0062C79E /* TasksQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksQuery.swift; sourceTree = "<group>"; };
 		938F7BC42593DF2A0062C79E /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
 		938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksFiltersTableViewController.swift; sourceTree = "<group>"; };
 		938F7BD12593F5A20062C79E /* PickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewController.swift; sourceTree = "<group>"; };
 		9399DACD2596690100F0891C /* UIColor + Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Codable.swift"; sourceTree = "<group>"; };
-		93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ACTabScrollView+Protocol.swift"; sourceTree = "<group>"; };
-		93BC92D8258A00060084AF40 /* ACTabScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACTabScrollView.swift; sourceTree = "<group>"; };
 		93BC92DD258A07920084AF40 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
@@ -63,6 +70,7 @@
 		C2830155259678F600CF5D70 /* AddTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewController.swift; sourceTree = "<group>"; };
 		C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsTableViewController.swift; sourceTree = "<group>"; };
 		C2905348259BD98A00B046E2 /* EditTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskTableViewController.swift; sourceTree = "<group>"; };
+		C2FDA2B525A0F5F9007173DC /* DateTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTaskTableViewCell.swift; sourceTree = "<group>"; };
 		F07E03BC259231160028F604 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
 		F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93298318259FFEAC001832AE /* ACTabScrollView in Frameworks */,
+				9329831D25A002DB001832AE /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +104,15 @@
 				93059CBD2597CBCF00B0B181 /* Constants.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		9329831F25A0035D001832AE /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				9329832025A00378001832AE /* CalendarViewController.swift */,
+				C2FDA2B525A0F5F9007173DC /* DateTaskTableViewCell.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		9329FB7B25990E43005578ED /* Settings */ = {
@@ -116,15 +135,6 @@
 			path = "Task list";
 			sourceTree = "<group>";
 		};
-		93BC92D62589FFE70084AF40 /* ACTabs */ = {
-			isa = PBXGroup;
-			children = (
-				93BC92D8258A00060084AF40 /* ACTabScrollView.swift */,
-				93BC92D7258A00060084AF40 /* ACTabScrollView+Protocol.swift */,
-			);
-			path = ACTabs;
-			sourceTree = "<group>";
-		};
 		93BC92E6258A14900084AF40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,8 @@
 				938F7BC42593DF2A0062C79E /* Debounce.swift */,
 				938F7BD12593F5A20062C79E /* PickerTableViewController.swift */,
 				9399DACD2596690100F0891C /* UIColor + Codable.swift */,
+				9332513E259EF83A0028F6CF /* DateUtilities.swift */,
+				9329832925A0279D001832AE /* GradeUtilities.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -165,12 +177,12 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				9329831F25A0035D001832AE /* Calendar */,
 				F07E04212599F63D0028F604 /* Course list */,
 				9329FB7B25990E43005578ED /* Settings */,
 				931D638825936C080042B3D2 /* Data */,
 				934D4937259275A400D904FF /* Task list */,
 				93BC92E6258A14900084AF40 /* Helper */,
-				93BC92D62589FFE70084AF40 /* ACTabs */,
 				F0D914A02588D8050022DD06 /* View Controller */,
 				F0D9149F2588D7FB0022DD06 /* Model */,
 				F09EE9552577C65D00C60E50 /* AppDelegate.swift */,
@@ -195,6 +207,7 @@
 				93214116259C4E8E0029FEFD /* NotificationSettings.swift */,
 				93027D0D259E7D4D00B53C06 /* GradingSettings.swift */,
 				93027D10259E833F00B53C06 /* AppearanceSettings.swift */,
+				9329832525A01B07001832AE /* TaskGrade.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +235,10 @@
 			dependencies = (
 			);
 			name = StudentTasks;
+			packageProductDependencies = (
+				93298317259FFEAC001832AE /* ACTabScrollView */,
+				9329831C25A002DB001832AE /* FSCalendar */,
+			);
 			productName = StudentTasks;
 			productReference = F09EE9522577C65D00C60E50 /* StudentTasks.app */;
 			productType = "com.apple.product-type.application";
@@ -249,6 +266,10 @@
 				Base,
 			);
 			mainGroup = F09EE9492577C65D00C60E50;
+			packageReferences = (
+				93298316259FFEAC001832AE /* XCRemoteSwiftPackageReference "ACTabScrollView" */,
+				9329831B25A002DB001832AE /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = F09EE9532577C65D00C60E50 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -285,16 +306,18 @@
 				C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */,
 				93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */,
 				9399DACE2596690100F0891C /* UIColor + Codable.swift in Sources */,
+				9332513F259EF83A0028F6CF /* DateUtilities.swift in Sources */,
 				938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */,
+				9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */,
 				F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */,
-				93BC92D9258A00060084AF40 /* ACTabScrollView+Protocol.swift in Sources */,
+				C2FDA2B625A0F5F9007173DC /* DateTaskTableViewCell.swift in Sources */,
+				9329832625A01B07001832AE /* TaskGrade.swift in Sources */,
 				F0D914A22588D8450022DD06 /* Task.swift in Sources */,
 				93EE2FC1258E859E00D6D13B /* LocalNotificationManager.swift in Sources */,
 				938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */,
 				938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */,
 				93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */,
 				93BC92E8258A14AF0084AF40 /* DataManager.swift in Sources */,
-				93BC92DA258A00060084AF40 /* ACTabScrollView.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
 				F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */,
 				93027D11259E833F00B53C06 /* AppearanceSettings.swift in Sources */,
@@ -302,6 +325,7 @@
 				F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */,
 				C2905349259BD98A00B046E2 /* EditTaskTableViewController.swift in Sources */,
 				9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */,
+				9329832125A00378001832AE /* CalendarViewController.swift in Sources */,
 				93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */,
 				93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */,
 			);
@@ -503,6 +527,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		93298316259FFEAC001832AE /* XCRemoteSwiftPackageReference "ACTabScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/a7mdo/ACTabScrollView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+		9329831B25A002DB001832AE /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		93298317259FFEAC001832AE /* ACTabScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93298316259FFEAC001832AE /* XCRemoteSwiftPackageReference "ACTabScrollView" */;
+			productName = ACTabScrollView;
+		};
+		9329831C25A002DB001832AE /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9329831B25A002DB001832AE /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F09EE94A2577C65D00C60E50 /* Project object */;
 }

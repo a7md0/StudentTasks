@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ACTabScrollView
 
 class TasksViewController: UIViewController {
     @IBOutlet weak var tabScrollView: ACTabScrollView!
@@ -23,11 +24,21 @@ class TasksViewController: UIViewController {
     var searchQuery: String?
     
     let storyboardRef = UIStoryboard(name: "Main", bundle: Bundle.main)
+    
+    var reloadTabScrollViewData: (() -> Void)?
+    var updateSearchQuery: Debounce<String>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         courses = Course.findAll()
+        reloadTabScrollViewData = debounce(interval: 250, queue: DispatchQueue.main, action: {
+            self.tabScrollView.reloadData()
+        })
+        updateSearchQuery = debounce(interval: 500, queue: DispatchQueue.main, action: { (searchText: String) in
+            self.searchQuery = searchText.count > 0 ? searchText : nil
+            self.contentViews[self.currentTabViewIdx].filterSearchResult(searchQuery: self.searchQuery)
+        })
 
         // Do any additional setup after loading the view.
         setupSearchBar()
@@ -38,7 +49,6 @@ class TasksViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
-        updatesTabTablesTasks()
     }
 
     // MARK: - Navigation
@@ -55,10 +65,7 @@ class TasksViewController: UIViewController {
     }
     
     @IBAction func unwindToTasksView(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        if unwindSegue.identifier == "tasksViewUnwindSegue",
-           let filtersView = unwindSegue.source as? TasksFiltersTableViewController {
-            updatesTabTablesTasks()
-        }
+
     }
 }
 
@@ -68,8 +75,7 @@ extension TasksViewController {
         
         //courses.append(course)
         prepareTab(course: course, tasks: course.tasks)
-        tabScrollView.reloadData()
-        print("Detect course created")
+        reloadTabScrollViewData?()
     }
     
     @objc private func courseUpdated(notification: NSNotification) {
@@ -84,8 +90,7 @@ extension TasksViewController {
         
         labels[vcIdx].text = course.name
         
-        tabScrollView.reloadData()
-        print("Detect course updated. Updated course tab at idnex \(vcIdx)")
+        reloadTabScrollViewData?()
     }
     
     @objc private func courseRemoved(notification: NSNotification) {
@@ -98,7 +103,6 @@ extension TasksViewController {
         labels.remove(at: vcIdx)
         
         tabScrollView.reloadData()
-        print("Detect course removed. Removing course at index \(vcIdx)")
     }
 }
 
@@ -106,17 +110,38 @@ extension TasksViewController {
 extension TasksViewController: UISearchBarDelegate {
     func setupSearchBar() {
         searchBar.delegate = self
+        
+        searchBar.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
+        searchBar.showsBookmarkButton = true
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        Debounce<String>.input(searchText, comparedAgainst: searchBar.text ?? "") {
-            self.searchQuery = $0.count > 0 ? searchText : nil
-            self.contentViews[self.currentTabViewIdx].filterSearchResult(searchQuery: self.searchQuery)
-        }
+        updateSearchQuery?(searchText)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(false)
+        searchBar.endEditing(true)
+    }
+        
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        updateSearchQuery?("")
+        
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        performSegue(withIdentifier: "tasksFiltersSegue", sender: self)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.showsBookmarkButton = false
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.showsBookmarkButton = true
     }
 }
 
@@ -134,7 +159,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         tabScrollView.cachedPageLimit = 3*/
         
         tabScrollView.tabSectionBackgroundColor = .systemGray6
-        tabScrollView.tabSectionHeight = 48
+        tabScrollView.tabSectionHeight = 42
         
         tabScrollView.arrowIndicator = true
         tabScrollView.contentSectionScrollEnabled = false
@@ -205,11 +230,5 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         ) // add some paddings
         
         labels.append(label)
-    }
-    
-    private func updatesTabTablesTasks() {
-        for vc in contentViews {
-            vc.filtersChanged()
-        }
     }
 }

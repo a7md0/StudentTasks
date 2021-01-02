@@ -46,6 +46,10 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        if toDatePicker.date <= fromDatePicker.date {
+            toDatePicker.date = fromDatePicker.date.addingTimeInterval(300)
+        }
+        
         updateDateLabels()
         
         notificationSettings.preferredTimeRange.start = fromDatePicker.date
@@ -94,7 +98,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     
     func handleTriggerBeforeDeadlinePicker(items: [PickerItem]) {
         if let chosenItem = items.first(where: {$0.checked}),
-           let value = Int(chosenItem.identifier) {
+           let value = Double(chosenItem.identifier) {
             notificationSettings.triggerBefore = value
         }
         
