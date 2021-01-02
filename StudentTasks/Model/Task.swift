@@ -28,7 +28,7 @@ struct Task: Codable, Equatable {
     var completed: Bool = false
     var completedOn: Date?
     
-    var grade: TaskGrade
+    var grade: TaskGrade = TaskGrade()
     
     var notificationsIdentifiers: [UUID] = []
     
