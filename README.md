@@ -16,7 +16,7 @@
 | Dark/Light theme support | Ahmed Naser ([a7mdo](https://github.com/a7mdo)) | Support changing the app theme to (system, light or dark) |
 
 ## Libraries
-| Library  | Author | Used for | Used for |
+| Library  | Author | Modified by | Used for |
 | ------------- | ------------- | ------------- | ------------- |
 | [ACTabScrollView](https://github.com/a7mdo/ACTabScrollView) | [azurechen](https://github.com/azurechen) | [a7mdo](https://github.com/a7mdo) | Show scrollable infinite tabs. (This library have been forked and modified to support needed feature and support for iOS 14 and SPM) |
 
