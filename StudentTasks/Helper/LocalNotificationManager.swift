@@ -91,8 +91,14 @@ extension LocalNotificationManager {
         return notifications.map { $0.id }
     }
     
+    func removeFor(tasks: [Task]) {
+        let identifiers = tasks.flatMap({ $0.notificationsIdentifiers })
+        
+        deschedule(identifiers: identifiers)
+    }
+    
     func removeFor(task: Task) {
-        deschedule(identifiers: task.notificationsIdentifiers)
+        removeFor(tasks: [task])
     }
     
     private func notificationsFor(task: Task) -> [Notification] {
