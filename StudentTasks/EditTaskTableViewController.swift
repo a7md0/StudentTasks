@@ -46,14 +46,12 @@ class EditTaskTableViewController: UITableViewController {
                 datePicker.date = tasks?.dueDate ?? Date()
                descriptionTextView.text = tasks?.description
                
-               if (tasks?.graded == true)
-               {
-                   gradingSystemSwitch.isOn = true
-                   gradingContribution.text = "\(tasks?.gradeContribution)"
-                   if (tasks?.gradeType?.rawValue == "Main Task"){gradingTypeSegment.selectedSegmentIndex = 0}
-                   if (tasks?.gradeType?.rawValue == "Course Total"){gradingTypeSegment.selectedSegmentIndex = 1}
-               }
-               if (tasks?.graded == false){gradingSystemSwitch.isOn = false}
+        gradingSystemSwitch.isOn = tasks?.grade.graded == true
+        if (tasks?.grade.graded == true) {
+            gradingContribution.text = "\(String(describing: tasks?.grade.contribution))"
+            gradingTypeSegment.selectedSegmentIndex = tasks?.grade.mode == .percentage ? 0 : 1
+        }
+        
         updateSaveButtonState()
         
         //print(tasks)
@@ -75,11 +73,10 @@ class EditTaskTableViewController: UITableViewController {
             
             if(gradingSystemSwitch.isOn == true)
             {
-                var contr = gradingContribution.text!
-                tasks?.graded = true
-                tasks?.gradeContribution = Float(contr)!
-                if (gradingTypeSegment.selectedSegmentIndex == 0){tasks?.gradeType = .mainTask}
-                else if (gradingTypeSegment.selectedSegmentIndex == 1){tasks?.gradeType = .courseTotal}
+                let contr = gradingContribution.text!
+                tasks?.grade.graded = true
+                tasks?.grade.contribution = Decimal(string: contr)
+                tasks?.grade.mode = gradingTypeSegment.selectedSegmentIndex == 0 ? .percentage : .fraction
             }
         tasks?.dueDate = datePicker.date
         print(tasks?.dueDate)

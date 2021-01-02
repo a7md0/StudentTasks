@@ -49,14 +49,12 @@ class TaskDetailsTableViewController: UITableViewController {
         if tasks?.description != ""{
             descriptionTextView.text = tasks?.description
     }
-        if (tasks?.graded == true)
+        if (tasks?.grade.graded == true)
         {
-            var contr = tasks?.gradeContribution
+            var contr = tasks?.grade.contribution
             Contrivutionpersentage.text = "\(contr)"
-            gradedType.text = tasks?.gradeType?.rawValue
-        }
-        else if (tasks?.graded == false)
-        {
+            gradedType.text = tasks?.grade.mode.rawValue
+        } else {
             Contrivutionpersentage.text = ""
             gradedType.text = ""
         }

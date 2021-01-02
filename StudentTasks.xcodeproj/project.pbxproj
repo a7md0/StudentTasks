@@ -16,6 +16,8 @@
 		93298318259FFEAC001832AE /* ACTabScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 93298317259FFEAC001832AE /* ACTabScrollView */; };
 		9329831D25A002DB001832AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9329831C25A002DB001832AE /* FSCalendar */; };
 		9329832125A00378001832AE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832025A00378001832AE /* CalendarViewController.swift */; };
+		9329832625A01B07001832AE /* TaskGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832525A01B07001832AE /* TaskGrade.swift */; };
+		9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832925A0279D001832AE /* GradeUtilities.swift */; };
 		9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329FB8125990E82005578ED /* SettingsTableViewController.swift */; };
 		9332513F259EF83A0028F6CF /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9332513E259EF83A0028F6CF /* DateUtilities.swift */; };
 		938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* TasksQuery.swift */; };
@@ -50,6 +52,8 @@
 		93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPreferencesTableViewController.swift; sourceTree = "<group>"; };
 		93214116259C4E8E0029FEFD /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		9329832025A00378001832AE /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		9329832525A01B07001832AE /* TaskGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGrade.swift; sourceTree = "<group>"; };
+		9329832925A0279D001832AE /* GradeUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeUtilities.swift; sourceTree = "<group>"; };
 		9329FB8125990E82005578ED /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9332513E259EF83A0028F6CF /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
 		938F7BC02593A4CB0062C79E /* TasksQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksQuery.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 				938F7BD12593F5A20062C79E /* PickerTableViewController.swift */,
 				9399DACD2596690100F0891C /* UIColor + Codable.swift */,
 				9332513E259EF83A0028F6CF /* DateUtilities.swift */,
+				9329832925A0279D001832AE /* GradeUtilities.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				93214116259C4E8E0029FEFD /* NotificationSettings.swift */,
 				93027D0D259E7D4D00B53C06 /* GradingSettings.swift */,
 				93027D10259E833F00B53C06 /* AppearanceSettings.swift */,
+				9329832525A01B07001832AE /* TaskGrade.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,7 +305,9 @@
 				9399DACE2596690100F0891C /* UIColor + Codable.swift in Sources */,
 				9332513F259EF83A0028F6CF /* DateUtilities.swift in Sources */,
 				938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */,
+				9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */,
 				F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */,
+				9329832625A01B07001832AE /* TaskGrade.swift in Sources */,
 				F0D914A22588D8450022DD06 /* Task.swift in Sources */,
 				93EE2FC1258E859E00D6D13B /* LocalNotificationManager.swift in Sources */,
 				938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */,

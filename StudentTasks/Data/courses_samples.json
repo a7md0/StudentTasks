@@ -19,7 +19,10 @@
                 "id": "C25E4B70-0D0B-445C-A8E0-7B8E04A5B10A",
                 "name": "Task 1 (N)",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc",
                 "priority": "Normal",
                 "dueDate": "1999-06-01T20:00:00Z",
@@ -31,7 +34,10 @@
                 "id": "5B66AD13-2103-4BFC-AD54-296D6ADA50A9",
                 "name": "Task 2 (N)",
                 "type": "Assessment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc",
                 "priority": "Normal",
                 "dueDate": "1999-08-01T20:10:00Z",
@@ -43,7 +49,10 @@
                 "id": "4525447C-E0AC-4A14-9811-C9EF26F244A0",
                 "name": "Task 3 (H)",
                 "type": "Exam",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc",
                 "priority": "High",
                 "dueDate": "1999-08-01T20:20:00Z",
@@ -55,7 +64,10 @@
                 "id": "4525447C-E0AC-4A13-9811-C3EF26F243A1",
                 "name": "Task 4 (H)",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc",
                 "priority": "High",
                 "dueDate": "1999-08-01T12:18:00Z",
@@ -67,7 +79,10 @@
                 "id": "3525347C-E0AC-3A12-9813-C9EF26F243A1",
                 "name": "Task 5 (H)",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc",
                 "priority": "High",
                 "dueDate": "1999-08-01T20:30:00Z",
@@ -79,7 +94,10 @@
                 "id": "4525447C-E0AC-4A11-9811-C9EF26F244A1",
                 "name": "Task 6 (H)",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc",
                 "priority": "High",
                 "dueDate": "1999-07-01T20:20:00Z",
@@ -110,7 +128,10 @@
                 "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615",
                 "name": "Task 10",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc 2",
                 "priority": "Normal",
                 "dueDate": "2020-12-24T20:01:00Z",
@@ -122,7 +143,10 @@
                 "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615",
                 "name": "Task 20",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc 2",
                 "priority": "Low",
                 "dueDate": "2020-12-24T20:11:00Z",
@@ -134,7 +158,10 @@
                 "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615",
                 "name": "Task 30",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc 2",
                 "priority": "High",
                 "dueDate": "2020-12-24T20:21:00Z",
@@ -162,25 +189,37 @@
             {
                 "id": "48494FA0-3956-42BB-A38D-EB624DDC693A",
                 "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A",
-                "name": "Task 11",
-                "type": "Assignment",
-                "graded": false,
-                "description": "desc 3",
-                "priority": "Normal",
-                "dueDate": "2020-12-24T20:02:00Z",
-                "completed": false,
+                "name": "Mid-term exam",
+                "type": "Exam",
+                "grade": {
+                    "graded": true,
+                    "mode": "Percentage",
+                    "contribution": 0.50,
+                    "grade": 0.96
+                },
+                "description": "",
+                "priority": "High",
+                "dueDate": "2020-11-10T12:00:00Z",
+                "completed": true,
+                "completedOn": "2020-12-24T12:00:00Z",
                 "notificationsIdentifiers": []
             },
             {
                 "id": "7E5177C9-6879-45EA-90A9-BFFECBF18ECE",
                 "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A",
-                "name": "Task 21",
-                "type": "Assignment",
-                "graded": false,
-                "description": "desc 3",
-                "priority": "Low",
-                "dueDate": "2020-12-24T20:12:00Z",
-                "completed": false,
+                "name": "Final exam",
+                "type": "Exam",
+                "grade": {
+                    "graded": true,
+                    "mode": "Percentage",
+                    "contribution": 0.50,
+                    "grade": 0.95
+                },
+                "description": "",
+                "priority": "High",
+                "dueDate": "2021-01-05T12:00:00Z",
+                "completed": true,
+                "completedOn": "2021-01-05T12:00:00Z",
                 "notificationsIdentifiers": []
             },
             {
@@ -188,7 +227,10 @@
                 "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A",
                 "name": "Task 31",
                 "type": "Assignment",
-                "graded": false,
+                "grade": {
+                    "graded": false,
+                    "mode": "Percentage"
+                },
                 "description": "desc 3",
                 "priority": "High",
                 "dueDate": "2020-12-24T20:22:00Z",
