@@ -14,6 +14,8 @@
 		93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */; };
 		93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214116259C4E8E0029FEFD /* NotificationSettings.swift */; };
 		93298318259FFEAC001832AE /* ACTabScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 93298317259FFEAC001832AE /* ACTabScrollView */; };
+		9329831D25A002DB001832AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9329831C25A002DB001832AE /* FSCalendar */; };
+		9329832125A00378001832AE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832025A00378001832AE /* CalendarViewController.swift */; };
 		9329832625A01B07001832AE /* TaskGrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832525A01B07001832AE /* TaskGrade.swift */; };
 		9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832925A0279D001832AE /* GradeUtilities.swift */; };
 		9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329FB8125990E82005578ED /* SettingsTableViewController.swift */; };
@@ -49,6 +51,7 @@
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
 		93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPreferencesTableViewController.swift; sourceTree = "<group>"; };
 		93214116259C4E8E0029FEFD /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		9329832025A00378001832AE /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9329832525A01B07001832AE /* TaskGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGrade.swift; sourceTree = "<group>"; };
 		9329832925A0279D001832AE /* GradeUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeUtilities.swift; sourceTree = "<group>"; };
 		9329FB8125990E82005578ED /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93298318259FFEAC001832AE /* ACTabScrollView in Frameworks */,
+				9329831D25A002DB001832AE /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +102,14 @@
 				93059CBD2597CBCF00B0B181 /* Constants.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		9329831F25A0035D001832AE /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				9329832025A00378001832AE /* CalendarViewController.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		9329FB7B25990E43005578ED /* Settings */ = {
@@ -162,6 +174,7 @@
 		F09EE9542577C65D00C60E50 /* StudentTasks */ = {
 			isa = PBXGroup;
 			children = (
+				9329831F25A0035D001832AE /* Calendar */,
 				F07E04212599F63D0028F604 /* Course list */,
 				9329FB7B25990E43005578ED /* Settings */,
 				931D638825936C080042B3D2 /* Data */,
@@ -221,6 +234,7 @@
 			name = StudentTasks;
 			packageProductDependencies = (
 				93298317259FFEAC001832AE /* ACTabScrollView */,
+				9329831C25A002DB001832AE /* FSCalendar */,
 			);
 			productName = StudentTasks;
 			productReference = F09EE9522577C65D00C60E50 /* StudentTasks.app */;
@@ -251,6 +265,7 @@
 			mainGroup = F09EE9492577C65D00C60E50;
 			packageReferences = (
 				93298316259FFEAC001832AE /* XCRemoteSwiftPackageReference "ACTabScrollView" */,
+				9329831B25A002DB001832AE /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = F09EE9532577C65D00C60E50 /* Products */;
 			projectDirPath = "";
@@ -306,6 +321,7 @@
 				F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */,
 				C2905349259BD98A00B046E2 /* EditTaskTableViewController.swift in Sources */,
 				9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */,
+				9329832125A00378001832AE /* CalendarViewController.swift in Sources */,
 				93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */,
 				93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */,
 			);
@@ -517,6 +533,14 @@
 				minimumVersion = 0.3.1;
 			};
 		};
+		9329831B25A002DB001832AE /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -524,6 +548,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 93298316259FFEAC001832AE /* XCRemoteSwiftPackageReference "ACTabScrollView" */;
 			productName = ACTabScrollView;
+		};
+		9329831C25A002DB001832AE /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9329831B25A002DB001832AE /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
