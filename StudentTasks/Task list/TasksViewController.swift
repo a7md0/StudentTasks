@@ -120,10 +120,13 @@ extension TasksViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(false)
+        searchBar.endEditing(true)
     }
-    
+        
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        updateSearchQuery?("")
+        
         searchBar.endEditing(true)
     }
     
