@@ -189,31 +189,37 @@
             {
                 "id": "48494FA0-3956-42BB-A38D-EB624DDC693A",
                 "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A",
-                "name": "Task 11",
-                "type": "Assignment",
+                "name": "Mid-term exam",
+                "type": "Exam",
                 "grade": {
-                    "graded": false,
-                    "mode": "Percentage"
+                    "graded": true,
+                    "mode": "Percentage",
+                    "contribution": 0.50,
+                    "grade": 0.96
                 },
-                "description": "desc 3",
-                "priority": "Normal",
-                "dueDate": "2020-12-24T20:02:00Z",
-                "completed": false,
+                "description": "",
+                "priority": "High",
+                "dueDate": "2020-11-10T12:00:00Z",
+                "completed": true,
+                "completedOn": "2020-12-24T12:00:00Z",
                 "notificationsIdentifiers": []
             },
             {
                 "id": "7E5177C9-6879-45EA-90A9-BFFECBF18ECE",
                 "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A",
-                "name": "Task 21",
-                "type": "Assignment",
+                "name": "Final exam",
+                "type": "Exam",
                 "grade": {
-                    "graded": false,
-                    "mode": "Percentage"
+                    "graded": true,
+                    "mode": "Percentage",
+                    "contribution": 0.50,
+                    "grade": 0.95
                 },
-                "description": "desc 3",
-                "priority": "Low",
-                "dueDate": "2020-12-24T20:12:00Z",
-                "completed": false,
+                "description": "",
+                "priority": "High",
+                "dueDate": "2021-01-05T12:00:00Z",
+                "completed": true,
+                "completedOn": "2021-01-05T12:00:00Z",
                 "notificationsIdentifiers": []
             },
             {
