@@ -18,8 +18,7 @@
 ## Libraries
 | Library  | Author | Modified by | Used for |
 | ------------- | ------------- | ------------- | ------------- |
-| [ACTabScrollView](https://github.com/a7mdo/ACTabScrollView) | [Azure Chen
-](https://github.com/azurechen) | [a7mdo](https://github.com/a7mdo) | Show interactive infinite tabs. (This library have been forked and modified to support needed feature and support for iOS 14 and SPM) |
+| [ACTabScrollView](https://github.com/a7mdo/ACTabScrollView) | [Azure Chen](https://github.com/azurechen) | [a7mdo](https://github.com/a7mdo) | Show interactive infinite tabs. (This library have been forked and modified to support needed feature and support for iOS 14 and SPM) |
 | [FSCalendar](https://github.com/WenchaoD/FSCalendar) | [Wenchao Ding](https://github.com/WenchaoD) | - | Render customizable calendar view |
 
 ## Code snippets
