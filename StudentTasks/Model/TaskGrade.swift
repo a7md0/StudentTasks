@@ -40,7 +40,7 @@ extension TaskGrade {
 }
 
 enum GradeMode: String, Codable {
-    case percentage = "percentage", fraction = "Fraction"
+    case percentage = "Percentage", fraction = "Fraction"
 }
 
 /*enum ContributionType: String, Codable, CaseIterable, CustomStringConvertible {
