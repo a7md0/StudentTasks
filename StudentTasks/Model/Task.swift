@@ -28,10 +28,7 @@ struct Task: Codable, Equatable {
     var completed: Bool = false
     var completedOn: Date?
     
-    var graded: Bool = false
-    var gradeContribution: Float?
-    var gradeType: TaskGradeType?
-    var grade: Float?
+    var grade: TaskGrade
     
     var notificationsIdentifiers: [UUID] = []
     
@@ -62,10 +59,6 @@ extension TaskPriority: Equatable, Comparable {
     static func < (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
         return priorityMapping[lhs.rawValue]! < priorityMapping[rhs.rawValue]!
     }
-}
-
-enum TaskGradeType: String, Codable, CaseIterable {
-    case courseTotal = "Course Total", mainTask = "Main Task"
 }
 
 // MARK: - Computed properties
