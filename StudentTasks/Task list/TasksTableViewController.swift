@@ -20,6 +20,8 @@ class TasksTableViewController: UITableViewController {
     
     var ignoreNextUpdate: Bool = false
     
+    var reloadTableViewData: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +33,10 @@ class TasksTableViewController: UITableViewController {
         
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
+        
+        reloadTableViewData = debounce(interval: 250, queue: DispatchQueue.main, action: {
+            self.tableView.reloadData()
+        })
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.queryUpdated), name: Constants.tasksQueryNotifcations["updated"]!, object: nil)
     }
@@ -59,10 +65,7 @@ class TasksTableViewController: UITableViewController {
         filterSortTasks()
 
         if reloadData {
-            let reloadId = "\(course?.id.uuidString ?? "all")TabSetTasksReload"
-            Debounce<String>.input(reloadId, comparedAgainst: reloadId) { _ in
-                self.tableView.reloadData()
-            }
+            reloadTableViewData?()
         }
     }
     
