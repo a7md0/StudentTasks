@@ -34,7 +34,7 @@ class TasksTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
-        reloadTableViewData = debounce(interval: 250, queue: DispatchQueue.main, action: {
+        reloadTableViewData = debounce(interval: 50, queue: DispatchQueue.main, action: {
             self.tableView.reloadData()
         })
         
