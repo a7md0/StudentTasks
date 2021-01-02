@@ -184,6 +184,10 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
+        if tasks.count == 0 {
+            return cell // fix weird crash
+        }
+        
         // Configure the cell...
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
