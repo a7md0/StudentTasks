@@ -134,6 +134,8 @@ extension Course {
     func remove() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
         
+        LocalNotificationManager.sharedInstance.removeFor(tasks: self.tasks)
+        
         Course.courses.remove(at: courseIndex)
         Course.notifyRemoved(course: self)
     }
