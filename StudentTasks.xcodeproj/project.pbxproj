@@ -25,6 +25,7 @@
 		938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */; };
 		938F7BD22593F5A20062C79E /* PickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BD12593F5A20062C79E /* PickerTableViewController.swift */; };
 		9399DACE2596690100F0891C /* UIColor + Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399DACD2596690100F0891C /* UIColor + Codable.swift */; };
+		93B5AC5F25A1348C00BE1244 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B5AC5E25A1348C00BE1244 /* State.swift */; };
 		93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92DD258A07920084AF40 /* TasksViewController.swift */; };
 		93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */; };
 		93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */; };
@@ -62,6 +63,7 @@
 		938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksFiltersTableViewController.swift; sourceTree = "<group>"; };
 		938F7BD12593F5A20062C79E /* PickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewController.swift; sourceTree = "<group>"; };
 		9399DACD2596690100F0891C /* UIColor + Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Codable.swift"; sourceTree = "<group>"; };
+		93B5AC5E25A1348C00BE1244 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		93BC92DD258A07920084AF40 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		93BC92E0258A07FA0084AF40 /* TasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewController.swift; sourceTree = "<group>"; };
 		93BC92E3258A0B480084AF40 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				93027D0D259E7D4D00B53C06 /* GradingSettings.swift */,
 				93027D10259E833F00B53C06 /* AppearanceSettings.swift */,
 				9329832525A01B07001832AE /* TaskGrade.swift */,
+				93B5AC5E25A1348C00BE1244 /* State.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				C2830156259678F600CF5D70 /* AddTaskTableViewController.swift in Sources */,
 				93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */,
 				9399DACE2596690100F0891C /* UIColor + Codable.swift in Sources */,
+				93B5AC5F25A1348C00BE1244 /* State.swift in Sources */,
 				9332513F259EF83A0028F6CF /* DateUtilities.swift in Sources */,
 				938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */,
 				9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */,
