@@ -2208,7 +2208,7 @@
                             <outlet property="delegate" destination="Qmu-Pd-FEA" id="pBx-G4-EtS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="aTF-e5-4T0">
+                    <navigationItem key="navigationItem" title="Add task" id="aTF-e5-4T0">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="g3M-0r-FXI">
                             <connections>
                                 <action selector="saveBtnClicked:" destination="Qmu-Pd-FEA" id="xzL-hv-Am8"/>
