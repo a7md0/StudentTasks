@@ -23,7 +23,7 @@
 ## Code snippets
 | Source  | Author | Used for |
 | ------------- | ------------- | ------------- |
-| [Debounce a method call](https://stackoverflow.com/a/59296478/1738413)  | [quickthyme](https://stackoverflow.com/users/451345/quickthyme)  | Used to debounce the search change text event to given milliseconds |
+| [Debounce a method call](https://stackoverflow.com/a/40634366/1738413)  | [d4Rk](https://stackoverflow.com/users/2019384/d4rk)  | Used to debounce updates to the UI toa given milliseconds |
 | [UIColor RGB](https://stackoverflow.com/a/28645384/1738413)  | [Martin R](https://stackoverflow.com/users/1187415/martin-r)  | Used to make UIColor codable/decodable for saving the models |
 | [Check time between](https://stackoverflow.com/a/55139115/1738413)  | [M Murteza](https://stackoverflow.com/users/10158396/m-murteza)  | Used for the notification to check if time is between two times interval |
 
