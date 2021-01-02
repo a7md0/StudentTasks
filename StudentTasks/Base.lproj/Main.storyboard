@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -331,7 +331,7 @@
         <!--Add Course-->
         <scene sceneID="dzb-Zk-oZS">
             <objects>
-                <tableViewController id="wrB-2I-HpT" sceneMemberID="viewController">
+                <tableViewController id="wrB-2I-HpT" customClass="AddCourseTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mSu-oi-dbe">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -477,12 +477,25 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Course" id="yGj-sG-VsR">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="K3P-PK-ArZ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="K3P-PK-ArZ">
+                            <connections>
+                                <action selector="AddBtnClicked:" destination="wrB-2I-HpT" id="T21-fX-fGE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="CourseAbbreviation" destination="cn3-qf-FGa" id="w0P-55-1CM"/>
+                        <outlet property="CourseCode" destination="eGX-dF-K2B" id="Bla-5Q-JQU"/>
+                        <outlet property="CourseImg" destination="pqm-YI-aP6" id="xgV-W3-ONP"/>
+                        <outlet property="CourseLocation" destination="Amv-XQ-4BH" id="GGR-NK-YPm"/>
+                        <outlet property="CourseName" destination="SKh-Ta-IhU" id="zds-ag-8ch"/>
+                        <outlet property="CourseTeacher" destination="CZZ-or-iMO" id="YHv-ja-4bb"/>
+                        <outlet property="CourseType" destination="HeD-qd-NUf" id="cca-cA-9yc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMD-T6-RuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HeD-qd-NUf">
-                    <rect key="frame" x="0.0" y="-1" width="157" height="32"/>
+                    <rect key="frame" x="0.0" y="0.0" width="157" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Lecture"/>
@@ -2559,7 +2572,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhi-Yl-ln3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GRf-L0-1eE">
-                    <rect key="frame" x="0.0" y="-1" width="157" height="32"/>
+                    <rect key="frame" x="0.0" y="0.0" width="157" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Lecture"/>
