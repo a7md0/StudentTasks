@@ -1960,6 +1960,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="textEditingChanged:" destination="Qmu-Pd-FEA" eventType="editingChanged" id="4AS-yk-xsC"/>
+                                                        <action selector="textFieldDone:" destination="Qmu-Pd-FEA" eventType="primaryActionTriggered" id="Xj3-O0-OB3"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2157,6 +2158,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textFieldDone:" destination="Qmu-Pd-FEA" eventType="editingDidEnd" id="Eho-jH-MA4"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -2506,7 +2510,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="M7p-UK-Wx4"/>
+        <segue reference="Xln-qX-sob"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

@@ -195,7 +195,10 @@ class AddTaskTableViewController: UITableViewController {
     }
     */
 
-
+    @IBAction func textFieldDone(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
 
 }
 
