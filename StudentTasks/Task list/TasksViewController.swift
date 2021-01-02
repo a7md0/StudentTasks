@@ -228,10 +228,4 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         
         labels.append(label)
     }
-    
-    private func updatesTabTablesTasks() {
-        for vc in contentViews {
-            vc.filtersChanged()
-        }
-    }
 }

@@ -132,11 +132,6 @@ class TasksTableViewController: UITableViewController {
         })
     }
     
-    func filtersChanged() {
-        filterSortTasks()
-        tableView.reloadData()
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowTaskDetails", sender: self)
     }
