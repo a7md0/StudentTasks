@@ -211,9 +211,9 @@
                 "type": "Exam",
                 "grade": {
                     "graded": true,
-                    "mode": "Percentage",
+                    "mode": "Fraction",
                     "contribution": 0.50,
-                    "grade": 0.95
+                    "grade": 0.88
                 },
                 "description": "",
                 "priority": "High",

@@ -30,7 +30,7 @@ class CalendarViewController: UIViewController
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TaskDetailsTableViewController {
-            destination.tasks = taskByDate[(taskTableView.indexPathForSelectedRow?.row)!]
+            destination.task = taskByDate[(taskTableView.indexPathForSelectedRow?.row)!]
         }
     }
 }
