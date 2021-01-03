@@ -8,12 +8,7 @@
 import UIKit
 
 class AddTaskTableViewController: UITableViewController {
-    var course: Course?
-    var taskType: TaskType?
-    var taskpriority:TaskPriority?
-    
-    //IBOut
-    
+
     @IBOutlet weak var taskNameField: UITextField!
     
     @IBOutlet weak var courseLabel: UILabel!
@@ -44,21 +39,45 @@ class AddTaskTableViewController: UITableViewController {
         "gradeCell": true,
     ]
     
+    var course: Course?
+    var taskType: TaskType?
+    var taskPriority: TaskPriority = .normal
+    var gradeMode: GradeMode = .percentage
+    
     @IBAction func saveBtnClicked(_ sender: Any) {
-        if(prtiotySegment.selectedSegmentIndex == 0){taskpriority = .low}
-        else if(prtiotySegment.selectedSegmentIndex == 1){taskpriority = .normal}
-        else if(prtiotySegment.selectedSegmentIndex == 2){taskpriority = .high}
+        guard let taskName = self.taskNameField.text,
+              let descriptionText = self.descriptionTextField.text,
+              let taskType = self.taskType,
+              let course = self.course else { return }
         
-        var task = Task.init(name: taskNameField.text!, description: descriptionTextField.text!, type: taskType!, priority: taskpriority!, dueDate: dueDatePicker.date)
-        task.course = course!
+        var task = Task(name: taskName, description: descriptionText, type: taskType, priority: taskPriority, dueDate: dueDatePicker.date)
+        task.course = course
+        
+        // Marking system - collecting data
+        if gradedTaskSwitch.isOn,
+           let contributionText = self.contributionTextField.text,
+           let contribution = Decimal(string: contributionText) {
+            
+            task.grade.contribution = contribution
+            
+            if let awardedGradeText = self.awardedGrade.text,
+               let awardedGrade = Decimal(string: awardedGradeText) {
+                
+                task.grade.mode = self.gradeMode
+                
+                if self.gradeMode == .percentage {
+                    task.grade.grade = awardedGrade / 100
+                } else {
+                    task.grade.grade = awardedGrade / contribution
+                }
+            }
+        }
+        
         task.create()
-        //print(chosinCourse)
-        print(task.name)
-        print(task)
+
         performSegue(withIdentifier: "unwindtoTaskfromAdd", sender: self)
-        
-        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +109,30 @@ class AddTaskTableViewController: UITableViewController {
         
         tableView.beginUpdates()
         tableView.endUpdates()
+    }
+    
+    @IBAction func prioritySegmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            taskPriority = .low
+        case 1:
+            taskPriority = .normal
+        case 2:
+            taskPriority = .high
+        default:
+            taskPriority = .normal
+        }
+    }
+    
+    @IBAction func gradeModeSegmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            gradeMode = .percentage
+        case 1:
+            gradeMode = .fraction
+        default:
+            gradeMode = .percentage
+        }
     }
     
     func updateSaveButtonState() {

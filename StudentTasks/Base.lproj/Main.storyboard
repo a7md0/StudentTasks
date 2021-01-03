@@ -2373,13 +2373,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbz-2K-T1e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="0PS-Y8-SK3" userLabel="Exit" sceneMemberID="exit"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="dlE-gi-am9">
-                    <rect key="frame" x="0.0" y="-1" width="191" height="32"/>
+                    <rect key="frame" x="0.0" y="0.0" width="191" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Low"/>
                         <segment title="Normal"/>
                         <segment title="High"/>
                     </segments>
+                    <connections>
+                        <action selector="prioritySegmentChanged:" destination="Qmu-Pd-FEA" eventType="valueChanged" id="6pp-do-FjB"/>
+                    </connections>
                 </segmentedControl>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mnJ-bU-Sqh">
                     <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -2389,12 +2392,15 @@
                     </connections>
                 </switch>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="YE1-5a-Jcr">
-                    <rect key="frame" x="0.0" y="-1" width="195" height="33"/>
+                    <rect key="frame" x="0.0" y="0.0" width="195" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Percentage"/>
                         <segment title="Fraction"/>
                     </segments>
+                    <connections>
+                        <action selector="gradeModeSegmentChanged:" destination="Qmu-Pd-FEA" eventType="valueChanged" id="ryc-4P-B9P"/>
+                    </connections>
                 </segmentedControl>
             </objects>
             <point key="canvasLocation" x="3893.8461538461538" y="859.47867298578194"/>
@@ -2675,7 +2681,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ma2-Ky-h6t"/>
+        <segue reference="WaK-Ye-QNb"/>
         <segue reference="weW-1J-oOj"/>
     </inferredMetricsTieBreakers>
     <resources>
