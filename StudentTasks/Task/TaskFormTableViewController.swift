@@ -59,6 +59,9 @@ class TaskFormTableViewController: UITableViewController {
         
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
+        contributionTextField.delegate = self
+        awardedGrade.delegate = self
+        
         if let task = self.task {
             self.editMode = true
             
@@ -279,6 +282,12 @@ extension TaskFormTableViewController {
                 }
                 
                 expandedCells[reuseIdentifier] = !state
+                if reuseIdentifier == "dueDateCell" {
+                    dueDatePicker.isUserInteractionEnabled = expandedCells[reuseIdentifier]!
+                } else if reuseIdentifier == "descriptionCell" {
+                    descriptionTextField.isUserInteractionEnabled = expandedCells[reuseIdentifier]!
+                }
+                
                 
                 tableView.beginUpdates()
                 tableView.endUpdates()
@@ -373,3 +382,15 @@ extension TaskFormTableViewController {
     }
 }
 
+extension TaskFormTableViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == contributionTextField || textField == awardedGrade {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        
+        return true
+    }
+}
