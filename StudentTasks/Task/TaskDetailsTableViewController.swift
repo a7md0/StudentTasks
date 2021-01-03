@@ -93,6 +93,12 @@ class TaskDetailsTableViewController: UITableViewController {
     }
 }
 
+extension TaskDetailsTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
 /*
  https://stackoverflow.com/a/36003094/1738413
  KeithB

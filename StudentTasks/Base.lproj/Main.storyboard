@@ -281,7 +281,7 @@
         <!--Courses-->
         <scene sceneID="aQd-oS-wKo">
             <objects>
-                <tableViewController id="f1J-kc-TUq" customClass="CoursesTableViewController" customModule="StudentTasks" sceneMemberID="viewController">
+                <tableViewController id="f1J-kc-TUq" customClass="CoursesTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GCS-En-pPX">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,6 +290,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="f1J-kc-TUq" id="fZb-Og-Wgx"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCellIdentifier" id="ygt-jC-kAR" customClass="CoursesTableViewCell" customModule="StudentTasks" customModuleProvider="target">
@@ -341,9 +344,7 @@
                             <outlet property="delegate" destination="f1J-kc-TUq" id="aMQ-IG-8Z7"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="ORw-96-TMF"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Courses" id="cMT-wi-v8K">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mtv-bl-lqR">
                             <connections>
@@ -352,6 +353,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="6XV-Dg-4O7" id="C3o-57-ekd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hf-TX-nXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
