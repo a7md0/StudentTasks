@@ -43,12 +43,14 @@ class TasksViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupSearchBar()
         setupTabScrollView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Navigation
@@ -73,6 +75,8 @@ extension TasksViewController {
     @objc private func courseCreated(notification: NSNotification) {
         guard let course = notification.object as? Course else { return }
         
+        contentViews[0].setTasks(tasks: Task.findAll())
+        
         //courses.append(course)
         prepareTab(course: course, tasks: course.tasks)
         reloadTabScrollViewData?()
@@ -96,6 +100,8 @@ extension TasksViewController {
     @objc private func courseRemoved(notification: NSNotification) {
         guard let course = notification.object as? Course,
               let vcIdx = contentViews.firstIndex(where: { $0.course == course }) else { return }
+        
+        contentViews[0].setTasks(tasks: Task.findAll())
         
         //courses.remove(at: courseIndex)
         contentViews[vcIdx].dismiss(animated: true, completion: nil)
