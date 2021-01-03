@@ -9,6 +9,8 @@ import UIKit
 
 class CoursesTableViewController: UITableViewController {
     var courseslist : [Course] = []
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +21,10 @@ class CoursesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         courseslist =  Course.findAll()
         
+        tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
+        tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
+        setupSearchBar()
     }
     
     
@@ -96,4 +101,43 @@ class CoursesTableViewController: UITableViewController {
     }
     */
 
+}
+
+// MARK: - Search
+extension CoursesTableViewController: UISearchBarDelegate {
+    func setupSearchBar() {
+        searchBar.delegate = self
+        
+        searchBar.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
+        searchBar.showsBookmarkButton = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //updateSearchQuery?(searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+        
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        //updateSearchQuery?("")
+        
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        //performSegue(withIdentifier: "coursesFiltersSegue", sender: self)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        searchBar.showsBookmarkButton = false
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.showsBookmarkButton = true
+    }
 }
