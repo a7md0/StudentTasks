@@ -177,7 +177,7 @@ extension AddTaskTableViewController {
     @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue) {
         if sender.identifier == "unwindAddTask",
            let pickerTableView = sender.source as? PickerTableViewController {
-            if pickerTableView.identifier == "CourseChoose"{
+            if pickerTableView.identifier == "addTaskPickCourse"{
                 for courselist in pickerTableView.items {
                     if courselist.checked == true,
                        let course = Course.findOne(id: courselist.identifier) {
@@ -187,10 +187,10 @@ extension AddTaskTableViewController {
                         updateSaveButtonState()
                     }
                 }
-            } else if pickerTableView.identifier == "TaskType" {
+            } else if pickerTableView.identifier == "addTaskPickTaskType" {
                 for typeList in pickerTableView.items {
                     if typeList.checked == true,
-                       let taskType = TaskType.init(rawValue: typeList.identifier){
+                       let taskType = TaskType.init(rawValue: typeList.identifier) {
                         taskTypeLabel.text = taskType.rawValue
                         
                         self.taskType = taskType
@@ -202,28 +202,26 @@ extension AddTaskTableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let tasksFiltersController = segue.destination as? PickerTableViewController {
-            tasksFiltersController.unwindSegueIdentifier = "unwindAddTask"
+        if let pickerTableView = segue.destination as? PickerTableViewController {
+            pickerTableView.identifier = segue.identifier
+            pickerTableView.multiSelect = false
+            pickerTableView.unwindSegueIdentifier = "unwindAddTask"
+            
             if segue.identifier == "addTaskPickCourse" {
-                tasksFiltersController.title = "Course"
-                tasksFiltersController.identifier = "CourseChoose"
-                tasksFiltersController.multiSelect = false
-                
+                pickerTableView.title = "Course"
                 
                 for course in Course.findAll() {
                     let pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
                     
-                    tasksFiltersController.items.append(pickerItem)
+                    pickerTableView.items.append(pickerItem)
                 }
             } else if segue.identifier == "addTaskPickTaskType" {
-                tasksFiltersController.title = "Task Type"
-                tasksFiltersController.identifier = "TaskType"
-                tasksFiltersController.multiSelect = false
+                pickerTableView.title = "Task Type"
                 
                 for taskType in TaskType.allCases {
                     let pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
                     
-                    tasksFiltersController.items.append(pickerItem)
+                    pickerTableView.items.append(pickerItem)
                 }
             }
             
