@@ -13,7 +13,6 @@ class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
     
     // Notification section
-    var notificationSettings: NotificationSettings = NotificationSettings.load()
     @IBOutlet var notificationSwitch: UISwitch!
     //
     
@@ -114,7 +113,7 @@ extension SettingsTableViewController {
 
 extension SettingsTableViewController {
     private func loadNotificationsSettings() {
-        self.notificationSwitch.isOn = notificationSettings.notificationsEnabled
+        self.notificationSwitch.isOn = NotificationSettings.instance.notificationsEnabled
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
     }
@@ -123,7 +122,6 @@ extension SettingsTableViewController {
         guard let notificationSettings = notification.object as? NotificationSettings else { return }
         
         self.notificationSwitch.isOn = notificationSettings.notificationsEnabled
-        self.notificationSettings = notificationSettings
     }
     
     func openAppSettings() {
@@ -147,12 +145,12 @@ extension SettingsTableViewController {
     }
     
     @IBAction func notificationSwitchChanged(_ sender: UISwitch) {
-        if sender.isOn == true && notificationSettings.notificationsGranted == false {
+        if sender.isOn == true && NotificationSettings.instance.notificationsGranted == false {
             sender.isOn = false
             notificationsSettingsPrompt()
         } else {
-            notificationSettings.notificationsEnabled = sender.isOn
-            notificationSettings.update()
+            var notificationSettings = NotificationSettings.instance
+            notificationSettings.switchEnabled(on: sender.isOn)
         }
     }
 }
