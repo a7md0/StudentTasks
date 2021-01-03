@@ -1830,7 +1830,7 @@
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="2AT-ev-9Bk">
+                                                <datePicker userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="2AT-ev-9Bk">
                                                     <rect key="frame" x="0.0" y="32" width="390" height="165"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="165" id="nLg-bt-EFY"/>
@@ -1892,8 +1892,8 @@
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeN-3s-SVR">
-                                                    <rect key="frame" x="0.0" y="32" width="390" height="168"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeN-3s-SVR">
+                                                    <rect key="frame" x="24" y="38" width="366" height="162"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1903,10 +1903,10 @@
                                             <constraints>
                                                 <constraint firstItem="lz6-FW-khI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lBR-xh-LsC" secondAttribute="trailing" constant="8" symbolic="YES" id="3S9-F1-MOC"/>
                                                 <constraint firstAttribute="trailing" secondItem="lz6-FW-khI" secondAttribute="trailing" constant="16" id="Bxx-z1-tiP"/>
-                                                <constraint firstItem="MeN-3s-SVR" firstAttribute="top" secondItem="lBR-xh-LsC" secondAttribute="bottom" id="Mls-te-pAJ"/>
+                                                <constraint firstItem="MeN-3s-SVR" firstAttribute="top" secondItem="lBR-xh-LsC" secondAttribute="bottom" constant="6" id="Mls-te-pAJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="MeN-3s-SVR" secondAttribute="trailing" id="QAK-7w-pfQ"/>
                                                 <constraint firstItem="lBR-xh-LsC" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="16" id="Vlh-xG-DgP"/>
-                                                <constraint firstItem="MeN-3s-SVR" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" id="YXL-VO-ttU"/>
+                                                <constraint firstItem="MeN-3s-SVR" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="24" id="YXL-VO-ttU"/>
                                                 <constraint firstItem="lz6-FW-khI" firstAttribute="top" secondItem="XhY-Px-4wX" secondAttribute="top" constant="11" id="cyO-eq-2fa"/>
                                                 <constraint firstItem="lBR-xh-LsC" firstAttribute="top" secondItem="XhY-Px-4wX" secondAttribute="top" constant="11" id="mvS-4y-bpg"/>
                                                 <constraint firstAttribute="bottom" secondItem="MeN-3s-SVR" secondAttribute="bottom" id="myf-xY-hVg"/>
@@ -2357,7 +2357,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="gi6-iJ-iHI"/>
-        <segue reference="J2p-vt-0wy"/>
+        <segue reference="z4i-3u-Gum"/>
         <segue reference="weW-1J-oOj"/>
     </inferredMetricsTieBreakers>
     <resources>
