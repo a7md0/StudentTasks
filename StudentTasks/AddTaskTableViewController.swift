@@ -54,16 +54,16 @@ class AddTaskTableViewController: UITableViewController {
         task.course = course
         
         // Marking system - collecting data
+        task.grade.graded = gradedTaskSwitch.isOn
         if gradedTaskSwitch.isOn,
            let contributionText = self.contributionTextField.text,
            let contribution = Decimal(string: contributionText) {
             
-            task.grade.contribution = contribution
+            task.grade.contribution = contribution / 100
+            task.grade.mode = self.gradeMode
             
             if let awardedGradeText = self.awardedGrade.text,
                let awardedGrade = Decimal(string: awardedGradeText) {
-                
-                task.grade.mode = self.gradeMode
                 
                 if self.gradeMode == .percentage {
                     task.grade.grade = awardedGrade / 100
