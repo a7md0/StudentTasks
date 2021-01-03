@@ -140,7 +140,7 @@ class TasksTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TaskDetailsTableViewController {
-            destination.tasks = tasks[(tableView.indexPathForSelectedRow?.row)!]
+            destination.task = tasks[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
 
