@@ -11,14 +11,14 @@ class AddTaskTableViewController: UITableViewController {
     var course: Course?
     var taskType: TaskType?
     var taskpriority:TaskPriority?
-
+    
     //IBOut
     
     @IBOutlet weak var taskNameField: UITextField!
     
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var taskTypeLabel: UILabel!
-
+    
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
@@ -62,11 +62,11 @@ class AddTaskTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateSaveButtonState()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
@@ -101,7 +101,7 @@ class AddTaskTableViewController: UITableViewController {
             savebtn.isEnabled = false
             return
         }
-
+        
         savebtn.isEnabled = true
         
     }
@@ -178,15 +178,15 @@ extension AddTaskTableViewController {
         if sender.identifier == "unwindAddTask",
            let pickerTableView = sender.source as? PickerTableViewController {
             //  print (pickerTableView.items)
-           
+            
             if pickerTableView.identifier == "CourseChoose"{
                 var courseid: String
                 for courselist in pickerTableView.items {
                     if courselist.checked == true {
                         courseid = courselist.identifier
-                     //   print(courseid)
+                        //   print(courseid)
                         course = Course.findOne(id: courseid)
-                    //    print(chosinCourse)
+                        //    print(chosinCourse)
                         courseLabel.text = course?.name
                         updateSaveButtonState()
                     }
@@ -213,18 +213,18 @@ extension AddTaskTableViewController {
                 tasksFiltersController.identifier = "CourseChoose"
                 tasksFiltersController.multiSelect = false
                 
-                        
+                
                 for course in Course.findAll() {
                     var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
-
-                            
+                    
+                    
                     tasksFiltersController.items.append(pickerItem)
                 }
             } else if segue.identifier == "addTaskPickTaskType" {
                 tasksFiltersController.title = "Task Type"
                 tasksFiltersController.identifier = "TaskType"
                 tasksFiltersController.multiSelect = false
-    
+                
                 for taskType in TaskType.allCases {
                     var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
                     
