@@ -60,42 +60,6 @@ class CoursesTableViewController: UITableViewController {
         }
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -106,7 +70,60 @@ class CoursesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
+        let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this course will delete all related tasks.", preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            handler?(true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            handler?(false)
+        }
+        
+        confirmAlert.addAction(okAction)
+        confirmAlert.addAction(cancelAction)
 
+        present(confirmAlert, animated: true, completion: nil)
+    }
+    
+    func deleteItem(indexPath: IndexPath) {
+        let course = courseslist[indexPath.row]
+        
+        courseslist.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        
+        course.remove()
+    }
+}
+
+extension CoursesTableViewController {
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+            let task = self.courseslist[indexPath.row]
+            
+            self.showConfirmDelete(task.name) { (delete) in
+                completionHandler(true)
+                
+                if delete {
+                    print("Delete \(indexPath.row + 1)")
+                
+                    self.deleteItem(indexPath: indexPath)
+                }
+            }
+        }
+        delete.image = UIImage(systemName: "trash")
+        
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipe
+    }
 }
 
 // MARK: - Search
