@@ -16,6 +16,8 @@ class CalendarViewController: UIViewController
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var taskTableView: UITableView!
     
+    @IBOutlet var noDataView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -165,6 +167,12 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         taskTableView.reloadData()
+        
+        if taskByDate.count == 0 {
+            taskTableView.backgroundView = noDataView
+        } else {
+            taskTableView.backgroundView = nil
+        }
     }
     
     func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {

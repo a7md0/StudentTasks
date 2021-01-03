@@ -101,13 +101,32 @@
                     <navigationItem key="navigationItem" title="Calendar" id="wGS-xD-yj6"/>
                     <connections>
                         <outlet property="calendarView" destination="wmT-7F-MrP" id="b1B-La-8gy"/>
+                        <outlet property="noDataView" destination="v65-gn-61a" id="bhg-XQ-8aY"/>
                         <outlet property="taskTableView" destination="QIw-Rx-4fB" id="XlL-FX-hyP"/>
                         <segue destination="Qzb-aR-4iB" kind="show" identifier="DateTaskSegue" id="Id2-8q-g84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ice-ZY-tWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="v65-gn-61a">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no tasks for the selected day." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERc-31-L6M">
+                            <rect key="frame" x="51.333333333333343" y="53.666666666666657" width="287.66666666666663" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="67l-aZ-mEj"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerY" secondItem="v65-gn-61a" secondAttribute="centerY" id="clS-nd-ZoQ"/>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerX" secondItem="v65-gn-61a" secondAttribute="centerX" id="xfg-yr-RMs"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2169.2307692307691" y="823.93364928909944"/>
+            <point key="canvasLocation" x="2742" y="824"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FUO-03-ukh">
@@ -509,7 +528,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMD-T6-RuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HeD-qd-NUf">
-                    <rect key="frame" x="0.0" y="0.0" width="157" height="32"/>
+                    <rect key="frame" x="0.0" y="-1" width="157" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Lecture"/>
@@ -2586,7 +2605,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhi-Yl-ln3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GRf-L0-1eE">
-                    <rect key="frame" x="0.0" y="0.0" width="157" height="32"/>
+                    <rect key="frame" x="0.0" y="-1" width="157" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Lecture"/>
