@@ -101,13 +101,32 @@
                     <navigationItem key="navigationItem" title="Calendar" id="wGS-xD-yj6"/>
                     <connections>
                         <outlet property="calendarView" destination="wmT-7F-MrP" id="b1B-La-8gy"/>
+                        <outlet property="noDataView" destination="v65-gn-61a" id="bhg-XQ-8aY"/>
                         <outlet property="taskTableView" destination="QIw-Rx-4fB" id="XlL-FX-hyP"/>
                         <segue destination="Qzb-aR-4iB" kind="show" identifier="DateTaskSegue" id="Id2-8q-g84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ice-ZY-tWF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="v65-gn-61a">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no tasks for the selected day." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERc-31-L6M">
+                            <rect key="frame" x="51.333333333333343" y="53.666666666666657" width="287.66666666666663" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="67l-aZ-mEj"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerY" secondItem="v65-gn-61a" secondAttribute="centerY" id="clS-nd-ZoQ"/>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerX" secondItem="v65-gn-61a" secondAttribute="centerX" id="xfg-yr-RMs"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="2169.2307692307691" y="823.93364928909944"/>
+            <point key="canvasLocation" x="2742" y="824"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FUO-03-ukh">
@@ -509,7 +528,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eMD-T6-RuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="HeD-qd-NUf">
-                    <rect key="frame" x="0.0" y="0.0" width="157" height="32"/>
+                    <rect key="frame" x="0.0" y="-1" width="157" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Lecture"/>
@@ -1062,19 +1081,40 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="noDataView" destination="Rdc-Qx-VgN" id="tpk-WO-JLI"/>
                         <segue destination="Qzb-aR-4iB" kind="show" identifier="ShowTaskDetails" id="weW-1J-oOj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3GP-Lg-OEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Rdc-Qx-VgN">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No matching results found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ko-7O-0ls">
+                            <rect key="frame" x="40" y="35.333333333333329" width="160" height="57.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="Sej-UF-eUT"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="2Ko-7O-0ls" firstAttribute="centerX" secondItem="Rdc-Qx-VgN" secondAttribute="centerX" id="7PA-Q4-QRn"/>
+                        <constraint firstItem="2Ko-7O-0ls" firstAttribute="leading" secondItem="Sej-UF-eUT" secondAttribute="leading" constant="40" id="E8H-Eo-iwb"/>
+                        <constraint firstItem="2Ko-7O-0ls" firstAttribute="centerY" secondItem="Rdc-Qx-VgN" secondAttribute="centerY" id="JCq-IO-lkY"/>
+                        <constraint firstItem="Sej-UF-eUT" firstAttribute="trailing" secondItem="2Ko-7O-0ls" secondAttribute="trailing" constant="40" id="MBz-Jx-Z4P"/>
+                    </constraints>
+                </view>
             </objects>
-            <point key="canvasLocation" x="4730.7692307692305" y="337.67772511848341"/>
+            <point key="canvasLocation" x="4726" y="405"/>
         </scene>
         <!--Task Details View-->
         <scene sceneID="WZ5-Fc-ubb">
             <objects>
                 <tableViewController title="Task Details View" id="Qzb-aR-4iB" customClass="TaskDetailsTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T0R-km-EvY">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -1375,7 +1415,7 @@
             <objects>
                 <tableViewController id="MqK-tV-BYf" customClass="EditTaskTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vBR-5O-YEV">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -2586,7 +2626,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jhi-Yl-ln3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GRf-L0-1eE">
-                    <rect key="frame" x="0.0" y="0.0" width="157" height="32"/>
+                    <rect key="frame" x="0.0" y="-1" width="157" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Lecture"/>
@@ -2636,7 +2676,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="ma2-Ky-h6t"/>
-        <segue reference="Id2-8q-g84"/>
+        <segue reference="weW-1J-oOj"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
@@ -2664,6 +2704,9 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

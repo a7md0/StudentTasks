@@ -8,14 +8,97 @@
 import UIKit
 import FSCalendar
 
-class CalendarViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class CalendarViewController: UIViewController
 {
+    var tasks: [Task] = []
     var taskByDate: [Task] = []
-    var ignoreNextUpdate: Bool = false
-    let formatter = DateFormatter()
-    var uniqueDate: [String] = []
- //   var dateTasks : [Task]?
- //   var Tasks: Task?
+
+    @IBOutlet weak var calendarView: FSCalendar!
+    @IBOutlet weak var taskTableView: UITableView!
+    
+    @IBOutlet var noDataView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tasks = Task.findAll()
+        
+        setupFSCalendar()
+        setupTasksTableView()
+    }
+
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? TaskDetailsTableViewController {
+            destination.tasks = taskByDate[(taskTableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+}
+
+
+extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
+    func setupFSCalendar() {
+        calendarView.dataSource = self
+        calendarView.delegate = self
+        
+        /*calendarView.reloadData()
+        calendarView.select(calendarView.today)*/
+        self.tableViewFilterTasksByDate(date: Date())
+    }
+
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        var numberOfEvents = 0
+        
+        for task in tasks {
+            let compareDate = Calendar.current.compare(task.dueDate, to: date, toGranularity: .day) // compare date based on same day (without time)
+            
+            if compareDate == .orderedSame {
+                numberOfEvents += 1
+            }
+        }
+        
+        return numberOfEvents
+    }
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+    print("Page Changed")
+        
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
+    {
+        self.tableViewFilterTasksByDate(date: date)
+        /*taskByDate = []
+        
+        Formatter.dateStyle = .medium
+        
+        let SelectedDate = Formatter.string(from: date)
+        
+        print("Selected Date is: \(SelectedDate)")
+        for task in Task.findAll()
+        {
+            var TaskDate = Formatter.string(from: task.dueDate)
+            if (TaskDate == SelectedDate)
+            {
+                taskByDate.append(task)
+            }
+            
+        }
+        if(taskByDate.count != 0)
+        {
+            print(taskByDate)
+        }
+        taskTableView.reloadData()*/
+    }
+}
+    
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
+    func setupTasksTableView() {
+        taskTableView.delegate = self
+        taskTableView.dataSource = self
+        
+        taskTableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskByDate.count
     }
@@ -34,14 +117,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "DateTaskSegue", sender: self)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? TaskDetailsTableViewController {
-            destination.tasks = taskByDate[(taskTableView.indexPathForSelectedRow?.row)!]
-    }
-    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
             print("Complete \(indexPath.row + 1)")
@@ -70,8 +150,29 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         return swipe
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(72)
+    }
+    
+    func tableViewFilterTasksByDate(date: Date) {
+        taskByDate = []
+        
+        for task in tasks {
+            let compareDate = Calendar.current.compare(task.dueDate, to: date, toGranularity: .day) // compare date based on same day (without time)
+            
+            if compareDate == .orderedSame {
+                taskByDate.append(task)
+            }
+        }
+        
+        taskTableView.reloadData()
+        
+        if taskByDate.count == 0 {
+            taskTableView.backgroundView = noDataView
+        } else {
+            taskTableView.backgroundView = nil
+        }
     }
     
     func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
@@ -90,32 +191,6 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         present(confirmAlert, animated: true, completion: nil)
     }
     
-    let Formatter = DateFormatter()
-    @IBOutlet weak var calendarView: FSCalendar!
-    @IBOutlet weak var taskTableView: UITableView!
-    
-    override func viewDidLoad() {
-        calendarView.select(calendarView.today)
-        
-        super.viewDidLoad()
-        taskTableView.reloadData()
-        setupFSCalendar()
-        taskTableView.delegate = self
-        taskTableView.dataSource = self
-        var datesWithEvent: [String] = []
-        let tempTask = Task.findAll()
-        for task in tempTask{
-            Formatter.dateFormat = "dd/MM/yyyy"
-            datesWithEvent.append(Formatter.string(from: task.dueDate))
-        }
-        uniqueDate = Array(Set(datesWithEvent))
-        print(datesWithEvent)
-        print (uniqueDate)
-    }
-    
-
-    // MARK: - Navigation
-    
     func completeItem(indexPath: IndexPath) {
         var task = taskByDate[indexPath.row]
         
@@ -128,65 +203,6 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         taskByDate.remove(at: indexPath.row)
         taskTableView.deleteRows(at: [indexPath], with: .left)
         
-        ignoreNextUpdate = true
         task.remove()
     }
-
-
-
-    
-    
-    
 }
-
-
-
-
-
-extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
-    func setupFSCalendar() {
-        calendarView.dataSource = self
-        calendarView.delegate = self
-    }
-
-
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        formatter.dateFormat = "dd/MM/yyyy"
-        let dateString = self.Formatter.string(from: date)
-
-        if uniqueDate.contains(dateString) {
-               return 1
-           }
-        return 0
-    }
-    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-    print("Page Changed")
-        
-    }
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)
-    {
-        taskByDate = []
-        
-        Formatter.dateStyle = .medium
-        
-        let SelectedDate = Formatter.string(from: date)
-        
-        print("Selected Date is: \(SelectedDate)")
-        for task in Task.findAll()
-        {
-            var TaskDate = Formatter.string(from: task.dueDate)
-            if (TaskDate == SelectedDate)
-            {
-                taskByDate.append(task)
-            }
-            
-        }
-        if(taskByDate.count != 0)
-        {
-            print(taskByDate)
-        }
-        taskTableView.reloadData()
-    }
-}
-    

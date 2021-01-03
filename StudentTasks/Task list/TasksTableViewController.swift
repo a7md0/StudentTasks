@@ -9,6 +9,8 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
+    @IBOutlet weak var noDataView: UIView!
+    
     private var isSearching: Bool = false
     
     var course: Course?
@@ -178,7 +180,10 @@ extension TasksTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching == false ? tasks.count : searchTasks.count
+        let count = isSearching == false ? tasks.count : searchTasks.count
+        tableView.backgroundView = count == 0 ? noDataView : nil
+        
+        return count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
