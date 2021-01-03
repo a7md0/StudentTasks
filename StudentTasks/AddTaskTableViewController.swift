@@ -177,27 +177,23 @@ extension AddTaskTableViewController {
     @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue) {
         if sender.identifier == "unwindAddTask",
            let pickerTableView = sender.source as? PickerTableViewController {
-            //  print (pickerTableView.items)
-            
             if pickerTableView.identifier == "CourseChoose"{
-                var courseid: String
                 for courselist in pickerTableView.items {
-                    if courselist.checked == true {
-                        courseid = courselist.identifier
-                        //   print(courseid)
-                        course = Course.findOne(id: courseid)
-                        //    print(chosinCourse)
-                        courseLabel.text = course?.name
+                    if courselist.checked == true,
+                       let course = Course.findOne(id: courselist.identifier) {
+                        courseLabel.text = course.name
+                        
+                        self.course = course
                         updateSaveButtonState()
                     }
                 }
             } else if pickerTableView.identifier == "TaskType" {
                 for typeList in pickerTableView.items {
-                    if typeList.checked == true {
-                        taskType =
-                            TaskType.init(rawValue: typeList.identifier)
-                        print(taskType)
-                        taskTypeLabel.text = taskType?.rawValue
+                    if typeList.checked == true,
+                       let taskType = TaskType.init(rawValue: typeList.identifier){
+                        taskTypeLabel.text = taskType.rawValue
+                        
+                        self.taskType = taskType
                         updateSaveButtonState()
                     }
                 }
@@ -215,8 +211,7 @@ extension AddTaskTableViewController {
                 
                 
                 for course in Course.findAll() {
-                    var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
-                    
+                    let pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
                     
                     tasksFiltersController.items.append(pickerItem)
                 }
@@ -226,7 +221,7 @@ extension AddTaskTableViewController {
                 tasksFiltersController.multiSelect = false
                 
                 for taskType in TaskType.allCases {
-                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    let pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
                     
                     tasksFiltersController.items.append(pickerItem)
                 }
