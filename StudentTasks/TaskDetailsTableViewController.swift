@@ -36,6 +36,7 @@ class TaskDetailsTableViewController: UITableViewController {
     @objc func EditbtnClicked(){
         self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
     }
+    
     func reloadData() {
         guard let task = task,
               let course = task.course else { return }
@@ -64,13 +65,13 @@ class TaskDetailsTableViewController: UITableViewController {
                 gradeLabel.text = "Unset"
             }
         }
-        print(task)
     }
     
     // MARK: - Table view data source
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? EditTaskTableViewController{
-            destination.tasks = task!
+        if let destination = segue.destination as? EditTaskTableViewController,
+           let task = self.task {
+            destination.tasks = task
         }
     }
     
@@ -81,18 +82,14 @@ class TaskDetailsTableViewController: UITableViewController {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
      }*/
-    
     @IBAction func unwindToTaskDetails(_ unwindSegue: UIStoryboardSegue) {
         let sourceViewController = unwindSegue.source
         if unwindSegue.identifier == "unwindToTaskDetailsedit",
-           let editController = sourceViewController as? EditTaskTableViewController
-        {
+           let editController = sourceViewController as? EditTaskTableViewController {
             task = editController.tasks
             reloadData()
         }
     }
-    
-    
 }
 
 /*
