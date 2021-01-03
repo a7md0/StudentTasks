@@ -59,7 +59,7 @@ class TaskDetailsTableViewController: UITableViewController {
                 if task.grade.mode == .percentage {
                     gradeLabel.text = GradeUtilities.percentageFormatter.string(for: grade)
                 } else {
-                    gradeLabel.text = "\(grade * contribution * 100)/\(contribution * 100)"
+                    gradeLabel.text = task.grade.formattedGrade
                 }
             } else {
                 gradeLabel.text = "Unset"
