@@ -69,9 +69,10 @@ class TaskDetailsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? EditTaskTableViewController,
+        if let destination = segue.destination as? TaskFormTableViewController,
            let task = self.task {
-            destination.tasks = task
+            destination.task = task
+            destination.unwindSegue = "unwindToTaskDetailFromEdit"
         }
     }
     
@@ -84,9 +85,9 @@ class TaskDetailsTableViewController: UITableViewController {
      }*/
     @IBAction func unwindToTaskDetails(_ unwindSegue: UIStoryboardSegue) {
         let sourceViewController = unwindSegue.source
-        if unwindSegue.identifier == "unwindToTaskDetailsedit",
-           let editController = sourceViewController as? EditTaskTableViewController {
-            task = editController.tasks
+        if unwindSegue.identifier == "unwindToTaskDetailFromEdit",
+           let addController = sourceViewController as? TaskFormTableViewController {
+            task = addController.task
             reloadData()
         }
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddTaskTableViewController: UITableViewController {
+class TaskFormTableViewController: UITableViewController {
 
     @IBOutlet weak var taskNameField: UITextField!
     
@@ -44,14 +44,62 @@ class AddTaskTableViewController: UITableViewController {
     var taskPriority: TaskPriority = .normal
     var gradeMode: GradeMode = .percentage
     
+    var editMode = false
+    var unwindSegue = "unwindtoTaskfromAdd"
+    var task: Task?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
+        
+        if let task = self.task {
+            self.editMode = true
+            
+            navigationItem.title = task.name
+            updateSelection()
+        } else {
+            dueDatePicker.date.addTimeInterval(3600 * 24 * 7)
+        }
+        
+        updateSaveButtonState()
+        updateDatePickerLabel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     @IBAction func saveBtnClicked(_ sender: Any) {
         guard let taskName = self.taskNameField.text,
               let descriptionText = self.descriptionTextField.text,
               let taskType = self.taskType,
               let course = self.course else { return }
         
-        var task = Task(name: taskName, description: descriptionText, type: taskType, priority: taskPriority, dueDate: dueDatePicker.date)
-        task.course = course
+        var task: Task
+        
+        if self.editMode,
+           let orignalTask = self.task {
+            
+            task = orignalTask
+            task.name = taskName
+            task.description = descriptionText
+            task.type = taskType
+            task.priority = taskPriority
+            task.dueDate = dueDatePicker.date
+        } else {
+            task = Task(name: taskName, description: descriptionText, type: taskType, priority: taskPriority, dueDate: dueDatePicker.date)
+            task.course = course
+        }
         
         // Marking system - collecting data
         task.grade.graded = gradedTaskSwitch.isOn
@@ -73,42 +121,18 @@ class AddTaskTableViewController: UITableViewController {
             }
         }
         
-        task.create()
+        if self.editMode {
+            self.task = task
+            task.save()
+        } else {
+            task.create()
+        }
 
-        performSegue(withIdentifier: "unwindtoTaskfromAdd", sender: self)
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        updateSaveButtonState()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
-        
-        dueDatePicker.date.addTimeInterval(3600 * 24 * 7)
-        updateDatePickerLabel()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        performSegue(withIdentifier: self.unwindSegue, sender: self)
     }
     
     @IBAction func gradedSwitch(_ sender: UISwitch) {
-        hiddenCells["gradeTypeCell"] = !sender.isOn
-        hiddenCells["contributionCell"] = !sender.isOn
-        hiddenCells["gradeCell"] = !sender.isOn
-        
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        updateGradingCellsState()
     }
     
     @IBAction func prioritySegmentChanged(_ sender: UISegmentedControl) {
@@ -135,6 +159,78 @@ class AddTaskTableViewController: UITableViewController {
         }
     }
     
+    func updateGradingCellsState() {
+        hiddenCells["gradeTypeCell"] = !gradedTaskSwitch.isOn
+        hiddenCells["contributionCell"] = !gradedTaskSwitch.isOn
+        hiddenCells["gradeCell"] = !gradedTaskSwitch.isOn
+        
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
+    func updateSelection() {
+        guard let task = self.task else { return }
+        
+        self.taskType = task.type
+        self.taskPriority = task.priority
+        
+        taskNameField.text = task.name
+        
+        if let course = task.course {
+            courseLabel.text = course.name
+            self.course = course
+        }
+        taskTypeLabel.text = task.type.rawValue
+        
+        dueDatePicker.date = task.dueDate
+        
+        switch task.priority {
+        case .low:
+            prtiotySegment.selectedSegmentIndex = 0
+        case .normal:
+            prtiotySegment.selectedSegmentIndex = 1
+        case .high:
+            prtiotySegment.selectedSegmentIndex = 2
+        }
+        
+        descriptionTextField.text = task.description
+        
+        gradedTaskSwitch.isOn = task.grade.graded
+        
+        self.gradeMode = task.grade.mode
+        switch task.grade.mode {
+        case .percentage:
+            gradeTypeSegment.selectedSegmentIndex = 0
+        case .fraction:
+            gradeTypeSegment.selectedSegmentIndex = 1
+        }
+        
+        if let contribution = task.grade.contribution {
+            contributionTextField.text = "\(contribution * 100)"
+            if let grade = task.grade.grade {
+                if task.grade.mode == .percentage {
+                    awardedGrade.text = "\(grade * 100)"
+                } else {
+                    awardedGrade.text = "\(grade * contribution * 100)"
+                }
+            }
+            
+            updateGradingCellsState()
+        }
+        
+        updatePickerLabels()
+    }
+    
+    func updatePickerLabels() {
+        if let course = self.course {
+            courseLabel.text = course.name
+        }
+        
+        if let taskType = self.taskType {
+            taskTypeLabel.text = taskType.rawValue
+        }
+    }
+    
     func updateSaveButtonState() {
         guard let taskName = taskNameField.text,
               taskName.count > 2,
@@ -150,11 +246,7 @@ class AddTaskTableViewController: UITableViewController {
     }
     
     func updateDatePickerLabel() {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        
-        dueDateLabel.text = formatter.string(from: dueDatePicker.date)
+        dueDateLabel.text = DateUtilities.dateFormatter.string(from: dueDatePicker.date)
     }
     
     @IBAction func textEditingChanged(_ sender: UITextField) {
@@ -172,25 +264,29 @@ class AddTaskTableViewController: UITableViewController {
 }
 
 // MARK: - Table view data source
-extension AddTaskTableViewController {
+extension TaskFormTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         view.endEditing(true)
         
         if let cell = tableView.cellForRow(at: indexPath),
-           let reuseIdentifier = cell.reuseIdentifier,
-           expandedCells.keys.contains(reuseIdentifier) {
-            
-            let state = expandedCells[reuseIdentifier]!
-            
-            for (key, _) in expandedCells {
-                expandedCells[key] = false
+           let reuseIdentifier = cell.reuseIdentifier {
+            if expandedCells.keys.contains(reuseIdentifier) {
+                let state = expandedCells[reuseIdentifier]!
+                
+                for (key, _) in expandedCells {
+                    expandedCells[key] = false
+                }
+                
+                expandedCells[reuseIdentifier] = !state
+                
+                tableView.beginUpdates()
+                tableView.endUpdates()
             }
             
-            expandedCells[reuseIdentifier] = !state
-            
-            tableView.beginUpdates()
-            tableView.endUpdates()
+            if reuseIdentifier == "courseCell", self.editMode == false {
+                performSegue(withIdentifier: "addTaskPickCourse", sender: self)
+            }
         }
     }
     
@@ -216,7 +312,7 @@ extension AddTaskTableViewController {
 }
 
 // MARK: - Navigation
-extension AddTaskTableViewController {
+extension TaskFormTableViewController {
     @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue) {
         if sender.identifier == "unwindAddTask",
            let pickerTableView = sender.source as? PickerTableViewController {
@@ -224,23 +320,22 @@ extension AddTaskTableViewController {
                 for courselist in pickerTableView.items {
                     if courselist.checked == true,
                        let course = Course.findOne(id: courselist.identifier) {
-                        courseLabel.text = course.name
                         
                         self.course = course
-                        updateSaveButtonState()
                     }
                 }
             } else if pickerTableView.identifier == "addTaskPickTaskType" {
                 for typeList in pickerTableView.items {
                     if typeList.checked == true,
-                       let taskType = TaskType.init(rawValue: typeList.identifier) {
-                        taskTypeLabel.text = taskType.rawValue
+                       let taskType = TaskType(rawValue: typeList.identifier) {
                         
                         self.taskType = taskType
-                        updateSaveButtonState()
                     }
                 }
             }
+            
+            updatePickerLabels()
+            updateSaveButtonState()
         }
     }
     
@@ -254,7 +349,10 @@ extension AddTaskTableViewController {
                 pickerTableView.title = "Course"
                 
                 for course in Course.findAll() {
-                    let pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
+                    var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
+                    if let task = self.task, task.course == course {
+                        pickerItem.checked = true
+                    }
                     
                     pickerTableView.items.append(pickerItem)
                 }
@@ -262,7 +360,10 @@ extension AddTaskTableViewController {
                 pickerTableView.title = "Task Type"
                 
                 for taskType in TaskType.allCases {
-                    let pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    if let task = self.task, task.type == taskType {
+                        pickerItem.checked = true
+                    }
                     
                     pickerTableView.items.append(pickerItem)
                 }
