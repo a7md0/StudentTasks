@@ -344,9 +344,7 @@
                             <outlet property="delegate" destination="f1J-kc-TUq" id="aMQ-IG-8Z7"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="ORw-96-TMF"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Courses" id="cMT-wi-v8K">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mtv-bl-lqR">
                             <connections>
