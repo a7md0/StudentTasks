@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 
+
 class LocalNotificationManager {
     
     static let sharedInstance = LocalNotificationManager() // Static unimmutable variable which has instance of this class
@@ -15,7 +16,32 @@ class LocalNotificationManager {
     private let notificationCenter = UNUserNotificationCenter.current()
     private var notificationSettings: NotificationSettings = NotificationSettings.load()
     
-    private init() { } // Private constructor (this class cannot be initlized from the outside)
+    private init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationStateChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationsPreferencesUpdated), name: Constants.notifcationSettings["updated"]!, object: nil)
+    } // Private constructor (this class cannot be initlized from the outside)
+    
+    @objc func notifcationStateChanged(notification: NSNotification) {
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        let tasks = Task.findAll()
+        if notificationSettings.notificationsEnabled {
+            _ = LocalNotificationManager.sharedInstance.prepareFor(tasks: tasks)
+        } else {
+            LocalNotificationManager.sharedInstance.removeFor(tasks: tasks)
+        }
+    }
+    
+    @objc func notifcationsPreferencesUpdated(notification: NSNotification) { // Notifications prefrences changes
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        self.notificationSettings = notificationSettings
+        
+        let tasks = Task.findAll() // get all tasks
+        LocalNotificationManager.sharedInstance.removeFor(tasks: tasks) // deschedule notifications
+        _ = LocalNotificationManager.sharedInstance.prepareFor(tasks: tasks)  // schedule notifications (which will get the newer settings)
+        
+    }
     
     func requestPermission(callback: ((Bool, Error?) -> Void)?) {
         notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -84,15 +110,27 @@ class LocalNotificationManager {
 // MARK: Task notifications
 extension LocalNotificationManager {
     func prepareFor(task: Task) -> [UUID] {
-        let notifications: [Notification] = self.notificationsFor(task: task)
+        return prepareFor(tasks: [task])
+    }
+    
+    func prepareFor(tasks: [Task]) -> [UUID] {
+        let notifications: [Notification] = tasks.flatMap { (task) -> [Notification] in
+            return self.notificationsFor(task: task)
+        }
         
         LocalNotificationManager.sharedInstance.schedule(notifications: notifications)
         
         return notifications.map { $0.id }
     }
     
+    func removeFor(tasks: [Task]) {
+        let identifiers = tasks.flatMap({ $0.notificationsIdentifiers })
+        
+        deschedule(identifiers: identifiers)
+    }
+    
     func removeFor(task: Task) {
-        deschedule(identifiers: task.notificationsIdentifiers)
+        removeFor(tasks: [task])
     }
     
     private func notificationsFor(task: Task) -> [Notification] {

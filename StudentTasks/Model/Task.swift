@@ -115,6 +115,9 @@ extension Task {
         self.completed = true
         self.completedOn = completedOn ?? Date()
         
+        LocalNotificationManager.sharedInstance.removeFor(task: self)
+        self.notificationsIdentifiers = []
+        
         save()
     }
     
