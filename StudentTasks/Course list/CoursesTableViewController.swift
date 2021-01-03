@@ -25,9 +25,15 @@ class CoursesTableViewController: UITableViewController {
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
         setupSearchBar()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
     }
     
-    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     // MARK: - Table view data source
 
@@ -106,8 +112,6 @@ class CoursesTableViewController: UITableViewController {
 // MARK: - Search
 extension CoursesTableViewController: UISearchBarDelegate {
     func setupSearchBar() {
-        searchBar.delegate = self
-        
         searchBar.setImage(UIImage(systemName: "slider.horizontal.3"), for: .bookmark, state: .normal)
         searchBar.showsBookmarkButton = true
     }
@@ -141,3 +145,30 @@ extension CoursesTableViewController: UISearchBarDelegate {
         searchBar.showsBookmarkButton = true
     }
 }
+
+extension CoursesTableViewController {
+    @objc private func courseCreated(notification: NSNotification) {
+        guard let course = notification.object as? Course else { return }
+        
+        self.courseslist.append(course)
+        tableView.reloadData()
+    }
+    
+    @objc private func courseUpdated(notification: NSNotification) {
+        guard let course = notification.object as? Course,
+              let idx = self.courseslist.firstIndex(where: { $0 == course }) else { return }
+        
+        
+        self.courseslist[idx] = course
+        tableView.reloadData()
+    }
+    
+    @objc private func courseRemoved(notification: NSNotification) {
+        guard let course = notification.object as? Course,
+              let idx = self.courseslist.firstIndex(where: { $0 == course }) else { return }
+        
+        self.courseslist[idx] = course
+        tableView.reloadData()
+    }
+}
+
