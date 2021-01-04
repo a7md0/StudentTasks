@@ -85,7 +85,7 @@ extension Task {
             return "Due \(relativeString)"
         case .completed:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: Date())
-            return "Completed \(relativeString.replacingOccurrences(of: "in", with: "from"))"
+            return "Completed \(relativeString.replacingOccurrences(of: "in ", with: "from "))"
         }
     }
     
