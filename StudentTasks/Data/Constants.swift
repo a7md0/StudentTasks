@@ -49,4 +49,6 @@ struct Constants {
         (21, "3 Weeks"),
         (28, "4 Weeks"),
     ]
+    
+    static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 }

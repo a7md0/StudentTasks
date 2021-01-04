@@ -23,7 +23,9 @@ class SettingsTableViewController: UITableViewController {
     
     var appearanceSettings: AppearanceSettings  = AppearanceSettings.load()
     @IBOutlet weak var themeLabel: UILabel!
-    @IBOutlet weak var languageLabel: UILabel!
+    
+    @IBOutlet weak var versionLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,10 @@ class SettingsTableViewController: UITableViewController {
         loadNotificationsSettings()
         updateGradingSection()
         updateAppearanceSection()
+        
+        if let version = Constants.appVersion {
+            versionLabel.text = version
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
