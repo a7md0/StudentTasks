@@ -67,7 +67,7 @@ class TasksFiltersTableViewController: UITableViewController {
             query.filterBy.taskStatus = []
             
             items.filter { $0.checked }.forEach { (item) in
-                if let taskStatus = TaskStatus(rawValue: item.identifier) {
+                if let taskStatus = TaskStatus(rawValue: Int(item.identifier)!) {
                     query.filterBy.taskStatus.append(taskStatus)
                 }
             }
@@ -143,7 +143,7 @@ class TasksFiltersTableViewController: UITableViewController {
                 tasksFiltersController.multiSelect = true
                 
                 for completenessStatus in query.filterBy.defaultTaskStatus {
-                    var pickerItem = PickerItem(identifier: completenessStatus.rawValue, label: completenessStatus.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: String(completenessStatus.rawValue), label: completenessStatus.description, checked: false)
                     if query.filterBy.taskStatus.contains(completenessStatus) {
                         pickerItem.checked = true
                     }

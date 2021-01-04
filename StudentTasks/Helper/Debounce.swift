@@ -9,18 +9,45 @@ import Foundation
 import Dispatch
 
 /**
- https://stackoverflow.com/a/59296478/1738413
+ Source: https://stackoverflow.com/a/40634366/1738413
+ Author: d4Rk
 */
-class Debounce<T: Equatable> {
+typealias Debounce<T> = (_ : T) -> Void
 
-    private init() {}
+func debounce<T>(interval: Int, queue: DispatchQueue, action: @escaping Debounce<T>) -> Debounce<T> {
+    var lastFireTime = DispatchTime.now()
+    let dispatchDelay = DispatchTimeInterval.milliseconds(interval)
 
-    static func input(_ input: T,
-                      comparedAgainst current: @escaping @autoclosure () -> (T),
-                      perform: @escaping (T) -> ()) {
+    return { param in
+        lastFireTime = DispatchTime.now()
+        let dispatchTime: DispatchTime = DispatchTime.now() + dispatchDelay
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            if input == current() { perform(input) }
+        queue.asyncAfter(deadline: dispatchTime) {
+            let when: DispatchTime = lastFireTime + dispatchDelay
+            let now = DispatchTime.now()
+
+            if now.rawValue >= when.rawValue {
+                action(param)
+            }
         }
     }
 }
+
+func debounce(interval: Int, queue: DispatchQueue, action: @escaping (() -> Void)) -> () -> Void {
+    var lastFireTime = DispatchTime.now()
+    let dispatchDelay = DispatchTimeInterval.milliseconds(interval)
+
+    return {
+        lastFireTime = DispatchTime.now()
+        let dispatchTime: DispatchTime = DispatchTime.now() + dispatchDelay
+
+        queue.asyncAfter(deadline: dispatchTime) {
+            let when: DispatchTime = lastFireTime + dispatchDelay
+            let now = DispatchTime.now()
+            if now.rawValue >= when.rawValue {
+                action()
+            }
+        }
+    }
+}
+

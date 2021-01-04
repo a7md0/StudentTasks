@@ -27,11 +27,6 @@ struct Course: Codable, Equatable {
     var tags: [CourseTag] = []
     
     var lecturerName: String?
-    var overallGrade: Grade?
-    
-    var ongoingTasks: Int = 0
-    var completedTasks: Int = 0
-    var overdueTasks: Int = 0
     
     var tasks: [Task] = []
     
@@ -44,9 +39,42 @@ enum CourseTag: String, Codable, CaseIterable {
     case online = "Online", lab = "Lab", lecture = "Lecture"
 }
 
-// MARK: - Sub
-struct Grade: Codable {
+// MARK: - Computed properties
+extension Course {
+    var overallGrade: Decimal? {
+        return GradeUtilities.calculateOverallGradeFor(tasks: self.tasks)
+    }
     
+    var overallFormattedGrade: String {
+        var formatted: String?
+        
+        if let overall = overallGrade {
+            let gradingSettings = GradingSettings.instance
+            
+            switch gradingSettings.gpaModel {
+            case .fourPlus:
+                formatted = GradeUtilities.forPlusMapper(grade: overall)
+            case .fourPlusMinus:
+                formatted = GradeUtilities.forPlusMinusMapper(grade: overall)
+            case .hundredPercentage:
+                formatted = GradeUtilities.percentageFormatter.string(for: overall)
+            }
+        }
+        
+        return formatted ?? "-"
+    }
+    
+    var ongoingTasks: Int {
+        return self.tasks.filter { $0.status == .ongoing }.count
+    }
+    
+    var completedTasks: Int {
+        return self.tasks.filter { $0.status == .completed }.count
+    }
+    
+    var overdueTasks: Int {
+        return self.tasks.filter { $0.status == .overdue }.count
+    }
 }
 
 // MARK: - Tasks mutation
@@ -105,6 +133,8 @@ extension Course {
     
     func remove() {
         guard let courseIndex = Course.findCourseIndex(course: self) else { return }
+        
+        LocalNotificationManager.sharedInstance.removeFor(tasks: self.tasks)
         
         Course.courses.remove(at: courseIndex)
         Course.notifyRemoved(course: self)

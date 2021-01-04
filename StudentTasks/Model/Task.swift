@@ -28,10 +28,7 @@ struct Task: Codable, Equatable {
     var completed: Bool = false
     var completedOn: Date?
     
-    var graded: Bool = false
-    var gradeContribution: Float?
-    var gradeType: TaskGradeType?
-    var grade: Float?
+    var grade: TaskGrade = TaskGrade()
     
     var notificationsIdentifiers: [UUID] = []
     
@@ -40,32 +37,69 @@ struct Task: Codable, Equatable {
 }
 
 // MARK: - Enums
-enum TaskStatus: String, Codable, CaseIterable {
-    case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
-}
-
-enum TaskType: String, Codable, CaseIterable {
-    case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
-}
-
-enum TaskPriority: String, Codable, CaseIterable {
-    case low = "Low", normal = "Normal", high = "High"
-}
-
-extension TaskPriority: Equatable, Comparable {
-    static let priorityMapping: [String:Int] = ["Very Low": 1, "Low": 2, "Normal": 3, "High": 4, "Very High": 5]
+enum TaskStatus: Int, Codable, CaseIterable, CustomStringConvertible, Equatable, Comparable {
+    case completed = 1, ongoing = 2, overdue = 3
     
+    var description: String {
+        switch self {
+        case .completed:
+            return "Completed"
+        case .ongoing:
+            return "Ongoing"
+        case .overdue:
+            return "Overdue"
+        }
+    }
+
+    static func == (lhs: TaskStatus, rhs: TaskStatus) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    
+    static func < (lhs: TaskStatus, rhs: TaskStatus) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+}
+
+enum TaskType: String, Codable, CaseIterable, CustomStringConvertible {
+    case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
+    
+    var description: String {
+        switch self {
+        case .assignment:
+            return "Assignment"
+        case .assessment:
+            return "Assessment"
+        case .project:
+            return "Project"
+        case .exam:
+            return "Exam"
+        case .homework:
+            return "Homework"
+        }
+    }
+}
+
+enum TaskPriority: Int, Codable, CaseIterable, CustomStringConvertible, Equatable, Comparable {
+    case low = 2, normal = 3, high = 4
+    
+    var description: String {
+        switch self {
+        case .low:
+            return "Low"
+        case .normal:
+            return "Normal"
+        case .high:
+            return "High"
+        }
+    }
+
     static func == (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
     
     static func < (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
-        return priorityMapping[lhs.rawValue]! < priorityMapping[rhs.rawValue]!
+        return lhs.rawValue < rhs.rawValue
     }
-}
-
-enum TaskGradeType: String, Codable, CaseIterable {
-    case courseTotal = "Course Total", mainTask = "Main Task"
 }
 
 // MARK: - Computed properties
@@ -92,7 +126,7 @@ extension Task {
             return "Due \(relativeString)"
         case .completed:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: Date())
-            return "Completed \(relativeString.replacingOccurrences(of: "in", with: "from"))"
+            return "Completed \(relativeString.replacingOccurrences(of: "in ", with: "from "))"
         }
     }
     
@@ -121,6 +155,9 @@ extension Task {
     mutating func complete(completedOn: Date?) {
         self.completed = true
         self.completedOn = completedOn ?? Date()
+        
+        LocalNotificationManager.sharedInstance.removeFor(task: self)
+        self.notificationsIdentifiers = []
         
         save()
     }

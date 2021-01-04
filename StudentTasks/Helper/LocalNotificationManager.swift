@@ -8,14 +8,40 @@
 import Foundation
 import UserNotifications
 
+
 class LocalNotificationManager {
     
     static let sharedInstance = LocalNotificationManager() // Static unimmutable variable which has instance of this class
     
     private let notificationCenter = UNUserNotificationCenter.current()
-    private var notificationSettings: NotificationSettings = NotificationSettings.load()
+    private var notificationSettings: NotificationSettings = NotificationSettings.instance
     
-    private init() { } // Private constructor (this class cannot be initlized from the outside)
+    private init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationStateChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationsPreferencesUpdated), name: Constants.notifcationSettings["updated"]!, object: nil)
+    } // Private constructor (this class cannot be initlized from the outside)
+    
+    @objc func notifcationStateChanged(notification: NSNotification) {
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        let tasks = Task.findAll()
+        if notificationSettings.notificationsEnabled {
+            _ = LocalNotificationManager.sharedInstance.prepareFor(tasks: tasks)
+        } else {
+            LocalNotificationManager.sharedInstance.removeFor(tasks: tasks)
+        }
+    }
+    
+    @objc func notifcationsPreferencesUpdated(notification: NSNotification) { // Notifications prefrences changes
+        guard let notificationSettings = notification.object as? NotificationSettings else { return }
+        
+        self.notificationSettings = notificationSettings
+        
+        let tasks = Task.findAll() // get all tasks
+        LocalNotificationManager.sharedInstance.removeFor(tasks: tasks) // deschedule notifications
+        _ = LocalNotificationManager.sharedInstance.prepareFor(tasks: tasks)  // schedule notifications (which will get the newer settings)
+        
+    }
     
     func requestPermission(callback: ((Bool, Error?) -> Void)?) {
         notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -65,7 +91,7 @@ class LocalNotificationManager {
             
             notificationCenter.add(request) { error in
                 guard error == nil else { return }
-                print("Scheduling notification with id: \(notification.id)")
+                print("Scheduling notification at \(notification.triggerDate)")
             }
         }
     }
@@ -84,31 +110,52 @@ class LocalNotificationManager {
 // MARK: Task notifications
 extension LocalNotificationManager {
     func prepareFor(task: Task) -> [UUID] {
-        let notifications: [Notification] = self.notificationsFor(task: task)
+        return prepareFor(tasks: [task])
+    }
+    
+    func prepareFor(tasks: [Task]) -> [UUID] {
+        let notifications: [Notification] = tasks.flatMap { (task) -> [Notification] in
+            return self.notificationsFor(task: task)
+        }
         
         LocalNotificationManager.sharedInstance.schedule(notifications: notifications)
         
         return notifications.map { $0.id }
     }
     
+    func removeFor(tasks: [Task]) {
+        let identifiers = tasks.flatMap({ $0.notificationsIdentifiers })
+        
+        deschedule(identifiers: identifiers)
+    }
+    
     func removeFor(task: Task) {
-        deschedule(identifiers: task.notificationsIdentifiers)
+        removeFor(tasks: [task])
     }
     
     private func notificationsFor(task: Task) -> [Notification] {
         var notifications: [Notification] = []
+        let notificationsSettings = NotificationSettings.instance
         
-        var date1 = Date()
-        date1.addTimeInterval(60)
+        guard let course = task.course, // unwrap course
+              task.status == .ongoing, // only for ongoing tasks
+              notificationsSettings.notificationsEnabled, // if notification enabled by the user
+              notificationsSettings.notificationsGranted, // if notification access granted by the user
+              notificationsSettings.preferredTypes.contains(task.type), // if the preferred types include the task type
+              notificationsSettings.preferredPriorities.contains(task.priority) // if the preferred priorties include the task priority
+        else { return notifications }
         
-        let noti1 = Notification(triggerDate: date1)
-        noti1.content.title = "Test Notification"
-        noti1.content.subtitle = "Aaa"
-        noti1.content.body = "..............."
-        noti1.content.badge = 1
-        noti1.content.sound = (task.priority == .high) ? .defaultCritical : .default
+        let triggerDate = DateUtilities.determineTriggerDate(target: task.dueDate, beforeDays: notificationsSettings.triggerBefore, timeConstraint: notificationsSettings.preferredTimeRange)
         
-        notifications.append(noti1)
+        let notification = Notification(triggerDate: triggerDate)
+        notification.content.title = "\(task.name) \(task.type.rawValue)"
+        notification.content.body = "\(course.name) task is due \(DateUtilities.relativeDateTimeFormatter.localizedString(for: task.dueDate, relativeTo: triggerDate))"
+        notification.content.badge = 1
+        notification.content.sound = (task.priority == .high) ? .defaultCritical : .default
+        notification.content.categoryIdentifier = "Task"
+        notification.content.userInfo["taskId"] = task.id.uuidString
+        
+        notifications.append(notification)
         
         return notifications
     }

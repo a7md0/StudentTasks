@@ -9,6 +9,8 @@ import UIKit
 
 class TasksTableViewController: UITableViewController {
 
+    @IBOutlet weak var noDataView: UIView!
+    
     private var isSearching: Bool = false
     
     var course: Course?
@@ -19,6 +21,8 @@ class TasksTableViewController: UITableViewController {
     var query: TasksQuery = TasksQuery.instance
     
     var ignoreNextUpdate: Bool = false
+    
+    var reloadTableViewData: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,10 @@ class TasksTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
+        reloadTableViewData = debounce(interval: 50, queue: DispatchQueue.main, action: {
+            self.tableView.reloadData()
+        })
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.queryUpdated), name: Constants.tasksQueryNotifcations["updated"]!, object: nil)
     }
     
@@ -40,38 +48,41 @@ class TasksTableViewController: UITableViewController {
     }
     
     @objc private func queryUpdated(notification: NSNotification) {
-        guard let query = notification.object as? TasksQuery else { return }
-        
-        self.query = query
-        
-        filterSortTasks()
-        tableView.reloadData()
+        DispatchQueue.global(qos: .background).async {
+            guard let query = notification.object as? TasksQuery else { return }
+            
+            self.query = query
+            
+            self.filterSortTasks()
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func setTasks(tasks: [Task], reloadData: Bool = true) {
-        self.allTasks = tasks
+        DispatchQueue.global(qos: .background).async {
+            self.allTasks = tasks
         
-        guard ignoreNextUpdate == false else {
-            ignoreNextUpdate = true
-            return
-        }
+            guard self.ignoreNextUpdate == false else {
+                self.ignoreNextUpdate = false
+                return
+            }
 
-        filterSortTasks()
+            self.filterSortTasks()
 
-        if reloadData {
-            tableView.reloadData()
+            if reloadData {
+                DispatchQueue.main.async {
+                    self.reloadTableViewData?()
+                }
+            }
         }
     }
     
     func filterSortTasks() {
         self.tasks = allTasks.filter({ (task) -> Bool in
-            var keep = false
-            
-            if query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status) {
-                keep = true
-            }
-            
-            return keep
+            return query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status)
         })
         
         // Sortable by date withou time? Then importance level? maybe with little imporvment
@@ -90,6 +101,10 @@ class TasksTableViewController: UITableViewController {
         
         self.tasks.sort(by: {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
+            
+            if $0.status != $1.status {
+                return $0.status > $1.status
+            }
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
                 if query.sortBy.dueDate == .descending { // based on the filters sorting (user changeable)
@@ -117,18 +132,13 @@ class TasksTableViewController: UITableViewController {
         })
     }
     
-    func filtersChanged() {
-        filterSortTasks()
-        tableView.reloadData()
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "ShowTaskDetails", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? TaskDetailsTableViewController{
-            destination.tasks = tasks[(tableView.indexPathForSelectedRow?.row)!]
+        if let destination = segue.destination as? TaskDetailsTableViewController {
+            destination.task = tasks[(tableView.indexPathForSelectedRow?.row)!]
         }
     }
 
@@ -147,7 +157,26 @@ class TasksTableViewController: UITableViewController {
     func completeItem(indexPath: IndexPath) {
         var task = tasks[indexPath.row]
         
-        task.complete(completedOn: nil)
+        if task.grade.graded {
+            let alert = GradeUtilities.gradePrompt(grade: task.grade) { (mode, grade) in
+                if let mode = mode, let grade = grade {
+                    task.grade.mode = mode
+                    task.grade.grade = grade
+                }
+                
+                //self.ignoreNextUpdate = true
+                task.complete(completedOn: nil)
+                
+                self.tasks[indexPath.row] = task
+            }
+            
+            self.present(alert, animated: true)
+        } else {
+            //self.ignoreNextUpdate = true
+            task.complete(completedOn: nil)
+            
+            self.tasks[indexPath.row] = task
+        }
     }
 
     func deleteItem(indexPath: IndexPath) {
@@ -168,12 +197,19 @@ extension TasksTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching == false ? tasks.count : searchTasks.count
+        let count = isSearching == false ? tasks.count : searchTasks.count
+        tableView.backgroundView = count == 0 ? noDataView : nil
+        
+        return count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
+        if indexPath.row > tasks.count - 1 {
+            return cell // fix weird crash
+        }
+        
         // Configure the cell...
         let task = isSearching == false ? tasks[indexPath.row] : searchTasks[indexPath.row]
         cell.taskLabel.text = task.name
@@ -272,27 +308,31 @@ extension TasksTableViewController {
 
 extension TasksTableViewController {
     func filterSearchResult(searchQuery: String?) {
-        if let searchQuery = searchQuery {
-            print("searchQuery: \(searchQuery)")
-            isSearching = true
-            
-            searchTasks = tasks.filter({ (task: Task) -> Bool in
-                var result = false
+        DispatchQueue.global(qos: .background).async {
+            if let searchQuery = searchQuery {
+                print("searchQuery: \(searchQuery)")
+                self.isSearching = true
                 
-                let searchKeywords = searchQuery.lowercased().split(separator: " ")
-                searchKeywords.forEach { (keyword) in
-                    if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
-                        result = true
-                        return // break loop
+                self.searchTasks = self.tasks.filter({ (task: Task) -> Bool in
+                    var result = false
+                    
+                    let searchKeywords = searchQuery.lowercased().split(separator: " ")
+                    searchKeywords.forEach { (keyword) in
+                        if task.name.lowercased().contains(keyword) || task.description.lowercased().contains(keyword) {
+                            result = true
+                            return // break loop
+                        }
                     }
-                }
-                
-                return result
-            })
-        } else {
-            isSearching = false
+                    
+                    return result
+                })
+            } else {
+                self.isSearching = false
+            }
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        
-        tableView.reloadData()
     }
 }

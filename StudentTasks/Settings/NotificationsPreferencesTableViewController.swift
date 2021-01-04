@@ -9,7 +9,7 @@ import UIKit
 
 class NotificationsPreferencesTableViewController: UITableViewController {
 
-    var notificationSettings: NotificationSettings = NotificationSettings.load()
+    var notificationSettings: NotificationSettings = NotificationSettings.instance
     
     @IBOutlet weak var beforeDeadlineLabel: UILabel!
     
@@ -46,6 +46,10 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     }
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        if toDatePicker.date <= fromDatePicker.date {
+            toDatePicker.date = fromDatePicker.date.addingTimeInterval(300)
+        }
+        
         updateDateLabels()
         
         notificationSettings.preferredTimeRange.start = fromDatePicker.date
@@ -94,7 +98,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     
     func handleTriggerBeforeDeadlinePicker(items: [PickerItem]) {
         if let chosenItem = items.first(where: {$0.checked}),
-           let value = Int(chosenItem.identifier) {
+           let value = Double(chosenItem.identifier) {
             notificationSettings.triggerBefore = value
         }
         
@@ -113,7 +117,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     
     func handleTaskPrioritiesPicker(items: [PickerItem]) {
         notificationSettings.preferredPriorities = items.compactMap({ (item) -> TaskPriority? in
-            return item.checked ? TaskPriority(rawValue: item.identifier) : nil
+            return item.checked ? TaskPriority(rawValue: Int(item.identifier)!) : nil
         })
         
         notificationSettings.update()
@@ -188,7 +192,7 @@ extension NotificationsPreferencesTableViewController {
                 pickerTableView.multiSelect = true
                 
                 for taskType in TaskType.allCases {
-                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.description, checked: false)
                     if notificationSettings.preferredTypes.contains(taskType) {
                         pickerItem.checked = true
                     }
@@ -200,7 +204,7 @@ extension NotificationsPreferencesTableViewController {
                 pickerTableView.multiSelect = true
                 
                 for taskPriority in TaskPriority.allCases {
-                    var pickerItem = PickerItem(identifier: taskPriority.rawValue, label: taskPriority.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: String(taskPriority.rawValue), label: taskPriority.description, checked: false)
                     if notificationSettings.preferredPriorities.contains(taskPriority) {
                         pickerItem.checked = true
                     }
