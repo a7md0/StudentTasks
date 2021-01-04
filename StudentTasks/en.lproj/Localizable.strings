@@ -1,7 +1,41 @@
-/* 
-  Localizable.strings
-  StudentTasks
+/* Assessment */
+"Assessment" = "Assessment";
 
-  Created by Ahmed Naser on 1/4/21.
-  
-*/
+/* Assignment */
+"Assignment" = "Assignment";
+
+/* Completed */
+"Completed" = "Completed";
+
+/* Exam */
+"Exam" = "Exam";
+
+/* High */
+"High" = "High";
+
+/* Homework */
+"Homework" = "Homework";
+
+/* Low */
+"Low" = "Low";
+
+/* Normal */
+"Normal" = "Normal";
+
+/* Ongoing task */
+"Ongoing" = "Ongoing";
+
+/* Overdue */
+"Overdue" = "Overdue";
+
+/* Overdue by 1 day */
+"Overdue.by.s" = "Overdue by %@";
+
+/* Project */
+"Project" = "Project";
+
+/* Overdue by 1 day */
+"Completed.s" = "Completed %@";
+
+/* Due in 1 day */
+"due.s" = "Due %@";

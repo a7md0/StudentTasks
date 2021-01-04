@@ -26,7 +26,7 @@ class AddCourseTableViewController: UITableViewController {
     
     @IBAction func AddBtnClicked(_ sender: Any) {
         
-        var color = CodableColor.init(color: .blue)
+        let color = CodableColor.init(color: .blue)
         var Course1 = Course.init(color: color, name: CourseName.text!, code: CourseCode.text!, abberivation: CourseAbbreviation.text!, tags: CourseTag.allCases, lecturerName: CourseTeacher.text!)
         Course1.create()
     }
