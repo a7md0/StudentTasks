@@ -11,7 +11,7 @@ struct Constants {
     static let placeHolderDate = Date(timeIntervalSinceReferenceDate: -39139200) // Oct 6, 1999, 00:00 AM
     
     static var notifcationFromTime: Date = {
-        return DateUtilities.timeFormatter.date(from: "8:00 AM")!
+        return DateUtilities.timeFormatter.date(from: "6:00 AM")!
     }()
     
     static var notifcationToTime: Date = {
