@@ -1,4 +1,3 @@
-
 /* Class = "UIViewController"; title = "Tasks"; ObjectID = "127-l1-DGr"; */
 "127-l1-DGr.title" = "المهام";
 
@@ -146,9 +145,6 @@
 /* Class = "UITableViewSection"; headerTitle = "Filters"; ObjectID = "Mes-c2-axc"; */
 "Mes-c2-axc.headerTitle" = "المرشحات";
 
-/* Class = "UILabel"; text = "Lecture"; ObjectID = "Mx6-lb-Urm"; */
-"Mx6-lb-Urm.text" = "الدرس";
-
 /* Class = "UILabel"; text = "GPA Model"; ObjectID = "NhL-vy-KSc"; */
 "NhL-vy-KSc.text" = "نموذج المعدل";
 
@@ -224,9 +220,6 @@
 /* Class = "UITableViewSection"; headerTitle = "Task details"; ObjectID = "XQU-OS-W16"; */
 "XQU-OS-W16.headerTitle" = "تفاصيل المهمة";
 
-/* Class = "UILabel"; text = "A-"; ObjectID = "Yiw-QT-cAx"; */
-"Yiw-QT-cAx.text" = "A-";
-
 /* Class = "UITableViewSection"; headerTitle = "Grading"; ObjectID = "aEx-2e-Y8P"; */
 "aEx-2e-Y8P.headerTitle" = "التصحيح";
 
@@ -299,14 +292,8 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "gbI-xf-dhp"; */
 "gbI-xf-dhp.text" = "التفاصيل";
 
-/* Class = "UILabel"; text = "Lab"; ObjectID = "hAu-n6-t0c"; */
-"hAu-n6-t0c.text" = "المختبر";
-
 /* Class = "UILabel"; text = "Due date"; ObjectID = "hBj-S9-aIG"; */
 "hBj-S9-aIG.text" = "تاريخ الاستحقاق";
-
-/* Class = "UILabel"; text = "Activity"; ObjectID = "hHu-uY-kfj"; */
-"hHu-uY-kfj.text" = "النشاط";
 
 /* Class = "UILabel"; text = "Type"; ObjectID = "htY-uM-jR2"; */
 "htY-uM-jR2.text" = "النوع";
@@ -338,7 +325,7 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "nId-Yn-kha"; */
 "nId-Yn-kha.text" = "التفاصيل";
 
-/* Class = "UILabel"; text = "IT6001 Osama Alabedat"; ObjectID = "nTZ-sP-fdm"; */
+/* Class = "UILabel"; text = "Tutor name"; ObjectID = "nTZ-sP-fdm"; */
 "nTZ-sP-fdm.text" = "IT6001 Osama Alabedat";
 
 /* Class = "UITableViewSection"; headerTitle = "Grading"; ObjectID = "naB-uz-Zu2"; */
@@ -356,7 +343,7 @@
 /* Class = "UILabel"; text = "Notifications preferences"; ObjectID = "oCf-2Q-7Ai"; */
 "oCf-2Q-7Ai.text" = "تفضيلات الإشعارات";
 
-/* Class = "UILabel"; text = "Object Orignted And design"; ObjectID = "oIQ-Gc-lSx"; */
+/* Class = "UILabel"; text = "Course name"; ObjectID = "oIQ-Gc-lSx"; */
 "oIQ-Gc-lSx.text" = "Object Orignted And design";
 
 /* Class = "UILabel"; text = "Task Name"; ObjectID = "oT2-gF-pGP"; */
@@ -376,9 +363,6 @@
 
 /* Class = "UILabel"; text = "Unset"; ObjectID = "tfq-P0-nlB"; */
 "tfq-P0-nlB.text" = "غير محدد";
-
-/* Class = "UILabel"; text = "Online"; ObjectID = "uOD-g6-DrU"; */
-"uOD-g6-DrU.text" = "اونلاين";
 
 /* Class = "UILabel"; text = "(%)"; ObjectID = "w7z-sE-CYf"; */
 "w7z-sE-CYf.text" = "(%)";
@@ -409,3 +393,27 @@
 
 /* Class = "UILabel"; text = "Priority"; ObjectID = "zos-FL-aOY"; */
 "zos-FL-aOY.text" = "الأهمية";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "1y0-vN-H4H"; */
+"1y0-vN-H4H.text" = "";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "5yT-8i-dMJ"; */
+"5yT-8i-dMJ.text" = "";
+
+/* Class = "UILabel"; text = "Completed tasks"; ObjectID = "Jbd-Yl-y1o"; */
+"Jbd-Yl-y1o.text" = "المهام المنجزة";
+
+/* Class = "UILabel"; text = "Ongoing tasks"; ObjectID = "KtR-jn-ccD"; */
+"KtR-jn-ccD.text" = "المهام الجارية";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Qkh-H8-LPL"; */
+"Qkh-H8-LPL.text" = "";
+
+/* Class = "UILabel"; text = "Overdue tasks"; ObjectID = "Wu9-S1-QEu"; */
+"Wu9-S1-QEu.text" = "المهام المتأخرة";
+
+/* Class = "UILabel"; text = "Overall grade"; ObjectID = "Xjb-BR-jfb"; */
+"Xjb-BR-jfb.text" = "الدرجة الكلية";
+
+/* Class = "UILabel"; text = "A+"; ObjectID = "Y9t-di-hFW"; */
+"Y9t-di-hFW.text" = "";
