@@ -1876,13 +1876,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBj-S9-aIG">
-                                                    <rect key="frame" x="16" y="11" width="69" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="69" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xG-ev-kr3">
-                                                    <rect key="frame" x="341.66666666666669" y="11" width="70.333333333333314" height="21"/>
+                                                    <rect key="frame" x="337.66666666666669" y="11" width="70.333333333333314" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1900,10 +1900,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hBj-S9-aIG" firstAttribute="top" secondItem="72G-kq-77P" secondAttribute="top" constant="11" id="49E-3c-QFg"/>
-                                                <constraint firstAttribute="trailing" secondItem="8xG-ev-kr3" secondAttribute="trailing" constant="16" id="VI3-27-luE"/>
+                                                <constraint firstAttribute="trailing" secondItem="8xG-ev-kr3" secondAttribute="trailing" constant="20" id="VI3-27-luE"/>
                                                 <constraint firstItem="2AT-ev-9Bk" firstAttribute="leading" secondItem="72G-kq-77P" secondAttribute="leading" id="ckS-8P-BMZ"/>
                                                 <constraint firstItem="8xG-ev-kr3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hBj-S9-aIG" secondAttribute="trailing" constant="8" symbolic="YES" id="nZj-Em-J7x"/>
-                                                <constraint firstItem="hBj-S9-aIG" firstAttribute="leading" secondItem="72G-kq-77P" secondAttribute="leading" constant="16" id="q6G-nO-7if"/>
+                                                <constraint firstItem="hBj-S9-aIG" firstAttribute="leading" secondItem="72G-kq-77P" secondAttribute="leading" constant="20" id="q6G-nO-7if"/>
                                                 <constraint firstItem="8xG-ev-kr3" firstAttribute="top" secondItem="72G-kq-77P" secondAttribute="top" constant="11" id="qb6-0l-Vzi"/>
                                                 <constraint firstAttribute="trailing" secondItem="2AT-ev-9Bk" secondAttribute="trailing" id="sdD-JJ-Ige"/>
                                                 <constraint firstItem="2AT-ev-9Bk" firstAttribute="top" secondItem="hBj-S9-aIG" secondAttribute="bottom" id="swO-mO-qX4"/>
@@ -1938,13 +1938,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBR-xh-LsC">
-                                                    <rect key="frame" x="16" y="11" width="87.666666666666671" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="87.666666666666671" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-FW-khI">
-                                                    <rect key="frame" x="291.66666666666669" y="11" width="120.33333333333331" height="21"/>
+                                                    <rect key="frame" x="287.66666666666669" y="11" width="120.33333333333331" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="AccentColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1959,10 +1959,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lz6-FW-khI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lBR-xh-LsC" secondAttribute="trailing" constant="8" symbolic="YES" id="3S9-F1-MOC"/>
-                                                <constraint firstAttribute="trailing" secondItem="lz6-FW-khI" secondAttribute="trailing" constant="16" id="Bxx-z1-tiP"/>
+                                                <constraint firstAttribute="trailing" secondItem="lz6-FW-khI" secondAttribute="trailing" constant="20" id="Bxx-z1-tiP"/>
                                                 <constraint firstItem="MeN-3s-SVR" firstAttribute="top" secondItem="lBR-xh-LsC" secondAttribute="bottom" constant="12" id="Mls-te-pAJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="MeN-3s-SVR" secondAttribute="trailing" id="QAK-7w-pfQ"/>
-                                                <constraint firstItem="lBR-xh-LsC" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="16" id="Vlh-xG-DgP"/>
+                                                <constraint firstItem="lBR-xh-LsC" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="20" id="Vlh-xG-DgP"/>
                                                 <constraint firstItem="MeN-3s-SVR" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="24" id="YXL-VO-ttU"/>
                                                 <constraint firstItem="lz6-FW-khI" firstAttribute="top" secondItem="XhY-Px-4wX" secondAttribute="top" constant="11" id="cyO-eq-2fa"/>
                                                 <constraint firstItem="lBR-xh-LsC" firstAttribute="top" secondItem="XhY-Px-4wX" secondAttribute="top" constant="11" id="mvS-4y-bpg"/>
