@@ -102,6 +102,10 @@ class TasksTableViewController: UITableViewController {
         self.tasks.sort(by: {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
             
+            if $0.status != $1.status {
+                return $0.status > $1.status
+            }
+            
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
                 if query.sortBy.dueDate == .descending { // based on the filters sorting (user changeable)
                     return compareDate == .orderedDescending
