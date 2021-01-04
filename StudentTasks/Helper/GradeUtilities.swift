@@ -82,7 +82,7 @@ struct GradeUtilities {
         }
     }
     
-    static func gradePrompt(grade: TaskGrade, callback: ((GradeMode, Decimal) -> Void)?) -> UIAlertController {
+    static func gradePrompt(grade: TaskGrade, callback: ((GradeMode?, Decimal?) -> Void)?) -> UIAlertController {
         let alert = UIAlertController(title: "Grade", message: "Enter the awarded grade for this task", preferredStyle: .alert)
         var textField: UITextField!
         
@@ -99,7 +99,9 @@ struct GradeUtilities {
             textField = alertText
         }
         
-        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: { alert in
+            callback?(nil, nil)
+        }))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
             if let text = textField.text {
                 var value: Decimal?
@@ -133,6 +135,8 @@ struct GradeUtilities {
 
                     callback?(mode, value)
                 }
+                
+                callback?(nil, nil)
             }
         }))
         

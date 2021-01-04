@@ -303,62 +303,12 @@ class TaskFormTableViewController: UITableViewController {
     }
     
     func promptForGrade() {
-        /*let alert = UIAlertController(title: "Grade", message: "Enter the awarded grade for this task", preferredStyle: .alert)
-        var textField: UITextField!
-        
-        alert.addTextField { (alertText) in
-            alertText.placeholder = "90% or 80/100"
-            if let grade = self.grade.grade {
-                alertText.text = "\(grade * 100)" // TODO: Handle percentage or fraction
-            }
-            
-            alertText.keyboardType = .numbersAndPunctuation
-            alertText.delegate = self
-            
-            textField = alertText
-        }
-        
-        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
-            if let text = textField.text {
-                var value: Decimal?
-                var mode: GradeMode?
-                
-                if text.contains("/") {
-                    let sp = text.split(separator: "/")
-                    if sp.count > 1,
-                       let op1 = Decimal(string: String(sp[0])),
-                       let op2 = Decimal(string: String(sp[1])) {
-                        
-                        value = op1/op2
-                        mode = .fraction
-                    }
-                } else if text.contains("%"),
-                          let percentage = GradeUtilities.percentageFormatter.number(from: text) {
-                    value = percentage.decimalValue
-                    mode = .percentage
-                } else if let number = Decimal(string: text) {
-                    value = number / 100
-                    mode = .percentage
-                    
-                    if let contribution = self.grade.contribution, number <= contribution {
-                        value = number / contribution
-                        mode = .fraction
-                    }
-                }
-                
-                if let value = value, let mode = mode {
-                    self.grade.mode = mode
-                    self.grade.grade = value
-                    print(value)
-                    self.updateGradingSection()
-                }
-            }
-        }))*/
-        
         let alert = GradeUtilities.gradePrompt(grade: self.grade) { (mode, grade) in
-            self.grade.mode = mode
-            self.grade.grade = grade
+            
+            if let mode = mode, let grade = grade {
+                self.grade.mode = mode
+                self.grade.grade = grade
+            }
             
             self.updateGradingSection()
         }
