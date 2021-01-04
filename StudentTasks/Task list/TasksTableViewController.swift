@@ -159,7 +159,26 @@ class TasksTableViewController: UITableViewController {
     func completeItem(indexPath: IndexPath) {
         var task = tasks[indexPath.row]
         
-        task.complete(completedOn: nil)
+        if task.grade.graded {
+            let alert = GradeUtilities.gradePrompt(grade: task.grade) { (mode, grade) in
+                if let mode = mode, let grade = grade {
+                    task.grade.mode = mode
+                    task.grade.grade = grade
+                }
+                
+                //self.ignoreNextUpdate = true
+                task.complete(completedOn: nil)
+                
+                self.tasks[indexPath.row] = task
+            }
+            
+            self.present(alert, animated: true)
+        } else {
+            //self.ignoreNextUpdate = true
+            task.complete(completedOn: nil)
+            
+            self.tasks[indexPath.row] = task
+        }
     }
 
     func deleteItem(indexPath: IndexPath) {
