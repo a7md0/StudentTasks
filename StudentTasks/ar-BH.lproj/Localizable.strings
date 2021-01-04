@@ -28,5 +28,14 @@
 /* Overdue */
 "Overdue" = "متأخر";
 
+/* Overdue by 1 day */
+"Overdue.by.s" = "متأخر من %@";
+
 /* Project */
 "Project" = "مشروع";
+
+/* Overdue by 1 day */
+"Completed.s" = "انجز %@";
+
+/* Due in 1 day */
+"due.s" = "مطلوب %@";

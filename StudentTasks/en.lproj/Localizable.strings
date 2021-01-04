@@ -28,5 +28,14 @@
 /* Overdue */
 "Overdue" = "Overdue";
 
+/* Overdue by 1 day */
+"Overdue.by.s" = "Overdue by %@";
+
 /* Project */
 "Project" = "Project";
+
+/* Overdue by 1 day */
+"Completed.s" = "Completed %@";
+
+/* Due in 1 day */
+"due.s" = "Due %@";

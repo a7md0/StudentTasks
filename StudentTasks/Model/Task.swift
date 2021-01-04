@@ -120,12 +120,22 @@ extension Task {
         switch self.status {
         case .overdue:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.dueDate, relativeTo: Date())
-            return "Overdue by \(relativeString)"
+            let formatString = NSLocalizedString("Overdue.by.s",
+                                                 comment: "Overdue by 1 day")
+            
+            return String.localizedStringWithFormat(formatString, relativeString)
         case .ongoing:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.dueDate, relativeTo: Date())
-            return "Due \(relativeString)"
+            let formatString = NSLocalizedString("due.s",
+                                                 comment: "Due in 1 day")
+            
+            return String.localizedStringWithFormat(formatString, relativeString)
         case .completed:
-            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: Date())
+            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: <#Date#>)
+            let formatString = NSLocalizedString("Completed.s",
+                                                 comment: "Overdue by 1 day")
+            
+            return String.localizedStringWithFormat(formatString, relativeString)
             return "Completed \(relativeString.replacingOccurrences(of: "in ", with: "from "))"
         }
     }

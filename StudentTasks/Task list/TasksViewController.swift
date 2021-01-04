@@ -62,7 +62,7 @@ class TasksViewController: UIViewController {
 
         if segue.identifier == "tasksFiltersSegue",
            let destinationNavigationController = segue.destination as? UINavigationController,
-           let tasksFiltersController = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
+           let _ = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
         }
     }
     
