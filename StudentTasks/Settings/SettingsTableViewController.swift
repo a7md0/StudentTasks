@@ -6,8 +6,7 @@
 //
 
 import UIKit
-
-
+import MessageUI
 
 class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
@@ -46,6 +45,38 @@ class SettingsTableViewController: UITableViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func showDialogMessage(title: String, messsage: String) {
+        let alert = UIAlertController(title: title, message: messsage, preferredStyle: UIAlertController.Style.alert)
+        
+
+        let action = UIAlertAction(title: "Done", style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+    func contactUs() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(Constants.developersEmails)
+            if let appName = Constants.appName {
+                mail.setSubject("\(appName)")
+            }
+            
+            present(mail, animated: true)
+        } else {
+            showDialogMessage(title: "Failed to open mail", messsage: "Cannot send email using this device.")
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
 
@@ -108,9 +139,16 @@ extension SettingsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let cell = tableView.cellForRow(at: indexPath),
-           cell.reuseIdentifier == "languageCell" {
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.reuseIdentifier == "languageCell" {
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            } else if cell.reuseIdentifier == "contactUsCell" {
+                self.contactUs()
+            } else if cell.reuseIdentifier == "aboutCell",
+                      let appName = Constants.appName,
+                      let appVersion = Constants.appVersion {
+                showDialogMessage(title: "About", messsage: "\(appName) app, version \(appVersion); Mobile Programming project")
+            }
         }
     }
 }

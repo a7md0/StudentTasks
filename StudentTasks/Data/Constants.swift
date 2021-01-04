@@ -50,5 +50,8 @@ struct Constants {
         (28, "4 Weeks"),
     ]
     
+    static let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    
+    static let developersEmails: [String] = ["201700099@student.polytechnic.bh", "201701590@student.polytechnic.bh", "201600602@student.polytechnic.bh"]
 }
