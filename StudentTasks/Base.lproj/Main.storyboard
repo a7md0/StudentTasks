@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pP5-a9-ydH">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1974,98 +1974,72 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Grading" id="aEx-2e-Y8P">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cv5-hj-7f7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="DOZ-fv-hkb" style="IBUITableViewCellStyleDefault" id="cv5-hj-7f7">
                                         <rect key="frame" x="0.0" y="742.33333587646484" width="428" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cv5-hj-7f7" id="bPr-nk-oJc">
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graded task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXm-dF-e2P">
-                                                    <rect key="frame" x="27" y="11.666666666666664" width="93" height="21"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Graded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOZ-fv-hkb">
+                                                    <rect key="frame" x="20" y="0.0" width="388" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="qXm-dF-e2P" firstAttribute="centerY" secondItem="bPr-nk-oJc" secondAttribute="centerY" id="Igc-cW-fdT"/>
-                                                <constraint firstItem="qXm-dF-e2P" firstAttribute="leading" secondItem="bPr-nk-oJc" secondAttribute="leadingMargin" constant="7" id="tIE-TU-ZgH"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="accessoryView" destination="mnJ-bU-Sqh" id="cUo-pP-uNO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contributionCell" id="T8v-3c-Xiu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="contributionCell" textLabel="cgW-cT-3zh" detailTextLabel="tfq-P0-nlB" style="IBUITableViewCellStyleValue1" id="T8v-3c-Xiu">
                                         <rect key="frame" x="0.0" y="786.00000381469727" width="428" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T8v-3c-Xiu" id="AUp-RX-mDk">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="396.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contribution to course (%)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mck-9Q-ueL">
-                                                    <rect key="frame" x="24" y="0.0" width="404" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                    <connections>
-                                                        <action selector="textFieldDone:" destination="Qmu-Pd-FEA" eventType="editingDidEnd" id="Eho-jH-MA4"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="mck-9Q-ueL" secondAttribute="bottom" id="4XD-4p-uEg"/>
-                                                <constraint firstItem="mck-9Q-ueL" firstAttribute="top" secondItem="AUp-RX-mDk" secondAttribute="top" id="FNZ-hd-icu"/>
-                                                <constraint firstItem="mck-9Q-ueL" firstAttribute="leading" secondItem="AUp-RX-mDk" secondAttribute="leading" constant="24" id="Hdi-Oj-iOl"/>
-                                                <constraint firstAttribute="trailing" secondItem="mck-9Q-ueL" secondAttribute="trailing" id="WW4-wy-US2"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gradeTypeCell" id="T0Q-VY-cpt">
-                                        <rect key="frame" x="0.0" y="829.66667175292969" width="428" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="T0Q-VY-cpt" id="QWJ-SV-Bkm">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grade type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sj-xR-4re">
-                                                    <rect key="frame" x="27" y="11.666666666666664" width="85" height="21"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Contribution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgW-cT-3zh">
+                                                    <rect key="frame" x="20.000000000000007" y="11.999999999999998" width="94.666666666666671" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Unset" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tfq-P0-nlB">
+                                                    <rect key="frame" x="343.33333333333337" y="11.999999999999998" width="45.333333333333336" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="linkColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="8sj-xR-4re" firstAttribute="leading" secondItem="QWJ-SV-Bkm" secondAttribute="leadingMargin" constant="7" id="Pdx-N0-L9i"/>
-                                                <constraint firstItem="8sj-xR-4re" firstAttribute="centerY" secondItem="QWJ-SV-Bkm" secondAttribute="centerY" id="WAs-qx-dCq"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="accessoryView" destination="YE1-5a-Jcr" id="VDz-Uk-vre"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="gradeCell" id="Phf-9u-ktT">
-                                        <rect key="frame" x="0.0" y="873.33333969116211" width="428" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="gradeCell" textLabel="1YZ-Az-YGd" detailTextLabel="qSn-6K-Oxa" style="IBUITableViewCellStyleValue1" id="Phf-9u-ktT">
+                                        <rect key="frame" x="0.0" y="829.66667175292969" width="428" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Phf-9u-ktT" id="6c2-jk-nNA">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="396.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Awarded Grade" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UQn-7O-LJh">
-                                                    <rect key="frame" x="24" y="0.0" width="404" height="44"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                    <connections>
-                                                        <action selector="textFieldDone:" destination="Qmu-Pd-FEA" eventType="editingDidEnd" id="xyb-Vn-ZuB"/>
-                                                    </connections>
-                                                </textField>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1YZ-Az-YGd">
+                                                    <rect key="frame" x="19.999999999999996" y="11.999999999999998" width="46.666666666666664" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Unset" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qSn-6K-Oxa">
+                                                    <rect key="frame" x="343.33333333333337" y="11.999999999999998" width="45.333333333333336" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="linkColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="UQn-7O-LJh" firstAttribute="top" secondItem="6c2-jk-nNA" secondAttribute="top" id="EKi-By-u9L"/>
-                                                <constraint firstAttribute="trailing" secondItem="UQn-7O-LJh" secondAttribute="trailing" id="ITn-UM-xtW"/>
-                                                <constraint firstItem="UQn-7O-LJh" firstAttribute="leading" secondItem="6c2-jk-nNA" secondAttribute="leading" constant="24" id="RCj-ly-Z7X"/>
-                                                <constraint firstAttribute="bottom" secondItem="UQn-7O-LJh" secondAttribute="bottom" id="Y6H-9u-W0F"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -2085,13 +2059,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="TaskNameField" destination="cBz-4z-Rhq" id="Kci-5h-sPP"/>
-                        <outlet property="awardedGrade" destination="UQn-7O-LJh" id="FKu-hl-7kS"/>
-                        <outlet property="contributionTextField" destination="mck-9Q-ueL" id="aUk-qe-YBx"/>
+                        <outlet property="contributionLabel" destination="tfq-P0-nlB" id="25m-os-RLR"/>
                         <outlet property="courseLabel" destination="T6g-dX-5DX" id="F5k-96-s8B"/>
                         <outlet property="descriptionTextField" destination="MeN-3s-SVR" id="Lrz-K7-XLT"/>
                         <outlet property="dueDateLabel" destination="8xG-ev-kr3" id="LLS-uY-ahl"/>
                         <outlet property="dueDatePicker" destination="2AT-ev-9Bk" id="qtG-Dj-Vrj"/>
-                        <outlet property="gradeTypeSegment" destination="YE1-5a-Jcr" id="2EZ-NO-qZ8"/>
+                        <outlet property="gradeLabel" destination="qSn-6K-Oxa" id="k7j-rB-aDP"/>
                         <outlet property="gradedTaskSwitch" destination="mnJ-bU-Sqh" id="Lqc-8s-Qcc"/>
                         <outlet property="prtiotySegment" destination="dlE-gi-am9" id="IaN-K3-cLv"/>
                         <outlet property="savebtn" destination="g3M-0r-FXI" id="abm-m1-WHe"/>
@@ -2123,17 +2096,6 @@
                         <action selector="gradedSwitch:" destination="Qmu-Pd-FEA" eventType="valueChanged" id="Aup-pk-sRT"/>
                     </connections>
                 </switch>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="YE1-5a-Jcr">
-                    <rect key="frame" x="0.0" y="-1" width="195" height="33"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <segments>
-                        <segment title="Percentage"/>
-                        <segment title="Fraction"/>
-                    </segments>
-                    <connections>
-                        <action selector="gradeModeSegmentChanged:" destination="Qmu-Pd-FEA" eventType="valueChanged" id="ryc-4P-B9P"/>
-                    </connections>
-                </segmentedControl>
             </objects>
             <point key="canvasLocation" x="-2917" y="3167"/>
         </scene>

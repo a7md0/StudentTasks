@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct GradeUtilities {
     static func calculateOverallGradeFor(tasks: [Task]) -> Decimal? {
@@ -79,5 +80,77 @@ struct GradeUtilities {
         default:
             return nil
         }
+    }
+    
+    static func gradePrompt(grade: TaskGrade, callback: ((GradeMode, Decimal) -> Void)?) -> UIAlertController {
+        let alert = UIAlertController(title: "Grade", message: "Enter the awarded grade for this task", preferredStyle: .alert)
+        var textField: UITextField!
+        
+        alert.addTextField { (alertText) in
+            alertText.placeholder = "90% or 80/100"
+            if let grade = grade.grade {
+                alertText.text = "\(grade * 100)" // TODO: Handle percentage or fraction
+            }
+            
+            alertText.keyboardType = .numbersAndPunctuation
+            let x = GradeTextfieldDelgate()
+            alertText.delegate = x
+            
+            textField = alertText
+        }
+        
+        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
+            if let text = textField.text {
+                var value: Decimal?
+                var mode: GradeMode?
+                
+                if text.contains("/") {
+                    let sp = text.split(separator: "/")
+                    if sp.count > 1,
+                       let op1 = Decimal(string: String(sp[0])),
+                       let op2 = Decimal(string: String(sp[1])) {
+                        
+                        value = op1/op2
+                        mode = .fraction
+                    }
+                } else if text.contains("%"),
+                          let percentage = GradeUtilities.percentageFormatter.number(from: text) {
+                    value = percentage.decimalValue
+                    mode = .percentage
+                } else if let number = Decimal(string: text) {
+                    value = number / 100
+                    mode = .percentage
+                    
+                    if let contribution = grade.contribution, number <= contribution {
+                        value = number / contribution
+                        mode = .fraction
+                    }
+                }
+                
+                if let value = value, let mode = mode {
+                    print(value)
+
+                    callback?(mode, value)
+                }
+            }
+        }))
+        
+        return alert
+    }
+}
+
+class GradeTextfieldDelgate: UIViewController, UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.init(charactersIn: "0123456789./%")
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        if let text = textField.text {
+            if [".", "/", "%"].contains(string), text.contains(string) {
+                return false
+            }
+        }
+        
+        return allowedCharacters.isSuperset(of: characterSet)
     }
 }

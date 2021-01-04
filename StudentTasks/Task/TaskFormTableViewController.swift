@@ -22,9 +22,8 @@ class TaskFormTableViewController: UITableViewController {
     @IBOutlet weak var descriptionTextField: UITextView!
     
     @IBOutlet weak var gradedTaskSwitch: UISwitch!
-    @IBOutlet weak var contributionTextField: UITextField!
-    @IBOutlet weak var gradeTypeSegment: UISegmentedControl!
-    @IBOutlet weak var awardedGrade: UITextField!
+    @IBOutlet weak var contributionLabel: UILabel!
+    @IBOutlet weak var gradeLabel: UILabel!
     
     @IBOutlet weak var savebtn: UIBarButtonItem!
     
@@ -43,6 +42,7 @@ class TaskFormTableViewController: UITableViewController {
     var taskType: TaskType?
     var taskPriority: TaskPriority = .normal
     var gradeMode: GradeMode = .percentage
+    var grade: TaskGrade = TaskGrade()
     
     var editMode = false
     var unwindSegue = "unwindtoTaskfromAdd"
@@ -59,8 +59,8 @@ class TaskFormTableViewController: UITableViewController {
         
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
         
-        contributionTextField.delegate = self
-        awardedGrade.delegate = self
+        /*contributionTextField.delegate = self
+        awardedGrade.delegate = self*/
         
         if let task = self.task {
             self.editMode = true
@@ -73,6 +73,7 @@ class TaskFormTableViewController: UITableViewController {
         
         updateSaveButtonState()
         updateDatePickerLabel()
+        updateGradingCellsState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -105,13 +106,13 @@ class TaskFormTableViewController: UITableViewController {
         }
         
         // Marking system - collecting data
-        task.grade.graded = gradedTaskSwitch.isOn
+        /*task.grade.graded = gradedTaskSwitch.isOn
         if gradedTaskSwitch.isOn,
            let contributionText = self.contributionTextField.text,
            let contribution = Decimal(string: contributionText) {
             
             task.grade.contribution = contribution / 100
-            task.grade.mode = self.gradeMode
+            task.grade = self.grade
             
             if let awardedGradeText = self.awardedGrade.text,
                let awardedGrade = Decimal(string: awardedGradeText) {
@@ -122,7 +123,8 @@ class TaskFormTableViewController: UITableViewController {
                     task.grade.grade = awardedGrade / contribution
                 }
             }
-        }
+        }*/
+        task.grade = self.grade
         
         if self.editMode {
             self.task = task
@@ -135,6 +137,8 @@ class TaskFormTableViewController: UITableViewController {
     }
     
     @IBAction func gradedSwitch(_ sender: UISwitch) {
+        self.grade.graded = sender.isOn
+        
         updateGradingCellsState()
     }
     
@@ -148,17 +152,6 @@ class TaskFormTableViewController: UITableViewController {
             taskPriority = .high
         default:
             taskPriority = .normal
-        }
-    }
-    
-    @IBAction func gradeModeSegmentChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            gradeMode = .percentage
-        case 1:
-            gradeMode = .fraction
-        default:
-            gradeMode = .percentage
         }
     }
     
@@ -200,28 +193,26 @@ class TaskFormTableViewController: UITableViewController {
         
         gradedTaskSwitch.isOn = task.grade.graded
         
-        self.gradeMode = task.grade.mode
-        switch task.grade.mode {
-        case .percentage:
-            gradeTypeSegment.selectedSegmentIndex = 0
-        case .fraction:
-            gradeTypeSegment.selectedSegmentIndex = 1
-        }
+        self.grade = task.grade
         
-        if let contribution = task.grade.contribution {
-            contributionTextField.text = "\(contribution * 100)"
-            if let grade = task.grade.grade {
-                if task.grade.mode == .percentage {
-                    awardedGrade.text = "\(grade * 100)"
-                } else {
-                    awardedGrade.text = "\(grade * contribution * 100)"
-                }
-            }
-            
-            updateGradingCellsState()
-        }
+        updateGradingSection()
         
         updatePickerLabels()
+    }
+    
+    func updateGradingSection() {
+        if self.grade.graded,
+           let contribution = self.grade.contribution {
+            
+            contributionLabel.text = GradeUtilities.percentageFormatter.string(for: contribution)
+            if let _ = self.grade.grade {
+                gradeLabel.text = self.grade.formattedGrade
+            } else {
+                gradeLabel.text = "Unset"
+            }
+        }
+        
+        updateGradingCellsState()
     }
     
     func updatePickerLabels() {
@@ -264,6 +255,116 @@ class TaskFormTableViewController: UITableViewController {
     @IBAction func textFieldDone(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
+    
+    func promptForContribution() {
+        let alert = UIAlertController(title: "Contribution", message: "Enter the contribution of this task to the course total (%)", preferredStyle: .alert)
+        var textField: UITextField!
+        
+        alert.addTextField { (alertText) in
+            alertText.placeholder = "30% or 25/100"
+            if let contribution = self.grade.contribution {
+                alertText.text = "\(contribution * 100)" // TODO: Handle percentage or fraction
+            }
+            
+            alertText.keyboardType = .numbersAndPunctuation
+            alertText.delegate = self
+            
+            textField = alertText
+        }
+        
+        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
+            if let text = textField.text {
+                var value: Decimal?
+                
+                if text.contains("/") {
+                    let sp = text.split(separator: "/")
+                    if sp.count > 1,
+                       let op1 = Decimal(string: String(sp[0])),
+                       let op2 = Decimal(string: String(sp[1])) {
+                        
+                        value = op1/op2
+                    }
+                } else if let percentage = GradeUtilities.percentageFormatter.number(from: text) {
+                    value = percentage.decimalValue
+                } else if let number = Decimal(string: text) {
+                    value = number / 100
+                }
+                
+                if let value = value {
+                    self.grade.contribution = value
+                    print(value)
+                    self.updateGradingSection()
+                }
+            }
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func promptForGrade() {
+        /*let alert = UIAlertController(title: "Grade", message: "Enter the awarded grade for this task", preferredStyle: .alert)
+        var textField: UITextField!
+        
+        alert.addTextField { (alertText) in
+            alertText.placeholder = "90% or 80/100"
+            if let grade = self.grade.grade {
+                alertText.text = "\(grade * 100)" // TODO: Handle percentage or fraction
+            }
+            
+            alertText.keyboardType = .numbersAndPunctuation
+            alertText.delegate = self
+            
+            textField = alertText
+        }
+        
+        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
+            if let text = textField.text {
+                var value: Decimal?
+                var mode: GradeMode?
+                
+                if text.contains("/") {
+                    let sp = text.split(separator: "/")
+                    if sp.count > 1,
+                       let op1 = Decimal(string: String(sp[0])),
+                       let op2 = Decimal(string: String(sp[1])) {
+                        
+                        value = op1/op2
+                        mode = .fraction
+                    }
+                } else if text.contains("%"),
+                          let percentage = GradeUtilities.percentageFormatter.number(from: text) {
+                    value = percentage.decimalValue
+                    mode = .percentage
+                } else if let number = Decimal(string: text) {
+                    value = number / 100
+                    mode = .percentage
+                    
+                    if let contribution = self.grade.contribution, number <= contribution {
+                        value = number / contribution
+                        mode = .fraction
+                    }
+                }
+                
+                if let value = value, let mode = mode {
+                    self.grade.mode = mode
+                    self.grade.grade = value
+                    print(value)
+                    self.updateGradingSection()
+                }
+            }
+        }))*/
+        
+        let alert = GradeUtilities.gradePrompt(grade: self.grade) { (mode, grade) in
+            self.grade.mode = mode
+            self.grade.grade = grade
+            
+            self.updateGradingSection()
+        }
+        
+        self.present(alert, animated: true)
+    }
 }
 
 // MARK: - Table view data source
@@ -295,6 +396,10 @@ extension TaskFormTableViewController {
             
             if reuseIdentifier == "courseCell", self.editMode == false {
                 performSegue(withIdentifier: "addTaskPickCourse", sender: self)
+            } else if reuseIdentifier == "contributionCell" {
+                promptForContribution()
+            } else if reuseIdentifier == "gradeCell" {
+                promptForGrade()
             }
         }
     }
@@ -384,13 +489,16 @@ extension TaskFormTableViewController {
 
 extension TaskFormTableViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == contributionTextField || textField == awardedGrade {
-            let allowedCharacters = CharacterSet.decimalDigits
-            let characterSet = CharacterSet(charactersIn: string)
-            
-            return allowedCharacters.isSuperset(of: characterSet)
+        let allowedCharacters = CharacterSet.init(charactersIn: "0123456789./%")
+        let characterSet = CharacterSet(charactersIn: string)
+        
+        if let text = textField.text {
+            if [".", "/", "%"].contains(string), text.contains(string) {
+                return false
+            }
         }
         
-        return true
+        return allowedCharacters.isSuperset(of: characterSet)
     }
 }
+
