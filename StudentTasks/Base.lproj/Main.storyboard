@@ -470,11 +470,15 @@
                     <connections>
                         <outlet property="Code" destination="nTZ-sP-fdm" id="bIs-FT-scz"/>
                         <outlet property="CourseName" destination="oIQ-Gc-lSx" id="2gM-Av-fLe"/>
+                        <outlet property="completedTasksLabel" destination="1y0-vN-H4H" id="Tan-8E-WUz"/>
                         <outlet property="courseImage" destination="4mY-5s-d6b" id="mmv-ut-iwx"/>
                         <outlet property="courseTag1" destination="hAu-n6-t0c" id="HBB-RV-349"/>
                         <outlet property="courseTag2" destination="uOD-g6-DrU" id="SNM-5L-r6B"/>
                         <outlet property="courseTag3" destination="Mx6-lb-Urm" id="dQc-gf-dRZ"/>
                         <outlet property="courseTag4" destination="hHu-uY-kfj" id="UnB-fK-IRZ"/>
+                        <outlet property="ongoingTasksLabel" destination="5yT-8i-dMJ" id="7l7-9a-MJl"/>
+                        <outlet property="overallGradeLabel" destination="Y9t-di-hFW" id="lcP-By-Nzb"/>
+                        <outlet property="overdueTasksLabel" destination="Qkh-H8-LPL" id="0Th-Xu-yPr"/>
                         <outlet property="tableView" destination="tjE-Rc-TBv" id="ABg-lo-ZPO"/>
                     </connections>
                 </viewController>

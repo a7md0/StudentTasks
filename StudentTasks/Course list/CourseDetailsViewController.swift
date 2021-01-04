@@ -21,6 +21,13 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var Code: UILabel!
     @IBOutlet weak var Tutor: UILabel!
     @IBOutlet weak var courseImage: UIImageView!
+    
+    @IBOutlet weak var overallGradeLabel: UILabel!
+    @IBOutlet weak var completedTasksLabel: UILabel!
+    @IBOutlet weak var ongoingTasksLabel: UILabel!
+    @IBOutlet weak var overdueTasksLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +39,7 @@ class CourseDetailsViewController: UIViewController {
         }
         
         SetupTags()
+        setupStats()
         CourseDetails()
         SetupTable()
         
@@ -41,7 +49,14 @@ class CourseDetailsViewController: UIViewController {
         
     }
     
-    
+    func setupStats() {
+        guard let course = self.course else { return }
+        
+        self.overallGradeLabel.text = course.overallFormattedGrade
+        self.completedTasksLabel.text = "\(course.completedTasks)"
+        self.ongoingTasksLabel.text = "\(course.ongoingTasks)"
+        self.overdueTasksLabel.text = "\(course.overdueTasks)"
+    }
     func SetupTags(){
         courseTag1.layer.cornerRadius = 15
         courseTag2.layer.cornerRadius = 15
