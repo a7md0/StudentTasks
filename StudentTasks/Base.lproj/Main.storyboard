@@ -1950,7 +1950,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MeN-3s-SVR">
-                                                    <rect key="frame" x="24" y="38" width="404" height="162"/>
+                                                    <rect key="frame" x="24" y="44" width="404" height="156"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1960,7 +1960,7 @@
                                             <constraints>
                                                 <constraint firstItem="lz6-FW-khI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lBR-xh-LsC" secondAttribute="trailing" constant="8" symbolic="YES" id="3S9-F1-MOC"/>
                                                 <constraint firstAttribute="trailing" secondItem="lz6-FW-khI" secondAttribute="trailing" constant="16" id="Bxx-z1-tiP"/>
-                                                <constraint firstItem="MeN-3s-SVR" firstAttribute="top" secondItem="lBR-xh-LsC" secondAttribute="bottom" constant="6" id="Mls-te-pAJ"/>
+                                                <constraint firstItem="MeN-3s-SVR" firstAttribute="top" secondItem="lBR-xh-LsC" secondAttribute="bottom" constant="12" id="Mls-te-pAJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="MeN-3s-SVR" secondAttribute="trailing" id="QAK-7w-pfQ"/>
                                                 <constraint firstItem="lBR-xh-LsC" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="16" id="Vlh-xG-DgP"/>
                                                 <constraint firstItem="MeN-3s-SVR" firstAttribute="leading" secondItem="XhY-Px-4wX" secondAttribute="leading" constant="24" id="YXL-VO-ttU"/>
@@ -2001,8 +2001,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="396.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Contribution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgW-cT-3zh">
-                                                    <rect key="frame" x="20.000000000000007" y="11.999999999999998" width="94.666666666666671" height="20.333333333333332"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Contribution to course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cgW-cT-3zh">
+                                                    <rect key="frame" x="20" y="11.999999999999998" width="170.33333333333334" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -2025,8 +2025,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="396.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1YZ-Az-YGd">
-                                                    <rect key="frame" x="19.999999999999996" y="11.999999999999998" width="46.666666666666664" height="20.333333333333332"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Awarded grade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1YZ-Az-YGd">
+                                                    <rect key="frame" x="20" y="11.999999999999998" width="115" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
