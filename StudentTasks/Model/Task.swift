@@ -38,14 +38,14 @@ struct Task: Codable, Equatable {
 
 // MARK: - Enums
 enum TaskStatus: Int, Codable, CaseIterable, CustomStringConvertible, Equatable, Comparable {
-    case ongoing = 1, completed = 2, overdue = 3
+    case completed = 1, ongoing = 2, overdue = 3
     
     var description: String {
         switch self {
-        case .ongoing:
-            return "Ongoing"
         case .completed:
             return "Completed"
+        case .ongoing:
+            return "Ongoing"
         case .overdue:
             return "Overdue"
         }
