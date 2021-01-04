@@ -88,8 +88,12 @@ struct GradeUtilities {
         
         alert.addTextField { (alertText) in
             alertText.placeholder = "90% or 80/100"
-            if let grade = grade.grade {
-                alertText.text = "\(grade * 100)" // TODO: Handle percentage or fraction
+            if let gradePercentage = grade.grade {
+                if grade.mode == .percentage {
+                    alertText.text = "\(gradePercentage * 100)%"
+                } else if let gradeContribution = grade.contribution {
+                    alertText.text = "\(gradePercentage)/\(gradeContribution)"
+                }
             }
             
             alertText.keyboardType = .numbersAndPunctuation
@@ -130,13 +134,7 @@ struct GradeUtilities {
                     }
                 }
                 
-                if let value = value, let mode = mode {
-                    print(value)
-
-                    callback?(mode, value)
-                }
-                
-                callback?(nil, nil)
+                callback?(mode, value)
             }
         }))
         
