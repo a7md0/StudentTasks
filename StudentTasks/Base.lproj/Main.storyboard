@@ -137,10 +137,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4mY-5s-d6b">
-                                <rect key="frame" x="15" y="118" width="128" height="128"/>
+                                <rect key="frame" x="15" y="118" width="96" height="96"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="0Gs-8L-Y5h"/>
-                                    <constraint firstAttribute="width" constant="128" id="akQ-bY-8ip"/>
+                                    <constraint firstAttribute="height" constant="96" id="0Gs-8L-Y5h"/>
+                                    <constraint firstAttribute="width" constant="96" id="akQ-bY-8ip"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IT6001 Osama Alabedat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTZ-sP-fdm">
@@ -311,7 +311,7 @@
                             <constraint firstItem="jae-gm-9bh" firstAttribute="leading" secondItem="S7J-0C-bZX" secondAttribute="leading" id="ZG3-qw-lRf"/>
                             <constraint firstItem="4mY-5s-d6b" firstAttribute="top" secondItem="S7J-0C-bZX" secondAttribute="top" constant="30" id="pyW-bu-8Sg"/>
                             <constraint firstItem="S7J-0C-bZX" firstAttribute="trailing" secondItem="jae-gm-9bh" secondAttribute="trailing" id="u6k-9I-jof"/>
-                            <constraint firstItem="xAb-MM-dXD" firstAttribute="top" secondItem="4mY-5s-d6b" secondAttribute="bottom" constant="20" id="yMl-Mk-kTQ"/>
+                            <constraint firstItem="xAb-MM-dXD" firstAttribute="top" secondItem="4mY-5s-d6b" secondAttribute="bottom" constant="52" id="yMl-Mk-kTQ"/>
                             <constraint firstItem="S7J-0C-bZX" firstAttribute="bottom" secondItem="tjE-Rc-TBv" secondAttribute="bottom" id="yYA-2H-B62"/>
                         </constraints>
                     </view>
@@ -319,12 +319,12 @@
                     <connections>
                         <outlet property="Code" destination="nTZ-sP-fdm" id="bIs-FT-scz"/>
                         <outlet property="CourseName" destination="oIQ-Gc-lSx" id="2gM-Av-fLe"/>
-                        <outlet property="CourseTasktbl" destination="tjE-Rc-TBv" id="ABg-lo-ZPO"/>
                         <outlet property="courseImage" destination="4mY-5s-d6b" id="mmv-ut-iwx"/>
                         <outlet property="courseTag1" destination="hAu-n6-t0c" id="HBB-RV-349"/>
                         <outlet property="courseTag2" destination="uOD-g6-DrU" id="SNM-5L-r6B"/>
                         <outlet property="courseTag3" destination="Mx6-lb-Urm" id="dQc-gf-dRZ"/>
                         <outlet property="courseTag4" destination="hHu-uY-kfj" id="UnB-fK-IRZ"/>
+                        <outlet property="tableView" destination="tjE-Rc-TBv" id="ABg-lo-ZPO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOj-Yf-bLq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -388,7 +388,7 @@
                                 <connections>
                                     <outlet property="courseImg" destination="beK-cE-0vq" id="23o-NC-zVf"/>
                                     <outlet property="courseName" destination="bAj-Hf-iHV" id="l2U-ld-gGa"/>
-                                    <segue destination="AEX-45-Jiu" kind="show" id="NDy-uf-0YX"/>
+                                    <segue destination="AEX-45-Jiu" kind="show" identifier="showCourseDetails" id="NDy-uf-0YX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

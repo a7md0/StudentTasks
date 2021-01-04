@@ -61,15 +61,20 @@ class CoursesTableViewController: UITableViewController {
         return cell
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showCourseDetails",
+           let courseDetailsView = segue.destination as? CourseDetailsViewController,
+           let indexPathForSelectedRow = tableView.indexPathForSelectedRow?.row {
+            
+            let course = courseslist[indexPathForSelectedRow]
+            courseDetailsView.course = course
+        }
     }
-    */
     
     func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
         let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this course will delete all related tasks.", preferredStyle: UIAlertController.Style.alert)
