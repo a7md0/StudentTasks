@@ -304,11 +304,8 @@ class TaskFormTableViewController: UITableViewController {
     
     func promptForGrade() {
         let alert = GradeUtilities.gradePrompt(grade: self.grade) { (mode, grade) in
-            
-            if let mode = mode, let grade = grade {
-                self.grade.mode = mode
-                self.grade.grade = grade
-            }
+            self.grade.mode = mode ?? .percentage
+            self.grade.grade = grade
             
             self.updateGradingSection()
         }
