@@ -11,11 +11,19 @@ struct Constants {
     static let placeHolderDate = Date(timeIntervalSinceReferenceDate: -39139200) // Oct 6, 1999, 00:00 AM
     
     static var notifcationFromTime: Date = {
-        return DateUtilities.timeFormatter.date(from: "6:00 AM")!
+        let calendar = Calendar.current
+        
+        let startOfTime = calendar.startOfDay(for: Date()) // GET 12:00AM of that time
+        
+        return startOfTime.addingTimeInterval(60 * 60 * 6)
     }()
     
     static var notifcationToTime: Date = {
-        return DateUtilities.timeFormatter.date(from: "10:00 PM")!
+        let calendar = Calendar.current
+        
+        let startOfTime = calendar.startOfDay(for: Date()) // GET 12:00AM of that time
+        
+        return startOfTime.addingTimeInterval(60 * 60 * 22)
     }()
     
     static let coursesNotifcations: [String : NSNotification.Name] = [
