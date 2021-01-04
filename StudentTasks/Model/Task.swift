@@ -37,39 +37,68 @@ struct Task: Codable, Equatable {
 }
 
 // MARK: - Enums
-enum TaskStatus: String, Codable, CaseIterable {
-    case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
-}
-
-extension TaskStatus: Equatable, Comparable {
-    static let statusMapping: [String:Int] = ["Ongoing": 1, "Completed": 2, "Overdue": 3]
+enum TaskStatus: Int, Codable, CaseIterable, CustomStringConvertible, Equatable, Comparable {
+    case ongoing = 1, completed = 2, overdue = 3
+    
+    var description: String {
+        switch self {
+        case .ongoing:
+            return "Ongoing"
+        case .completed:
+            return "Completed"
+        case .overdue:
+            return "Overdue"
+        }
+    }
 
     static func == (lhs: TaskStatus, rhs: TaskStatus) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
     
     static func < (lhs: TaskStatus, rhs: TaskStatus) -> Bool {
-        return statusMapping[lhs.rawValue]! < statusMapping[rhs.rawValue]!
+        return lhs.rawValue < rhs.rawValue
     }
 }
 
-enum TaskType: String, Codable, CaseIterable {
+enum TaskType: String, Codable, CaseIterable, CustomStringConvertible {
     case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
-}
-
-enum TaskPriority: String, Codable, CaseIterable {
-    case low = "Low", normal = "Normal", high = "High"
-}
-
-extension TaskPriority: Equatable, Comparable {
-    static let priorityMapping: [String:Int] = ["Very Low": 1, "Low": 2, "Normal": 3, "High": 4, "Very High": 5]
     
+    var description: String {
+        switch self {
+        case .assignment:
+            return "Assignment"
+        case .assessment:
+            return "Assessment"
+        case .project:
+            return "Project"
+        case .exam:
+            return "Exam"
+        case .homework:
+            return "Homework"
+        }
+    }
+}
+
+enum TaskPriority: Int, Codable, CaseIterable, CustomStringConvertible, Equatable, Comparable {
+    case low = 2, normal = 3, high = 4
+    
+    var description: String {
+        switch self {
+        case .low:
+            return "Low"
+        case .normal:
+            return "Normal"
+        case .high:
+            return "High"
+        }
+    }
+
     static func == (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
         return lhs.rawValue == rhs.rawValue
     }
     
     static func < (lhs: TaskPriority, rhs: TaskPriority) -> Bool {
-        return priorityMapping[lhs.rawValue]! < priorityMapping[rhs.rawValue]!
+        return lhs.rawValue < rhs.rawValue
     }
 }
 
