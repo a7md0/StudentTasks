@@ -131,7 +131,7 @@ extension Task {
             
             return String.localizedStringWithFormat(formatString, relativeString)
         case .completed:
-            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: <#Date#>)
+            let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: Date())
             let formatString = NSLocalizedString("Completed.s",
                                                  comment: "Overdue by 1 day")
             
