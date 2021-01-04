@@ -466,7 +466,9 @@
                             <constraint firstItem="S7J-0C-bZX" firstAttribute="bottom" secondItem="tjE-Rc-TBv" secondAttribute="bottom" id="yYA-2H-B62"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="6u0-q8-WVN"/>
+                    <navigationItem key="navigationItem" id="6u0-q8-WVN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="VEo-8d-Tfm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="Code" destination="nTZ-sP-fdm" id="bIs-FT-scz"/>
                         <outlet property="CourseName" destination="oIQ-Gc-lSx" id="2gM-Av-fLe"/>
