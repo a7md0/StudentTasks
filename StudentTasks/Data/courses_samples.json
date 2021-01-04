@@ -24,7 +24,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc",
-                "priority": "Normal",
+                "priority": 3,
                 "dueDate": "1999-06-01T20:00:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
@@ -39,7 +39,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc",
-                "priority": "Normal",
+                "priority": 3,
                 "dueDate": "1999-08-01T20:10:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
@@ -54,7 +54,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "1999-08-01T20:20:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
@@ -69,7 +69,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "1999-08-01T12:18:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
@@ -84,7 +84,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "1999-08-01T20:30:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
@@ -99,7 +99,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "1999-07-01T20:20:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
@@ -133,7 +133,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc 2",
-                "priority": "Normal",
+                "priority": 3,
                 "dueDate": "2020-12-24T20:01:00Z",
                 "completed": false,
                 "notificationsIdentifiers": []
@@ -148,7 +148,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc 2",
-                "priority": "Low",
+                "priority": 2,
                 "dueDate": "2020-12-24T20:11:00Z",
                 "completed": false,
                 "notificationsIdentifiers": []
@@ -163,7 +163,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc 2",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "2020-12-24T20:21:00Z",
                 "completed": false,
                 "notificationsIdentifiers": []
@@ -198,7 +198,7 @@
                     "grade": 0.96
                 },
                 "description": "",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "2020-11-10T12:00:00Z",
                 "completed": true,
                 "completedOn": "2020-12-24T12:00:00Z",
@@ -216,7 +216,7 @@
                     "grade": 0.88
                 },
                 "description": "",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "2021-01-05T12:00:00Z",
                 "completed": true,
                 "completedOn": "2021-01-05T12:00:00Z",
@@ -232,7 +232,7 @@
                     "mode": "Percentage"
                 },
                 "description": "desc 3",
-                "priority": "High",
+                "priority": 4,
                 "dueDate": "2020-12-24T20:22:00Z",
                 "completed": false,
                 "notificationsIdentifiers": []

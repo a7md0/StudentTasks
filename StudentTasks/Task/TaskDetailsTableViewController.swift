@@ -46,7 +46,7 @@ class TaskDetailsTableViewController: UITableViewController {
         taskNameLabel.text = task.name
         courseLabel.text = course.name
         taskTypeLabel.text = task.type.rawValue
-        priorityLabel.text = task.priority.rawValue
+        priorityLabel.text = task.priority.description
         dueDateLabel.text = DateUtilities.dateFormatter.string(from: task.dueDate)
         
         descriptionTextView.text = task.description

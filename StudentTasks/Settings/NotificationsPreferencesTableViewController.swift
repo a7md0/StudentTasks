@@ -117,7 +117,7 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     
     func handleTaskPrioritiesPicker(items: [PickerItem]) {
         notificationSettings.preferredPriorities = items.compactMap({ (item) -> TaskPriority? in
-            return item.checked ? TaskPriority(rawValue: item.identifier) : nil
+            return item.checked ? TaskPriority(rawValue: Int(item.identifier)!) : nil
         })
         
         notificationSettings.update()
@@ -192,7 +192,7 @@ extension NotificationsPreferencesTableViewController {
                 pickerTableView.multiSelect = true
                 
                 for taskType in TaskType.allCases {
-                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.description, checked: false)
                     if notificationSettings.preferredTypes.contains(taskType) {
                         pickerItem.checked = true
                     }
@@ -204,7 +204,7 @@ extension NotificationsPreferencesTableViewController {
                 pickerTableView.multiSelect = true
                 
                 for taskPriority in TaskPriority.allCases {
-                    var pickerItem = PickerItem(identifier: taskPriority.rawValue, label: taskPriority.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: String(taskPriority.rawValue), label: taskPriority.description, checked: false)
                     if notificationSettings.preferredPriorities.contains(taskPriority) {
                         pickerItem.checked = true
                     }

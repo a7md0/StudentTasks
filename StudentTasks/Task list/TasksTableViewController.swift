@@ -82,13 +82,7 @@ class TasksTableViewController: UITableViewController {
     
     func filterSortTasks() {
         self.tasks = allTasks.filter({ (task) -> Bool in
-            var keep = false
-            
-            if query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status) {
-                keep = true
-            }
-            
-            return keep
+            return query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status)
         })
         
         // Sortable by date withou time? Then importance level? maybe with little imporvment
@@ -107,6 +101,10 @@ class TasksTableViewController: UITableViewController {
         
         self.tasks.sort(by: {
             let compareDate = Calendar.current.compare($0.dueDate, to: $1.dueDate, toGranularity: .day) // compare date based on same day (without time)
+            
+            if $0.status != $1.status {
+                return $0.status > $1.status
+            }
             
             if compareDate != .orderedSame { // if the same-day comparision result isn't the same
                 if query.sortBy.dueDate == .descending { // based on the filters sorting (user changeable)
@@ -159,7 +157,26 @@ class TasksTableViewController: UITableViewController {
     func completeItem(indexPath: IndexPath) {
         var task = tasks[indexPath.row]
         
-        task.complete(completedOn: nil)
+        if task.grade.graded {
+            let alert = GradeUtilities.gradePrompt(grade: task.grade) { (mode, grade) in
+                if let mode = mode, let grade = grade {
+                    task.grade.mode = mode
+                    task.grade.grade = grade
+                }
+                
+                //self.ignoreNextUpdate = true
+                task.complete(completedOn: nil)
+                
+                self.tasks[indexPath.row] = task
+            }
+            
+            self.present(alert, animated: true)
+        } else {
+            //self.ignoreNextUpdate = true
+            task.complete(completedOn: nil)
+            
+            self.tasks[indexPath.row] = task
+        }
     }
 
     func deleteItem(indexPath: IndexPath) {
@@ -189,7 +206,7 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
-        if tasks.count == 0 {
+        if indexPath.row > tasks.count - 1 {
             return cell // fix weird crash
         }
         

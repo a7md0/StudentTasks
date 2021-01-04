@@ -91,7 +91,7 @@ class LocalNotificationManager {
             
             notificationCenter.add(request) { error in
                 guard error == nil else { return }
-                print("Scheduling notification with id: \(notification.id)")
+                print("Scheduling notification at \(notification.triggerDate)")
             }
         }
     }
