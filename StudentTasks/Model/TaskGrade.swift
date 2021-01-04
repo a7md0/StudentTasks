@@ -23,7 +23,7 @@ extension TaskGrade {
         var formatted: String?
         
         if let grade = self.grade {
-            let gradingSettings = GradingSettings.load()
+            let gradingSettings = GradingSettings.instance
             
             switch gradingSettings.gpaModel {
             case .fourPlus:
