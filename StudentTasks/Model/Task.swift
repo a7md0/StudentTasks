@@ -43,11 +43,11 @@ enum TaskStatus: Int, Codable, CaseIterable, CustomStringConvertible, Equatable,
     var description: String {
         switch self {
         case .completed:
-            return "Completed"
+            return NSLocalizedString("Completed", comment: "Completed")
         case .ongoing:
-            return "Ongoing"
+            return NSLocalizedString("Ongoing", comment: "Ongoing task")
         case .overdue:
-            return "Overdue"
+            return NSLocalizedString("Overdue", comment: "Overdue")
         }
     }
 
@@ -66,15 +66,15 @@ enum TaskType: String, Codable, CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {
         case .assignment:
-            return "Assignment"
+            return NSLocalizedString("Assignment", comment: "Assignment")
         case .assessment:
-            return "Assessment"
+            return NSLocalizedString("Assessment", comment: "Assessment")
         case .project:
-            return "Project"
+            return NSLocalizedString("Project", comment: "Project")
         case .exam:
-            return "Exam"
+            return NSLocalizedString("Exam", comment: "Exam")
         case .homework:
-            return "Homework"
+            return NSLocalizedString("Homework", comment: "Homework")
         }
     }
 }
@@ -85,11 +85,11 @@ enum TaskPriority: Int, Codable, CaseIterable, CustomStringConvertible, Equatabl
     var description: String {
         switch self {
         case .low:
-            return "Low"
+            return NSLocalizedString("Low", comment: "Low")
         case .normal:
-            return "Normal"
+            return NSLocalizedString("Normal", comment: "Normal")
         case .high:
-            return "High"
+            return NSLocalizedString("High", comment: "High")
         }
     }
 

@@ -1,1 +1,32 @@
+/* Assessment */
+"Assessment" = "تقدير";
 
+/* Assignment */
+"Assignment" = "مهمة";
+
+/* Completed */
+"Completed" = "منجز";
+
+/* Exam */
+"Exam" = "إمتحان";
+
+/* High */
+"High" = "مرتفع";
+
+/* Homework */
+"Homework" = "واجب منزلي";
+
+/* Low */
+"Low" = "منخفض";
+
+/* Normal */
+"Normal" = "طبيعي";
+
+/* Ongoing task */
+"Ongoing" = "قائم";
+
+/* Overdue */
+"Overdue" = "متأخر";
+
+/* Project */
+"Project" = "مشروع";

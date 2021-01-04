@@ -1,1 +1,32 @@
+/* Assessment */
+"Assessment" = "Assessment";
 
+/* Assignment */
+"Assignment" = "Assignment";
+
+/* Completed */
+"Completed" = "Completed";
+
+/* Exam */
+"Exam" = "Exam";
+
+/* High */
+"High" = "High";
+
+/* Homework */
+"Homework" = "Homework";
+
+/* Low */
+"Low" = "Low";
+
+/* Normal */
+"Normal" = "Normal";
+
+/* Ongoing task */
+"Ongoing" = "Ongoing";
+
+/* Overdue */
+"Overdue" = "Overdue";
+
+/* Project */
+"Project" = "Project";
