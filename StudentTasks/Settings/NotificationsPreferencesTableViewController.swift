@@ -9,7 +9,7 @@ import UIKit
 
 class NotificationsPreferencesTableViewController: UITableViewController {
 
-    var notificationSettings: NotificationSettings = NotificationSettings.load()
+    var notificationSettings: NotificationSettings = NotificationSettings.instance
     
     @IBOutlet weak var beforeDeadlineLabel: UILabel!
     
