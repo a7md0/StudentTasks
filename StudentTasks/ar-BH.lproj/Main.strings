@@ -1,0 +1,411 @@
+
+/* Class = "UIViewController"; title = "Tasks"; ObjectID = "127-l1-DGr"; */
+"127-l1-DGr.title" = "Tasks";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "1Bx-AL-9l0"; */
+"1Bx-AL-9l0.text" = "Type";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "1Dw-8W-Dqb"; */
+"1Dw-8W-Dqb.text" = "name";
+
+/* Class = "UILabel"; text = "Awarded grade"; ObjectID = "1YZ-Az-YGd"; */
+"1YZ-Az-YGd.text" = "Awarded grade";
+
+/* Class = "UILabel"; text = "No matching results found"; ObjectID = "2Ko-7O-0ls"; */
+"2Ko-7O-0ls.text" = "No matching results found";
+
+/* Class = "UITextField"; placeholder = "Course Code"; ObjectID = "2YO-9W-yoA"; */
+"2YO-9W-yoA.placeholder" = "Course Code";
+
+/* Class = "UITextField"; placeholder = "Course Name"; ObjectID = "2vQ-7t-IVK"; */
+"2vQ-7t-IVK.placeholder" = "Course Name";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "3xK-al-ZLw"; */
+"3xK-al-ZLw.title" = "Settings";
+
+/* Class = "UITabBarItem"; title = "Tasks"; ObjectID = "4SX-H8-mND"; */
+"4SX-H8-mND.title" = "Tasks";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "4mO-9M-IDL"; */
+"4mO-9M-IDL.text" = "Detail";
+
+/* Class = "UILabel"; text = "Choose Time"; ObjectID = "6JY-dQ-5Ka"; */
+"6JY-dQ-5Ka.text" = "Choose Time";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "6Qs-rh-ITZ"; */
+"6Qs-rh-ITZ.text" = "About";
+
+/* Class = "UISearchBar"; placeholder = "Search Courses"; ObjectID = "6XV-Dg-4O7"; */
+"6XV-Dg-4O7.placeholder" = "Search Courses";
+
+/* Class = "UILabel"; text = "Before deadline"; ObjectID = "76a-xV-ced"; */
+"76a-xV-ced.text" = "Before deadline";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "78r-xH-GWo"; */
+"78r-xH-GWo.text" = "Language";
+
+/* Class = "UILabel"; text = "Types"; ObjectID = "7jE-DC-ree"; */
+"7jE-DC-ree.text" = "Types";
+
+/* Class = "UILabel"; text = "Pick date"; ObjectID = "8xG-ev-kr3"; */
+"8xG-ev-kr3.text" = "Pick date";
+
+/* Class = "UILabel"; text = "priority"; ObjectID = "8yg-C6-GjR"; */
+"8yg-C6-GjR.text" = "priority";
+
+/* Class = "UILabel"; text = "date"; ObjectID = "9CW-aq-E5Z"; */
+"9CW-aq-E5Z.text" = "date";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "9ht-Nb-oBy"; */
+"9ht-Nb-oBy.text" = "Detail";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "ACP-FM-Vby"; */
+"ACP-FM-Vby.text" = "Detail";
+
+/* Class = "UITextField"; placeholder = "Course Location (Optional)"; ObjectID = "Amv-XQ-4BH"; */
+"Amv-XQ-4BH.placeholder" = "Course Location (Optional)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CQw-3l-BwS"; */
+"CQw-3l-BwS.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Course Teacher"; ObjectID = "CZZ-or-iMO"; */
+"CZZ-or-iMO.placeholder" = "Course Teacher";
+
+/* Class = "UITextField"; placeholder = "Course Teacher"; ObjectID = "Ccl-iL-c4s"; */
+"Ccl-iL-c4s.placeholder" = "Course Teacher";
+
+/* Class = "UILabel"; text = "Contribution"; ObjectID = "Cg2-2g-mH9"; */
+"Cg2-2g-mH9.text" = "Contribution";
+
+/* Class = "UILabel"; text = "Graded"; ObjectID = "DOZ-fv-hkb"; */
+"DOZ-fv-hkb.text" = "Graded";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "Dv4-IW-42L"; */
+"Dv4-IW-42L.text" = "Type";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Dxx-pE-cQf"; */
+"Dxx-pE-cQf.text" = "Title";
+
+/* Class = "UILabel"; text = "{Task name}"; ObjectID = "Dyp-2k-ILY"; */
+"Dyp-2k-ILY.text" = "{Task name}";
+
+/* Class = "UILabel"; text = "Contact us"; ObjectID = "EFM-H3-PxV"; */
+"EFM-H3-PxV.text" = "Contact us";
+
+/* Class = "UILabel"; text = "Theme"; ObjectID = "EIq-e3-3lD"; */
+"EIq-e3-3lD.text" = "Theme";
+
+/* Class = "UILabel"; text = "There is no tasks for the selected day."; ObjectID = "ERc-31-L6M"; */
+"ERc-31-L6M.text" = "There is no tasks for the selected day.";
+
+/* Class = "UITextField"; placeholder = "Course Location (Optional)"; ObjectID = "EcO-62-VLz"; */
+"EcO-62-VLz.placeholder" = "Course Location (Optional)";
+
+/* Class = "UILabel"; text = "Choose Time"; ObjectID = "FU2-aB-uo9"; */
+"FU2-aB-uo9.text" = "Choose Time";
+
+/* Class = "UISegmentedControl"; GRf-L0-1eE.segmentTitles[0] = "Lecture"; ObjectID = "GRf-L0-1eE"; */
+"GRf-L0-1eE.segmentTitles[0]" = "Lecture";
+
+/* Class = "UISegmentedControl"; GRf-L0-1eE.segmentTitles[1] = "Lab"; ObjectID = "GRf-L0-1eE"; */
+"GRf-L0-1eE.segmentTitles[1]" = "Lab";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "GvH-AW-p12"; */
+"GvH-AW-p12.text" = "Detail";
+
+/* Class = "UIBarButtonItem"; title = "Reset"; ObjectID = "HAb-sM-qnR"; */
+"HAb-sM-qnR.title" = "Reset";
+
+/* Class = "UITableViewSection"; headerTitle = "Notifications"; ObjectID = "HM9-9s-uaE"; */
+"HM9-9s-uaE.headerTitle" = "Notifications";
+
+/* Class = "UISegmentedControl"; HeD-qd-NUf.segmentTitles[0] = "Lecture"; ObjectID = "HeD-qd-NUf"; */
+"HeD-qd-NUf.segmentTitles[0]" = "Lecture";
+
+/* Class = "UISegmentedControl"; HeD-qd-NUf.segmentTitles[1] = "Lab"; ObjectID = "HeD-qd-NUf"; */
+"HeD-qd-NUf.segmentTitles[1]" = "Lab";
+
+/* Class = "UITextField"; placeholder = "Grade"; ObjectID = "IGh-eN-Mh2"; */
+"IGh-eN-Mh2.placeholder" = "Grade";
+
+/* Class = "UIBarButtonItem"; title = "Add"; ObjectID = "K3P-PK-ArZ"; */
+"K3P-PK-ArZ.title" = "Add";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "KJA-w5-KbF"; */
+"KJA-w5-KbF.text" = "Detail";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "KWb-Ta-gnW"; */
+"KWb-Ta-gnW.text" = "Detail";
+
+/* Class = "UITableViewSection"; headerTitle = "Trigger"; ObjectID = "LRu-jY-91M"; */
+"LRu-jY-91M.headerTitle" = "Trigger";
+
+/* Class = "UILabel"; text = "Course"; ObjectID = "MWY-uz-w0X"; */
+"MWY-uz-w0X.text" = "Course";
+
+/* Class = "UITableViewSection"; headerTitle = "Filters"; ObjectID = "Mes-c2-axc"; */
+"Mes-c2-axc.headerTitle" = "Filters";
+
+/* Class = "UILabel"; text = "Lecture"; ObjectID = "Mx6-lb-Urm"; */
+"Mx6-lb-Urm.text" = "Lecture";
+
+/* Class = "UILabel"; text = "GPA Model"; ObjectID = "NhL-vy-KSc"; */
+"NhL-vy-KSc.text" = "GPA Model";
+
+/* Class = "UILabel"; text = "Course"; ObjectID = "O0L-na-lHv"; */
+"O0L-na-lHv.text" = "Course";
+
+/* Class = "UILabel"; text = "Version"; ObjectID = "O72-ZX-0p3"; */
+"O72-ZX-0p3.text" = "Version";
+
+/* Class = "UITableViewSection"; headerTitle = "Other"; ObjectID = "PAf-zn-O6W"; */
+"PAf-zn-O6W.headerTitle" = "Other";
+
+/* Class = "UILabel"; text = "{Task name}"; ObjectID = "PKz-ai-eGc"; */
+"PKz-ai-eGc.text" = "{Task name}";
+
+/* Class = "UILabel"; text = "From"; ObjectID = "PxU-uI-qfd"; */
+"PxU-uI-qfd.text" = "From";
+
+/* Class = "UITableViewSection"; headerTitle = "Tasks"; ObjectID = "Q9M-rp-Ugh"; */
+"Q9M-rp-Ugh.headerTitle" = "Tasks";
+
+/* Class = "UITableViewController"; title = "Add Task"; ObjectID = "Qmu-Pd-FEA"; */
+"Qmu-Pd-FEA.title" = "Add Task";
+
+/* Class = "UITableViewController"; title = "Task Details View"; ObjectID = "Qzb-aR-4iB"; */
+"Qzb-aR-4iB.title" = "Task Details View";
+
+/* Class = "UITextField"; placeholder = "Course Abbreviation (Optional)"; ObjectID = "RDX-yJ-KEg"; */
+"RDX-yJ-KEg.placeholder" = "Course Abbreviation (Optional)";
+
+/* Class = "UILabel"; text = "Priority"; ObjectID = "REc-QC-fc1"; */
+"REc-QC-fc1.text" = "Priority";
+
+/* Class = "UILabel"; text = "course"; ObjectID = "S50-oK-yE1"; */
+"S50-oK-yE1.text" = "course";
+
+/* Class = "UITextField"; placeholder = "Course Name"; ObjectID = "SKh-Ta-IhU"; */
+"SKh-Ta-IhU.placeholder" = "Course Name";
+
+/* Class = "UITableViewSection"; headerTitle = "Sorting"; ObjectID = "SXB-t3-4JI"; */
+"SXB-t3-4JI.headerTitle" = "Sorting";
+
+/* Class = "UILabel"; text = "Pick course"; ObjectID = "T6g-dX-5DX"; */
+"T6g-dX-5DX.text" = "Pick course";
+
+/* Class = "UIBarButtonItem"; title = "Reset"; ObjectID = "TBo-MJ-tK3"; */
+"TBo-MJ-tK3.title" = "Reset";
+
+/* Class = "UITableViewSection"; headerTitle = "Details"; ObjectID = "URH-je-Ryr"; */
+"URH-je-Ryr.headerTitle" = "Details";
+
+/* Class = "UILabel"; text = "Priority"; ObjectID = "VR9-wY-KPG"; */
+"VR9-wY-KPG.text" = "Priority";
+
+/* Class = "UILabel"; text = "Pick type"; ObjectID = "VoW-tY-x3V"; */
+"VoW-tY-x3V.text" = "Pick type";
+
+/* Class = "UITableViewSection"; headerTitle = "Task Name"; ObjectID = "VtC-MZ-qim"; */
+"VtC-MZ-qim.headerTitle" = "Task Name";
+
+/* Class = "UITableViewSection"; headerTitle = "Appearance"; ObjectID = "WLY-O8-K2a"; */
+"WLY-O8-K2a.headerTitle" = "Appearance";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "WMx-fM-QZT"; */
+"WMx-fM-QZT.text" = "Detail";
+
+/* Class = "UILabel"; text = "Due Date"; ObjectID = "WaR-nz-mXc"; */
+"WaR-nz-mXc.text" = "Due Date";
+
+/* Class = "UITableViewSection"; headerTitle = "Description"; ObjectID = "Wvm-Ov-p5p"; */
+"Wvm-Ov-p5p.headerTitle" = "Description";
+
+/* Class = "UITableViewSection"; headerTitle = "Task details"; ObjectID = "XQU-OS-W16"; */
+"XQU-OS-W16.headerTitle" = "Task details";
+
+/* Class = "UILabel"; text = "A-"; ObjectID = "Yiw-QT-cAx"; */
+"Yiw-QT-cAx.text" = "A-";
+
+/* Class = "UITableViewSection"; headerTitle = "Grading"; ObjectID = "aEx-2e-Y8P"; */
+"aEx-2e-Y8P.headerTitle" = "Grading";
+
+/* Class = "UINavigationItem"; title = "Add task"; ObjectID = "aTF-e5-4T0"; */
+"aTF-e5-4T0.title" = "Add task";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bAj-Hf-iHV"; */
+"bAj-Hf-iHV.text" = "Label";
+
+/* Class = "UILabel"; text = "To"; ObjectID = "bJF-VU-DUg"; */
+"bJF-VU-DUg.text" = "To";
+
+/* Class = "UILabel"; text = "Grade"; ObjectID = "bzM-kv-xM0"; */
+"bzM-kv-xM0.text" = "Grade";
+
+/* Class = "UITextField"; placeholder = "Task Name"; ObjectID = "cBz-4z-Rhq"; */
+"cBz-4z-Rhq.placeholder" = "Task Name";
+
+/* Class = "UINavigationItem"; title = "Courses"; ObjectID = "cMT-wi-v8K"; */
+"cMT-wi-v8K.title" = "Courses";
+
+/* Class = "UILabel"; text = "Contribution to course"; ObjectID = "cgW-cT-3zh"; */
+"cgW-cT-3zh.text" = "Contribution to course";
+
+/* Class = "UITextField"; placeholder = "Course Abbreviation (Optional)"; ObjectID = "cn3-qf-FGa"; */
+"cn3-qf-FGa.placeholder" = "Course Abbreviation (Optional)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "d8R-nZ-8hE"; */
+"d8R-nZ-8hE.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Grading"; ObjectID = "dDZ-iB-73J"; */
+"dDZ-iB-73J.headerTitle" = "Grading";
+
+/* Class = "UINavigationItem"; title = "Tasks"; ObjectID = "dUH-ri-n49"; */
+"dUH-ri-n49.title" = "Tasks";
+
+/* Class = "UISegmentedControl"; dlE-gi-am9.segmentTitles[0] = "Low"; ObjectID = "dlE-gi-am9"; */
+"dlE-gi-am9.segmentTitles[0]" = "Low";
+
+/* Class = "UISegmentedControl"; dlE-gi-am9.segmentTitles[1] = "Normal"; ObjectID = "dlE-gi-am9"; */
+"dlE-gi-am9.segmentTitles[1]" = "Normal";
+
+/* Class = "UISegmentedControl"; dlE-gi-am9.segmentTitles[2] = "High"; ObjectID = "dlE-gi-am9"; */
+"dlE-gi-am9.segmentTitles[2]" = "High";
+
+/* Class = "UILabel"; text = "Task Type"; ObjectID = "dw4-fg-8Xi"; */
+"dw4-fg-8Xi.text" = "Task Type";
+
+/* Class = "UITextField"; placeholder = "Course Code"; ObjectID = "eGX-dF-K2B"; */
+"eGX-dF-K2B.placeholder" = "Course Code";
+
+/* Class = "UINavigationItem"; title = "Edit Course"; ObjectID = "eQq-dH-Y6C"; */
+"eQq-dH-Y6C.title" = "Edit Course";
+
+/* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "g3M-0r-FXI"; */
+"g3M-0r-FXI.title" = "Save";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "g5R-rL-gb8"; */
+"g5R-rL-gb8.text" = "Status";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "gHX-5a-fPQ"; */
+"gHX-5a-fPQ.text" = "Type";
+
+/* Class = "UISwitch"; title = "Notifications Switch"; ObjectID = "gOJ-g8-V5D"; */
+"gOJ-g8-V5D.title" = "Notifications Switch";
+
+/* Class = "UILabel"; text = "Due Date"; ObjectID = "gZ9-Dv-K6p"; */
+"gZ9-Dv-K6p.text" = "Due Date";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "gbI-xf-dhp"; */
+"gbI-xf-dhp.text" = "Detail";
+
+/* Class = "UILabel"; text = "Lab"; ObjectID = "hAu-n6-t0c"; */
+"hAu-n6-t0c.text" = "Lab";
+
+/* Class = "UILabel"; text = "Due date"; ObjectID = "hBj-S9-aIG"; */
+"hBj-S9-aIG.text" = "Due date";
+
+/* Class = "UILabel"; text = "Activity"; ObjectID = "hHu-uY-kfj"; */
+"hHu-uY-kfj.text" = "Activity";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "htY-uM-jR2"; */
+"htY-uM-jR2.text" = "Type";
+
+/* Class = "UITableViewSection"; headerTitle = "Time range"; ObjectID = "j2n-4x-Qgn"; */
+"j2n-4x-Qgn.headerTitle" = "Time range";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "jkO-pK-jv4"; */
+"jkO-pK-jv4.text" = "Detail";
+
+/* Class = "UILabel"; text = "Allow notifications"; ObjectID = "ken-fX-t1u"; */
+"ken-fX-t1u.text" = "Allow notifications";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "lBR-xh-LsC"; */
+"lBR-xh-LsC.text" = "Description";
+
+/* Class = "UITabBarItem"; title = "Courses"; ObjectID = "lOz-Ru-AnU"; */
+"lOz-Ru-AnU.title" = "Courses";
+
+/* Class = "UILabel"; text = "Add description"; ObjectID = "lz6-FW-khI"; */
+"lz6-FW-khI.text" = "Add description";
+
+/* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "mmM-VK-q1W"; */
+"mmM-VK-q1W.title" = "Calendar";
+
+/* Class = "UILabel"; text = "type"; ObjectID = "mxq-3u-HI9"; */
+"mxq-3u-HI9.text" = "type";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "nId-Yn-kha"; */
+"nId-Yn-kha.text" = "Detail";
+
+/* Class = "UILabel"; text = "IT6001 Osama Alabedat"; ObjectID = "nTZ-sP-fdm"; */
+"nTZ-sP-fdm.text" = "IT6001 Osama Alabedat";
+
+/* Class = "UITableViewSection"; headerTitle = "Grading"; ObjectID = "naB-uz-Zu2"; */
+"naB-uz-Zu2.headerTitle" = "Grading";
+
+/* Class = "UISearchBar"; placeholder = "Search tasks"; ObjectID = "nrG-AD-FKb"; */
+"nrG-AD-FKb.placeholder" = "Search tasks";
+
+/* Class = "UISearchBar"; nrG-AD-FKb.scopeButtonTitles[0] = "Title"; ObjectID = "nrG-AD-FKb"; */
+"nrG-AD-FKb.scopeButtonTitles[0]" = "Title";
+
+/* Class = "UISearchBar"; nrG-AD-FKb.scopeButtonTitles[1] = "Title"; ObjectID = "nrG-AD-FKb"; */
+"nrG-AD-FKb.scopeButtonTitles[1]" = "Title";
+
+/* Class = "UILabel"; text = "Notifications preferences"; ObjectID = "oCf-2Q-7Ai"; */
+"oCf-2Q-7Ai.text" = "Notifications preferences";
+
+/* Class = "UILabel"; text = "Object Orignted And design"; ObjectID = "oIQ-Gc-lSx"; */
+"oIQ-Gc-lSx.text" = "Object Orignted And design";
+
+/* Class = "UILabel"; text = "Task Name"; ObjectID = "oT2-gF-pGP"; */
+"oT2-gF-pGP.text" = "Task Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qCo-w9-0HJ"; */
+"qCo-w9-0HJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Priorities"; ObjectID = "qSf-SJ-DIm"; */
+"qSf-SJ-DIm.text" = "Priorities";
+
+/* Class = "UILabel"; text = "Unset"; ObjectID = "qSn-6K-Oxa"; */
+"qSn-6K-Oxa.text" = "Unset";
+
+/* Class = "UILabel"; text = "Graded Type"; ObjectID = "sQB-Ib-53N"; */
+"sQB-Ib-53N.text" = "Graded Type";
+
+/* Class = "UILabel"; text = "Unset"; ObjectID = "tfq-P0-nlB"; */
+"tfq-P0-nlB.text" = "Unset";
+
+/* Class = "UILabel"; text = "Online"; ObjectID = "uOD-g6-DrU"; */
+"uOD-g6-DrU.text" = "Online";
+
+/* Class = "UILabel"; text = "(%)"; ObjectID = "w7z-sE-CYf"; */
+"w7z-sE-CYf.text" = "(%)";
+
+/* Class = "UILabel"; text = "{Task name}"; ObjectID = "w9p-Gn-hY5"; */
+"w9p-Gn-hY5.text" = "{Task name}";
+
+/* Class = "UINavigationItem"; title = "Calendar"; ObjectID = "wGS-xD-yj6"; */
+"wGS-xD-yj6.title" = "Calendar";
+
+/* Class = "UINavigationItem"; title = "Preferences"; ObjectID = "wYA-hJ-iGO"; */
+"wYA-hJ-iGO.title" = "Preferences";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "xlD-CD-IUm"; */
+"xlD-CD-IUm.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Tasks Filters"; ObjectID = "y9f-NU-Fni"; */
+"y9f-NU-Fni.title" = "Tasks Filters";
+
+/* Class = "UINavigationItem"; title = "Add Course"; ObjectID = "yGj-sG-VsR"; */
+"yGj-sG-VsR.title" = "Add Course";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "yJs-yU-aJ7"; */
+"yJs-yU-aJ7.title" = "Settings";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "ytb-Bx-sQ5"; */
+"ytb-Bx-sQ5.text" = "Detail";
+
+/* Class = "UILabel"; text = "Priority"; ObjectID = "zos-FL-aOY"; */
+"zos-FL-aOY.text" = "Priority";
