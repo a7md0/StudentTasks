@@ -82,13 +82,7 @@ class TasksTableViewController: UITableViewController {
     
     func filterSortTasks() {
         self.tasks = allTasks.filter({ (task) -> Bool in
-            var keep = false
-            
-            if query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status) {
-                keep = true
-            }
-            
-            return keep
+            return query.filterBy.taskTypes.contains(task.type) && query.filterBy.taskStatus.contains(task.status)
         })
         
         // Sortable by date withou time? Then importance level? maybe with little imporvment
