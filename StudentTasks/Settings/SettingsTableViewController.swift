@@ -17,7 +17,7 @@ class SettingsTableViewController: UITableViewController {
     //
     
     // Grading section
-    var gradingSettings: GradingSettings = GradingSettings.load()
+    var gradingSettings: GradingSettings = GradingSettings.instance
     @IBOutlet weak var gpaModelLabel: UILabel!
     //
     

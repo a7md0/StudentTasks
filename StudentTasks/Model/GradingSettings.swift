@@ -14,6 +14,8 @@ struct GradingSettings: Codable {
 }
 
 extension GradingSettings {
+    static var instance: GradingSettings = load()
+    
     func update() {
         if self.save() {
             DispatchQueue.main.async { // Avoid crashing issue where observers must me in the main thread
@@ -23,6 +25,8 @@ extension GradingSettings {
     }
     
     private func save() -> Bool {
+        GradingSettings.instance = self
+        
         if let data = try? JSONEncoder().encode(self) {
             UserDefaults.standard.setValue(data, forKey: GradingSettings.saveKey)
             

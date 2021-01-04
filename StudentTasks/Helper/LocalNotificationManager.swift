@@ -14,7 +14,7 @@ class LocalNotificationManager {
     static let sharedInstance = LocalNotificationManager() // Static unimmutable variable which has instance of this class
     
     private let notificationCenter = UNUserNotificationCenter.current()
-    private var notificationSettings: NotificationSettings = NotificationSettings.load()
+    private var notificationSettings: NotificationSettings = NotificationSettings.instance
     
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.notifcationStateChanged), name: Constants.notifcationSettings["enabledChanged"]!, object: nil)
@@ -135,7 +135,7 @@ extension LocalNotificationManager {
     
     private func notificationsFor(task: Task) -> [Notification] {
         var notifications: [Notification] = []
-        let notificationsSettings = NotificationSettings.load()
+        let notificationsSettings = NotificationSettings.instance
         
         guard let course = task.course, // unwrap course
               task.status == .ongoing, // only for ongoing tasks
