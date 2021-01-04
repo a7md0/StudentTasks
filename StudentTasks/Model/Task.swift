@@ -41,6 +41,18 @@ enum TaskStatus: String, Codable, CaseIterable {
     case ongoing = "Ongoing", completed = "Completed", overdue = "Overdue"
 }
 
+extension TaskStatus: Equatable, Comparable {
+    static let statusMapping: [String:Int] = ["Ongoing": 1, "Completed": 2, "Overdue": 3]
+
+    static func == (lhs: TaskStatus, rhs: TaskStatus) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    
+    static func < (lhs: TaskStatus, rhs: TaskStatus) -> Bool {
+        return statusMapping[lhs.rawValue]! < statusMapping[rhs.rawValue]!
+    }
+}
+
 enum TaskType: String, Codable, CaseIterable {
     case assignment = "Assignment", assessment = "Assessment", project = "Project", exam = "Exam", homework = "Homework"
 }
