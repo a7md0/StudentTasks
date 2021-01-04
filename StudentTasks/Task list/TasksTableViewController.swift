@@ -206,7 +206,7 @@ extension TasksTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier", for: indexPath) as! TasksTableViewCell
 
-        if tasks.count == 0 {
+        if indexPath.row > tasks.count - 1 {
             return cell // fix weird crash
         }
         
