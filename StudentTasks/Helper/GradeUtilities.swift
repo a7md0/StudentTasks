@@ -85,6 +85,7 @@ struct GradeUtilities {
     static func gradePrompt(grade: TaskGrade, callback: ((GradeMode?, Decimal?) -> Void)?) -> UIAlertController {
         let alert = UIAlertController(title: "Grade", message: "Enter the awarded grade for this task", preferredStyle: .alert)
         var textField: UITextField!
+        let delegate = GradeTextfieldDelgate()
         
         alert.addTextField { (alertText) in
             alertText.placeholder = "90% or 80/100"
@@ -97,14 +98,15 @@ struct GradeUtilities {
             }
             
             alertText.keyboardType = .numbersAndPunctuation
-            let x = GradeTextfieldDelgate()
-            alertText.delegate = x
+            
+            alertText.delegate = delegate
             
             textField = alertText
         }
         
         alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: { alert in
             callback?(nil, nil)
+            delegate.dismiss(animated: false, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
             if let text = textField.text {
@@ -135,6 +137,7 @@ struct GradeUtilities {
                 }
                 
                 callback?(mode, value)
+                delegate.dismiss(animated: false, completion: nil)
             }
         }))
         
