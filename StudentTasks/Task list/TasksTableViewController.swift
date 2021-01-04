@@ -66,7 +66,7 @@ class TasksTableViewController: UITableViewController {
             self.allTasks = tasks
         
             guard self.ignoreNextUpdate == false else {
-                self.ignoreNextUpdate = true
+                self.ignoreNextUpdate = false
                 return
             }
 
