@@ -44,9 +44,7 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
 }
