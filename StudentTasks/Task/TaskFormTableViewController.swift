@@ -201,10 +201,13 @@ class TaskFormTableViewController: UITableViewController {
     }
     
     func updateGradingSection() {
-        if self.grade.graded,
-           let contribution = self.grade.contribution {
+        if self.grade.graded {
+            if let contribution = self.grade.contribution {
+                contributionLabel.text = GradeUtilities.percentageFormatter.string(for: contribution)
+            } else {
+                contributionLabel.text = "Unset"
+            }
             
-            contributionLabel.text = GradeUtilities.percentageFormatter.string(for: contribution)
             if let _ = self.grade.grade {
                 gradeLabel.text = self.grade.formattedGrade
             } else {
@@ -257,47 +260,11 @@ class TaskFormTableViewController: UITableViewController {
     }
     
     func promptForContribution() {
-        let alert = UIAlertController(title: "Contribution", message: "Enter the contribution of this task to the course total (%)", preferredStyle: .alert)
-        var textField: UITextField!
-        
-        alert.addTextField { (alertText) in
-            alertText.placeholder = "30% or 25/100"
-            if let contribution = self.grade.contribution {
-                alertText.text = "\(contribution * 100)" // TODO: Handle percentage or fraction
-            }
+        let alert = GradeUtilities.promptContribution(grade: self.grade, callback: { (contribution) in
+            self.grade.contribution = contribution
             
-            alertText.keyboardType = .numbersAndPunctuation
-            alertText.delegate = self
-            
-            textField = alertText
-        }
-        
-        alert.addAction(UIAlertAction(title: "Skip", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { alert in
-            if let text = textField.text {
-                var value: Decimal?
-                
-                if text.contains("/") {
-                    let sp = text.split(separator: "/")
-                    if sp.count > 1,
-                       let op1 = Decimal(string: String(sp[0])),
-                       let op2 = Decimal(string: String(sp[1])) {
-                        
-                        value = op1/op2
-                    }
-                } else if let percentage = GradeUtilities.percentageFormatter.number(from: text) {
-                    value = percentage.decimalValue
-                } else if let number = Decimal(string: text) {
-                    value = number / 100
-                }
-                
-                if let value = value {
-                    self.grade.contribution = value
-                    print(value)
-                    self.updateGradingSection()
-                }
-            }
-        }))
+            self.updateGradingSection()
+        })
         
         self.present(alert, animated: true)
     }
