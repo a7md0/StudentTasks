@@ -1,3 +1,39 @@
+/* 1 Day */
+"1 Day" = "1 Day";
+
+/* 1 Week */
+"1 Week" = "1 Week";
+
+/* 2 Days */
+"2 Days" = "2 Days";
+
+/* 2 Weeks */
+"2 Weeks" = "2 Weeks";
+
+/* 3 Days */
+"3 Days" = "3 Days";
+
+/* 3 Weeks */
+"3 Weeks" = "3 Weeks";
+
+/* 4 Days */
+"4 Days" = "4 Days";
+
+/* 4 Weeks */
+"4 Weeks" = "4 Weeks";
+
+/* 4.0 Scale (+) */
+"40scaleplus" = "4.0 Scale (+)";
+
+/* 4.0 Scale (+/-) */
+"40scaleplusminus" = "4.0 Scale (+/-)";
+
+/* 5 Days */
+"5 Days" = "5 Days";
+
+/* 6 Days */
+"6 Days" = "6 Days";
+
 /* All */
 "All" = "All";
 
@@ -46,6 +82,9 @@
 /* Exam */
 "Exam" = "Exam";
 
+/* Fraction */
+"Fraction" = "Fraction";
+
 /* High */
 "High" = "High";
 
@@ -85,6 +124,12 @@
 /* Overdue by 1 day */
 "Overdue.by.s" = "Overdue by %@";
 
+/* Percentage */
+"Percentage" = "Percentage";
+
+/* Percentage scale (%) */
+"percentageScale" = "Percentage scale (%)";
+
 /* Priority sorting */
 "Priority sorting" = "Priority sorting";
 
@@ -100,47 +145,11 @@
 /* Task type */
 "Task type" = "Task type";
 
-/* 1 Day */
-"1 Day" = "1 Day";
+/* Course */
+"Course" = "Course";
 
-/* 1 Week */
-"1 Week" = "1 Week";
+/* Task Type */
+"Task Type" = "Task Type";
 
-/* 2 Days */
-"2 Days" = "2 Days";
-
-/* 2 Weeks */
-"2 Weeks" = "2 Weeks";
-
-/* 3 Days */
-"3 Days" = "3 Days";
-
-/* 3 Weeks */
-"3 Weeks" = "3 Weeks";
-
-/* 4 Days */
-"4 Days" = "4 Days";
-
-/* 4 Weeks */
-"4 Weeks" = "4 Weeks";
-
-/* 4.0 Scale (+) */
-"40scaleplus" = "4.0 Scale (+)";
-
-/* 4.0 Scale (+/-) */
-"40scaleplusminus" = "4.0 Scale (+/-)";
-
-/* 5 Days */
-"5 Days" = "5 Days";
-
-/* 6 Days */
-"6 Days" = "6 Days";
-
-/* Fraction */
-"Fraction" = "Fraction";
-
-/* Percentage */
-"Percentage" = "Percentage";
-
-/* Percentage scale (%) */
-"percentageScale" = "Percentage scale (%)";
+/* Unset */
+"Unset" = "Unset";

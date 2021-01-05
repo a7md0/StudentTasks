@@ -1,3 +1,39 @@
+/* 1 Day */
+"1 Day" = "يوم ١";
+
+/* 1 Week */
+"1 Week" = "اسبوع ١";
+
+/* 2 Days */
+"2 Days" = "يومان ٢";
+
+/* 2 Weeks */
+"2 Weeks" = "اسبوعان ٢";
+
+/* 3 Days */
+"3 Days" = "٣ ايام";
+
+/* 3 Weeks */
+"3 Weeks" = "٣ اسابيع";
+
+/* 4 Days */
+"4 Days" = "٤ ايام";
+
+/* 4 Weeks */
+"4 Weeks" = "٤ اسابيع";
+
+/* 4.0 Scale (+) */
+"40scaleplus" = "4.0 نموذج (+)";
+
+/* 4.0 Scale (+/-) */
+"40scaleplusminus" = "4.0 نموذج (+/-)";
+
+/* 5 Days */
+"5 Days" = "٥ ايام";
+
+/* 6 Days */
+"6 Days" = "٦ ايام";
+
 /* All */
 "All" = "الكل";
 
@@ -46,6 +82,9 @@
 /* Exam */
 "Exam" = "إمتحان";
 
+/* Fraction */
+"Fraction" = "كسر عشري";
+
 /* High */
 "High" = "مرتفع";
 
@@ -85,6 +124,12 @@
 /* Overdue by 1 day */
 "Overdue.by.s" = "متأخر من %@";
 
+/* Percentage */
+"Percentage" = "النسبة المئوية";
+
+/* Percentage scale (%) */
+"percentageScale" = "نموذج النسبة المئوية (٪)";
+
 /* Priority sorting */
 "Priority sorting" = "فرز الأولوية";
 
@@ -100,47 +145,11 @@
 /* Task type */
 "Task type" = "نوع المهمة";
 
-/* 1 Day */
-"1 Day" = "يوم ١";
+/* Course */
+"Course" = "المقرر";
 
-/* 1 Week */
-"1 Week" = "اسبوع ١";
+/* Task Type */
+"Task Type" = "نوع المهمة";
 
-/* 2 Days */
-"2 Days" = "يومان ٢";
-
-/* 2 Weeks */
-"2 Weeks" = "اسبوعان ٢";
-
-/* 3 Days */
-"3 Days" = "٣ ايام";
-
-/* 3 Weeks */
-"3 Weeks" = "٣ اسابيع";
-
-/* 4 Days */
-"4 Days" = "٤ ايام";
-
-/* 4 Weeks */
-"4 Weeks" = "٤ اسابيع";
-
-/* 4.0 Scale (+) */
-"40scaleplus" = "4.0 نموذج (+)";
-
-/* 4.0 Scale (+/-) */
-"40scaleplusminus" = "4.0 نموذج (+/-)";
-
-/* 5 Days */
-"5 Days" = "٥ ايام";
-
-/* 6 Days */
-"6 Days" = "٦ ايام";
-
-/* Fraction */
-"Fraction" = "كسر عشري";
-
-/* Percentage */
-"Percentage" = "النسبة المئوية";
-
-/* Percentage scale (%) */
-"percentageScale" = "نموذج النسبة المئوية (٪)";
+/* Unset */
+"Unset" = "غير محدد";
