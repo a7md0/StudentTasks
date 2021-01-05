@@ -156,7 +156,7 @@ extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         
         cell.title.text = task.name
         cell.subtitle.text = task.brief
-        cell.rightDetails.text = task.formattedGrade
+        cell.rightDetails.text = task.grade.formattedGrade
         
         
         

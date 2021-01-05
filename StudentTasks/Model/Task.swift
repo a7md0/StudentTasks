@@ -152,25 +152,6 @@ extension Task {
         }
     }
     
-    var formattedGrade: String {
-        var formatted: String?
-        
-        if let grade = self.grade.grade {
-            let gradingSettings = GradingSettings.instance
-            
-            switch gradingSettings.gpaModel {
-            case .fourPlus:
-                formatted = GradeUtilities.forPlusMapper(grade: grade)
-            case .fourPlusMinus:
-                formatted = GradeUtilities.forPlusMinusMapper(grade: grade)
-            case .hundredPercentage:
-                formatted = GradeUtilities.percentageFormatter.string(for: grade)
-            }
-        }
-        
-        return formatted ?? "-"
-    }
-    
     private static let relativeDateTimeFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
