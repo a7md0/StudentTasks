@@ -179,16 +179,16 @@
 "Unset" = "غير محدد";
 
 /* Before deadline */
-"Before deadline" = "";
+"Before deadline" = "قبل موعد التسليم";
 
 /* None */
-"None" = "";
+"None" = "لا شيء";
 
 /* Notifications are disabled for this app, would you like to enable them? */
-"Notifications are disabled for this app, would you like to enable them?" = "";
+"Notifications are disabled for this app, would you like to enable them?" = "الإشعارات معطلة لهذا التطبيق, هل تود تفعيلهم؟";
 
 /* Task priorities */
-"Task priorities" = "";
+"Task priorities" = "أولويات المهام";
 
 /* Task types */
-"Task types" = "";
+"Task types" = "أنواع المهام";

@@ -179,16 +179,16 @@
 "Unset" = "Unset";
 
 /* Before deadline */
-"Before deadline" = "";
+"Before deadline" = "Before deadline";
 
 /* None */
-"None" = "";
+"None" = "None";
 
 /* Notifications are disabled for this app, would you like to enable them? */
 "Notifications are disabled for this app, would you like to enable them?" = "";
 
 /* Task priorities */
-"Task priorities" = "";
+"Task priorities" = "Task priorities";
 
 /* Task types */
-"Task types" = "";
+"Task types" = "Task types";
