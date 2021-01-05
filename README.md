@@ -1,5 +1,10 @@
 # Student Tasks
 
+### Notification notes
+The notification system will start scheduling after 60 seconds of launching the app for the first time. Any notification that should be sent in previous days will be sechudled in the same day. Other notification will be sechudled accordingly with the set perfrences.
+
+The notification will not trigger if not in the default specified time range of 6AM - 10PM.
+
 ## Features
 | Feature  | Main developer | Description |
 | ------------- | ------------- | ------------- |
