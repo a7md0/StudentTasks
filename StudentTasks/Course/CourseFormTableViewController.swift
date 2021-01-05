@@ -190,7 +190,7 @@ extension CourseFormTableViewController {
                 
                 for courseTag in CourseTag.allCases {
                     var pickerItem = PickerItem(identifier: courseTag.rawValue, label: courseTag.rawValue, checked: false)
-                    if let course = self.course, course.tags.contains(courseTag) {
+                    if courseTags.contains(courseTag) {
                         pickerItem.checked = true
                     }
                     
