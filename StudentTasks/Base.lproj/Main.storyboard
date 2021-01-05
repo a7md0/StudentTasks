@@ -612,7 +612,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Color" id="CLO-ag-xfk">
+                            <tableViewSection headerTitle="Course Color" id="CLO-ag-xfk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="31" id="nvs-qN-qxY">
                                         <rect key="frame" x="0.0" y="155" width="428" height="31"/>
@@ -754,7 +754,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add course" id="PKm-D1-9Hy">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="udi-4Y-arW"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="udi-4Y-arW">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="D7V-xL-3hL" id="gdB-cI-xm3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="colorSlider" destination="9PS-qE-fzE" id="IcC-ip-Aps"/>

@@ -54,6 +54,11 @@ class CourseFormTableViewController: UITableViewController {
         setupColorSlider()
     }
     
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    
     func updateView() {
         guard let course = self.course else { return }
         
