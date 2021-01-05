@@ -111,22 +111,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no tasks for the selected day." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERc-31-L6M">
-                            <rect key="frame" x="51" y="53.666666666666657" width="288" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no tasks for the selected date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERc-31-L6M">
+                            <rect key="frame" x="0.0" y="35.333333333333329" width="390" height="57.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="67l-aZ-mEj"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerY" secondItem="v65-gn-61a" secondAttribute="centerY" id="clS-nd-ZoQ"/>
-                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerX" secondItem="v65-gn-61a" secondAttribute="centerX" id="xfg-yr-RMs"/>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerX" secondItem="v65-gn-61a" secondAttribute="centerX" id="ExR-Pm-mSF"/>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="centerY" secondItem="v65-gn-61a" secondAttribute="centerY" id="IED-Mc-J9u"/>
+                        <constraint firstAttribute="trailing" secondItem="ERc-31-L6M" secondAttribute="trailing" id="fOx-TA-ZkG"/>
+                        <constraint firstItem="ERc-31-L6M" firstAttribute="leading" secondItem="v65-gn-61a" secondAttribute="leading" id="zsD-4m-Vl7"/>
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1577" y="3187"/>
+            <point key="canvasLocation" x="1611" y="2401"/>
         </scene>
         <!--Course Details View Controller-->
         <scene sceneID="FUO-03-ukh">
@@ -1336,7 +1338,7 @@
             <objects>
                 <tableViewController title="Task Details View" id="Qzb-aR-4iB" customClass="TaskDetailsTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="T0R-km-EvY">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -1840,7 +1842,7 @@
             <objects>
                 <tableViewController title="Add Task" id="Qmu-Pd-FEA" customClass="TaskFormTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="iP0-vB-MAt">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -2273,7 +2275,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="gi6-iJ-iHI"/>
         <segue reference="z4Z-4S-AlR"/>
-        <segue reference="weW-1J-oOj"/>
+        <segue reference="Id2-8q-g84"/>
         <segue reference="sSH-DE-ebR"/>
     </inferredMetricsTieBreakers>
     <resources>
