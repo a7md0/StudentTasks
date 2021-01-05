@@ -1,14 +1,35 @@
+/* All */
+"All" = "All";
+
+/* Ascending */
+"Ascending" = "Ascending";
+
 /* Assessment */
 "Assessment" = "Assessment";
 
 /* Assignment */
 "Assignment" = "Assignment";
 
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Complete */
+"Complete" = "Complete";
+
 /* Completed */
 "Completed" = "Completed";
 
 /* Overdue by 1 day */
 "Completed.s" = "Completed %@";
+
+/* Delete */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Deleting this task will delete all related data." = "Deleting this task will delete all related data.";
+
+/* Descending */
+"Descending" = "Descending";
 
 /* Due in 1 day */
 "due.s" = "Due %@";
@@ -19,17 +40,32 @@
 /* High */
 "High" = "High";
 
+/* Highest */
+"Highest" = "Highest";
+
 /* Homework */
 "Homework" = "Homework";
 
+/* Lab */
+"Lab" = "Lab";
+
+/* Lecture */
+"Lecture" = "Lecture";
+
 /* Low */
 "Low" = "Low";
+
+/* Lowest */
+"Lowest" = "Lowest";
 
 /* Normal */
 "Normal" = "Normal";
 
 /* Ongoing task */
 "Ongoing" = "Ongoing";
+
+/* Online */
+"Online" = "Online";
 
 /* Overdue */
 "Overdue" = "Overdue";
@@ -39,3 +75,18 @@
 
 /* Project */
 "Project" = "Project";
+
+/* Custom */
+"Custom" = "Custom";
+
+/* Due date sorting */
+"Due date sorting" = "Due date sorting";
+
+/* Priority sorting */
+"Priority sorting" = "Priority sorting";
+
+/* Task status */
+"Task status" = "Task status";
+
+/* Task type */
+"Task type" = "Task type";

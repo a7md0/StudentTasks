@@ -219,7 +219,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         addChild(tabTableView) // don't forget, it's very important
         contentViews.append(tabTableView)
         
-        createTabLabel(course?.name ?? "All")
+        createTabLabel(course?.name ?? NSLocalizedString("All", comment: "All"))
     }
     
     private func createTabLabel(_ text: String) {

@@ -44,11 +44,11 @@ class TasksFiltersTableViewController: UITableViewController {
     }
     
     func updateView() {
-        dueDateLabel.text = query.sortBy.dueDate.rawValue
-        importancelabel.text = query.sortBy.importance.rawValue
+        dueDateLabel.text = query.sortBy.dueDate.description
+        importancelabel.text = query.sortBy.importance.description
         
-        taskTypeLabel.text = query.filterBy.taskTypes.count == query.filterBy.defaultTaskTypes.count ? "All" : "Custom"
-        taskStatusLabel.text = query.filterBy.taskStatus.count == query.filterBy.defaultTaskStatus.count ? "All" : "Custom"
+        taskTypeLabel.text = query.filterBy.taskTypes.count == query.filterBy.defaultTaskTypes.count ? NSLocalizedString("All", comment: "All") : NSLocalizedString("Custom", comment: "Custom")
+        taskStatusLabel.text = query.filterBy.taskStatus.count == query.filterBy.defaultTaskStatus.count ? NSLocalizedString("All", comment: "All") : NSLocalizedString("Custom", comment: "Custom")
     }
     
     func handlePickerSelectionUpdate(identifier: String?, items: [PickerItem]) {
@@ -89,19 +89,19 @@ class TasksFiltersTableViewController: UITableViewController {
             
             switch identifier {
             case "dueDateCell":
-                alert.title = "Due date sorting"
+                alert.title = NSLocalizedString("Due date sorting", comment: "Due date sorting")
                 
                 for orderByCase in OrderBy.allCases {
-                    alert.addAction(UIAlertAction(title: orderByCase.rawValue, style: .default, handler: { (UIAlertAction) in
+                    alert.addAction(UIAlertAction(title: orderByCase.description, style: .default, handler: { (UIAlertAction) in
                         self.query.sortBy.dueDate = orderByCase
                         self.updateView()
                     }))
                 }
             case "priorityCell":
-                alert.title = "Priority sorting"
+                alert.title = NSLocalizedString("Priority sorting", comment: "Priority sorting")
                 
                 for priortyCase in Priorty.allCases {
-                    alert.addAction(UIAlertAction(title: priortyCase.rawValue, style: .default, handler: { (UIAlertAction) in
+                    alert.addAction(UIAlertAction(title: priortyCase.description, style: .default, handler: { (UIAlertAction) in
                         self.query.sortBy.importance = priortyCase
                         self.updateView()
                     }))
@@ -110,7 +110,7 @@ class TasksFiltersTableViewController: UITableViewController {
                 return
             }
             
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel))
             self.present(alert, animated: true) {}
         }
     }
@@ -126,7 +126,7 @@ class TasksFiltersTableViewController: UITableViewController {
             tasksFiltersController.unwindSegueIdentifier = TasksFiltersTableViewController.pcikerUnwindSegueIdentifier
             
             if segue.identifier == "taskTypeSegue" {
-                tasksFiltersController.title = "Task type"
+                tasksFiltersController.title = NSLocalizedString("Task type", comment: "Task type")
                 tasksFiltersController.identifier = segue.identifier
                 tasksFiltersController.multiSelect = true
                 
@@ -139,7 +139,7 @@ class TasksFiltersTableViewController: UITableViewController {
                     tasksFiltersController.items.append(pickerItem)
                 }
             } else if segue.identifier == "taskStatusSegue"  {
-                tasksFiltersController.title = "Task status"
+                tasksFiltersController.title = NSLocalizedString("Task status", comment: "Task status")
                 tasksFiltersController.multiSelect = true
                 
                 for completenessStatus in query.filterBy.defaultTaskStatus {

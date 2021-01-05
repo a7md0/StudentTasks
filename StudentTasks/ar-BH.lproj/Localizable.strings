@@ -1,14 +1,35 @@
+/* All */
+"All" = "الكل";
+
+/* Ascending */
+"Ascending" = "تصاعدي";
+
 /* Assessment */
 "Assessment" = "تقدير";
 
 /* Assignment */
 "Assignment" = "مهمة";
 
+/* Cancel */
+"Cancel" = "إلغاء";
+
+/* Complete */
+"Complete" = "اكتمال";
+
 /* Completed */
 "Completed" = "منجز";
 
 /* Overdue by 1 day */
 "Completed.s" = "انجز %@";
+
+/* Delete */
+"Delete" = "حذف";
+
+/* No comment provided by engineer. */
+"Deleting this task will delete all related data." = "سيؤدي حذف هذه المهمة إلى حذف جميع البيانات ذات الصلة.";
+
+/* Descending */
+"Descending" = "تنازلي";
 
 /* Due in 1 day */
 "due.s" = "مطلوب %@";
@@ -19,17 +40,32 @@
 /* High */
 "High" = "مرتفع";
 
+/* Highest */
+"Highest" = "الأعلى";
+
 /* Homework */
 "Homework" = "واجب منزلي";
 
+/* Lab */
+"Lab" = "لاب";
+
+/* Lecture */
+"Lecture" = "درس";
+
 /* Low */
 "Low" = "منخفض";
+
+/* Lowest */
+"Lowest" = "أدنى";
 
 /* Normal */
 "Normal" = "طبيعي";
 
 /* Ongoing task */
 "Ongoing" = "قائم";
+
+/* Online */
+"Online" = "اونلاين";
 
 /* Overdue */
 "Overdue" = "متأخر";
@@ -39,3 +75,18 @@
 
 /* Project */
 "Project" = "مشروع";
+
+/* Custom */
+"Custom" = "مخصص";
+
+/* Due date sorting */
+"Due date sorting" = "فرز تاريخ الاستحقاق";
+
+/* Priority sorting */
+"Priority sorting" = "فرز الأولوية";
+
+/* Task status */
+"Task status" = "حالة المهمة";
+
+/* Task type */
+"Task type" = "نوع المهمة";
