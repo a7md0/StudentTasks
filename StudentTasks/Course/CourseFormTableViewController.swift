@@ -22,9 +22,9 @@ class CourseFormTableViewController: UITableViewController {
     var course: Course?
     
     var courseTags: [CourseTag] = [.lecture]
+    var courseColor: CodableColor?
     
-    let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
-        
+    let colors = [4293212469, 4292352864, 4287505578, 4284364209, 4281944491, 4280191205, 4278234305, 4278225275, 4282622023, 4290824755, 4294947584, 4294201630, 4285353025, 4283723386]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +38,47 @@ class CourseFormTableViewController: UITableViewController {
         if let course = self.course {
             self.editMode = true
             
-            navigationItem.title = "Edit course"
+            navigationItem.title = course.name
             self.courseTags = course.tags
+            self.courseColor = course.color
+            
+            if let color = course.color {
+                self.colorFrom(color: color)
+            }
             
             updateView()
+        }  else {
+            self.setRandomColor()
         }
+                
+        setupColorSlider()
     }
-    @IBAction func colorSliderChanged(_ sender: UISlider) {
-        print(Int(sender.value))
-        //navigationItem.backgroundColor = UIColor.init(rgb: )
+    
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        guard let courseNameText = courseNameTextfield.text,
+              let courseColor = self.courseColor else { return }
+        
+        if self.editMode {
+            
+            self.course?.name = courseNameText
+            
+            self.course?.color = courseColor
+            
+            //self.course?.code = ??
+            //self.course?.abberivation = ??
+            self.course?.tags = courseTags
+            //self.course?.lecturerName = ??
+            
+            self.course?.save()
+        } else {
+            var course = Course(color: courseColor, name: courseNameText, code: nil, abberivation: nil, tags: courseTags, lecturerName: nil)
+            course.create()
+        }
+        
+        performSegue(withIdentifier: self.unwindSegue, sender: self)
     }
+    
     
     func updateView() {
         guard let course = self.course else { return }
@@ -58,6 +89,8 @@ class CourseFormTableViewController: UITableViewController {
         courseAbberivationLabel.text = course.abberivation ?? "Unset"
         courseLecturerLabel.text = course.lecturerName ?? "Unset"
     }
+    
+    
     
     func handlePickerTagsSelection(items: [PickerItem]) {
         self.courseTags = []
@@ -117,6 +150,55 @@ class CourseFormTableViewController: UITableViewController {
     */
 }
 
+extension CourseFormTableViewController {
+    @IBAction func colorSliderChanged(_ sender: UISlider) {
+        colorPicked()
+    }
+    
+    func setupColorSlider() {
+        // https://stackoverflow.com/a/34619780/1738413
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sliderTapped))
+        self.colorSlider.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    /*
+     https://stackoverflow.com/a/34619780/1738413
+     */
+    @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
+        let pointTapped: CGPoint = gestureRecognizer.location(in: self.view)
+        
+        let positionOfSlider: CGPoint = colorSlider.frame.origin
+        let widthOfSlider: CGFloat = colorSlider.frame.size.width
+        let newValue = ((pointTapped.x - positionOfSlider.x) * CGFloat(colorSlider.maximumValue) / widthOfSlider)
+        
+        colorSlider.setValue(Float(newValue), animated: true)
+        colorPicked()
+    }
+    
+    func colorPicked() {
+        let idx = Int(colorSlider.value)
+        let uiColor = UIColor(rgb: self.colors[idx])
+        
+        courseColor = CodableColor(color: uiColor)
+    }
+    
+    func colorFrom(color: CodableColor) {
+        if let rgb = color.color.rgb(),
+           let colorIdx = self.colors.firstIndex(where: { $0 == rgb }) {
+            
+            colorSlider.value = Float(colorIdx)
+            colorPicked()
+        }
+    }
+    
+    func setRandomColor() {
+        if let rndValue = stride(from: 0, through: 13.5, by: 0.5).shuffled().last {
+            colorSlider.value = Float(rndValue)
+            colorPicked()
+        }
+    }
+}
+
 // MARK: - Navigation
 extension CourseFormTableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -134,7 +216,7 @@ extension CourseFormTableViewController {
                 
                 for courseTag in CourseTag.allCases {
                     var pickerItem = PickerItem(identifier: courseTag.rawValue, label: courseTag.rawValue, checked: false)
-                    if let course = self.course, course.tags.contains(courseTag) {
+                    if courseTags.contains(courseTag) {
                         pickerItem.checked = true
                     }
                     
@@ -145,7 +227,7 @@ extension CourseFormTableViewController {
     }
     
     @IBAction func unwindToCourseForm(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+        _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
         
         if unwindSegue.identifier == "unwindCourseForm",

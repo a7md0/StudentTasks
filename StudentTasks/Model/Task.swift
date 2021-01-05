@@ -136,7 +136,6 @@ extension Task {
                                                  comment: "Overdue by 1 day")
             
             return String.localizedStringWithFormat(formatString, relativeString)
-            return "Completed \(relativeString.replacingOccurrences(of: "in ", with: "from "))"
         }
     }
     
@@ -228,7 +227,12 @@ extension Task {
 // MARK: - Data
 extension Task {
     private static var tasks: [Task] {
-        return Course.findAll().flatMap { $0.tasks } // Map all courses tasks then flatten the arrays into one
+        let courses = Course.findAll()
+        if courses.count == 0 {
+            return []
+        }
+        
+        return courses.flatMap { $0.tasks } // Map all courses tasks then flatten the arrays into one
     }
     
     static func findOne(id: String?) -> Task? {

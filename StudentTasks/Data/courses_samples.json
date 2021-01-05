@@ -5,7 +5,7 @@
         "code": "IT8108",
         "abberivation": "MP",
         "color": {
-            "rgb": 4294913365
+            "rgb": 4292352864
         },
         "completedTasks": 0,
         "ongoingTasks": 0,
@@ -113,7 +113,7 @@
         "code": "IT7006",
         "abberivation": "OD",
         "color": {
-            "rgb": 4281236786
+            "rgb": 4282622023
         },
         "completedTasks": 0,
         "ongoingTasks": 0,
@@ -176,7 +176,7 @@
         "code": "IT7405",
         "abberivation": "WD",
         "color": {
-            "rgb": 4279592384
+            "rgb": 4280191205
         },
         "completedTasks": 0,
         "ongoingTasks": 0,
@@ -201,7 +201,7 @@
                 "priority": 4,
                 "dueDate": "2020-11-10T12:00:00Z",
                 "completed": true,
-                "completedOn": "2020-12-24T12:00:00Z",
+                "completedOn": "2020-11-10T14:00:00Z",
                 "notificationsIdentifiers": []
             },
             {
