@@ -149,16 +149,16 @@ extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let CourseTask = gradedTasks[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier") as! TasksTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier") as! CompletedTaskTableViewCell
         
         // Configure the cell...
-        cell.taskLabel.text = CourseTask.name
-        cell.subtitle.text = CourseTask.brief
+        let task = gradedTasks[indexPath.row]
         
-        if let codableColor = CourseTask.course?.color {
-            cell.courseImage.backgroundColor = codableColor.color
-        }
+        cell.title.text = task.name
+        cell.subtitle.text = task.brief
+        cell.rightDetails.text = task.formattedGrade
+        
+        
         
         return cell
         
