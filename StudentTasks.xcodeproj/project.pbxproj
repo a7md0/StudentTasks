@@ -11,6 +11,7 @@
 		93027D11259E833F00B53C06 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93027D10259E833F00B53C06 /* AppearanceSettings.swift */; };
 		93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93059CBD2597CBCF00B0B181 /* Constants.swift */; };
 		931D638A25936C240042B3D2 /* courses_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = 931D638925936C240042B3D2 /* courses_samples.json */; };
+		931F32D325A47217008F5586 /* UIColor + Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F32D225A47217008F5586 /* UIColor + Hex.swift */; };
 		93205FB625A3323A006A704C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93205FB825A3323A006A704C /* Localizable.strings */; };
 		93214113259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214112259C2BAD0029FEFD /* NotificationsPreferencesTableViewController.swift */; };
 		93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214116259C4E8E0029FEFD /* NotificationSettings.swift */; };
@@ -51,6 +52,7 @@
 		93027D10259E833F00B53C06 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		93059CBD2597CBCF00B0B181 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		931D638925936C240042B3D2 /* courses_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = courses_samples.json; sourceTree = "<group>"; };
+		931F32D225A47217008F5586 /* UIColor + Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Hex.swift"; sourceTree = "<group>"; };
 		93205FB325A33184006A704C /* ar-BH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-BH"; path = "ar-BH.lproj/Main.strings"; sourceTree = "<group>"; };
 		93205FB425A33184006A704C /* ar-BH */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-BH"; path = "ar-BH.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		93205FB725A3323A006A704C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				9399DACD2596690100F0891C /* UIColor + Codable.swift */,
 				9332513E259EF83A0028F6CF /* DateUtilities.swift */,
 				9329832925A0279D001832AE /* GradeUtilities.swift */,
+				931F32D225A47217008F5586 /* UIColor + Hex.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */,
 				93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */,
 				93BC92E8258A14AF0084AF40 /* DataManager.swift in Sources */,
+				931F32D325A47217008F5586 /* UIColor + Hex.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
 				F07E043125A123A10028F604 /* CourseDetailsViewController.swift in Sources */,
 				F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */,
