@@ -46,16 +46,16 @@ struct Constants {
     ]
     
     static let daysMapping: [(key: Double, value: String)] = [
-        (1, "1 Day"),
-        (2, "2 Days"),
-        (3, "3 Days"),
-        (4, "4 Days"),
-        (5, "5 Days"),
-        (6, "6 Days"),
-        (7, "1 Week"),
-        (14, "2 Weeks"),
-        (21, "3 Weeks"),
-        (28, "4 Weeks"),
+        (1, NSLocalizedString("1 Day", comment: "1 Day")),
+        (2, NSLocalizedString("2 Days", comment: "2 Days")),
+        (3, NSLocalizedString("3 Days", comment: "3 Days")),
+        (4, NSLocalizedString("4 Days", comment: "4 Days")),
+        (5, NSLocalizedString("5 Days", comment: "5 Days")),
+        (6, NSLocalizedString("6 Days", comment: "6 Days")),
+        (7, NSLocalizedString("1 Week", comment: "1 Week")),
+        (14, NSLocalizedString("2 Weeks", comment: "2 Weeks")),
+        (21, NSLocalizedString("3 Weeks", comment: "3 Weeks")),
+        (28, NSLocalizedString("4 Weeks", comment: "4 Weeks")),
     ]
     
     static let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as? String

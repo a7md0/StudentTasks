@@ -246,23 +246,19 @@ extension TasksTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let complete = UIContextualAction(style: .normal, title: "Complete") { (action, view, completionHandler) in
-            print("Complete \(indexPath.row + 1)")
-            
+        let complete = UIContextualAction(style: .normal, title: NSLocalizedString("Complete", comment: "Complete")) { (action, view, completionHandler) in
             self.completeItem(indexPath: indexPath)
         }
         complete.backgroundColor = .gray
         complete.image = UIImage(systemName: "checkmark")
         
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
+        let delete = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete")) { (action, view, completionHandler) in
             let task = self.tasks[indexPath.row]
             
             self.showConfirmDelete(task.name) { (delete) in
                 completionHandler(true)
                 
                 if delete {
-                    print("Delete \(indexPath.row + 1)")
-                
                     self.deleteItem(indexPath: indexPath)
                 }
             }
@@ -275,12 +271,12 @@ extension TasksTableViewController {
     }
     
     func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
-        let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this task will delete all related data.", preferredStyle: UIAlertController.Style.alert)
+        let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: NSLocalizedString("Deleting this task will delete all related data.", comment: ""), preferredStyle: UIAlertController.Style.alert)
         
-        let okAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        let okAction = UIAlertAction(title: NSLocalizedString("Delete", comment: "Delete"), style: .destructive) { _ in
             handler?(true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel) { _ in
             handler?(false)
         }
         
@@ -310,7 +306,6 @@ extension TasksTableViewController {
     func filterSearchResult(searchQuery: String?) {
         DispatchQueue.global(qos: .background).async {
             if let searchQuery = searchQuery {
-                print("searchQuery: \(searchQuery)")
                 self.isSearching = true
                 
                 self.searchTasks = self.tasks.filter({ (task: Task) -> Bool in

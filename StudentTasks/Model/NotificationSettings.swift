@@ -37,7 +37,6 @@ extension NotificationSettings {
         
         if let data = try? JSONEncoder().encode(self) {
             UserDefaults.standard.setValue(data, forKey: NotificationSettings.saveKey)
-            print("save notification settings: \(self)")
             
             return true
         }
@@ -52,7 +51,6 @@ extension NotificationSettings {
     }
     
     mutating func switchEnabled(on: Bool) {
-        print("switchEnabled: \(notificationsEnabled) -> \(on)")
         guard notificationsEnabled != on else { return }
         
         notificationsEnabled = on
@@ -63,7 +61,6 @@ extension NotificationSettings {
     }
     
     mutating func switchGrant(granted: Bool) {
-        print("switchGrant: \(granted)")
         guard notificationsGranted != granted else { return }
         
         self.notificationsGranted = granted

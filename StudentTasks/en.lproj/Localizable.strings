@@ -1,29 +1,146 @@
+/* 1 Day */
+"1 Day" = "1 Day";
+
+/* 1 Week */
+"1 Week" = "1 Week";
+
+/* 2 Days */
+"2 Days" = "2 Days";
+
+/* 2 Weeks */
+"2 Weeks" = "2 Weeks";
+
+/* 3 Days */
+"3 Days" = "3 Days";
+
+/* 3 Weeks */
+"3 Weeks" = "3 Weeks";
+
+/* 4 Days */
+"4 Days" = "4 Days";
+
+/* 4 Weeks */
+"4 Weeks" = "4 Weeks";
+
+/* 4.0 Scale (+) */
+"40scaleplus" = "4.0 Scale (+)";
+
+/* 4.0 Scale (+/-) */
+"40scaleplusminus" = "4.0 Scale (+/-)";
+
+/* 5 Days */
+"5 Days" = "5 Days";
+
+/* 6 Days */
+"6 Days" = "6 Days";
+
+/* About */
+"About" = "About";
+
+/* All */
+"All" = "All";
+
+/* Ascending */
+"Ascending" = "Ascending";
+
 /* Assessment */
 "Assessment" = "Assessment";
 
 /* Assignment */
 "Assignment" = "Assignment";
 
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Complete */
+"Complete" = "Complete";
+
 /* Completed */
 "Completed" = "Completed";
+
+/* Overdue by 1 day */
+"Completed.s" = "Completed %@";
+
+/* Course */
+"Course" = "Course";
+
+/* Custom */
+"Custom" = "Custom";
+
+/* Dark theme */
+"Dark theme" = "Dark theme";
+
+/* Delete */
+"Delete" = "Delete";
+
+/* No comment provided by engineer. */
+"Deleting this task will delete all related data." = "Deleting this task will delete all related data.";
+
+/* Descending */
+"Descending" = "Descending";
+
+/* Done */
+"Done" = "Done";
+
+/* Due date sorting */
+"Due date sorting" = "Due date sorting";
+
+/* Due in 1 day */
+"due.s" = "Due %@";
 
 /* Exam */
 "Exam" = "Exam";
 
+/* Fraction */
+"Fraction" = "Fraction";
+
+/* GPA Model */
+"GPA Model" = "GPA Model";
+
 /* High */
 "High" = "High";
+
+/* Highest */
+"Highest" = "Highest";
 
 /* Homework */
 "Homework" = "Homework";
 
+/* Lab */
+"Lab" = "Lab";
+
+/* Lecture */
+"Lecture" = "Lecture";
+
+/* Light theme */
+"Light theme" = "Light theme";
+
 /* Low */
 "Low" = "Low";
+
+/* Lowest */
+"Lowest" = "Lowest";
 
 /* Normal */
 "Normal" = "Normal";
 
+/* Notifications disabled */
+"Notifications disabled" = "Notifications disabled";
+
 /* Ongoing task */
 "Ongoing" = "Ongoing";
+
+/* Online */
+"Online" = "Online";
+
+/* Open settings */
+"Open settings" = "Open settings";
+
+/* Cannot send email using this device. */
+"OpenMailFailedMessage" = "Cannot send email using this device.";
+
+/* Failed to open mail */
+"OpenMailFailedTitle" = "Failed to open mail";
 
 /* Overdue */
 "Overdue" = "Overdue";
@@ -31,11 +148,47 @@
 /* Overdue by 1 day */
 "Overdue.by.s" = "Overdue by %@";
 
+/* Percentage */
+"Percentage" = "Percentage";
+
+/* Percentage scale (%) */
+"percentageScale" = "Percentage scale (%)";
+
+/* Priority sorting */
+"Priority sorting" = "Priority sorting";
+
 /* Project */
 "Project" = "Project";
 
-/* Overdue by 1 day */
-"Completed.s" = "Completed %@";
+/* System theme */
+"System theme" = "System theme";
 
-/* Due in 1 day */
-"due.s" = "Due %@";
+/* Task status */
+"Task status" = "Task status";
+
+/* Task type */
+"Task type" = "Task type";
+
+/* Task Type */
+"Task Type" = "Task Type";
+
+/* Theme */
+"Theme" = "Theme";
+
+/* Unset */
+"Unset" = "Unset";
+
+/* Before deadline */
+"Before deadline" = "";
+
+/* None */
+"None" = "";
+
+/* Notifications are disabled for this app, would you like to enable them? */
+"Notifications are disabled for this app, would you like to enable them?" = "";
+
+/* Task priorities */
+"Task priorities" = "";
+
+/* Task types */
+"Task types" = "";

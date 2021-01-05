@@ -35,8 +35,19 @@ struct Course: Codable, Equatable {
 }
 
 // MARK: - Enums
-enum CourseTag: String, Codable, CaseIterable {
+enum CourseTag: String, Codable, CaseIterable, CustomStringConvertible {
     case online = "Online", lab = "Lab", lecture = "Lecture"
+    
+    var description: String {
+        switch self {
+        case .online:
+            return NSLocalizedString("Online", comment: "Online")
+        case .lab:
+            return NSLocalizedString("Lab", comment: "Lab")
+        case .lecture:
+            return NSLocalizedString("Lecture", comment: "Lecture")
+        }
+    }
 }
 
 // MARK: - Computed properties
@@ -232,8 +243,6 @@ extension Course {
     /// - Warning: This would overwrite any previosuly saved list.
     /// - Parameter courses: The courses list to write
     private static func writeToPersistentStorage(courses: [Course]) {
-        print("saveCourses > saving \(courses.count) courses to disk")
-
         let propertyEnconder = PropertyListEncoder()
         let codedCourses = try? propertyEnconder.encode(courses)
         try? codedCourses?.write(to: archiveURL, options: .noFileProtection)
@@ -249,9 +258,7 @@ extension Course {
     private static func readSampleData() {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601 // Use ISO-8601 -> 2018-12-25T17:30:00Z
-        
-        print("loading sample courses...")
-        
+                
         guard let url = Bundle.main.url(forResource: "courses_samples", withExtension: "json"),
               let coursesData = try? Data(contentsOf: url),
               var courses = try? decoder.decode(Array<Course>.self, from: coursesData) else { return }
@@ -284,8 +291,6 @@ extension Course {
                 tasks[taskIndex].create() // Create the task
             }
         }
-        
-        print("created sample courses")
     }
     
     /// This function load the required data for this model
