@@ -34,6 +34,9 @@
 /* 6 Days */
 "6 Days" = "٦ ايام";
 
+/* About */
+"About" = "عنا";
+
 /* All */
 "All" = "الكل";
 
@@ -76,6 +79,9 @@
 /* Descending */
 "Descending" = "تنازلي";
 
+/* Done */
+"Done" = "انتهى";
+
 /* Due date sorting */
 "Due date sorting" = "فرز تاريخ الاستحقاق";
 
@@ -87,6 +93,9 @@
 
 /* Fraction */
 "Fraction" = "كسر عشري";
+
+/* GPA Model */
+"GPA Model" = "نموذج المعدل";
 
 /* High */
 "High" = "مرتفع";
@@ -115,11 +124,23 @@
 /* Normal */
 "Normal" = "طبيعي";
 
+/* Notifications disabled */
+"Notifications disabled" = "الإشعارات معطلة";
+
 /* Ongoing task */
 "Ongoing" = "قائم";
 
 /* Online */
 "Online" = "اونلاين";
+
+/* Open settings */
+"Open settings" = "افتح الإعدادات";
+
+/* Cannot send email using this device. */
+"OpenMailFailedMessage" = "لا يمكن ارسال بريد بواسطة هذا الجهاز.";
+
+/* Failed to open mail */
+"OpenMailFailedTitle" = "فشل في فتح البريد";
 
 /* Overdue */
 "Overdue" = "متأخر";
@@ -151,32 +172,23 @@
 /* Task Type */
 "Task Type" = "نوع المهمة";
 
+/* Theme */
+"Theme" = "السمة";
+
 /* Unset */
 "Unset" = "غير محدد";
 
-/* About */
-"About" = "عنا";
+/* Before deadline */
+"Before deadline" = "";
 
-/* Done */
-"Done" = "انتهى";
-
-/* GPA Model */
-"GPA Model" = "نموذج المعدل";
+/* None */
+"None" = "";
 
 /* Notifications are disabled for this app, would you like to enable them? */
 "Notifications are disabled for this app, would you like to enable them?" = "";
 
-/* Notifications disabled */
-"Notifications disabled" = "الإشعارات معطلة";
+/* Task priorities */
+"Task priorities" = "";
 
-/* Open settings */
-"Open settings" = "افتح الإعدادات";
-
-/* Cannot send email using this device. */
-"OpenMailFailedMessage" = "لا يمكن ارسال بريد بواسطة هذا الجهاز.";
-
-/* Failed to open mail */
-"OpenMailFailedTitle" = "فشل في فتح البريد";
-
-/* Theme */
-"Theme" = "السمة";
+/* Task types */
+"Task types" = "";

@@ -34,6 +34,9 @@
 /* 6 Days */
 "6 Days" = "6 Days";
 
+/* About */
+"About" = "About";
+
 /* All */
 "All" = "All";
 
@@ -76,6 +79,9 @@
 /* Descending */
 "Descending" = "Descending";
 
+/* Done */
+"Done" = "Done";
+
 /* Due date sorting */
 "Due date sorting" = "Due date sorting";
 
@@ -87,6 +93,9 @@
 
 /* Fraction */
 "Fraction" = "Fraction";
+
+/* GPA Model */
+"GPA Model" = "GPA Model";
 
 /* High */
 "High" = "High";
@@ -115,11 +124,23 @@
 /* Normal */
 "Normal" = "Normal";
 
+/* Notifications disabled */
+"Notifications disabled" = "Notifications disabled";
+
 /* Ongoing task */
 "Ongoing" = "Ongoing";
 
 /* Online */
 "Online" = "Online";
+
+/* Open settings */
+"Open settings" = "Open settings";
+
+/* Cannot send email using this device. */
+"OpenMailFailedMessage" = "Cannot send email using this device.";
+
+/* Failed to open mail */
+"OpenMailFailedTitle" = "Failed to open mail";
 
 /* Overdue */
 "Overdue" = "Overdue";
@@ -151,32 +172,23 @@
 /* Task Type */
 "Task Type" = "Task Type";
 
+/* Theme */
+"Theme" = "Theme";
+
 /* Unset */
 "Unset" = "Unset";
 
-/* About */
-"About" = "About";
+/* Before deadline */
+"Before deadline" = "";
 
-/* Done */
-"Done" = "Done";
-
-/* GPA Model */
-"GPA Model" = "GPA Model";
+/* None */
+"None" = "";
 
 /* Notifications are disabled for this app, would you like to enable them? */
 "Notifications are disabled for this app, would you like to enable them?" = "";
 
-/* Notifications disabled */
-"Notifications disabled" = "Notifications disabled";
+/* Task priorities */
+"Task priorities" = "";
 
-/* Open settings */
-"Open settings" = "Open settings";
-
-/* Cannot send email using this device. */
-"OpenMailFailedMessage" = "Cannot send email using this device.";
-
-/* Failed to open mail */
-"OpenMailFailedTitle" = "Failed to open mail";
-
-/* Theme */
-"Theme" = "Theme";
+/* Task types */
+"Task types" = "";
