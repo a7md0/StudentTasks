@@ -25,6 +25,9 @@
 /* Custom */
 "Custom" = "مخصص";
 
+/* Dark theme */
+"Dark theme" = "الوضع المظلم";
+
 /* Delete */
 "Delete" = "حذف";
 
@@ -58,6 +61,9 @@
 /* Lecture */
 "Lecture" = "درس";
 
+/* Light theme */
+"Light theme" = "الوضع الصباحي";
+
 /* Low */
 "Low" = "منخفض";
 
@@ -85,17 +91,56 @@
 /* Project */
 "Project" = "مشروع";
 
+/* System theme */
+"System theme" = "سمة النظام";
+
 /* Task status */
 "Task status" = "حالة المهمة";
 
 /* Task type */
 "Task type" = "نوع المهمة";
 
-/* Dark theme */
-"Dark theme" = "الوضع المظلم";
+/* 1 Day */
+"1 Day" = "يوم ١";
 
-/* Light theme */
-"Light theme" = "الوضع الصباحي";
+/* 1 Week */
+"1 Week" = "اسبوع ١";
 
-/* System theme */
-"System theme" = "سمة النظام";
+/* 2 Days */
+"2 Days" = "يومان ٢";
+
+/* 2 Weeks */
+"2 Weeks" = "اسبوعان ٢";
+
+/* 3 Days */
+"3 Days" = "٣ ايام";
+
+/* 3 Weeks */
+"3 Weeks" = "٣ اسابيع";
+
+/* 4 Days */
+"4 Days" = "٤ ايام";
+
+/* 4 Weeks */
+"4 Weeks" = "٤ اسابيع";
+
+/* 4.0 Scale (+) */
+"40scaleplus" = "4.0 نموذج (+)";
+
+/* 4.0 Scale (+/-) */
+"40scaleplusminus" = "4.0 نموذج (+/-)";
+
+/* 5 Days */
+"5 Days" = "٥ ايام";
+
+/* 6 Days */
+"6 Days" = "٦ ايام";
+
+/* Fraction */
+"Fraction" = "كسر عشري";
+
+/* Percentage */
+"Percentage" = "النسبة المئوية";
+
+/* Percentage scale (%) */
+"percentageScale" = "نموذج النسبة المئوية (٪)";

@@ -39,8 +39,17 @@ extension TaskGrade {
     }
 }
 
-enum GradeMode: String, Codable {
+enum GradeMode: String, Codable, CustomStringConvertible {
     case percentage = "Percentage", fraction = "Fraction"
+    
+    var description: String {
+        switch self {
+        case .percentage:
+            return NSLocalizedString("Percentage", comment: "Percentage")
+        case .fraction:
+            return NSLocalizedString("Fraction", comment: "Fraction")
+        }
+    }
 }
 
 /*enum ContributionType: String, Codable, CaseIterable, CustomStringConvertible {
