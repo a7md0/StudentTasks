@@ -38,7 +38,7 @@ class CourseFormTableViewController: UITableViewController {
         if let course = self.course {
             self.editMode = true
             
-            navigationItem.title = "Edit course"
+            navigationItem.title = course.name
             self.courseTags = course.tags
             self.courseColor = course.color
             

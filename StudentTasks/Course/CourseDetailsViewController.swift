@@ -36,6 +36,8 @@ class CourseDetailsViewController: UIViewController {
             gradedTasks = course.tasks.filter { (task) -> Bool in
                 return task.completed && task.grade.graded
             }
+            
+            navigationItem.title = course.name
         }
         
         SetupTags()
