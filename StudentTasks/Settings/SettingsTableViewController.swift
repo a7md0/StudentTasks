@@ -51,7 +51,7 @@ class SettingsTableViewController: UITableViewController {
         let alert = UIAlertController(title: title, message: messsage, preferredStyle: UIAlertController.Style.alert)
         
 
-        let action = UIAlertAction(title: "Done", style: .cancel, handler: nil)
+        let action = UIAlertAction(title: NSLocalizedString("Done", comment: "Done"), style: .cancel, handler: nil)
         
         alert.addAction(action)
 
@@ -71,7 +71,7 @@ extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
             
             present(mail, animated: true)
         } else {
-            showDialogMessage(title: "Failed to open mail", messsage: "Cannot send email using this device.")
+            showDialogMessage(title: NSLocalizedString("OpenMailFailedTitle", comment: "Failed to open mail"), messsage: NSLocalizedString("OpenMailFailedMessage", comment: "Cannot send email using this device."))
         }
     }
     
@@ -93,7 +93,7 @@ extension SettingsTableViewController {
             pickerTableView.unwindSegueIdentifier = "unwindSettings"
             
             if segue.identifier == "gpaModelSegue" {
-                pickerTableView.title = "GPA Model"
+                pickerTableView.title = NSLocalizedString("GPA Model", comment: "GPA Model")
                 pickerTableView.multiSelect = false
                 
                 for model in GpaModel.allCases {
@@ -105,7 +105,7 @@ extension SettingsTableViewController {
                     pickerTableView.items.append(pickerItem)
                 }
             } else if segue.identifier ==  "themeSegue" {
-                pickerTableView.title = "Theme"
+                pickerTableView.title = NSLocalizedString("Theme", comment: "Theme")
                 pickerTableView.multiSelect = false
                 
                 for theme in AppearanceTheme.allCases {
@@ -147,7 +147,7 @@ extension SettingsTableViewController {
             } else if cell.reuseIdentifier == "aboutCell",
                       let appName = Constants.appName,
                       let appVersion = Constants.appVersion {
-                showDialogMessage(title: "About", messsage: "\(appName) app, version \(appVersion); Mobile Programming project")
+                showDialogMessage(title: NSLocalizedString("About", comment: "About"), messsage: "\(appName) app, version \(appVersion); Mobile Programming project")
             }
         }
     }
@@ -175,13 +175,13 @@ extension SettingsTableViewController {
     }
     
     func notificationsSettingsPrompt() {
-        let confirmAlert = UIAlertController(title: "Notifications disabled", message: "Notifications are disabled for this app, would you like to enable them?", preferredStyle: .alert)
+        let confirmAlert = UIAlertController(title: NSLocalizedString("Notifications disabled", comment: "Notifications disabled"), message: NSLocalizedString("Notifications are disabled for this app, would you like to enable them?", comment: "Notifications are disabled for this app, would you like to enable them?"), preferredStyle: .alert)
 
-        confirmAlert.addAction(UIAlertAction(title: "Open settings", style: .default, handler: { (action: UIAlertAction!) in
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Open settings", comment: "Open settings"), style: .default, handler: { (action: UIAlertAction!) in
             self.openAppSettings()
         }))
 
-        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil))
 
         self.present(confirmAlert, animated: true, completion: nil)
     }

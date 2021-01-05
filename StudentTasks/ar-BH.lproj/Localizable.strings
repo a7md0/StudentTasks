@@ -58,6 +58,9 @@
 /* Overdue by 1 day */
 "Completed.s" = "انجز %@";
 
+/* Course */
+"Course" = "المقرر";
+
 /* Custom */
 "Custom" = "مخصص";
 
@@ -145,11 +148,35 @@
 /* Task type */
 "Task type" = "نوع المهمة";
 
-/* Course */
-"Course" = "المقرر";
-
 /* Task Type */
 "Task Type" = "نوع المهمة";
 
 /* Unset */
 "Unset" = "غير محدد";
+
+/* About */
+"About" = "عنا";
+
+/* Done */
+"Done" = "انتهى";
+
+/* GPA Model */
+"GPA Model" = "نموذج المعدل";
+
+/* Notifications are disabled for this app, would you like to enable them? */
+"Notifications are disabled for this app, would you like to enable them?" = "";
+
+/* Notifications disabled */
+"Notifications disabled" = "الإشعارات معطلة";
+
+/* Open settings */
+"Open settings" = "افتح الإعدادات";
+
+/* Cannot send email using this device. */
+"OpenMailFailedMessage" = "لا يمكن ارسال بريد بواسطة هذا الجهاز.";
+
+/* Failed to open mail */
+"OpenMailFailedTitle" = "فشل في فتح البريد";
+
+/* Theme */
+"Theme" = "السمة";
