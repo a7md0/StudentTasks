@@ -4,20 +4,11 @@
 /* Class = "UILabel"; text = "Type"; ObjectID = "1Bx-AL-9l0"; */
 "1Bx-AL-9l0.text" = "النوع";
 
-/* Class = "UILabel"; text = "name"; ObjectID = "1Dw-8W-Dqb"; */
-"1Dw-8W-Dqb.text" = "الأسم";
-
 /* Class = "UILabel"; text = "Awarded grade"; ObjectID = "1YZ-Az-YGd"; */
 "1YZ-Az-YGd.text" = "الدرجة المستلمة";
 
 /* Class = "UILabel"; text = "No matching results found"; ObjectID = "2Ko-7O-0ls"; */
 "2Ko-7O-0ls.text" = "لا توجد نتائج مطابقة";
-
-/* Class = "UITextField"; placeholder = "Course Code"; ObjectID = "2YO-9W-yoA"; */
-"2YO-9W-yoA.placeholder" = "رمز المقرر";
-
-/* Class = "UITextField"; placeholder = "Course Name"; ObjectID = "2vQ-7t-IVK"; */
-"2vQ-7t-IVK.placeholder" = "اسم المقرر";
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "3xK-al-ZLw"; */
 "3xK-al-ZLw.title" = "الإعدادات";
@@ -49,41 +40,14 @@
 /* Class = "UILabel"; text = "Pick date"; ObjectID = "8xG-ev-kr3"; */
 "8xG-ev-kr3.text" = "اختر تاريخ";
 
-/* Class = "UILabel"; text = "priority"; ObjectID = "8yg-C6-GjR"; */
-"8yg-C6-GjR.text" = "الأهمية";
-
-/* Class = "UILabel"; text = "date"; ObjectID = "9CW-aq-E5Z"; */
-"9CW-aq-E5Z.text" = "التاريخ";
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "9ht-Nb-oBy"; */
 "9ht-Nb-oBy.text" = "التفاصيل";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "ACP-FM-Vby"; */
-"ACP-FM-Vby.text" = "التفاصيل";
-
-/* Class = "UITextField"; placeholder = "Course Location (Optional)"; ObjectID = "Amv-XQ-4BH"; */
-"Amv-XQ-4BH.placeholder" = "Course Location (Optional)";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "CQw-3l-BwS"; */
 "CQw-3l-BwS.text" = "Label";
 
-/* Class = "UITextField"; placeholder = "Course Teacher"; ObjectID = "CZZ-or-iMO"; */
-"CZZ-or-iMO.placeholder" = "مدرس المقرر";
-
-/* Class = "UITextField"; placeholder = "Course Teacher"; ObjectID = "Ccl-iL-c4s"; */
-"Ccl-iL-c4s.placeholder" = "مدرس المقرر";
-
-/* Class = "UILabel"; text = "Contribution"; ObjectID = "Cg2-2g-mH9"; */
-"Cg2-2g-mH9.text" = "المساهمة";
-
 /* Class = "UILabel"; text = "Graded"; ObjectID = "DOZ-fv-hkb"; */
 "DOZ-fv-hkb.text" = "عليه درجات";
-
-/* Class = "UILabel"; text = "Type"; ObjectID = "Dv4-IW-42L"; */
-"Dv4-IW-42L.text" = "النوع";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "Dxx-pE-cQf"; */
-"Dxx-pE-cQf.text" = "العنوان";
 
 /* Class = "UILabel"; text = "{Task name}"; ObjectID = "Dyp-2k-ILY"; */
 "Dyp-2k-ILY.text" = "{Task name}";
@@ -94,20 +58,11 @@
 /* Class = "UILabel"; text = "Theme"; ObjectID = "EIq-e3-3lD"; */
 "EIq-e3-3lD.text" = "السمة";
 
-/* Class = "UILabel"; text = "There is no tasks for the selected day."; ObjectID = "ERc-31-L6M"; */
+/* Class = "UILabel"; text = "There are no tasks for the selected date"; ObjectID = "ERc-31-L6M"; */
 "ERc-31-L6M.text" = "لا يوجد مهام لليوم المحدد";
-
-/* Class = "UITextField"; placeholder = "Course Location (Optional)"; ObjectID = "EcO-62-VLz"; */
-"EcO-62-VLz.placeholder" = "Course Location (Optional)";
 
 /* Class = "UILabel"; text = "Choose Time"; ObjectID = "FU2-aB-uo9"; */
 "FU2-aB-uo9.text" = "اختر وقت";
-
-/* Class = "UISegmentedControl"; GRf-L0-1eE.segmentTitles[0] = "Lecture"; ObjectID = "GRf-L0-1eE"; */
-"GRf-L0-1eE.segmentTitles[0]" = "محاضرة";
-
-/* Class = "UISegmentedControl"; GRf-L0-1eE.segmentTitles[1] = "Lab"; ObjectID = "GRf-L0-1eE"; */
-"GRf-L0-1eE.segmentTitles[1]" = "مختبر";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "GvH-AW-p12"; */
 "GvH-AW-p12.text" = "التفاصيل";
@@ -118,18 +73,6 @@
 /* Class = "UITableViewSection"; headerTitle = "Notifications"; ObjectID = "HM9-9s-uaE"; */
 "HM9-9s-uaE.headerTitle" = "الإشعارات";
 
-/* Class = "UISegmentedControl"; HeD-qd-NUf.segmentTitles[0] = "Lecture"; ObjectID = "HeD-qd-NUf"; */
-"HeD-qd-NUf.segmentTitles[0]" = "محاضرة";
-
-/* Class = "UISegmentedControl"; HeD-qd-NUf.segmentTitles[1] = "Lab"; ObjectID = "HeD-qd-NUf"; */
-"HeD-qd-NUf.segmentTitles[1]" = "مختبر";
-
-/* Class = "UITextField"; placeholder = "Grade"; ObjectID = "IGh-eN-Mh2"; */
-"IGh-eN-Mh2.placeholder" = "الدرجة";
-
-/* Class = "UIBarButtonItem"; title = "Add"; ObjectID = "K3P-PK-ArZ"; */
-"K3P-PK-ArZ.title" = "إضافة";
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "KJA-w5-KbF"; */
 "KJA-w5-KbF.text" = "التفاصيل";
 
@@ -138,9 +81,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Trigger"; ObjectID = "LRu-jY-91M"; */
 "LRu-jY-91M.headerTitle" = "ترقر";
-
-/* Class = "UILabel"; text = "Course"; ObjectID = "MWY-uz-w0X"; */
-"MWY-uz-w0X.text" = "المقرر";
 
 /* Class = "UITableViewSection"; headerTitle = "Filters"; ObjectID = "Mes-c2-axc"; */
 "Mes-c2-axc.headerTitle" = "المرشحات";
@@ -172,17 +112,8 @@
 /* Class = "UITableViewController"; title = "Task Details View"; ObjectID = "Qzb-aR-4iB"; */
 "Qzb-aR-4iB.title" = "Task Details View";
 
-/* Class = "UITextField"; placeholder = "Course Abbreviation (Optional)"; ObjectID = "RDX-yJ-KEg"; */
-"RDX-yJ-KEg.placeholder" = "اختصار المقرر (إختياري)";
-
 /* Class = "UILabel"; text = "Priority"; ObjectID = "REc-QC-fc1"; */
 "REc-QC-fc1.text" = "الأهمية";
-
-/* Class = "UILabel"; text = "course"; ObjectID = "S50-oK-yE1"; */
-"S50-oK-yE1.text" = "المقرر";
-
-/* Class = "UITextField"; placeholder = "Course Name"; ObjectID = "SKh-Ta-IhU"; */
-"SKh-Ta-IhU.placeholder" = "اسم المقرر";
 
 /* Class = "UITableViewSection"; headerTitle = "Sorting"; ObjectID = "SXB-t3-4JI"; */
 "SXB-t3-4JI.headerTitle" = "فرز";
@@ -196,9 +127,6 @@
 /* Class = "UITableViewSection"; headerTitle = "Details"; ObjectID = "URH-je-Ryr"; */
 "URH-je-Ryr.headerTitle" = "تفاصيل";
 
-/* Class = "UILabel"; text = "Priority"; ObjectID = "VR9-wY-KPG"; */
-"VR9-wY-KPG.text" = "الأهمية";
-
 /* Class = "UILabel"; text = "Pick type"; ObjectID = "VoW-tY-x3V"; */
 "VoW-tY-x3V.text" = "اختر نوع";
 
@@ -210,9 +138,6 @@
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "WMx-fM-QZT"; */
 "WMx-fM-QZT.text" = "التفاصيل";
-
-/* Class = "UILabel"; text = "Due Date"; ObjectID = "WaR-nz-mXc"; */
-"WaR-nz-mXc.text" = "تاريخ الاستحقاق";
 
 /* Class = "UITableViewSection"; headerTitle = "Description"; ObjectID = "Wvm-Ov-p5p"; */
 "Wvm-Ov-p5p.headerTitle" = "الوصف";
@@ -232,9 +157,6 @@
 /* Class = "UILabel"; text = "To"; ObjectID = "bJF-VU-DUg"; */
 "bJF-VU-DUg.text" = "إلى";
 
-/* Class = "UILabel"; text = "Grade"; ObjectID = "bzM-kv-xM0"; */
-"bzM-kv-xM0.text" = "الدرجة";
-
 /* Class = "UITextField"; placeholder = "Task Name"; ObjectID = "cBz-4z-Rhq"; */
 "cBz-4z-Rhq.placeholder" = "اسم المهمة";
 
@@ -243,12 +165,6 @@
 
 /* Class = "UILabel"; text = "Contribution to course"; ObjectID = "cgW-cT-3zh"; */
 "cgW-cT-3zh.text" = "المساهمة الى المقرر";
-
-/* Class = "UITextField"; placeholder = "Course Abbreviation (Optional)"; ObjectID = "cn3-qf-FGa"; */
-"cn3-qf-FGa.placeholder" = "اختصار المقرر (اختياري)";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "d8R-nZ-8hE"; */
-"d8R-nZ-8hE.text" = "Label";
 
 /* Class = "UITableViewSection"; headerTitle = "Grading"; ObjectID = "dDZ-iB-73J"; */
 "dDZ-iB-73J.headerTitle" = "التصحيح";
@@ -265,23 +181,11 @@
 /* Class = "UISegmentedControl"; dlE-gi-am9.segmentTitles[2] = "High"; ObjectID = "dlE-gi-am9"; */
 "dlE-gi-am9.segmentTitles[2]" = "مرتفع";
 
-/* Class = "UILabel"; text = "Task Type"; ObjectID = "dw4-fg-8Xi"; */
-"dw4-fg-8Xi.text" = "نوع المهمة";
-
-/* Class = "UITextField"; placeholder = "Course Code"; ObjectID = "eGX-dF-K2B"; */
-"eGX-dF-K2B.placeholder" = "رمز المقرر";
-
-/* Class = "UINavigationItem"; title = "Edit Course"; ObjectID = "eQq-dH-Y6C"; */
-"eQq-dH-Y6C.title" = "تعديل المقرر";
-
 /* Class = "UIBarButtonItem"; title = "Save"; ObjectID = "g3M-0r-FXI"; */
 "g3M-0r-FXI.title" = "حفظ";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "g5R-rL-gb8"; */
 "g5R-rL-gb8.text" = "الحالة";
-
-/* Class = "UILabel"; text = "Type"; ObjectID = "gHX-5a-fPQ"; */
-"gHX-5a-fPQ.text" = "النوع";
 
 /* Class = "UISwitch"; title = "Notifications Switch"; ObjectID = "gOJ-g8-V5D"; */
 "gOJ-g8-V5D.title" = "Notifications Switch";
@@ -319,9 +223,6 @@
 /* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "mmM-VK-q1W"; */
 "mmM-VK-q1W.title" = "التقويم";
 
-/* Class = "UILabel"; text = "type"; ObjectID = "mxq-3u-HI9"; */
-"mxq-3u-HI9.text" = "النوع";
-
 /* Class = "UILabel"; text = "Detail"; ObjectID = "nId-Yn-kha"; */
 "nId-Yn-kha.text" = "التفاصيل";
 
@@ -346,9 +247,6 @@
 /* Class = "UILabel"; text = "Course name"; ObjectID = "oIQ-Gc-lSx"; */
 "oIQ-Gc-lSx.text" = "Object Orignted And design";
 
-/* Class = "UILabel"; text = "Task Name"; ObjectID = "oT2-gF-pGP"; */
-"oT2-gF-pGP.text" = "اسم المهمة";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "qCo-w9-0HJ"; */
 "qCo-w9-0HJ.text" = "Label";
 
@@ -358,17 +256,8 @@
 /* Class = "UILabel"; text = "Unset"; ObjectID = "qSn-6K-Oxa"; */
 "qSn-6K-Oxa.text" = "غير محدد";
 
-/* Class = "UILabel"; text = "Graded Type"; ObjectID = "sQB-Ib-53N"; */
-"sQB-Ib-53N.text" = "Graded Type";
-
 /* Class = "UILabel"; text = "Unset"; ObjectID = "tfq-P0-nlB"; */
 "tfq-P0-nlB.text" = "غير محدد";
-
-/* Class = "UILabel"; text = "(%)"; ObjectID = "w7z-sE-CYf"; */
-"w7z-sE-CYf.text" = "(%)";
-
-/* Class = "UILabel"; text = "{Task name}"; ObjectID = "w9p-Gn-hY5"; */
-"w9p-Gn-hY5.text" = "{Task name}";
 
 /* Class = "UINavigationItem"; title = "Calendar"; ObjectID = "wGS-xD-yj6"; */
 "wGS-xD-yj6.title" = "التقويم";
@@ -381,9 +270,6 @@
 
 /* Class = "UINavigationItem"; title = "Tasks Filters"; ObjectID = "y9f-NU-Fni"; */
 "y9f-NU-Fni.title" = "مرشحات المهام";
-
-/* Class = "UINavigationItem"; title = "Add Course"; ObjectID = "yGj-sG-VsR"; */
-"yGj-sG-VsR.title" = "إضافة مقرر";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "yJs-yU-aJ7"; */
 "yJs-yU-aJ7.title" = "الإعدادات";
@@ -417,3 +303,93 @@
 
 /* Class = "UILabel"; text = "A+"; ObjectID = "Y9t-di-hFW"; */
 "Y9t-di-hFW.text" = "";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "0CT-NN-3gl"; */
+"0CT-NN-3gl.text" = "";
+
+/* Class = "UILabel"; text = "{Task Name}"; ObjectID = "0Ff-VS-Vbh"; */
+"0Ff-VS-Vbh.text" = "التفاصيل";
+
+/* Class = "UITableViewSection"; headerTitle = "Course name"; ObjectID = "2GZ-p8-4ZG"; */
+"2GZ-p8-4ZG.headerTitle" = "اسم المقرر";
+
+/* Class = "UILabel"; text = "Course"; ObjectID = "5j1-a7-N7g"; */
+"5j1-a7-N7g.text" = "المقرر";
+
+/* Class = "UILabel"; text = "Course lecturer"; ObjectID = "70c-0o-GKm"; */
+"70c-0o-GKm.text" = "مدرس المادة";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "8JS-U1-95o"; */
+"8JS-U1-95o.text" = "التفاصيل";
+
+/* Class = "UITableViewSection"; headerTitle = "Course Color"; ObjectID = "CLO-ag-xfk"; */
+"CLO-ag-xfk.headerTitle" = "لون المقرر";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Gh8-vJ-gG9"; */
+"Gh8-vJ-gG9.text" = "التفاصيل";
+
+/* Class = "UILabel"; text = "{Grade}"; ObjectID = "HeX-49-7wM"; */
+"HeX-49-7wM.text" = "";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "J4U-dQ-pLk"; */
+"J4U-dQ-pLk.text" = "التفاصيل";
+
+/* Class = "UILabel"; text = "Unset"; ObjectID = "Jdd-Uh-2Ti"; */
+"Jdd-Uh-2Ti.text" = "غير محدد";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Kfg-B5-8Jw"; */
+"Kfg-B5-8Jw.text" = "التفاصيل";
+
+/* Class = "UILabel"; text = "Task Type"; ObjectID = "OiK-hD-vGD"; */
+"OiK-hD-vGD.text" = "نوع المهمة";
+
+/* Class = "UINavigationItem"; title = "Add course"; ObjectID = "PKm-D1-9Hy"; */
+"PKm-D1-9Hy.title" = "إضافة مقرر";
+
+/* Class = "UILabel"; text = "Priority"; ObjectID = "W8C-qs-dM0"; */
+"W8C-qs-dM0.text" = "الأهمية";
+
+/* Class = "UILabel"; text = "Contribution"; ObjectID = "e1P-Eq-mRh"; */
+"e1P-Eq-mRh.text" = "المساهمة";
+
+/* Class = "UILabel"; text = "Awarded grade"; ObjectID = "egY-M3-Yo0"; */
+"egY-M3-Yo0.text" = "الدرجة المستلمة";
+
+/* Class = "UILabel"; text = "Unset"; ObjectID = "gMd-Hx-jHd"; */
+"gMd-Hx-jHd.text" = "غير محدد";
+
+/* Class = "UITableViewSection"; headerTitle = "Course details"; ObjectID = "gP6-LP-gaU"; */
+"gP6-LP-gaU.headerTitle" = "تفاصيل المقرر";
+
+/* Class = "UILabel"; text = "Course abberivation"; ObjectID = "h7L-ga-Wop"; */
+"h7L-ga-Wop.text" = "اختصار المقرر";
+
+/* Class = "UILabel"; text = "[Task Brief}"; ObjectID = "jUf-Dp-gk1"; */
+"jUf-Dp-gk1.text" = "";
+
+/* Class = "UILabel"; text = "Course tags"; ObjectID = "kds-bk-Pxy"; */
+"kds-bk-Pxy.text" = "تاقز المقرر";
+
+/* Class = "UILabel"; text = "There are no graded tasks for this course"; ObjectID = "l8a-4a-I1Z"; */
+"l8a-4a-I1Z.text" = "لا توجد مهام ذات درجات لهذا المقرر";
+
+/* Class = "UILabel"; text = "Due Date"; ObjectID = "ms8-2c-qls"; */
+"ms8-2c-qls.text" = "تاريخ الإستحقاق";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "nMk-0d-Id6"; */
+"nMk-0d-Id6.text" = "التفاصيل";
+
+/* Class = "UILabel"; text = "Course code"; ObjectID = "qVk-Zt-WYX"; */
+"qVk-Zt-WYX.text" = "رقم المقرر";
+
+/* Class = "UITextField"; placeholder = "Course name"; ObjectID = "s8a-t1-aQq"; */
+"s8a-t1-aQq.placeholder" = "اسم المقرر";
+
+/* Class = "UILabel"; text = "Task Name"; ObjectID = "tNR-sy-bmK"; */
+"tNR-sy-bmK.text" = "اسم المهمة";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "y6Z-Qh-VOV"; */
+"y6Z-Qh-VOV.text" = "التفاصيل";
+
+/* Class = "UILabel"; text = "Unset"; ObjectID = "zdt-EN-bxh"; */
+"zdt-EN-bxh.text" = "غير محدد";

@@ -7,6 +7,12 @@
 /* Completed */
 "Completed" = "Completed";
 
+/* Overdue by 1 day */
+"Completed.s" = "Completed %@";
+
+/* Due in 1 day */
+"due.s" = "Due %@";
+
 /* Exam */
 "Exam" = "Exam";
 
@@ -33,9 +39,3 @@
 
 /* Project */
 "Project" = "Project";
-
-/* Overdue by 1 day */
-"Completed.s" = "Completed %@";
-
-/* Due in 1 day */
-"due.s" = "Due %@";

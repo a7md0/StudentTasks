@@ -7,6 +7,12 @@
 /* Completed */
 "Completed" = "منجز";
 
+/* Overdue by 1 day */
+"Completed.s" = "انجز %@";
+
+/* Due in 1 day */
+"due.s" = "مطلوب %@";
+
 /* Exam */
 "Exam" = "إمتحان";
 
@@ -33,9 +39,3 @@
 
 /* Project */
 "Project" = "مشروع";
-
-/* Overdue by 1 day */
-"Completed.s" = "انجز %@";
-
-/* Due in 1 day */
-"due.s" = "مطلوب %@";
