@@ -136,7 +136,6 @@ extension Task {
                                                  comment: "Overdue by 1 day")
             
             return String.localizedStringWithFormat(formatString, relativeString)
-            return "Completed \(relativeString.replacingOccurrences(of: "in ", with: "from "))"
         }
     }
     

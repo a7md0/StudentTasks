@@ -227,7 +227,7 @@ extension CourseFormTableViewController {
     }
     
     @IBAction func unwindToCourseForm(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+        _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
         
         if unwindSegue.identifier == "unwindCourseForm",
