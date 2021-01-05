@@ -22,6 +22,9 @@
 /* Overdue by 1 day */
 "Completed.s" = "Completed %@";
 
+/* Custom */
+"Custom" = "Custom";
+
 /* Delete */
 "Delete" = "Delete";
 
@@ -30,6 +33,9 @@
 
 /* Descending */
 "Descending" = "Descending";
+
+/* Due date sorting */
+"Due date sorting" = "Due date sorting";
 
 /* Due in 1 day */
 "due.s" = "Due %@";
@@ -73,20 +79,23 @@
 /* Overdue by 1 day */
 "Overdue.by.s" = "Overdue by %@";
 
-/* Project */
-"Project" = "Project";
-
-/* Custom */
-"Custom" = "Custom";
-
-/* Due date sorting */
-"Due date sorting" = "Due date sorting";
-
 /* Priority sorting */
 "Priority sorting" = "Priority sorting";
+
+/* Project */
+"Project" = "Project";
 
 /* Task status */
 "Task status" = "Task status";
 
 /* Task type */
 "Task type" = "Task type";
+
+/* Dark theme */
+"Dark theme" = "Dark theme";
+
+/* Light theme */
+"Light theme" = "Light theme";
+
+/* System theme */
+"System theme" = "System theme";

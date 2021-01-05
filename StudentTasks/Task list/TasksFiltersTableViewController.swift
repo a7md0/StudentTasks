@@ -131,7 +131,7 @@ class TasksFiltersTableViewController: UITableViewController {
                 tasksFiltersController.multiSelect = true
                 
                 for taskType in query.filterBy.defaultTaskTypes {
-                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
+                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.description, checked: false)
                     if query.filterBy.taskTypes.contains(taskType) {
                         pickerItem.checked = true
                     }

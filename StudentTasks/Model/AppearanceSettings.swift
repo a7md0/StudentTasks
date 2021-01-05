@@ -35,11 +35,11 @@ extension AppearanceTheme: CustomStringConvertible, Equatable {
     public var description: String {
         switch self {
         case .system:
-            return "System theme"
+            return NSLocalizedString("System theme", comment: "System theme")
         case .light:
-            return "Light theme"
+            return NSLocalizedString("Light theme", comment: "Light theme")
         case .dark:
-            return "Dark theme"
+            return NSLocalizedString("Dark theme", comment: "Dark theme")
         }
     }
     
