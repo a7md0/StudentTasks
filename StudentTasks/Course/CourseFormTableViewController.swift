@@ -24,7 +24,7 @@ class CourseFormTableViewController: UITableViewController {
     var courseTags: [CourseTag] = [.lecture]
     var courseColor: CodableColor?
     
-    let colors = [ 0xe53935, 0xd81b60, 0x8e24aa, 0x5e35b1, 0x3949ab, 0x1e88e5, 0x00acc1, 0x00897b, 0x43a047, 0xc0ca33, 0xffb300, 0xf4511e, 0x6d4c41, 0x546e7a ]
+    let colors = [4293212469, 4292352864, 4287505578, 4284364209, 4281944491, 4280191205, 4278234305, 4278225275, 4282622023, 4290824755, 4294947584, 4294201630, 4285353025, 4283723386]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +42,16 @@ class CourseFormTableViewController: UITableViewController {
             self.courseTags = course.tags
             self.courseColor = course.color
             
+            if let color = course.color {
+                self.colorFrom(color: color)
+            }
+            
             updateView()
+        }  else {
+            self.setRandomColor()
         }
-    }
-    
-    @IBAction func colorSliderChanged(_ sender: UISlider) {
-        let idx = Int(sender.value)
-        let uiColor = UIColor.init(hexadecimal: self.colors[idx])
-        
-        courseColor = CodableColor(color: uiColor)
+                
+        setupColorSlider()
     }
     
     func updateView() {
@@ -62,6 +63,8 @@ class CourseFormTableViewController: UITableViewController {
         courseAbberivationLabel.text = course.abberivation ?? "Unset"
         courseLecturerLabel.text = course.lecturerName ?? "Unset"
     }
+    
+    
     
     func handlePickerTagsSelection(items: [PickerItem]) {
         self.courseTags = []
@@ -119,6 +122,55 @@ class CourseFormTableViewController: UITableViewController {
         return true
     }
     */
+}
+
+extension CourseFormTableViewController {
+    @IBAction func colorSliderChanged(_ sender: UISlider) {
+        colorPicked()
+    }
+    
+    func setupColorSlider() {
+        // https://stackoverflow.com/a/34619780/1738413
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.sliderTapped))
+        self.colorSlider.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    /*
+     https://stackoverflow.com/a/34619780/1738413
+     */
+    @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
+        let pointTapped: CGPoint = gestureRecognizer.location(in: self.view)
+        
+        let positionOfSlider: CGPoint = colorSlider.frame.origin
+        let widthOfSlider: CGFloat = colorSlider.frame.size.width
+        let newValue = ((pointTapped.x - positionOfSlider.x) * CGFloat(colorSlider.maximumValue) / widthOfSlider)
+        
+        colorSlider.setValue(Float(newValue), animated: true)
+        colorPicked()
+    }
+    
+    func colorPicked() {
+        let idx = Int(colorSlider.value)
+        let uiColor = UIColor(rgb: self.colors[idx])
+        
+        courseColor = CodableColor(color: uiColor)
+    }
+    
+    func colorFrom(color: CodableColor) {
+        if let rgb = color.color.rgb(),
+           let colorIdx = self.colors.firstIndex(where: { $0 == rgb }) {
+            
+            colorSlider.value = Float(colorIdx)
+            colorPicked()
+        }
+    }
+    
+    func setRandomColor() {
+        if let rndValue = stride(from: 0, through: 13.5, by: 0.5).shuffled().last {
+            colorSlider.value = Float(rndValue)
+            colorPicked()
+        }
+    }
 }
 
 // MARK: - Navigation
