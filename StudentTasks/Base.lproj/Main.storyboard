@@ -101,7 +101,7 @@
                     <navigationItem key="navigationItem" title="Calendar" id="wGS-xD-yj6"/>
                     <connections>
                         <outlet property="calendarView" destination="wmT-7F-MrP" id="b1B-La-8gy"/>
-                        <outlet property="noDataView" destination="v65-gn-61a" id="bhg-XQ-8aY"/>
+                        <outlet property="noDataView" destination="v65-gn-61a" id="ADK-ou-qL2"/>
                         <outlet property="taskTableView" destination="QIw-Rx-4fB" id="XlL-FX-hyP"/>
                         <segue destination="Qzb-aR-4iB" kind="show" identifier="DateTaskSegue" id="Id2-8q-g84"/>
                     </connections>
@@ -484,6 +484,7 @@
                         <outlet property="courseTag2" destination="uOD-g6-DrU" id="SNM-5L-r6B"/>
                         <outlet property="courseTag3" destination="Mx6-lb-Urm" id="dQc-gf-dRZ"/>
                         <outlet property="courseTag4" destination="hHu-uY-kfj" id="UnB-fK-IRZ"/>
+                        <outlet property="noDataView" destination="xlJ-nq-jyb" id="xbK-Ug-oAd"/>
                         <outlet property="ongoingTasksLabel" destination="5yT-8i-dMJ" id="7l7-9a-MJl"/>
                         <outlet property="overallGradeLabel" destination="Y9t-di-hFW" id="lcP-By-Nzb"/>
                         <outlet property="overdueTasksLabel" destination="Qkh-H8-LPL" id="0Th-Xu-yPr"/>
@@ -491,6 +492,26 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOj-Yf-bLq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="xlJ-nq-jyb">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no graded tasks for this course" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8a-4a-I1Z">
+                            <rect key="frame" x="0.0" y="35.333333333333329" width="240" height="57.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                            <color key="textColor" systemColor="systemGrayColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="0e8-2f-hez"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="l8a-4a-I1Z" firstAttribute="leading" secondItem="0e8-2f-hez" secondAttribute="leading" id="Mzp-nX-LCj"/>
+                        <constraint firstItem="l8a-4a-I1Z" firstAttribute="centerX" secondItem="xlJ-nq-jyb" secondAttribute="centerX" id="XqH-nY-LU9"/>
+                        <constraint firstItem="l8a-4a-I1Z" firstAttribute="centerY" secondItem="xlJ-nq-jyb" secondAttribute="centerY" id="miC-fb-lm2"/>
+                        <constraint firstItem="0e8-2f-hez" firstAttribute="trailing" secondItem="l8a-4a-I1Z" secondAttribute="trailing" id="tRQ-Xg-lpF"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="650.46728971962614" y="2399.3520518358532"/>
         </scene>

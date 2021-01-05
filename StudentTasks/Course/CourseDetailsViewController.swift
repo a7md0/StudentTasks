@@ -27,6 +27,7 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var ongoingTasksLabel: UILabel!
     @IBOutlet weak var overdueTasksLabel: UILabel!
     
+    @IBOutlet var noDataView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +141,11 @@ extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gradedTasks.count
+        let count = gradedTasks.count
+        
+        tableView.backgroundView = count == 0 ? self.noDataView : nil
+        
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
