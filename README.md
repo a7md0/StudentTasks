@@ -27,6 +27,8 @@
 | [Debounce a method call](https://stackoverflow.com/a/40634366/1738413)  | [d4Rk](https://stackoverflow.com/users/2019384/d4rk)  | Used to debounce updates to the UI toa given milliseconds |
 | [UIColor RGB](https://stackoverflow.com/a/28645384/1738413)  | [Martin R](https://stackoverflow.com/users/1187415/martin-r)  | Used to make UIColor codable for saving the models |
 | [Check time between](https://stackoverflow.com/a/55139115/1738413)  | [M Murteza](https://stackoverflow.com/users/10158396/m-murteza)  | Used for the notification to check if time is between two times interval |
+| [Color picker](https://stackoverflow.com/a/32523136/1738413)  | [Suragch](https://stackoverflow.com/users/3681880/suragch)  | Used to show color picker in add/edit course views |
+
 
 ## Credit
 | To | For |
