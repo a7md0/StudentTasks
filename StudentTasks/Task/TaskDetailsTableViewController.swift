@@ -45,7 +45,7 @@ class TaskDetailsTableViewController: UITableViewController {
         
         taskNameLabel.text = task.name
         courseLabel.text = course.name
-        taskTypeLabel.text = task.type.rawValue
+        taskTypeLabel.text = task.type.description
         priorityLabel.text = task.priority.description
         dueDateLabel.text = DateUtilities.dateFormatter.string(from: task.dueDate)
         
@@ -62,7 +62,7 @@ class TaskDetailsTableViewController: UITableViewController {
                     gradeLabel.text = task.grade.formattedGrade
                 }
             } else {
-                gradeLabel.text = "Unset"
+                gradeLabel.text = NSLocalizedString("Unset", comment: "Unset")
             }
         }
     }
