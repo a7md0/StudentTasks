@@ -21,6 +21,7 @@
 		9329832A25A0279D001832AE /* GradeUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832925A0279D001832AE /* GradeUtilities.swift */; };
 		9329FB8225990E82005578ED /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329FB8125990E82005578ED /* SettingsTableViewController.swift */; };
 		9332513F259EF83A0028F6CF /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9332513E259EF83A0028F6CF /* DateUtilities.swift */; };
+		937D246425A41F0E00CEADD7 /* CourseFormTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937D246325A41F0E00CEADD7 /* CourseFormTableViewController.swift */; };
 		938F7BC12593A4CB0062C79E /* TasksQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC02593A4CB0062C79E /* TasksQuery.swift */; };
 		938F7BC52593DF2A0062C79E /* Debounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BC42593DF2A0062C79E /* Debounce.swift */; };
 		938F7BCE2593F3B20062C79E /* TasksFiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */; };
@@ -35,7 +36,6 @@
 		C2905345259BA71500B046E2 /* TaskDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */; };
 		F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BC259231160028F604 /* CoursesTableViewController.swift */; };
 		F07E03C02592482D0028F604 /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */; };
-		F07E042E25A1163F0028F604 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E042D25A1163F0028F604 /* AddCourseViewController.swift */; };
 		F07E043125A123A10028F604 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07E043025A123A10028F604 /* CourseDetailsViewController.swift */; };
 		F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9552577C65D00C60E50 /* AppDelegate.swift */; };
 		F09EE9582577C65D00C60E50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09EE9572577C65D00C60E50 /* SceneDelegate.swift */; };
@@ -62,6 +62,7 @@
 		9329832925A0279D001832AE /* GradeUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeUtilities.swift; sourceTree = "<group>"; };
 		9329FB8125990E82005578ED /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9332513E259EF83A0028F6CF /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		937D246325A41F0E00CEADD7 /* CourseFormTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFormTableViewController.swift; sourceTree = "<group>"; };
 		938F7BC02593A4CB0062C79E /* TasksQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksQuery.swift; sourceTree = "<group>"; };
 		938F7BC42593DF2A0062C79E /* Debounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debounce.swift; sourceTree = "<group>"; };
 		938F7BCD2593F3B20062C79E /* TasksFiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksFiltersTableViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +77,6 @@
 		C2905344259BA71500B046E2 /* TaskDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsTableViewController.swift; sourceTree = "<group>"; };
 		F07E03BC259231160028F604 /* CoursesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewController.swift; sourceTree = "<group>"; };
 		F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
-		F07E042D25A1163F0028F604 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		F07E043025A123A10028F604 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		F09EE9522577C65D00C60E50 /* StudentTasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentTasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09EE9552577C65D00C60E50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +139,15 @@
 			path = "Task list";
 			sourceTree = "<group>";
 		};
+		937D246625A41F1100CEADD7 /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				937D246325A41F0E00CEADD7 /* CourseFormTableViewController.swift */,
+				F07E043025A123A10028F604 /* CourseDetailsViewController.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
 		93BC92E6258A14900084AF40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,8 +176,6 @@
 			children = (
 				F07E03BF2592482D0028F604 /* CoursesTableViewCell.swift */,
 				F07E03BC259231160028F604 /* CoursesTableViewController.swift */,
-				F07E042D25A1163F0028F604 /* AddCourseViewController.swift */,
-				F07E043025A123A10028F604 /* CourseDetailsViewController.swift */,
 			);
 			path = "Course list";
 			sourceTree = "<group>";
@@ -195,6 +202,7 @@
 				934D4937259275A400D904FF /* Task list */,
 				93EF415D25A1DDC000556701 /* Task */,
 				F07E04212599F63D0028F604 /* Course list */,
+				937D246625A41F1100CEADD7 /* Course */,
 				9329831F25A0035D001832AE /* Calendar */,
 				9329FB7B25990E43005578ED /* Settings */,
 				931D638825936C080042B3D2 /* Data */,
@@ -308,6 +316,7 @@
 			files = (
 				93BC92E1258A07FA0084AF40 /* TasksTableViewController.swift in Sources */,
 				93059CBE2597CBCF00B0B181 /* Constants.swift in Sources */,
+				937D246425A41F0E00CEADD7 /* CourseFormTableViewController.swift in Sources */,
 				F0D914A52588D9DE0022DD06 /* Course.swift in Sources */,
 				93027D0E259E7D4D00B53C06 /* GradingSettings.swift in Sources */,
 				938F7BD22593F5A20062C79E /* PickerTableViewController.swift in Sources */,
@@ -326,7 +335,6 @@
 				93BC92E4258A0B480084AF40 /* TasksTableViewCell.swift in Sources */,
 				93BC92E8258A14AF0084AF40 /* DataManager.swift in Sources */,
 				F09EE9562577C65D00C60E50 /* AppDelegate.swift in Sources */,
-				F07E042E25A1163F0028F604 /* AddCourseViewController.swift in Sources */,
 				F07E043125A123A10028F604 /* CourseDetailsViewController.swift in Sources */,
 				F07E03BD259231160028F604 /* CoursesTableViewController.swift in Sources */,
 				93027D11259E833F00B53C06 /* AppearanceSettings.swift in Sources */,
