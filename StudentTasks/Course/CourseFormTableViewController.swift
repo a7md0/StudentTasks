@@ -56,6 +56,27 @@ class CourseFormTableViewController: UITableViewController {
     
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        guard let courseNameText = courseNameTextfield.text,
+              let courseColor = self.courseColor else { return }
+        
+        if self.editMode {
+            
+            self.course?.name = courseNameText
+            
+            self.course?.color = courseColor
+            
+            //self.course?.code = ??
+            //self.course?.abberivation = ??
+            self.course?.tags = courseTags
+            //self.course?.lecturerName = ??
+            
+            self.course?.save()
+        } else {
+            var course = Course(color: courseColor, name: courseNameText, code: nil, abberivation: nil, tags: courseTags, lecturerName: nil)
+            course.create()
+        }
+        
+        performSegue(withIdentifier: self.unwindSegue, sender: self)
     }
     
     
