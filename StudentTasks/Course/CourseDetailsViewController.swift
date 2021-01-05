@@ -98,16 +98,38 @@ class CourseDetailsViewController: UIViewController {
     
     
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "editCourseSegue",
+           let courseForm = segue.destination as? CourseFormTableViewController {
+            
+            courseForm.course = self.course
+            courseForm.unwindSegue = "unwindToCourseDetailsFromEdit"
+        }
      }
-     */
     
+    @IBAction func unwindToCourseDetails(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+        
+        if let courseForm = sourceViewController as? CourseFormTableViewController {
+            self.course = courseForm.course
+            
+            setupStats()
+            CourseDetails()
+            
+            if let course = self.course {
+                gradedTasks = course.tasks.filter { (task) -> Bool in
+                    return task.completed && task.grade.graded
+                }
+            }
+            tableView.reloadData()
+        }
+    }
 }
 
 extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSource{

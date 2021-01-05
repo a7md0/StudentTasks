@@ -76,6 +76,11 @@ class CoursesTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func unwindToCourses(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    }
+    
     func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
         let confirmAlert = UIAlertController(title: "Delete \"\(what)\"?", message: "Deleting this course will delete all related tasks.", preferredStyle: UIAlertController.Style.alert)
         

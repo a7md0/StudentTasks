@@ -469,7 +469,7 @@
                     <navigationItem key="navigationItem" id="6u0-q8-WVN">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="VEo-8d-Tfm">
                             <connections>
-                                <segue destination="D7V-xL-3hL" kind="show" id="sSH-DE-ebR"/>
+                                <segue destination="D7V-xL-3hL" kind="show" identifier="editCourseSegue" id="sSH-DE-ebR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -766,9 +766,12 @@
                         <outlet property="courseCodeLabel" destination="zdt-EN-bxh" id="KzC-J3-MKg"/>
                         <outlet property="courseLecturerLabel" destination="Jdd-Uh-2Ti" id="TRc-XR-oYH"/>
                         <outlet property="courseNameTextfield" destination="s8a-t1-aQq" id="Fvz-aM-LMC"/>
+                        <segue destination="E5S-ZR-IL5" kind="unwind" identifier="unwindToCourseDetailsFromEdit" unwindAction="unwindToCourseDetails:" id="r4r-Rf-mDp"/>
+                        <segue destination="E5S-ZR-IL5" kind="unwind" identifier="unwindToCoursesFromAdd" unwindAction="unwindToCourses:" id="R6J-bG-unB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbp-Kr-nLy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="E5S-ZR-IL5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-196" y="3124"/>
         </scene>
