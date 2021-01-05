@@ -624,7 +624,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colors" translatesAutoresizingMaskIntoConstraints="NO" id="SVb-xx-Q01">
                                                     <rect key="frame" x="0.0" y="0.0" width="428" height="31"/>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="9PS-qE-fzE">
+                                                <slider opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="13.5" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PS-qE-fzE">
                                                     <rect key="frame" x="-2" y="0.0" width="432" height="32"/>
                                                     <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
