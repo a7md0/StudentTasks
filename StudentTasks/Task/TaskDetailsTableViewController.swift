@@ -8,7 +8,7 @@
 import UIKit
 
 class TaskDetailsTableViewController: UITableViewController {
-    
+    // declaring variables and refrencees
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var taskTypeLabel: UILabel!
@@ -30,14 +30,17 @@ class TaskDetailsTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        
+        // adding new edit button to the mavigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(EditbtnClicked))
     }
-    
+    // function for clicking edit button sending to edit page
     @objc func EditbtnClicked(){
         self.performSegue(withIdentifier: "toEditTaskSegue", sender: self)
     }
     
     func reloadData() {
+        //populating the textfields with task details
         guard let task = task,
               let course = task.course else { return }
         
@@ -75,6 +78,7 @@ class TaskDetailsTableViewController: UITableViewController {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
      }*/
+    // unwind from the edit page to details page and reloading the new data
     @IBAction func unwindToTaskDetails(_ unwindSegue: UIStoryboardSegue) {
         let sourceViewController = unwindSegue.source
         if unwindSegue.identifier == "unwindToTaskDetailFromEdit",
