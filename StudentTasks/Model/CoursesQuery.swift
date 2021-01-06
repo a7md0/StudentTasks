@@ -17,7 +17,6 @@ struct CoursesQuery: Codable {
 
 struct CoursesSort: Codable {
     var courseName: OrderBy = .ascending
-    var numberOf: TaskStatus = .ongoing
 }
 
 extension CoursesQuery {
@@ -76,12 +75,7 @@ extension CoursesSort {
         return .ascending
     }
     
-    var defaultNumberOf: TaskStatus {
-        return .ongoing
-    }
-    
     mutating func restoreDefault() {
         courseName = defaultCourseName
-        numberOf = defaultNumberOf
     }
 }

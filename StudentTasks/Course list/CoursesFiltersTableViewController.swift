@@ -40,7 +40,6 @@ class CoursesFiltersTableViewController: UITableViewController {
     
     func updateView() {
         courseNameSortLabel.text = query.sortBy.courseName.description
-        numberOfSortLabel.text = query.sortBy.numberOf.description
     }
     
     
@@ -74,48 +73,15 @@ class CoursesFiltersTableViewController: UITableViewController {
             self.present(alert, animated: true) {}
         }
     }
-    
-    func handlePickerSelectionNumberOf(items: [PickerItem]) {
-        items.filter { $0.checked }.forEach { (item) in
-            if let taskStatus = TaskStatus(rawValue: Int(item.identifier)!) {
-                query.sortBy.numberOf = taskStatus
-            }
-        }
-        
-        updateView()
-    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if let tasksFiltersController = segue.destination as? PickerTableViewController {
-            
-            tasksFiltersController.identifier = segue.identifier
-            tasksFiltersController.unwindSegueIdentifier = "coursesFiltersUnwindSegue"
-            
-            if segue.identifier == "coursesNumberOfPickerSegue" {
-                tasksFiltersController.title = NSLocalizedString("Number of", comment: "Number of")
-                tasksFiltersController.identifier = segue.identifier
-                tasksFiltersController.multiSelect = false
-                
-                for taskStatus in TaskStatus.allCases {
-                    var pickerItem = PickerItem(identifier: String(taskStatus.rawValue), label: taskStatus.description, checked: false)
-                    if query.sortBy.numberOf == taskStatus {
-                        pickerItem.checked = true
-                    }
-                    
-                    tasksFiltersController.items.append(pickerItem)
-                }
-            }
-        }
-    }
+    }*/
     
     @IBAction func unwindToCoursesFiltersView(_ unwindSegue: UIStoryboardSegue) {
-        let sourceViewController = unwindSegue.source
+        let _ = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
-        if unwindSegue.identifier == "coursesFiltersUnwindSegue",
-           let pickerTableView = sourceViewController as? PickerTableViewController {
-            handlePickerSelectionNumberOf(items: pickerTableView.items)
-        }
+        
     }
 }

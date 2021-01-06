@@ -9,13 +9,20 @@ import UIKit
 
 class CoursesTableViewController: UITableViewController {
     
-    var courses : [Course] = []
+    var allCourses: [Course] = []
+    var courses: [Course] = []
     var searchCourses: [Course] = []
+    
     var isSearching = false
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     var updateSearchQuery: Debounce<String>?
+    
+    var query: CoursesQuery = CoursesQuery.instance
+    
+    var reloadTableViewData: (() -> Void)?
+    var ignoreNextUpdate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +32,8 @@ class CoursesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        courses =  Course.findAll()
+        allCourses = Course.findAll()
+        self.filterCourses()
         
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
         tableView.keyboardDismissMode = .interactive // Support keyboard hide by swipe
@@ -37,6 +45,10 @@ class CoursesTableViewController: UITableViewController {
             self.filterSearchResult(searchQuery: searchQuery)
         })
         
+        reloadTableViewData = debounce(interval: 50, queue: DispatchQueue.main, action: {
+            self.tableView.reloadData()
+        })
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseCreated), name: Constants.coursesNotifcations["created"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseUpdated), name: Constants.coursesNotifcations["updated"]!, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.courseRemoved), name: Constants.coursesNotifcations["removed"]!, object: nil)
@@ -44,6 +56,32 @@ class CoursesTableViewController: UITableViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func filterCourses(reloadData: Bool = true) {
+        DispatchQueue.global(qos: .background).async {
+            guard self.ignoreNextUpdate == false else {
+                self.ignoreNextUpdate = false
+                return
+            }
+            self.filterSortCourses()
+
+            if reloadData {
+                DispatchQueue.main.async {
+                    self.reloadTableViewData?()
+                }
+            }
+        }
+    }
+    
+    func filterSortCourses() {
+        self.courses = allCourses.sorted(by: {
+            if self.query.sortBy.courseName == .descending {
+                return $0.name > $1.name
+            } else {
+                return $0.name < $0.name
+            }
+        })
     }
 
     // MARK: - Table view data source
@@ -82,12 +120,23 @@ class CoursesTableViewController: UITableViewController {
             
             let course = courses[indexPathForSelectedRow]
             courseDetailsView.course = course
+        } else if segue.identifier == "coursesFiltersSegue",
+                  let coursesFilters = segue.destination as? CoursesFiltersTableViewController {
+            
+            coursesFilters.query = query
         }
     }
     
     @IBAction func unwindToCourses(_ unwindSegue: UIStoryboardSegue) {
-        _ = unwindSegue.source
+        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
+        
+        if unwindSegue.identifier == "coursesViewUnwindSegue",
+           let coursesFilters = sourceViewController as? CoursesFiltersTableViewController {
+
+            self.query = coursesFilters.query
+            self.filterCourses()
+        }
     }
     
     func showConfirmDelete(_ what: String, handler: ((Bool) -> Void)?) {
@@ -112,6 +161,7 @@ class CoursesTableViewController: UITableViewController {
         courses.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         
+        self.ignoreNextUpdate = true
         course.remove()
     }
 }
@@ -214,8 +264,8 @@ extension CoursesTableViewController {
     @objc private func courseCreated(notification: NSNotification) {
         guard let course = notification.object as? Course else { return }
         
-        self.courses.append(course)
-        tableView.reloadData()
+        self.allCourses.append(course)
+        self.filterCourses()
     }
     
     @objc private func courseUpdated(notification: NSNotification) {
@@ -223,16 +273,16 @@ extension CoursesTableViewController {
               let idx = self.courses.firstIndex(where: { $0 == course }) else { return }
         
         
-        self.courses[idx] = course
-        tableView.reloadData()
+        self.allCourses[idx] = course
+        self.filterCourses()
     }
     
     @objc private func courseRemoved(notification: NSNotification) {
         guard let course = notification.object as? Course,
               let idx = self.courses.firstIndex(where: { $0 == course }) else { return }
         
-        self.courses[idx] = course
-        tableView.reloadData()
+        self.allCourses.remove(at: idx)
+        self.filterCourses()
     }
 }
 
