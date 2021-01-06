@@ -128,7 +128,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1611" y="2401"/>
+            <point key="canvasLocation" x="2510.7476635514017" y="2400.6479481641472"/>
         </scene>
         <!--Course Details View Controller-->
         <scene sceneID="FUO-03-ukh">
@@ -503,7 +503,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="650.46728971962614" y="2399.3520518358532"/>
+            <point key="canvasLocation" x="1550.467289719626" y="2399.3520518358532"/>
         </scene>
         <!--Courses-->
         <scene sceneID="aQd-oS-wKo">
@@ -582,11 +582,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="6XV-Dg-4O7" id="C3o-57-ekd"/>
+                        <segue destination="2nt-sd-VLC" kind="presentation" identifier="coursesFiltersSegue" id="ss8-gv-ZES"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hf-TX-nXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-195" y="2401"/>
+            <point key="canvasLocation" x="703.73831775700933" y="2400.6479481641472"/>
         </scene>
         <!--Course Form-->
         <scene sceneID="ezn-aL-jtU">
@@ -1026,7 +1027,7 @@
                     </connections>
                 </switch>
             </objects>
-            <point key="canvasLocation" x="2637" y="2401"/>
+            <point key="canvasLocation" x="3536.9158878504672" y="2400.6479481641472"/>
         </scene>
         <!--Preferences-->
         <scene sceneID="kPw-O7-94m">
@@ -1249,7 +1250,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeZ-sP-xeY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="wRs-Ah-2on" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4734" y="2401"/>
+            <point key="canvasLocation" x="5632.7102803738317" y="2400.6479481641472"/>
         </scene>
         <!--Tasks Table View Controller-->
         <scene sceneID="t5J-Fn-cqr">
@@ -1579,6 +1580,71 @@
             </objects>
             <point key="canvasLocation" x="-2826" y="4008"/>
         </scene>
+        <!--Courses Filters-->
+        <scene sceneID="zJH-FN-oZa">
+            <objects>
+                <tableViewController id="YjL-0t-frW" customClass="CoursesFiltersTableViewController" customModule="StudentTasks" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Vrv-BY-URi">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Sorting" id="bZa-vk-dDc">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="sortCourseNameCell" textLabel="S9W-ho-IKO" detailTextLabel="PST-Kd-V9z" style="IBUITableViewCellStyleValue1" id="l49-4x-qoO">
+                                        <rect key="frame" x="0.0" y="55.333332061767578" width="428" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l49-4x-qoO" id="Bfm-rz-9Ge">
+                                            <rect key="frame" x="0.0" y="0.0" width="396.66666666666669" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Course name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S9W-ho-IKO">
+                                                    <rect key="frame" x="20" y="11.999999999999998" width="101" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PST-Kd-V9z">
+                                                    <rect key="frame" x="345" y="11.999999999999998" width="43.666666666666664" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="YjL-0t-frW" id="XMn-g9-2f6"/>
+                            <outlet property="delegate" destination="YjL-0t-frW" id="1Ou-ko-3jG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Courses Filters" id="07W-Sy-52q">
+                        <barButtonItem key="leftBarButtonItem" title="Reset" id="HcT-en-Xyd">
+                            <connections>
+                                <action selector="resetButtonPressed:" destination="YjL-0t-frW" id="dPI-El-sAk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="7b1-J2-D7a">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="YjL-0t-frW" id="XkB-3F-Kef"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="courseNameSortLabel" destination="PST-Kd-V9z" id="bBZ-s0-It9"/>
+                        <segue destination="5jt-uW-Iia" kind="unwind" identifier="coursesViewUnwindSegue" unwindAction="unwindToCourses:" id="QTF-va-GYX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4vA-1V-I1W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="5jt-uW-Iia" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1550" y="3124"/>
+        </scene>
         <!--Tasks Filters-->
         <scene sceneID="A2q-Qh-qhT">
             <objects>
@@ -1727,7 +1793,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKU-0W-IuL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="AiR-fI-ua0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3906" y="2401"/>
+            <point key="canvasLocation" x="-3007.0093457943922" y="2400.6479481641472"/>
         </scene>
         <!--Picker Table View Controller-->
         <scene sceneID="A1e-In-Jwe">
@@ -1775,6 +1841,7 @@
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindEditTask" unwindAction="unwindtoEditTask:" id="N2g-1J-Bha"/>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindNotificationsPreferences" unwindAction="unwindToNotificationsPreferences:" id="AFb-R3-YTD"/>
                         <segue destination="ydU-ow-KQU" kind="unwind" identifier="unwindCourseForm" unwindAction="unwindToCourseForm:" id="TYa-P8-567"/>
+                        <segue destination="ydU-ow-KQU" kind="unwind" identifier="coursesFiltersUnwindSegue" unwindAction="unwindToCoursesFiltersView:" id="dNL-Jv-MI9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4O-Z3-D2T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1846,7 +1913,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="902-I1-Ck7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1583" y="2401"/>
+            <point key="canvasLocation" x="-684.11214953271019" y="2400.6479481641472"/>
         </scene>
         <!--Add Task-->
         <scene sceneID="NI2-Xw-Qzh">
@@ -2243,7 +2310,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f97-Mm-zdG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2826" y="2401"/>
+            <point key="canvasLocation" x="-1926.1682242990653" y="2400.6479481641472"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YuK-zw-fKU">
@@ -2261,7 +2328,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qxn-EW-w5D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3674" y="2401"/>
+            <point key="canvasLocation" x="4572.8971962616815" y="2400.6479481641472"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="eRG-qT-S16">
@@ -2282,12 +2349,30 @@
             </objects>
             <point key="canvasLocation" x="1611" y="1590"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="BCw-6P-vTf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2nt-sd-VLC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YTL-OB-HFf">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YjL-0t-frW" kind="relationship" relationship="rootViewController" id="xCZ-qW-MFe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="seU-q9-rXN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="704" y="3124"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="gi6-iJ-iHI"/>
-        <segue reference="z4Z-4S-AlR"/>
+        <segue reference="ma2-Ky-h6t"/>
         <segue reference="Id2-8q-g84"/>
-        <segue reference="sSH-DE-ebR"/>
+        <segue reference="9ia-UD-93X"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>

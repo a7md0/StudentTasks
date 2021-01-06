@@ -393,3 +393,18 @@
 
 /* Class = "UILabel"; text = "Unset"; ObjectID = "zdt-EN-bxh"; */
 "zdt-EN-bxh.text" = "غير محدد";
+
+/* Class = "UINavigationItem"; title = "Courses Filters"; ObjectID = "07W-Sy-52q"; */
+"07W-Sy-52q.title" = "مرشح المقررات";
+
+/* Class = "UIBarButtonItem"; title = "Reset"; ObjectID = "HcT-en-Xyd"; */
+"HcT-en-Xyd.title" = "إعادة تعيين";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "PST-Kd-V9z"; */
+"PST-Kd-V9z.text" = "تفاصيل";
+
+/* Class = "UILabel"; text = "Course name"; ObjectID = "S9W-ho-IKO"; */
+"S9W-ho-IKO.text" = "اسم المقرر";
+
+/* Class = "UITableViewSection"; headerTitle = "Sorting"; ObjectID = "bZa-vk-dDc"; */
+"bZa-vk-dDc.headerTitle" = "الفرز";
