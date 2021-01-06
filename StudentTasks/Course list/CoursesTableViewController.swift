@@ -8,9 +8,12 @@
 import UIKit
 
 class CoursesTableViewController: UITableViewController {
-    
+    // Declaring variables and refrencing IBOutlets
+    // Array of all Courses
     var allCourses: [Course] = []
+    // Sorted Courses
     var courses: [Course] = []
+    // Search result Courses
     var searchCourses: [Course] = []
     
     var isSearching = false

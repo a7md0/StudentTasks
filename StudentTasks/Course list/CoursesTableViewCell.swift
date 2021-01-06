@@ -8,7 +8,7 @@
 import UIKit
 
 class CoursesTableViewCell: UITableViewCell {
-
+    //refrencing Cell attribute
     @IBOutlet weak var courseName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

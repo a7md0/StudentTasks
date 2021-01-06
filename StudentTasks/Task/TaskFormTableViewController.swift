@@ -8,7 +8,7 @@
 import UIKit
 
 class TaskFormTableViewController: UITableViewController {
-
+    // declaring variables and refrences
     @IBOutlet weak var taskNameField: UITextField!
     
     @IBOutlet weak var courseLabel: UILabel!
@@ -26,7 +26,7 @@ class TaskFormTableViewController: UITableViewController {
     @IBOutlet weak var gradeLabel: UILabel!
     
     @IBOutlet weak var savebtn: UIBarButtonItem!
-    
+    // handling expanding cells
     var expandedCells: [String : Bool] = [
         "dueDateCell": false,
         "descriptionCell": false,
@@ -61,7 +61,7 @@ class TaskFormTableViewController: UITableViewController {
         
         /*contributionTextField.delegate = self
         awardedGrade.delegate = self*/
-        
+        // checking if there's value for a task
         if let task = self.task {
             self.editMode = true
             
@@ -82,8 +82,9 @@ class TaskFormTableViewController: UITableViewController {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
-    
+    // handling save btn action for editing and adding
     @IBAction func saveBtnClicked(_ sender: Any) {
+        //for existing task (Editing mode)
         guard let taskName = self.taskNameField.text,
               let descriptionText = self.descriptionTextField.text,
               let taskType = self.taskType,
@@ -101,6 +102,7 @@ class TaskFormTableViewController: UITableViewController {
             task.priority = taskPriority
             task.dueDate = dueDatePicker.date
         } else {
+            // making new task
             task = Task(name: taskName, description: descriptionText, type: taskType, priority: taskPriority, dueDate: dueDatePicker.date)
             task.course = course
         }
@@ -124,6 +126,7 @@ class TaskFormTableViewController: UITableViewController {
                 }
             }
         }*/
+        
         task.grade = self.grade
         
         if self.editMode {
@@ -132,7 +135,7 @@ class TaskFormTableViewController: UITableViewController {
         } else {
             task.create()
         }
-
+        // segue back after finishing editing or adding
         performSegue(withIdentifier: self.unwindSegue, sender: self)
     }
     
@@ -141,7 +144,7 @@ class TaskFormTableViewController: UITableViewController {
         
         updateGradingCellsState()
     }
-    
+    // Checking user input for priority Segment
     @IBAction func prioritySegmentChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -154,7 +157,7 @@ class TaskFormTableViewController: UITableViewController {
             taskPriority = .normal
         }
     }
-    
+    // Changing cells state and show it
     func updateGradingCellsState() {
         hiddenCells["gradeTypeCell"] = !gradedTaskSwitch.isOn
         hiddenCells["contributionCell"] = !gradedTaskSwitch.isOn
@@ -163,7 +166,7 @@ class TaskFormTableViewController: UITableViewController {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
-    
+    // populating text field with data
     func updateSelection() {
         guard let task = self.task else { return }
         
@@ -227,7 +230,7 @@ class TaskFormTableViewController: UITableViewController {
             taskTypeLabel.text = taskType.description
         }
     }
-    
+    // updating the save button state from on to off to validate user input
     func updateSaveButtonState() {
         guard let taskName = taskNameField.text,
               taskName.count > 2,
@@ -245,12 +248,12 @@ class TaskFormTableViewController: UITableViewController {
     func updateDatePickerLabel() {
         dueDateLabel.text = DateUtilities.dateFormatter.string(from: dueDatePicker.date)
     }
-    
+    // checking text field changeses and checking with save button function
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
     }
     
-    
+    // updating date picker label when changing the week
     @IBAction func dueDatePickerChanged(_ sender: UIDatePicker) {
         updateDatePickerLabel()
     }
@@ -258,7 +261,7 @@ class TaskFormTableViewController: UITableViewController {
     @IBAction func textFieldDone(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
-    
+    // presenting alert for Contribution
     func promptForContribution() {
         let alert = GradeUtilities.promptContribution(grade: self.grade, callback: { (contribution) in
             self.grade.contribution = contribution
@@ -268,7 +271,7 @@ class TaskFormTableViewController: UITableViewController {
         
         self.present(alert, animated: true)
     }
-    
+//    Presenting alert for Grades
     func promptForGrade() {
         let alert = GradeUtilities.gradePrompt(grade: self.grade) { (mode, grade) in
             self.grade.mode = mode ?? .percentage
@@ -283,6 +286,7 @@ class TaskFormTableViewController: UITableViewController {
 
 // MARK: - Table view data source
 extension TaskFormTableViewController {
+    // handling selecting rows , presenting alerts or expanding and collapsing cells
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         view.endEditing(true)
@@ -317,7 +321,7 @@ extension TaskFormTableViewController {
             }
         }
     }
-    
+    // changing the row hight for collapse , expand effect
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let normalCellHeight = CGFloat(44)
         let largeCellHeight = CGFloat(164)
@@ -341,6 +345,7 @@ extension TaskFormTableViewController {
 
 // MARK: - Navigation
 extension TaskFormTableViewController {
+    // uwind from Adding course to task
     @IBAction func unwindtoAddtask(_ sender: UIStoryboardSegue) {
         if sender.identifier == "unwindAddTask",
            let pickerTableView = sender.source as? PickerTableViewController {
@@ -352,6 +357,7 @@ extension TaskFormTableViewController {
                         self.course = course
                     }
                 }
+                // unwind from adding task type
             } else if pickerTableView.identifier == "addTaskPickTaskType" {
                 for typeList in pickerTableView.items {
                     if typeList.checked == true,
@@ -361,13 +367,15 @@ extension TaskFormTableViewController {
                     }
                 }
             }
-            
+            // updating the text for the label amd checking the save button
             updatePickerLabels()
             updateSaveButtonState()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // showing the list of courses in the Dynamic picker view
         if let pickerTableView = segue.destination as? PickerTableViewController {
             pickerTableView.identifier = segue.identifier
             pickerTableView.multiSelect = false
@@ -384,6 +392,7 @@ extension TaskFormTableViewController {
                     
                     pickerTableView.items.append(pickerItem)
                 }
+                // show list of task types in the dynamic picker view
             } else if segue.identifier == "addTaskPickTaskType" {
                 pickerTableView.title = NSLocalizedString("Task Type", comment: "Task Type")
                 
