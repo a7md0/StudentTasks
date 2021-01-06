@@ -49,6 +49,9 @@
 /* Assignment */
 "Assignment" = "مهمة";
 
+/* Before deadline */
+"Before deadline" = "قبل موعد التسليم";
+
 /* Cancel */
 "Cancel" = "إلغاء";
 
@@ -121,8 +124,14 @@
 /* Lowest */
 "Lowest" = "أدنى";
 
+/* None */
+"None" = "لا شيء";
+
 /* Normal */
 "Normal" = "طبيعي";
+
+/* Notifications are disabled for this app, would you like to enable them? */
+"Notifications are disabled for this app, would you like to enable them?" = "الإشعارات معطلة لهذا التطبيق, هل تود تفعيلهم؟";
 
 /* Notifications disabled */
 "Notifications disabled" = "الإشعارات معطلة";
@@ -163,6 +172,9 @@
 /* System theme */
 "System theme" = "سمة النظام";
 
+/* Task priorities */
+"Task priorities" = "أولويات المهام";
+
 /* Task status */
 "Task status" = "حالة المهمة";
 
@@ -172,23 +184,14 @@
 /* Task Type */
 "Task Type" = "نوع المهمة";
 
+/* Task types */
+"Task types" = "أنواع المهام";
+
 /* Theme */
 "Theme" = "السمة";
 
 /* Unset */
 "Unset" = "غير محدد";
 
-/* Before deadline */
-"Before deadline" = "قبل موعد التسليم";
-
-/* None */
-"None" = "لا شيء";
-
-/* Notifications are disabled for this app, would you like to enable them? */
-"Notifications are disabled for this app, would you like to enable them?" = "الإشعارات معطلة لهذا التطبيق, هل تود تفعيلهم؟";
-
-/* Task priorities */
-"Task priorities" = "أولويات المهام";
-
-/* Task types */
-"Task types" = "أنواع المهام";
+/* Sort by course name alphabeat */
+"Course name sorting" = "فرز اسم المقرر";
