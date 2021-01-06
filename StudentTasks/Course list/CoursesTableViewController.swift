@@ -168,7 +168,7 @@ extension CoursesTableViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        //performSegue(withIdentifier: "coursesFiltersSegue", sender: self)
+        performSegue(withIdentifier: "coursesFiltersSegue", sender: self)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
