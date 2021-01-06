@@ -408,3 +408,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Sorting"; ObjectID = "bZa-vk-dDc"; */
 "bZa-vk-dDc.headerTitle" = "الفرز";
+
+/* Class = "UILabel"; text = "There are no mathcing results"; ObjectID = "NJS-wK-NWv"; */
+"NJS-wK-NWv.text" = "لا توجد نتائج مطابقة";

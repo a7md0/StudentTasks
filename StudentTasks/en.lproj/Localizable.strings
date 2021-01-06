@@ -67,6 +67,9 @@
 /* Course */
 "Course" = "Course";
 
+/* Sort by course name alphabeat */
+"Course name sorting" = "Course name sorting";
+
 /* Custom */
 "Custom" = "Custom";
 
@@ -130,6 +133,9 @@
 /* Normal */
 "Normal" = "Normal";
 
+/* Notifications are disabled for this app, would you like to enable them? */
+"Notifications are disabled for this app, would you like to enable them?" = "Notifications are disabled for this app, would you like to enable them?";
+
 /* Notifications disabled */
 "Notifications disabled" = "Notifications disabled";
 
@@ -190,8 +196,29 @@
 /* Unset */
 "Unset" = "Unset";
 
-/* Sort by course name alphabeat */
-"Course name sorting" = "Course name sorting";
+/* No comment provided by engineer. */
+"Abberivation" = "الاختصار";
 
-/* Notifications are disabled for this app, would you like to enable them? */
-"Notifications are disabled for this app, would you like to enable them?" = "Notifications are disabled for this app, would you like to enable them?";
+/* Course code */
+"Course code" = "رمز المقرر";
+
+/* No comment provided by engineer. */
+"Enter code" = "ادخل الرمز";
+
+/* No comment provided by engineer. */
+"Enter lecturer name" = "ادخل اسم المدرس";
+
+/* No comment provided by engineer. */
+"Enter short abberivation" = "ادخل اختصار المقرر";
+
+/* No comment provided by engineer. */
+"IT6000" = "عرب١٠١";
+
+/* No comment provided by engineer. */
+"Lecturer name" = "اسم المدرس";
+
+/* No comment provided by engineer. */
+"MP" = "عر";
+
+/* No comment provided by engineer. */
+"Name" = "اسم";
