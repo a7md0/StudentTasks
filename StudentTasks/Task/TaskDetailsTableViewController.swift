@@ -55,15 +55,7 @@ class TaskDetailsTableViewController: UITableViewController {
            let contribution = task.grade.contribution {
             
             contributionLabel.text = GradeUtilities.percentageFormatter.string(for: contribution)
-            if let grade = task.grade.grade {
-                if task.grade.mode == .percentage {
-                    gradeLabel.text = GradeUtilities.percentageFormatter.string(for: grade)
-                } else {
-                    gradeLabel.text = task.grade.formattedGrade
-                }
-            } else {
-                gradeLabel.text = NSLocalizedString("Unset", comment: "Unset")
-            }
+            gradeLabel.text = task.grade.formattedGrade
         }
     }
     
