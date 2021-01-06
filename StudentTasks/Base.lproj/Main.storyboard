@@ -242,10 +242,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jae-gm-9bh" userLabel="LablesView">
-                                <rect key="frame" x="0.0" y="295" width="428" height="130.66666666666663"/>
+                                <rect key="frame" x="0.0" y="283" width="428" height="142.66666666666663"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQx-LO-6iK" userLabel="V1">
-                                        <rect key="frame" x="0.0" y="0.0" width="107" height="130.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="142.66666666666666"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9t-di-hFW">
                                                 <rect key="frame" x="42.333333333333336" y="24" width="22.666666666666664" height="21"/>
@@ -270,7 +270,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ia5-aZ-hPe" userLabel="V2">
-                                        <rect key="frame" x="107" y="0.0" width="107" height="130.66666666666666"/>
+                                        <rect key="frame" x="107" y="0.0" width="107" height="142.66666666666666"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1y0-vN-H4H">
                                                 <rect key="frame" x="48.333333333333343" y="24" width="10.333333333333336" height="21"/>
@@ -295,7 +295,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtO-4h-pMX" userLabel="V3">
-                                        <rect key="frame" x="214" y="0.0" width="107" height="130.66666666666666"/>
+                                        <rect key="frame" x="214" y="0.0" width="107" height="142.66666666666666"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yT-8i-dMJ">
                                                 <rect key="frame" x="48.333333333333314" y="24" width="10.333333333333336" height="21"/>
@@ -320,7 +320,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNt-Rh-z54" userLabel="V4">
-                                        <rect key="frame" x="321" y="0.0" width="107" height="130.66666666666666"/>
+                                        <rect key="frame" x="321" y="0.0" width="107" height="142.66666666666666"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qkh-H8-LPL">
                                                 <rect key="frame" x="48.333333333333314" y="24" width="10.333333333333336" height="21"/>
@@ -439,7 +439,7 @@
                             <constraint firstItem="oIQ-Gc-lSx" firstAttribute="top" secondItem="4mY-5s-d6b" secondAttribute="top" constant="22" id="Aw2-3H-4IQ"/>
                             <constraint firstItem="4mY-5s-d6b" firstAttribute="leading" secondItem="S7J-0C-bZX" secondAttribute="leading" constant="15" id="DMj-xZ-GPz"/>
                             <constraint firstItem="S7J-0C-bZX" firstAttribute="trailing" secondItem="xAb-MM-dXD" secondAttribute="trailing" id="FWw-NW-ERl"/>
-                            <constraint firstItem="jae-gm-9bh" firstAttribute="top" secondItem="xAb-MM-dXD" secondAttribute="bottom" constant="12" id="Hue-7b-8R5"/>
+                            <constraint firstItem="jae-gm-9bh" firstAttribute="top" secondItem="xAb-MM-dXD" secondAttribute="bottom" id="Hue-7b-8R5"/>
                             <constraint firstItem="oIQ-Gc-lSx" firstAttribute="leading" secondItem="4mY-5s-d6b" secondAttribute="trailing" constant="8" id="JWU-gO-W6h"/>
                             <constraint firstItem="S7J-0C-bZX" firstAttribute="trailing" secondItem="tjE-Rc-TBv" secondAttribute="trailing" id="L8F-Ve-aW4"/>
                             <constraint firstItem="tjE-Rc-TBv" firstAttribute="top" secondItem="jae-gm-9bh" secondAttribute="bottom" constant="18" id="QGJ-4X-eJb"/>
