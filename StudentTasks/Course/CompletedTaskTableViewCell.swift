@@ -8,10 +8,9 @@
 import UIKit
 
 class CompletedTaskTableViewCell: UITableViewCell {
-
+    //refrencing Cell UI items
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
-    
     @IBOutlet weak var rightDetails: UILabel!
     
     

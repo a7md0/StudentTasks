@@ -25,7 +25,7 @@ class CoursesFiltersTableViewController: UITableViewController {
         
         updateView()
     }
-    
+    // Reseting all sort prefrences to defualt
     @IBAction func resetButtonPressed(_ sender: UIBarButtonItem) {
         query.sortBy.restoreDefault()
         

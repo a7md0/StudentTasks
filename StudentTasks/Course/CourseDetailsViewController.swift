@@ -8,11 +8,11 @@
 import UIKit
 
 class CourseDetailsViewController: UIViewController {
+    // declaring variables and refrencing outlets
     @IBOutlet weak var tableView: UITableView!
         
     var course: Course?
     var gradedTasks : [Task] = []
-    
     @IBOutlet weak var courseTag1: UILabel!
     @IBOutlet weak var courseTag2: UILabel!
     @IBOutlet weak var courseTag3: UILabel!
@@ -21,12 +21,10 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var Code: UILabel!
     @IBOutlet weak var Tutor: UILabel!
     @IBOutlet weak var courseImage: UIImageView!
-    
     @IBOutlet weak var overallGradeLabel: UILabel!
     @IBOutlet weak var completedTasksLabel: UILabel!
     @IBOutlet weak var ongoingTasksLabel: UILabel!
     @IBOutlet weak var overdueTasksLabel: UILabel!
-    
     @IBOutlet var noDataView: UIView!
     
     override func viewDidLoad() {
@@ -51,7 +49,7 @@ class CourseDetailsViewController: UIViewController {
         
         
     }
-    
+    // setup the horizontal stats
     func setupStats() {
         guard let course = self.course else { return }
         
@@ -60,6 +58,7 @@ class CourseDetailsViewController: UIViewController {
         self.ongoingTasksLabel.text = "\(course.ongoingTasks)"
         self.overdueTasksLabel.text = "\(course.overdueTasks)"
     }
+    // setup tags shape and radius and checking how many tags that the course have and show then acordangly
     func SetupTags(){
         courseTag1.layer.cornerRadius = 15
         courseTag2.layer.cornerRadius = 15
@@ -90,7 +89,7 @@ class CourseDetailsViewController: UIViewController {
             courseTag4.text = course?.tags[3].rawValue
         }
     }
-    
+    // Adding the course details to the text fields
     func CourseDetails(){
         CourseName.text = course?.name
         Code.text = course?.code
@@ -136,10 +135,11 @@ class CourseDetailsViewController: UIViewController {
 }
 
 extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSource{
+    // Setup table footer
     func SetupTable(){
         tableView.tableFooterView = UIView(frame: .zero) // Hide unused cells
     }
-    
+    // Checking number of graded tasks
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let count = gradedTasks.count
         
@@ -147,7 +147,7 @@ extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         
         return count
     }
-    
+    // configuring the Cell attributes
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier") as! CompletedTaskTableViewCell
         
@@ -163,10 +163,12 @@ extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
         
     }
+    // Deslecting row after clicking on it
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected")
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    //Changing task Row Hight
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(72)
     }
