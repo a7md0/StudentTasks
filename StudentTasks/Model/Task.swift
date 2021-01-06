@@ -43,11 +43,11 @@ enum TaskStatus: Int, Codable, CaseIterable, CustomStringConvertible, Equatable,
     var description: String {
         switch self {
         case .completed:
-            return "Completed"
+            return NSLocalizedString("Completed", comment: "Completed")
         case .ongoing:
-            return "Ongoing"
+            return NSLocalizedString("Ongoing", comment: "Ongoing task")
         case .overdue:
-            return "Overdue"
+            return NSLocalizedString("Overdue", comment: "Overdue")
         }
     }
 
@@ -66,15 +66,15 @@ enum TaskType: String, Codable, CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {
         case .assignment:
-            return "Assignment"
+            return NSLocalizedString("Assignment", comment: "Assignment")
         case .assessment:
-            return "Assessment"
+            return NSLocalizedString("Assessment", comment: "Assessment")
         case .project:
-            return "Project"
+            return NSLocalizedString("Project", comment: "Project")
         case .exam:
-            return "Exam"
+            return NSLocalizedString("Exam", comment: "Exam")
         case .homework:
-            return "Homework"
+            return NSLocalizedString("Homework", comment: "Homework")
         }
     }
 }
@@ -85,11 +85,11 @@ enum TaskPriority: Int, Codable, CaseIterable, CustomStringConvertible, Equatabl
     var description: String {
         switch self {
         case .low:
-            return "Low"
+            return NSLocalizedString("Low", comment: "Low")
         case .normal:
-            return "Normal"
+            return NSLocalizedString("Normal", comment: "Normal")
         case .high:
-            return "High"
+            return NSLocalizedString("High", comment: "High")
         }
     }
 
@@ -120,13 +120,22 @@ extension Task {
         switch self.status {
         case .overdue:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.dueDate, relativeTo: Date())
-            return "Overdue by \(relativeString)"
+            let formatString = NSLocalizedString("Overdue.by.s",
+                                                 comment: "Overdue by 1 day")
+            
+            return String.localizedStringWithFormat(formatString, relativeString)
         case .ongoing:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.dueDate, relativeTo: Date())
-            return "Due \(relativeString)"
+            let formatString = NSLocalizedString("due.s",
+                                                 comment: "Due in 1 day")
+            
+            return String.localizedStringWithFormat(formatString, relativeString)
         case .completed:
             let relativeString = Task.relativeDateTimeFormatter.localizedString(for: self.completedOn!, relativeTo: Date())
-            return "Completed \(relativeString.replacingOccurrences(of: "in ", with: "from "))"
+            let formatString = NSLocalizedString("Completed.s",
+                                                 comment: "Overdue by 1 day")
+            
+            return String.localizedStringWithFormat(formatString, relativeString)
         }
     }
     
@@ -218,7 +227,12 @@ extension Task {
 // MARK: - Data
 extension Task {
     private static var tasks: [Task] {
-        return Course.findAll().map { $0.tasks }.reduce([], +) // Map all courses tasks then flatten the arrays into one
+        let courses = Course.findAll()
+        if courses.count == 0 {
+            return []
+        }
+        
+        return courses.flatMap { $0.tasks } // Map all courses tasks then flatten the arrays into one
     }
     
     static func findOne(id: String?) -> Task? {

@@ -5,7 +5,7 @@
         "code": "IT8108",
         "abberivation": "MP",
         "color": {
-            "rgb": 4294913365
+            "rgb": 4292352864
         },
         "completedTasks": 0,
         "ongoingTasks": 0,
@@ -17,13 +17,13 @@
         "tasks": [
             {
                 "id": "C25E4B70-0D0B-445C-A8E0-7B8E04A5B10A",
-                "name": "Task 1 (N)",
-                "type": "Assignment",
+                "name": "Lab6A",
+                "type": "Homework",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc",
+                "description": "Rainbow Tabs , Login , About me",
                 "priority": 3,
                 "dueDate": "1999-06-01T20:00:00Z",
                 "completed": false,
@@ -32,13 +32,13 @@
             },
             {
                 "id": "5B66AD13-2103-4BFC-AD54-296D6ADA50A9",
-                "name": "Task 2 (N)",
-                "type": "Assessment",
+                "name": "Lab6B",
+                "type": "Exam",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc",
+                "description": "Completing the Personality Quiz",
                 "priority": 3,
                 "dueDate": "1999-08-01T20:10:00Z",
                 "completed": false,
@@ -47,13 +47,13 @@
             },
             {
                 "id": "4525447C-E0AC-4A14-9811-C9EF26F244A0",
-                "name": "Task 3 (H)",
-                "type": "Exam",
+                "name": "Lab7B",
+                "type": "Homework",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc",
+                "description": "Favorite Athletes , ISpy",
                 "priority": 4,
                 "dueDate": "1999-08-01T20:20:00Z",
                 "completed": false,
@@ -62,13 +62,13 @@
             },
             {
                 "id": "4525447C-E0AC-4A13-9811-C3EF26F243A1",
-                "name": "Task 4 (H)",
+                "name": "Project: Step6",
                 "type": "Assignment",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc",
+                "description": "Features Description And Mock-up",
                 "priority": 4,
                 "dueDate": "1999-08-01T12:18:00Z",
                 "completed": false,
@@ -77,30 +77,15 @@
             },
             {
                 "id": "3525347C-E0AC-3A12-9813-C9EF26F243A1",
-                "name": "Task 5 (H)",
-                "type": "Assignment",
+                "name": "Lab7A",
+                "type": "Homework",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc",
+                "description": "Finishing protocols Playground",
                 "priority": 4,
                 "dueDate": "1999-08-01T20:30:00Z",
-                "completed": false,
-                "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
-                "notificationsIdentifiers": []
-            },
-            {
-                "id": "4525447C-E0AC-4A11-9811-C9EF26F244A1",
-                "name": "Task 6 (H)",
-                "type": "Assignment",
-                "grade": {
-                    "graded": false,
-                    "mode": "Percentage"
-                },
-                "description": "desc",
-                "priority": 4,
-                "dueDate": "1999-07-01T20:20:00Z",
                 "completed": false,
                 "courseId": "9EADE1ED-F20A-4768-9F38-8D6B0557F29D",
                 "notificationsIdentifiers": []
@@ -113,7 +98,7 @@
         "code": "IT7006",
         "abberivation": "OD",
         "color": {
-            "rgb": 4281236786
+            "rgb": 4282622023
         },
         "completedTasks": 0,
         "ongoingTasks": 0,
@@ -126,13 +111,13 @@
             {
                 "id": "45CC8E46-A0D9-43C4-BC70-9731628AB830",
                 "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615",
-                "name": "Task 10",
+                "name": "Project: Design",
                 "type": "Assignment",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc 2",
+                "description": "Finish All Diagrams: ERD, Class Diagram , Sequence and Activity For Add,Edit,View,Delete And fully use case diagram + Mock-up views for the application",
                 "priority": 3,
                 "dueDate": "2020-12-24T20:01:00Z",
                 "completed": false,
@@ -141,13 +126,13 @@
             {
                 "id": "6964A6DB-DFDA-44EC-BB80-A75DD0FEB878",
                 "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615",
-                "name": "Task 20",
+                "name": "Project: Implementation part",
                 "type": "Assignment",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc 2",
+                "description": "Upload zip file contain working program and ream me file contain the username and password",
                 "priority": 2,
                 "dueDate": "2020-12-24T20:11:00Z",
                 "completed": false,
@@ -156,13 +141,13 @@
             {
                 "id": "39F34C0A-4A2C-4745-B3A1-EC3176D999A7",
                 "courseId": "31E154B5-121D-455C-B6ED-C1119DECF615",
-                "name": "Task 30",
-                "type": "Assignment",
+                "name": "Mid-term Exam",
+                "type": "Exam",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc 2",
+                "description": "All topics from Week 1 to Week 6 including GOF",
                 "priority": 4,
                 "dueDate": "2020-12-24T20:21:00Z",
                 "completed": false,
@@ -176,7 +161,7 @@
         "code": "IT7405",
         "abberivation": "WD",
         "color": {
-            "rgb": 4279592384
+            "rgb": 4280191205
         },
         "completedTasks": 0,
         "ongoingTasks": 0,
@@ -201,7 +186,7 @@
                 "priority": 4,
                 "dueDate": "2020-11-10T12:00:00Z",
                 "completed": true,
-                "completedOn": "2020-12-24T12:00:00Z",
+                "completedOn": "2020-11-10T14:00:00Z",
                 "notificationsIdentifiers": []
             },
             {
@@ -225,13 +210,13 @@
             {
                 "id": "BC3BDD12-4D93-4600-A440-418F901A0636",
                 "courseId": "697122BF-EC70-4174-9791-42F39FCBD63A",
-                "name": "Task 31",
+                "name": "Lab8",
                 "type": "Assignment",
                 "grade": {
                     "graded": false,
                     "mode": "Percentage"
                 },
-                "description": "desc 3",
+                "description": "",
                 "priority": 4,
                 "dueDate": "2020-12-24T20:22:00Z",
                 "completed": false,

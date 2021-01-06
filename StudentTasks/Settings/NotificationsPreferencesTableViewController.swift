@@ -88,11 +88,11 @@ class NotificationsPreferencesTableViewController: UITableViewController {
     func selectionString(_ compare: Array<Any>, with: Array<Any>) -> String {
         switch compare.count {
         case 0:
-            return "None"
+            return NSLocalizedString("None", comment: "None")
         case with.count:
-            return "All"
+            return NSLocalizedString("All", comment: "All")
         default:
-            return "Custom"
+            return NSLocalizedString("Custom", comment: "Custom")
         }
     }
     
@@ -176,7 +176,7 @@ extension NotificationsPreferencesTableViewController {
             pickerTableView.unwindSegueIdentifier = "unwindNotificationsPreferences"
             
             if segue.identifier == "notificationTaskTriggerB4Segue" {
-                pickerTableView.title = "Before deadline"
+                pickerTableView.title = NSLocalizedString("Before deadline", comment: "Before deadline")
                 pickerTableView.multiSelect = false
                 
                 for day in Constants.daysMapping {
@@ -188,7 +188,7 @@ extension NotificationsPreferencesTableViewController {
                     pickerTableView.items.append(pickerItem)
                 }
             } else if segue.identifier == "notificationTaskTypesSegue" {
-                pickerTableView.title = "Task types"
+                pickerTableView.title = NSLocalizedString("Task types", comment: "Task types")
                 pickerTableView.multiSelect = true
                 
                 for taskType in TaskType.allCases {
@@ -200,7 +200,7 @@ extension NotificationsPreferencesTableViewController {
                     pickerTableView.items.append(pickerItem)
                 }
             } else if segue.identifier == "notificationTaskPrioritiesSegue" {
-                pickerTableView.title = "Task priorities"
+                pickerTableView.title = NSLocalizedString("Task priorities", comment: "Task priorities")
                 pickerTableView.multiSelect = true
                 
                 for taskPriority in TaskPriority.allCases {

@@ -112,10 +112,28 @@ extension TasksFilter {
     }
 }
 
-enum OrderBy: String, Codable, CaseIterable {
+enum OrderBy: String, Codable, CaseIterable, CustomStringConvertible {
     case ascending = "Ascending", descending = "Descending"
+    
+    var description: String {
+        switch self {
+        case .ascending:
+            return NSLocalizedString("Ascending", comment: "Ascending")
+        case .descending:
+            return NSLocalizedString("Descending", comment: "Descending")
+        }
+    }
 }
 
-enum Priorty: String, Codable, CaseIterable {
+enum Priorty: String, Codable, CaseIterable, CustomStringConvertible {
     case highest = "Highest", lowest = "Lowest"
+    
+    var description: String {
+        switch self {
+        case .highest:
+            return NSLocalizedString("Highest", comment: "Highest")
+        case .lowest:
+            return NSLocalizedString("Lowest", comment: "Lowest")
+        }
+    }
 }

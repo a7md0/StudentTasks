@@ -176,7 +176,7 @@ class TaskFormTableViewController: UITableViewController {
             courseLabel.text = course.name
             self.course = course
         }
-        taskTypeLabel.text = task.type.rawValue
+        taskTypeLabel.text = task.type.description
         
         dueDatePicker.date = task.dueDate
         
@@ -205,13 +205,13 @@ class TaskFormTableViewController: UITableViewController {
             if let contribution = self.grade.contribution {
                 contributionLabel.text = GradeUtilities.percentageFormatter.string(for: contribution)
             } else {
-                contributionLabel.text = "Unset"
+                contributionLabel.text = NSLocalizedString("Unset", comment: "Unset")
             }
             
             if let _ = self.grade.grade {
                 gradeLabel.text = self.grade.formattedGrade
             } else {
-                gradeLabel.text = "Unset"
+                gradeLabel.text = NSLocalizedString("Unset", comment: "Unset")
             }
         }
         
@@ -224,7 +224,7 @@ class TaskFormTableViewController: UITableViewController {
         }
         
         if let taskType = self.taskType {
-            taskTypeLabel.text = taskType.rawValue
+            taskTypeLabel.text = taskType.description
         }
     }
     
@@ -374,22 +374,22 @@ extension TaskFormTableViewController {
             pickerTableView.unwindSegueIdentifier = "unwindAddTask"
             
             if segue.identifier == "addTaskPickCourse" {
-                pickerTableView.title = "Course"
+                pickerTableView.title = NSLocalizedString("Course", comment: "Course")
                 
                 for course in Course.findAll() {
                     var pickerItem = PickerItem(identifier: course.id.uuidString, label: course.name, checked: false)
-                    if let task = self.task, task.course == course {
+                    if let selectedCourse = self.course, selectedCourse == course {
                         pickerItem.checked = true
                     }
                     
                     pickerTableView.items.append(pickerItem)
                 }
             } else if segue.identifier == "addTaskPickTaskType" {
-                pickerTableView.title = "Task Type"
+                pickerTableView.title = NSLocalizedString("Task Type", comment: "Task Type")
                 
                 for taskType in TaskType.allCases {
-                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.rawValue, checked: false)
-                    if let task = self.task, task.type == taskType {
+                    var pickerItem = PickerItem(identifier: taskType.rawValue, label: taskType.description, checked: false)
+                    if let selectedTaskType = self.taskType, selectedTaskType == taskType {
                         pickerItem.checked = true
                     }
                     

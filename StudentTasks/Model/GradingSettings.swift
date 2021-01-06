@@ -61,11 +61,11 @@ extension GpaModel: CustomStringConvertible, Equatable {
     var description: String {
         switch self {
         case .fourPlus:
-            return "4.0 Scale (+)"
+            return NSLocalizedString("40scaleplus", comment: "4.0 Scale (+)")
         case .fourPlusMinus:
-            return "4.0 Scale (+/-)"
+            return NSLocalizedString("40scaleplusminus", comment: "4.0 Scale (+/-)")
         case .hundredPercentage:
-            return "Percentage scale (%)"
+            return NSLocalizedString("percentageScale", comment: "Percentage scale (%)")
         }
     }
 }

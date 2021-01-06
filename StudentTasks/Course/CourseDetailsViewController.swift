@@ -21,6 +21,14 @@ class CourseDetailsViewController: UIViewController {
     @IBOutlet weak var Code: UILabel!
     @IBOutlet weak var Tutor: UILabel!
     @IBOutlet weak var courseImage: UIImageView!
+    
+    @IBOutlet weak var overallGradeLabel: UILabel!
+    @IBOutlet weak var completedTasksLabel: UILabel!
+    @IBOutlet weak var ongoingTasksLabel: UILabel!
+    @IBOutlet weak var overdueTasksLabel: UILabel!
+    
+    @IBOutlet var noDataView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,9 +37,12 @@ class CourseDetailsViewController: UIViewController {
             gradedTasks = course.tasks.filter { (task) -> Bool in
                 return task.completed && task.grade.graded
             }
+            
+            navigationItem.title = course.name
         }
         
         SetupTags()
+        setupStats()
         CourseDetails()
         SetupTable()
         
@@ -41,7 +52,14 @@ class CourseDetailsViewController: UIViewController {
         
     }
     
-    
+    func setupStats() {
+        guard let course = self.course else { return }
+        
+        self.overallGradeLabel.text = course.overallFormattedGrade
+        self.completedTasksLabel.text = "\(course.completedTasks)"
+        self.ongoingTasksLabel.text = "\(course.ongoingTasks)"
+        self.overdueTasksLabel.text = "\(course.overdueTasks)"
+    }
     func SetupTags(){
         courseTag1.layer.cornerRadius = 15
         courseTag2.layer.cornerRadius = 15
@@ -83,16 +101,38 @@ class CourseDetailsViewController: UIViewController {
     
     
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "editCourseSegue",
+           let courseForm = segue.destination as? CourseFormTableViewController {
+            
+            courseForm.course = self.course
+            courseForm.unwindSegue = "unwindToCourseDetailsFromEdit"
+        }
      }
-     */
     
+    @IBAction func unwindToCourseDetails(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+        
+        if let courseForm = sourceViewController as? CourseFormTableViewController {
+            self.course = courseForm.course
+            
+            setupStats()
+            CourseDetails()
+            
+            if let course = self.course {
+                gradedTasks = course.tasks.filter { (task) -> Bool in
+                    return task.completed && task.grade.graded
+                }
+            }
+            tableView.reloadData()
+        }
+    }
 }
 
 extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSource{
@@ -101,20 +141,24 @@ extension CourseDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gradedTasks.count
+        let count = gradedTasks.count
+        
+        tableView.backgroundView = count == 0 ? self.noDataView : nil
+        
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let CourseTask = gradedTasks[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier") as! TasksTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier") as! CompletedTaskTableViewCell
         
         // Configure the cell...
-        cell.taskLabel.text = CourseTask.name
-        cell.subtitle.text = CourseTask.brief
+        let task = gradedTasks[indexPath.row]
         
-        if let codableColor = CourseTask.course?.color {
-            cell.courseImage.backgroundColor = codableColor.color
-        }
+        cell.title.text = task.name
+        cell.subtitle.text = task.brief
+        cell.rightDetails.text = task.grade.formattedGrade
+        
+        
         
         return cell
         

@@ -6,8 +6,7 @@
 //
 
 import UIKit
-
-
+import MessageUI
 
 class SettingsTableViewController: UITableViewController {
     private let defaults = UserDefaults.standard
@@ -23,7 +22,9 @@ class SettingsTableViewController: UITableViewController {
     
     var appearanceSettings: AppearanceSettings  = AppearanceSettings.load()
     @IBOutlet weak var themeLabel: UILabel!
-    @IBOutlet weak var languageLabel: UILabel!
+    
+    @IBOutlet weak var versionLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +37,46 @@ class SettingsTableViewController: UITableViewController {
         loadNotificationsSettings()
         updateGradingSection()
         updateAppearanceSection()
+        
+        if let version = Constants.appVersion {
+            versionLabel.text = version
+        }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func showDialogMessage(title: String, messsage: String) {
+        let alert = UIAlertController(title: title, message: messsage, preferredStyle: UIAlertController.Style.alert)
+        
+
+        let action = UIAlertAction(title: NSLocalizedString("Done", comment: "Done"), style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+    func contactUs() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(Constants.developersEmails)
+            if let appName = Constants.appName {
+                mail.setSubject("\(appName)")
+            }
+            
+            present(mail, animated: true)
+        } else {
+            showDialogMessage(title: NSLocalizedString("OpenMailFailedTitle", comment: "Failed to open mail"), messsage: NSLocalizedString("OpenMailFailedMessage", comment: "Cannot send email using this device."))
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
 
@@ -58,7 +93,7 @@ extension SettingsTableViewController {
             pickerTableView.unwindSegueIdentifier = "unwindSettings"
             
             if segue.identifier == "gpaModelSegue" {
-                pickerTableView.title = "GPA Model"
+                pickerTableView.title = NSLocalizedString("GPA Model", comment: "GPA Model")
                 pickerTableView.multiSelect = false
                 
                 for model in GpaModel.allCases {
@@ -70,7 +105,7 @@ extension SettingsTableViewController {
                     pickerTableView.items.append(pickerItem)
                 }
             } else if segue.identifier ==  "themeSegue" {
-                pickerTableView.title = "Theme"
+                pickerTableView.title = NSLocalizedString("Theme", comment: "Theme")
                 pickerTableView.multiSelect = false
                 
                 for theme in AppearanceTheme.allCases {
@@ -104,9 +139,16 @@ extension SettingsTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let cell = tableView.cellForRow(at: indexPath),
-           cell.reuseIdentifier == "languageCell" {
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.reuseIdentifier == "languageCell" {
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            } else if cell.reuseIdentifier == "contactUsCell" {
+                self.contactUs()
+            } else if cell.reuseIdentifier == "aboutCell",
+                      let appName = Constants.appName,
+                      let appVersion = Constants.appVersion {
+                showDialogMessage(title: NSLocalizedString("About", comment: "About"), messsage: "\(appName) app, version \(appVersion); Mobile Programming project")
+            }
         }
     }
 }
@@ -133,13 +175,13 @@ extension SettingsTableViewController {
     }
     
     func notificationsSettingsPrompt() {
-        let confirmAlert = UIAlertController(title: "Notifications disabled", message: "Notifications are disabled for this app, would you like to enable them?", preferredStyle: .alert)
+        let confirmAlert = UIAlertController(title: NSLocalizedString("Notifications disabled", comment: "Notifications disabled"), message: NSLocalizedString("Notifications are disabled for this app, would you like to enable them?", comment: "Notifications are disabled for this app, would you like to enable them?"), preferredStyle: .alert)
 
-        confirmAlert.addAction(UIAlertAction(title: "Open settings", style: .default, handler: { (action: UIAlertAction!) in
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Open settings", comment: "Open settings"), style: .default, handler: { (action: UIAlertAction!) in
             self.openAppSettings()
         }))
 
-        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        confirmAlert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil))
 
         self.present(confirmAlert, animated: true, completion: nil)
     }

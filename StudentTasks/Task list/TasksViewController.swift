@@ -62,7 +62,7 @@ class TasksViewController: UIViewController {
 
         if segue.identifier == "tasksFiltersSegue",
            let destinationNavigationController = segue.destination as? UINavigationController,
-           let tasksFiltersController = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
+           let _ = destinationNavigationController.topViewController as? TasksFiltersTableViewController {
         }
     }
     
@@ -219,7 +219,7 @@ extension TasksViewController: ACTabScrollViewDelegate, ACTabScrollViewDataSourc
         addChild(tabTableView) // don't forget, it's very important
         contentViews.append(tabTableView)
         
-        createTabLabel(course?.name ?? "All")
+        createTabLabel(course?.name ?? NSLocalizedString("All", comment: "All"))
     }
     
     private func createTabLabel(_ text: String) {
