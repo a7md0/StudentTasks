@@ -24,6 +24,8 @@ class CoursesTableViewController: UITableViewController {
     var reloadTableViewData: (() -> Void)?
     var ignoreNextUpdate = false
     
+    @IBOutlet weak var noDataView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -91,7 +93,11 @@ class CoursesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.isSearching ? searchCourses.count : courses.count
+        let count = self.isSearching ? searchCourses.count : courses.count
+        
+        tableView.backgroundView = count == 0 ? noDataView : nil
+        
+        return count
     }
 
     

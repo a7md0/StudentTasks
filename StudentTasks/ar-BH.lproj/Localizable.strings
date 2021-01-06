@@ -67,6 +67,9 @@
 /* Course */
 "Course" = "المقرر";
 
+/* Sort by course name alphabeat */
+"Course name sorting" = "فرز اسم المقرر";
+
 /* Custom */
 "Custom" = "مخصص";
 
@@ -193,5 +196,29 @@
 /* Unset */
 "Unset" = "غير محدد";
 
-/* Sort by course name alphabeat */
-"Course name sorting" = "فرز اسم المقرر";
+/* No comment provided by engineer. */
+"Abberivation" = "";
+
+/* Course code */
+"Course code" = "";
+
+/* No comment provided by engineer. */
+"Enter code" = "";
+
+/* No comment provided by engineer. */
+"Enter lecturer name" = "";
+
+/* No comment provided by engineer. */
+"Enter short abberivation" = "";
+
+/* No comment provided by engineer. */
+"IT6000" = "";
+
+/* No comment provided by engineer. */
+"Lecturer name" = "";
+
+/* No comment provided by engineer. */
+"MP" = "";
+
+/* No comment provided by engineer. */
+"Name" = "";

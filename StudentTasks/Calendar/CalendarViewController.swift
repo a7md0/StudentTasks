@@ -12,7 +12,7 @@ class CalendarViewController: UIViewController
 {
     var tasks: [Task] = []
     var taskByDate: [Task] = []
-
+    
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var taskTableView: UITableView!
     
@@ -26,7 +26,7 @@ class CalendarViewController: UIViewController
         setupFSCalendar()
         setupTasksTableView()
     }
-
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TaskDetailsTableViewController {
@@ -42,10 +42,10 @@ extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
         calendarView.delegate = self
         
         /*calendarView.reloadData()
-        calendarView.select(calendarView.today)*/
+         calendarView.select(calendarView.today)*/
         self.tableViewFilterTasksByDate(date: Date())
     }
-
+    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         var numberOfEvents = 0
         
@@ -60,7 +60,7 @@ extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
         return numberOfEvents
     }
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-    print("Page Changed")
+        print("Page Changed")
         
     }
     
@@ -68,29 +68,29 @@ extension CalendarViewController: FSCalendarDataSource, FSCalendarDelegate {
     {
         self.tableViewFilterTasksByDate(date: date)
         /*taskByDate = []
-        
-        Formatter.dateStyle = .medium
-        
-        let SelectedDate = Formatter.string(from: date)
-        
-        print("Selected Date is: \(SelectedDate)")
-        for task in Task.findAll()
-        {
-            var TaskDate = Formatter.string(from: task.dueDate)
-            if (TaskDate == SelectedDate)
-            {
-                taskByDate.append(task)
-            }
-            
-        }
-        if(taskByDate.count != 0)
-        {
-            print(taskByDate)
-        }
-        taskTableView.reloadData()*/
+         
+         Formatter.dateStyle = .medium
+         
+         let SelectedDate = Formatter.string(from: date)
+         
+         print("Selected Date is: \(SelectedDate)")
+         for task in Task.findAll()
+         {
+         var TaskDate = Formatter.string(from: task.dueDate)
+         if (TaskDate == SelectedDate)
+         {
+         taskByDate.append(task)
+         }
+         
+         }
+         if(taskByDate.count != 0)
+         {
+         print(taskByDate)
+         }
+         taskTableView.reloadData()*/
     }
 }
-    
+
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func setupTasksTableView() {
         taskTableView.delegate = self
@@ -106,11 +106,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dateTask = taskByDate[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellIdentifier") as! TasksTableViewCell
-
+        
         // Configure the cell...
         cell.taskLabel.text = dateTask.name
         cell.subtitle.text = dateTask.brief
-
+        
         if let codableColor = dateTask.course?.color {
             cell.courseImage.backgroundColor = codableColor.color
         }
@@ -139,7 +139,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 if delete {
                     print("Delete \(indexPath.row + 1)")
-                
+                    
                     self.deleteItem(indexPath: indexPath)
                 }
             }
@@ -187,7 +187,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         
         confirmAlert.addAction(okAction)
         confirmAlert.addAction(cancelAction)
-
+        
         present(confirmAlert, animated: true, completion: nil)
     }
     
@@ -196,7 +196,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         
         task.complete(completedOn: nil)
     }
-
+    
     func deleteItem(indexPath: IndexPath) {
         var task = taskByDate[indexPath.row]
         
