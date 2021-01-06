@@ -16,6 +16,7 @@
 		93214117259C4E8E0029FEFD /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93214116259C4E8E0029FEFD /* NotificationSettings.swift */; };
 		9321EFC625A54D6E000E7255 /* CoursesFiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9321EFC525A54D6E000E7255 /* CoursesFiltersTableViewController.swift */; };
 		9321EFC925A55020000E7255 /* CoursesQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9321EFC825A55020000E7255 /* CoursesQuery.swift */; };
+		9321EFCC25A565F3000E7255 /* PromptHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9321EFCB25A565F3000E7255 /* PromptHelper.swift */; };
 		93298318259FFEAC001832AE /* ACTabScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 93298317259FFEAC001832AE /* ACTabScrollView */; };
 		9329831D25A002DB001832AE /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 9329831C25A002DB001832AE /* FSCalendar */; };
 		9329832125A00378001832AE /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9329832025A00378001832AE /* CalendarViewController.swift */; };
@@ -62,6 +63,7 @@
 		93214116259C4E8E0029FEFD /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		9321EFC525A54D6E000E7255 /* CoursesFiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesFiltersTableViewController.swift; sourceTree = "<group>"; };
 		9321EFC825A55020000E7255 /* CoursesQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesQuery.swift; sourceTree = "<group>"; };
+		9321EFCB25A565F3000E7255 /* PromptHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptHelper.swift; sourceTree = "<group>"; };
 		9329832025A00378001832AE /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9329832525A01B07001832AE /* TaskGrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGrade.swift; sourceTree = "<group>"; };
 		9329832925A0279D001832AE /* GradeUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeUtilities.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				9399DACD2596690100F0891C /* UIColor + Codable.swift */,
 				9332513E259EF83A0028F6CF /* DateUtilities.swift */,
 				9329832925A0279D001832AE /* GradeUtilities.swift */,
+				9321EFCB25A565F3000E7255 /* PromptHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				93027D0E259E7D4D00B53C06 /* GradingSettings.swift in Sources */,
 				938F7BD22593F5A20062C79E /* PickerTableViewController.swift in Sources */,
 				9321EFC625A54D6E000E7255 /* CoursesFiltersTableViewController.swift in Sources */,
+				9321EFCC25A565F3000E7255 /* PromptHelper.swift in Sources */,
 				C2830156259678F600CF5D70 /* TaskFormTableViewController.swift in Sources */,
 				93BC92DE258A07920084AF40 /* TasksViewController.swift in Sources */,
 				9399DACE2596690100F0891C /* UIColor + Codable.swift in Sources */,

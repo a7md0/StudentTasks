@@ -24,6 +24,10 @@ class CourseFormTableViewController: UITableViewController {
     var courseTags: [CourseTag] = [.lecture]
     var courseColor: CodableColor?
     
+    var courseCode: String?
+    var courseAbberivation: String?
+    var courseLecturer: String?
+    
     let colors = [4293212469, 4292352864, 4287505578, 4284364209, 4281944491, 4280191205, 4278234305, 4278225275, 4282622023, 4290824755, 4294947584, 4294201630, 4285353025, 4283723386]
 
     override func viewDidLoad() {
@@ -41,6 +45,10 @@ class CourseFormTableViewController: UITableViewController {
             navigationItem.title = course.name
             self.courseTags = course.tags
             self.courseColor = course.color
+            
+            self.courseCode = course.code
+            self.courseAbberivation = course.abberivation
+            self.courseLecturer = course.lecturerName
             
             if let color = course.color {
                 self.colorFrom(color: color)
@@ -65,10 +73,10 @@ class CourseFormTableViewController: UITableViewController {
             
             self.course?.color = courseColor
             
-            //self.course?.code = ??
-            //self.course?.abberivation = ??
+            self.course?.code = self.courseCode
+            self.course?.abberivation = self.courseAbberivation
             self.course?.tags = courseTags
-            //self.course?.lecturerName = ??
+            self.course?.lecturerName = self.courseLecturer
             
             self.course?.save()
         } else {
@@ -85,9 +93,9 @@ class CourseFormTableViewController: UITableViewController {
         
         courseNameTextfield.text = course.name
         
-        courseCodeLabel.text = course.code ?? "Unset"
-        courseAbberivationLabel.text = course.abberivation ?? "Unset"
-        courseLecturerLabel.text = course.lecturerName ?? "Unset"
+        courseCodeLabel.text = self.courseCode ?? NSLocalizedString("Unset", comment: "Unset")
+        courseAbberivationLabel.text = self.courseAbberivation ?? NSLocalizedString("Unset", comment: "Unset")
+        courseLecturerLabel.text = self.courseLecturer ?? NSLocalizedString("Unset", comment: "Unset")
     }
     
     
@@ -104,50 +112,43 @@ class CourseFormTableViewController: UITableViewController {
     
     // MARK: - Table view data source
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let identifier = tableView.cellForRow(at: indexPath)?.reuseIdentifier {
+            var alert: UIAlertController?
+            
+            switch identifier {
+            case "courseCodeCell":
+                alert = PromptHelper.promptText(title: NSLocalizedString("Course code", comment: "Course code"), message: NSLocalizedString("Enter code", comment: ""), placeholder: NSLocalizedString("IT6000", comment: ""), value: self.courseCode) { (text) in
+                    
+                    self.courseCode = text
+                    
+                    self.updateView()
+                }
+            case "courseAbberivationCell":
+                alert = PromptHelper.promptText(title: NSLocalizedString("Abberivation", comment: ""), message: NSLocalizedString("Enter short abberivation", comment: ""), placeholder: NSLocalizedString("MP", comment: ""), value: self.courseAbberivation) { (text) in
+                    
+                    self.courseAbberivation = text
+                    
+                    self.updateView()
+                }
+            case "courseLecturerCell":
+                alert = PromptHelper.promptText(title: NSLocalizedString("Lecturer name", comment: ""), message: NSLocalizedString("Enter lecturer name", comment: ""), placeholder: NSLocalizedString("Name", comment: ""), value: self.courseLecturer) { (text) in
+                    
+                    self.courseLecturer = text
+                    
+                    self.updateView()
+                }
+            default:
+                return
+            }
+            
+            if let alert = alert {
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 }
 
 extension CourseFormTableViewController {

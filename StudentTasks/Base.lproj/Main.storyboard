@@ -457,6 +457,11 @@
                             <constraint firstItem="xAb-MM-dXD" firstAttribute="top" secondItem="4mY-5s-d6b" secondAttribute="bottom" constant="19" id="yMl-Mk-kTQ"/>
                             <constraint firstItem="S7J-0C-bZX" firstAttribute="bottom" secondItem="tjE-Rc-TBv" secondAttribute="bottom" id="yYA-2H-B62"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="FZM-iZ-vbX"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="6u0-q8-WVN">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="VEo-8d-Tfm">
@@ -2370,9 +2375,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="gi6-iJ-iHI"/>
-        <segue reference="ma2-Ky-h6t"/>
+        <segue reference="z4Z-4S-AlR"/>
         <segue reference="Id2-8q-g84"/>
-        <segue reference="9ia-UD-93X"/>
+        <segue reference="sSH-DE-ebR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
